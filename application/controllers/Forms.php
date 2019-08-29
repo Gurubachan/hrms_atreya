@@ -25,7 +25,7 @@ class Forms extends CI_Controller {
     }
     public function sidebar(){
         try{
-            $this->load->view('dashboard/sidebar');
+            $this->load->view('include/sidebar');
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
         }
@@ -61,7 +61,7 @@ class Forms extends CI_Controller {
     public function formUserType(){
         try{
             if($this->session->login['userid']){
-                $this->load->view('forms/formUserType');
+                $this->load->view('User/formUserType');
             }else{
                 redirect('welcome/');
             }
@@ -72,7 +72,7 @@ class Forms extends CI_Controller {
     public function formUser(){
         try{
             if($this->session->login['userid']){
-                $this->load->view('forms/formUser');
+                $this->load->view('User/formUser');
             }else{
                 redirect('welcome/');
             }
@@ -115,7 +115,7 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']){
                 extract($_POST);
-                $this->load->view('forms/formCompanyType');
+                $this->load->view('Company/formCompanyType');
             }else{
                 redirect("Welcome/");
             }
@@ -128,7 +128,7 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
                 extract($_POST);
-                $this->load->view('forms/formNewCompany');
+                $this->load->view('Company/formNewCompany');
             }else{
                 redirect('welcome/');
             }
@@ -136,11 +136,26 @@ class Forms extends CI_Controller {
             echo "Message:" .$e->getMessage();
         }
     }
+    public function formCompanyType(){
+	try{
+		if($this->session->login['userid']) {
+			$this->header();
+			$this->navbar();
+			$this->load->view('Company/formCompanyType');
+			$this->footer();
+		}else{
+			redirect('welcome/');
+		}
+	}catch (Exception $e){
+		echo "Message:" . $e->getMessage();
+	}
+
+}
     public function loadDesignation(){
         try{
             if($this->session->login['userid']) {
                 extract($_POST);
-                $this->load->view('forms/formDesignation');
+                $this->load->view('Designation/formDesignation');
             }else{
                 redirect('welcome/');
             }
@@ -152,7 +167,7 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
             extract($_POST);
-            $this->load->view('forms/formDepartment');
+            $this->load->view('Department/formDepartment');
             }else{
                 redirect('welcome/');
             }
@@ -160,28 +175,14 @@ class Forms extends CI_Controller {
             echo "Message:" .$e->getMessage();
         }
     }
-    public function formCompanyType(){
-        try{
-            if($this->session->login['userid']) {
-            $this->header();
-            $this->navbar();
-            $this->load->view('forms/formCompanyType');
-            $this->footer();
-            }else{
-                redirect('welcome/');
-            }
-        }catch (Exception $e){
-            echo "Message:" . $e->getMessage();
-        }
 
-    }
     public function formDistrict(){
         try{
             if($this->session->login['userid']) {
             $this->header();
             $this->navbar();
             $this->sidebar();
-            $this->load->view('forms/formDistrict');
+            $this->load->view('District/formDistrict');
             $this->footer();
             }else{
                 redirect('welcome/');
@@ -197,7 +198,7 @@ class Forms extends CI_Controller {
             $this->header();
             $this->navbar();
             $this->sidebar();
-            $this->load->view('forms/formState');
+            $this->load->view('State/formState');
             $this->footer();
             }else{
                 redirect('welcome/');
@@ -213,7 +214,7 @@ class Forms extends CI_Controller {
             $this->header();
             $this->navbar();
             $this->sidebar();
-            $this->load->view('forms/formYear');
+            $this->load->view('Year/formYear');
             $this->footer();
             }else{
                 redirect('welcome/');
@@ -229,7 +230,7 @@ class Forms extends CI_Controller {
             $this->header();
             $this->navbar();
             $this->sidebar();
-            $this->load->view('forms/formEducation');
+            $this->load->view('Education/formEducation');
             $this->footer();
             }else{
                 redirect('welcome/');
@@ -258,7 +259,7 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
             extract($_POST);
-            $this->load->view('forms/formEmployeeType');
+            $this->load->view('Employee/formEmployeeType');
             }else{
                 redirect('welcome/');
             }
@@ -271,7 +272,7 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
             extract($_POST);
-            $this->load->view('forms/formNewEmployee');
+            $this->load->view('Employee/formNewEmployee');
             }else{
                 redirect('welcome/');
             }
@@ -283,7 +284,7 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
             extract($_POST);
-            $this->load->view('forms/formEmployeeBankDetails');
+            $this->load->view('Employee/formEmployeeBankDetails');
             }else{
                 redirect('welcome/');
             }
@@ -295,7 +296,7 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
             extract($_POST);
-            $this->load->view('forms/employeeAttendance');
+            $this->load->view('Employee/employeeAttendance');
             }else{
                 redirect('welcome/');
             }
@@ -311,7 +312,7 @@ class Forms extends CI_Controller {
 //            $this->sidebar();
             $this->navbar();
             $this->sidebar();
-            $this->load->view('forms/formBankDetails');
+            $this->load->view('Bank/formBankDetails');
             $this->footer();
             }else{
                 redirect('welcome/');
@@ -326,7 +327,7 @@ class Forms extends CI_Controller {
             $this->header();
             $this->navbar();
             $this->sidebar();
-            $this->load->view('forms/formMaritalStatus');
+            $this->load->view('MaritalStaus/formMaritalStatus');
             $this->footer();
             }else{
                 redirect('welcome/');
@@ -341,7 +342,7 @@ class Forms extends CI_Controller {
             $this->header();
             $this->navbar();
             $this->sidebar();
-            $this->load->view('forms/formGender');
+            $this->load->view('Gender/formGender');
             $this->footer();
             }else{
                 redirect('welcome/');
@@ -354,7 +355,7 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
             extract($_POST);
-            $this->load->view('forms/formMappingCompanyDepartment');
+            $this->load->view('Company/formMappingCompanyDepartment');
             }else{
                 redirect('welcome/');
             }

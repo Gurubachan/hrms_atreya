@@ -16,7 +16,6 @@ $cname = $this->uri->segment(2);
                 <div class="box-content">
                     <form  class="" id="companyTypeForm" autocomplete="off">
                         <div class="form-group">
-                            <input type="hidden" id="txtid" name="txtid" value="0">
                             <label for="" class="control-label mb-1">Company Type Name</label>
                             <input type="text" id="companytypename" name="companytypename" onclick="charachters_validate('companytypename')" minlength="5" maxlength="60" class="form-control" placeholder="Enter company name, Only charachters and space are allowed." required>
                             <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
@@ -76,9 +75,13 @@ $cname = $this->uri->segment(2);
     </div>
 </div>
 <script>
+	var txtid=0;
     $("#companyTypeForm").submit(function(e){
         e.preventDefault();
-        var frm = $("#companyTypeForm").serialize();
+		var frm = $("#companyTypeForm").serialize();
+        if(txtid > 0){
+			frm+=frm + "&txtid="+txtid;
+		}
         $.ajax({
             type:'post',
             url: "<?= base_url('Company/create_company_type')?>",
@@ -86,12 +89,12 @@ $cname = $this->uri->segment(2);
             data:frm,
             success:function(data){
                 if(data!=false){
-                    if($("#createCompanyType").html()=="Update"){
-                        window.location.reload();
-                    }else{
-                        $('#companytypename').val("");
-                        reportFunction(1);
-                    }
+                	if(txtid > 0){
+                		txtid=0;
+						$("#createCompanyType").html('Create');
+					}
+					$("#companyTypeForm").trigger("reset");
+					reportFunction(1);
                 }else{
                     console.log(data);
                 }
@@ -134,13 +137,15 @@ $cname = $this->uri->segment(2);
                 }
             });
         }
+
     function reportEditCompanyType(id,strcompanytype,isactive) {
         if(isactive=='t'){
             var isactiveval=1;
         }else{
             isactiveval=0;
         }
-        $('#txtid').val(id);
+        txtid=id;
+        //$('#txtid').val(id);
         $('#companytypename').val(strcompanytype);
         $('#isactive').val(isactiveval);
         $('#designationname').focus();

@@ -9,43 +9,6 @@ class Bank extends CI_Controller
         parent::__construct();
     }
 
-    public function header()
-    {
-        try {
-
-            $this->load->view('include/header');
-        } catch (Exception $e) {
-            echo "Message:" . $e->getMessage();
-        }
-
-    }
-
-    public function footer()
-    {
-        try {
-            $this->load->view('include/footer');
-        } catch (Exception $e) {
-            echo "Message:" . $e->getMessage();
-        }
-    }
-
-    public function sidebar()
-    {
-        try {
-            $this->load->view('dashboard/sidebar');
-        } catch (Exception $e) {
-            echo "Message:" . $e->getMessage();
-        }
-    }
-
-    public function navbar()
-    {
-        try {
-            $this->load->view('include/navbar');
-        } catch (Exception $e) {
-            echo "Message:" . $e->getMessage();
-        }
-    }
     public function create_bank(){
         try{
             $request = json_decode(json_encode($_POST), FALSE);
