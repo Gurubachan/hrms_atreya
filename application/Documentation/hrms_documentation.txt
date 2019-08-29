@@ -1,0 +1,12 @@
+#application type: web, mobile app.
+#analysis date: 26-06-19.
+#demo : 08-08-19.
+#1st release: 15-08-19.
+#hrms:
+Human Resource Management System of Atreya Associates.
+
+#modules
+1.company
+2.employee
+3.attendance
+4.
