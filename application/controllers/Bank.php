@@ -23,6 +23,12 @@ class Bank extends CI_Controller
             }else{
                 $status=false;
             }
+            if(isset($request->bankShortname) && preg_match("/[a-zA-Z]{2,5}/",$request->bankShortname)){
+                //echo json_encode($companytypename);
+                $insert[0]['bankshortname']=$request->bankShortname;
+            }else{
+                $status=false;
+            }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
                     $insert[0]['isactive']=true;
@@ -134,6 +140,7 @@ class Bank extends CI_Controller
                         $data[] = array(
                             'id' => $r->id,
                             'bankname' => $r->bankname,
+                            'bankshortname' => $r->bankshortname,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive

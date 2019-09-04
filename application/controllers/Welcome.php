@@ -56,6 +56,7 @@ class Welcome extends CI_Controller {
             $this->header();
             $this->load->view('index');
             $this->footer();
+            $this->load->view('login-script');
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
         }

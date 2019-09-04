@@ -22,6 +22,8 @@ $cname = $this->uri->segment(2);
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
+                                    <input type="hidden" id="txtid" name="txtid" value="0">
+                                    <input type="hidden" id="isactive" name="isactive" value="1">
                                     <label for="slno" class="control-label mb-1">#Slno<span style="color:red;">*</span>.</label>
                                     <input id="slno" name="slno" type="text" class="form-control" onclick="alfa_numeric('slno')" maxlength="20" placeholder="Enter serial number" required>
                                     <small class="errormsg_slno"></small>
@@ -35,22 +37,20 @@ $cname = $this->uri->segment(2);
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="employeedepartment" class="control-label mb-1">Department<span style="color:red;">*</span></label>
+                                    <label for="" class="control-label mb-1">Department<span style="color:red;">*</span></label>
                                     <select id="departmentmappingid" name="departmentmappingid" class="select" required>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="employeepostion" class="control-label mb-1">Designation<span style="color:red;">*</span></label>
+                                    <label for="" class="control-label mb-1">Designation<span style="color:red;">*</span></label>
                                     <select id="designationid" name="designationid" class="select" required></select>
                                 </div>
                             </div>
                            <div class="col-sm-3">
                                <div class="form-group">
                                    <label for="employeefirstname" class="control-label mb-1">First Name<span style="color:red;">*</span></label>
-                                   <input type="hidden" id="txtid" name="txtid" value="0">
-                                   <input type="hidden" id="isactive" name="isactive" value="1">
                                    <input id="fname" name="fname" type="text" class="form-control"  minlength="1" maxlength="50" placeholder="Enter first name" required>
                                </div>
                            </div>
@@ -157,7 +157,7 @@ $cname = $this->uri->segment(2);
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="employeeepfnumber" class="control-label mb-1">EPF Number</label>
+                                    <label for="" class="control-label mb-1">EPF Number</label>
                                     <input id="epfno" name="epfno" type="text" class="form-control text-uppercase" placeholder="Enter epf number. e.g:KN/KRP/0054055/0000250" minlength="21" maxlength="21" onclick="epf_number_validate('epfno')">
                                     <small class="errormsg_epfno"></small>
                                 </div>
@@ -187,7 +187,7 @@ $cname = $this->uri->segment(2);
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">Create</button>
                         </div>
 
                     </form>
@@ -227,7 +227,6 @@ $cname = $this->uri->segment(2);
                             <th>Sl#</th>
                             <th>Form Slno</th>
                             <th>ICard Number</th>
-                            <th>Department</th>
                             <th>Designation</th>
                             <th>Employee Name</th>
                             <th>Gender</th>
@@ -241,6 +240,7 @@ $cname = $this->uri->segment(2);
                             <th>Address</th>
                             <th>Email</th>
                             <th>Mobile</th>
+                            <th>State</th>
                             <th>District</th>
                             <th>Education</th>
                             <th>Epf Number</th>
@@ -259,71 +259,4 @@ $cname = $this->uri->segment(2);
             </div>
         </div>
     </div>
-<script>
-    $(function () {
-        load_employee_type();
-        load_education();
-        load_department();
-        load_designation();
-        load_marital_status();
-        load_gender();
-        load_state();
-    });
 
-    $('#stateid').change(function () {
-        load_district();
-    });
-
-    $("#newEmployeeForm").submit(function(e){
-        $('#toggle_new_employee').show();
-        e.preventDefault();
-        var frm = $("#newEmployeeForm").serialize();
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('Employee/create_employee')?>",
-            crossDomain:true,
-            data:frm,
-            success:function(data){
-                if(data!=false){
-                    var josndata = JSON.parse(data);
-                    reportFunction(1);
-                }
-            }
-        });
-    });
-    function loadAjaxForReport(id){
-        $('#toggle_new_employee').show();
-                $.ajax({
-                    type:'post',
-                    url:"<?= base_url('Employee/report_temp_employee')?>",
-                    data:{checkparams:id},
-                    crossDomain:true,
-                    success:function(data){
-                        if(data!=false){
-                            var jsondata = JSON.parse(data);
-                            var j=0;
-                            var z = jsondata.length;
-                            var html = "";
-                            var isactive='';
-                            for(var i=0; i<z; i++){
-                                j++;
-                                var checkId = jsondata[i].id;
-                                var checkIsactive = jsondata[i].isactive;
-                                var updatedid = '"<?= $cname ?>"';
-                                var urlid = '"../Common/record_active_deactive"';
-                                if(checkIsactive=='t'){
-                                    isactive= "<button id='action"+checkId+"' onclick='editIsactive(1,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-on fa-2x'></i></button>";
-                                }else{
-                                    isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
-                                }
-                                html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].slno+"</td><td>"+ jsondata[i].empid+"</td><td>"+ jsondata[i].departmentname+"</td><td>"+ jsondata[i].designationname+"</td><td>"+ jsondata[i].fname+" "+jsondata[i].mname+" "+jsondata[i].lname+"</td>" +
-                                    "<td>"+ jsondata[i].gendername+"</td><td>"+ jsondata[i].dob+"</td><td>"+ jsondata[i].maritalstatusname+"</td><td>"+ jsondata[i].doj+"</td><td>"+ jsondata[i].dol+"</td><td>"+ jsondata[i].fathername+"</td><td>"+ jsondata[i].mothername+"</td>" +
-                                    "<td>"+ jsondata[i].spousename+"</td><td>"+ jsondata[i].address+"</td><td>"+ jsondata[i].emailid+"</td><td>"+ jsondata[i].mobile+"</td><td>"+ jsondata[i].distname+"</td><td>"+ jsondata[i].educationname+"</td>" +
-                                    "<td>"+ jsondata[i].epfno+"</td><td>"+ jsondata[i].esifno+"</td><td>"+ jsondata[i].aadharno+"</td><td>"+ jsondata[i].panno+"</td><td>"+isactive+"</td><td>Edit</td></tr>");
-                            }
-                            $("#load_employeess").html(html);
-                        }
-                    }
-                });
-            }
-</script>

@@ -32,19 +32,22 @@ $cname = $this->uri->segment(2);
                                 <input type="hidden" id="txtid" name="txtid" value="0">
                                 <input type="hidden" id="isactive" name="isactive" value="1">
                                 <label for="" class="control-label mb-1">First Name<span style="color:red;">*</span></label>
-                                <input id="fname" name="fname" type="text" class="form-control"  minlength="2" maxlength="50" placeholder="Enter first name" required>
+                                <input id="fname" name="fname" type="text" class="form-control" onclick="charachters_validate('fname')"  minlength="2" maxlength="50" placeholder="Enter first name" required>
+                                <small id="" class="errormsg_fname"></small>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label for="" class="control-label mb-1">Middle Name</label>
-                                <input id="mname" name="mname" type="text" class="form-control " minlength="0"  maxlength="50" placeholder="Enter middle name">
+                                <input id="mname" name="mname" type="text" class="form-control " onclick="charachters_validate('mname')" minlength="0"  maxlength="50" placeholder="Enter middle name">
+                                <small id="" class="errormsg_mname"></small>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label for="" class="control-label mb-1">Last Name</label>
-                                <input id="lname" name="lname" type="text" class="form-control " minlength="0"  maxlength="50" placeholder="Enter last name">
+                                <input id="lname" name="lname" type="text" class="form-control" onclick="charachters_validate('lname')" minlength="0"  maxlength="50" placeholder="Enter last name">
+                                <small id="" class="errormsg_lname"></small>
                             </div>
                         </div>
                         <div class="col-sm-3">
@@ -56,19 +59,22 @@ $cname = $this->uri->segment(2);
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label for="" class="control-label mb-1">Email</label>
-                                <input id="emailid" name="emailid" type="email" class="form-control" placeholder="Enter email id.">
+                                <input id="emailid" name="emailid" type="email" onclick="email_validate('emailid')" class="form-control" placeholder="Enter email id.">
+                                <small id="" class="errormsg_emailid"></small>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label for="" class="control-label mb-1">Mobile<span style="color:red;">*</span></label>
-                                <input id="mobile" name="mobile" type="text" class="form-control"  minlength="10" maxlength="10" placeholder="Enter mobile number" required>
+                                <input id="mobile" name="mobile" type="text" class="form-control"  minlength="10" onclick="number_validate('mobile')" maxlength="10" placeholder="Enter mobile number" required>
+                                <small id="" class="errormsg_mobile"></small>
                             </div>
                         </div>
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <label for="" class="control-label mb-1">User Name</label>
-                                <input id="username" name="username" type="text" class="form-control"  maxlength="50" placeholder="Enter username for login" title="Enter username for login">
+                                <input id="username" name="username" type="text" class="form-control" onclick="password_validate('username')" minlength="6"  maxlength="18" placeholder="Enter username for login ,only @-_./ allowed."" title="Enter username for login,only @-_./ allowed.">
+                                <small id="" class="errormsg_username"></small>
                             </div>
                         </div>
 <!--                        <div class="col-sm-3">-->
@@ -145,99 +151,4 @@ $cname = $this->uri->segment(2);
         </div>
     </div>
 </div>
-<script>
-    $(function () {
-        load_user_type();
-        load_userid();
-    });
-    function load_user_type(){
-        $.ajax({
-            type:'post',
-            url: "<?= base_url('User/load_user_type')?>",
-            crossDomain:true,
-            success:function(data){
-                var data = JSON.parse(data);
-                if(data!=false){
-                    $("#usertypeid").html(data);
-                }
-            }
-        });
-    }
-    function load_userid(){
-        $.ajax({
-            type:'post',
-            url: "<?= base_url('User/load_userid')?>",
-            crossDomain:true,
-            success:function(data){
-                var data = JSON.parse(data);
-                if(data!=false){
-                    $("#userid").html(data);
-                }
-            }
-        });
-    }
-    $("#newUserForm").submit(function(e){
-        $('#toggle_new_user').show();
-        e.preventDefault();
-        var frm = $("#newUserForm").serialize();
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('User/create_user')?>",
-            crossDomain:true,
-            data:frm,
-            success:function(data){
-                if(data!=false){
-                    var josndata = JSON.parse(data);
-                    reportFunction(1);
-                    $("#usertypeid").val("");
-                    $("#username").val("");
-                    $("#fname").val("");
-                    $("#mname").val("");
-                    $("#lname").val("");
-                    $("#dob").val("");
-                    $("#emailid").val("");
-                    $("#mobile").val("");
-                    $("#userpassword").val("");
-                    $("#reenteruserpassword").val("");
-                }
-            }
-        });
-    });
-    function loadAjaxForReport(id){
-        $('#toggle_new_user').show();
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('User/report_user')?>",
-            data:{checkparams:id},
-            crossDomain:true,
-            success:function(data){
-                if(data!=false){
-                    var jsondata = JSON.parse(data);
-                    var j=0;
-                    var z = jsondata.length;
-                    var html = "";
-                    var isactive='';
-                    for(var i=0; i<z; i++){
-                        j++;
-                        var checkId = jsondata[i].id;
-                        var checkIsactive = jsondata[i].isactive;
-                        var mname = jsondata[i].mname;
-                        var lname = jsondata[i].lname;
-                        var updatedid = '"<?= $cname ?>"';
-                        var urlid = '"../Common/record_active_deactive"';
-                        if(checkIsactive=='t'){
-                            isactive= "<button id='action"+checkId+"' onclick='editIsactive(1,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-on fa-2x'></i></button>";
-                        }else{
-                            isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
-                        }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].usertypeid+"</td><td>"+jsondata[i].username+"</td><td>"+ jsondata[i].fname+" "+mname+" "+lname+"</td>" +
-                            "<td>"+ jsondata[i].emailid+"</td><td>"+ jsondata[i].mobile+"</td><td>"+ jsondata[i].dob+"</td><td>"+isactive+"</td><td>Edit</td></tr>");
-                    }
-                    $("#load_user").html(html);
 
-                }
-            }
-        });
-    }
-
-</script>

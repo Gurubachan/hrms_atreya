@@ -33,11 +33,11 @@ $cname = $this->uri->segment(2);
                         </div>
                         <div class="form-group">
                             <label for="bankaccountnumber" class="control-label mb-1">A/C Number</label>
-                            <input id="bankaccountnumber" name="bankaccountnumber" type="text" class="form-control" aria-required="true" aria-invalid="false" placeholder="Enter account number.">
+                            <input id="bankaccountnumber" name="bankaccountnumber" type="text" class="form-control" minlength="9" maxlength="18" placeholder="Enter account number.">
                         </div>
                         <div class="form-group">
                             <label for="bankifscnumber" class="control-label mb-1">IFSC Number</label>
-                            <input id="bankifscnumber" name="bankifscnumber" type="text" AUTOCAPITALIZE="characters" class="form-control" aria-required="true" aria-invalid="false" minlength="12" maxlength="12" placeholder="Enter ifsc code.">
+                            <input id="bankifscnumber" name="bankifscnumber" type="text"  class="form-control text-uppercase"  minlength="12" maxlength="12" placeholder="Enter ifsc code.">
                         </div>
                         <div class="form-actions form-group text-center " style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>

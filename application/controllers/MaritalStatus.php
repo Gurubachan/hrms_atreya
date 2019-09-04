@@ -19,6 +19,11 @@ class MaritalStatus extends CI_Controller {
             }else{
                 $status=false;
             }
+            if(isset($request->maritalStatusShortname) && preg_match("/^[a-zA-Z]{2,5}$/",$request->maritalStatusShortname)){
+                $insert[0]['statusnshortame']=$request->maritalStatusShortname;
+            }else{
+                $status=false;
+            }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
                     $insert[0]['isactive']=true;
@@ -135,6 +140,7 @@ class MaritalStatus extends CI_Controller {
                     $data[]=array(
                         'id'=>$r->id,
                         'statusname'=>$r->statusname,
+                        'statusnshortame'=>$r->statusnshortame,
                         'creationdate'=>$r->createdat,
                         'lastmodifiedon'=>$r->updatedat,
                         'isactive'=>$r->isactive

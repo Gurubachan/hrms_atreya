@@ -1,5 +1,7 @@
 //editIsactive function is for used for active/deactive
 // of all the records which are retrived from database and print on the report part.
+
+var dist=null;
 function editIsactive(isactive,checkid,updatedid,urlid){
     $.ajax({
         type:'post',
@@ -193,11 +195,10 @@ function load_state(){
                 $("#stateid").html(data);
             }
         }
-
     });
 }
-function load_district(){
-    var stateid = $("#stateid").val();
+function load_district(id=null){
+    var stateid = id;
     $.ajax({
         type:'post',
         url: "../District/load_district",
@@ -207,6 +208,9 @@ function load_district(){
             var data = JSON.parse(data);
             if(data!=false){
                 $("#distid").html(data);
+                if(dist!=null){
+                    $("#distid").val(dist);
+                }
             }
         }
     });

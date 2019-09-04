@@ -77,12 +77,7 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     function loadUser() {
         window.location.href="<?= base_url('Forms/userDashboard')?>";
     }
-    //updatedid = <?//= $cname?>//;
-    // alert(updatedid);
 </script>
-<?php
-//$cname = $this->uri->segment(2);
-//?>
 </div>
 </div>
 </body>

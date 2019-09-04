@@ -20,6 +20,11 @@ class State extends CI_Controller {
             }else{
                 $status=false;
             }
+            if(isset($request->stateShortname) && preg_match("/^[a-zA-Z]{2,5}$/",$request->stateShortname)){
+                $insert[0]['stateshortname']=$request->stateShortname;
+            }else{
+                $status=false;
+            }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
                     $insert[0]['isactive']=true;
@@ -131,10 +136,42 @@ class State extends CI_Controller {
                     $data[]=array(
                         'id'=>$r->id,
                         'statename'=>$r->statename,
+                        'stateshortname'=>$r->stateshortname,
                         'creationdate'=>$r->createdat,
                         'lastmodifiedon'=>$r->updatedat,
                         'isactive'=>$r->isactive
                     );
+                }
+            }
+            echo json_encode($data);
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
+    public function load_districtwise_state(){
+        try{
+            $data=array();
+            $where="isactive=true";
+            $request = json_decode(json_encode($_POST), FALSE);
+            $postdata = file_get_contents("php://input");
+//			$request = json_decode($postdata);
+            if(isset($request->distid) && is_numeric($request->distid) && $request->distid>0){
+                $where.=" and id=$request->distid";
+            }else{
+                $data['message']="Bad request.";
+                $data['status']=false;
+                echo json_encode($data);
+                exit();
+            }
+            $res=$this->Model_Db->select(9,null,$where);
+//            $data[]="<option value=''>Select</option>";
+            if($res!=false){
+                foreach ($res as $r){
+                    $data[]="<option value='$r->id'>$r->stateid</option>";
                 }
             }
             echo json_encode($data);

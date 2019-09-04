@@ -18,6 +18,13 @@ class Gender extends CI_Controller {
                 $insert[0]['gendername']=$request->gendername;
             }else{
                 $status=false;
+                echo $request->gendername;;
+            }
+            if(isset($request->genderShortname) && preg_match("/^[a-zA-Z]{2,5}$/",$request->genderShortname)){
+                $insert[0]['gendernshortame']=$request->genderShortname;
+            }else{
+                $status=false;
+                echo $request->genderShortname;
             }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
@@ -129,6 +136,7 @@ class Gender extends CI_Controller {
                         $data[] = array(
                             'id' => $r->id,
                             'gendername' => $r->gendername,
+                            'gendernshortame' => $r->gendernshortame,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive

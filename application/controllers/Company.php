@@ -52,6 +52,14 @@ class Company extends CI_Controller {
                 $insert[0]['typename']=$request->companytypename;
             }else{
                 $status=false;
+                echo $request->companytypename;
+            }
+            if(isset($request->companyShortname) && preg_match("/[a-zA-Z]{2,5}/",$request->companyShortname)){
+                //echo json_encode($companytypename);
+                $insert[0]['typeshortname']=$request->companyShortname;
+            }else{
+                $status=false;
+                echo $request->companyShortname;
             }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
@@ -300,6 +308,7 @@ class Company extends CI_Controller {
                         $data[] = array(
                             'id' => $r->id,
                             'typename' => $r->typename,
+                            'typeshortname'=>$r->typeshortname,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive
@@ -387,7 +396,7 @@ class Company extends CI_Controller {
                     echo json_encode($data);
                     exit();
                 }
-                $res = $this->Model_Db->select(13, null, $where);
+                $res = $this->Model_Db->select(14, null, $where);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(
@@ -395,18 +404,19 @@ class Company extends CI_Controller {
                             'companytypeid' => $r->companytypeid,
                             'companyname' => $r->companyname,
                             'companyshortname' => $r->companyshortname,
+                            'companytypename'=>$r->companytypename,
                             'establishedon' => $r->establishedon,
                             'gstno' => $r->gstno,
                             'address' => $r->address,
-                            'distid' => $r->distid,
                             'pincode' => $r->pincode,
-                            'logo' => $r->logo,
                             'url' => $r->url,
                             'emailid' => $r->emailid,
                             'mobile' => $r->mobile,
-                            'creationdate' => $r->createdat,
-                            'lastmodifiedon' => $r->updatedat,
-                            'isactive' => $r->isactive
+                            'isactive' => $r->isactive,
+                            'stateid'=>$r->stateid,
+                            'statename'=>$r->statename,
+                            'distid' => $r->distid,
+                            'distname'=>$r->distname
                         );
                     }
                 }

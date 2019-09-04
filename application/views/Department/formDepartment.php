@@ -26,6 +26,11 @@ $cname = $this->uri->segment(2);
                         <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
                         <small class="errormsg_departmentname"></small>
                     </div>
+                    <div class="form-group">
+                        <label for="statename" class="control-label mb-1">Shortname<span class="red">*</span></label>
+                        <input type="text" id="departmentShortname" name="departmentShortname" class="form-control" aria-required="true" aria-invalid="false" onclick="charachters_validate('departmentShortname')" minlength="2" maxlength="5" required placeholder="Enter shortname">
+                        <small class="errormsg_departmentShortname"></small>
+                    </div>
                     <br>
                     <div class=" form-group text-right" style="margin-right: 20%;">
                         <button type="reset" class="btn btn-danger btn-sm">Reset</button>
@@ -67,6 +72,7 @@ $cname = $this->uri->segment(2);
                     <tr>
                         <th>Sl#</th>
                         <th>Department name</th>
+                        <th>Department Shortname</th>
                         <th>IsActive</th>
                         <th>Action</th>
                     </tr>
@@ -79,79 +85,4 @@ $cname = $this->uri->segment(2);
         </div>
     </div>
 </div>
-<script>
-    $(function () {
-        // load_department();
-    });
-    $("#departmentForm").submit(function(e){
-        $("#department_report").show();
-        e.preventDefault();
-        var frm = $("#departmentForm").serialize();
-        $.ajax({
-            type:'post',
-            url: "<?= base_url('Department/create_department')?>",
-            crossDomain:true,
-            data:frm,
-            success:function(data){
-                if(data!=false){
-                    if($("#createDepartment").html()=='Update'){
-                        window.location.reload();
-                    }else{
-                        reportFunction(1);
-                        $('#departmentname').val("");
-                    }
-                }else{
-                    console.log(data);
-                }
-            }
-        });
-    });
-    function loadAjaxForReport(data){
-            $("#department_report").show();
-            $.ajax({
-                type:'post',
-                url:"<?= base_url('Department/report_department')?>",
-                data:{checkparams:data},
-                crossDomain:true,
-                success:function(data){
-                    var jsondata = JSON.parse(data);
-                    if(data!=false){
-                        var j=0;
-                        var z = jsondata.length;
-                        // alert(z);
-                        var html = "";
-                        var isactive = "";
-                        for(var i=0; i<z; i++){
-                            j++;
-                            var checkId = jsondata[i].id;
-                            var checkIsactive = jsondata[i].isactive;
-                            var departmentname = jsondata[i].departmentname;
-                            var strdepartmentname = JSON.stringify(departmentname);
-                            var editisactive = JSON.stringify(checkIsactive);
-                            var updatedid = '"<?= $cname ?>"';
-                            var urlid = '"../Common/record_active_deactive"';
-                            if(checkIsactive=='t'){
-                                isactive= "<button id='action"+checkId+"' onclick='editIsactive(1,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-on fa-2x'></i></button>";
-                            }else{
-                                isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
-                            }
-                            html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].departmentname+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditDepartment(" +checkId+ "," +strdepartmentname+ "," +editisactive+ ")'>Edit</button></td></tr>");
-                        }
-                        $("#load_department").html(html);
-                    }
-                }
-            });
-       }
-   function reportEditDepartment(id,strdepartmentname,isactive) {
-       if(isactive=='t'){
-           var isactiveval=1;
-       }else{
-           isactiveval=0;
-       }
-       $('#txtid').val(id);
-       $('#departmentname').val(strdepartmentname);
-       $('#isactive').val(isactiveval);
-       $('#departmentname').focus();
-       $("#createDepartment").html('Update');
-   }
-</script>
+

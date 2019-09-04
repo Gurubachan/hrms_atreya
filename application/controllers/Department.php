@@ -19,6 +19,11 @@ class Department extends CI_Controller {
             }else{
                 $status=false;
             }
+            if(isset($request->departmentShortname) && preg_match("/^[a-zA-Z ]{2,5}$/",$request->departmentShortname)){
+                $insert[0]['departmentshortname']=$request->departmentShortname;
+            }else{
+                $status=false;
+            }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
                     $insert[0]['isactive']=true;
@@ -129,6 +134,7 @@ class Department extends CI_Controller {
                         $data[] = array(
                             'id' => $r->id,
                             'departmentname' => $r->departmentname,
+                            'departmentshortname' => $r->departmentshortname,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive

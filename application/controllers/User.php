@@ -245,7 +245,7 @@ class User extends CI_Controller {
                 $status=false;
                 echo $request->usertypeid;
             }
-            if(isset($request->username) && preg_match("/[a-zA-Z _@.]{5,15}/",$request->username)){
+            if(isset($request->username) && preg_match("/[a-zA-Z _@.]{6,18}/",$request->username)){
                 $insert[0]['username']=$request->username;
             }else{
                 $status=false;
@@ -335,7 +335,8 @@ class User extends CI_Controller {
                             if($result!=false){
                                 $mobile=$request->mobile;
                                 $userid=$request->username;
-                                $message="Your userid is - ".$userid.". And Password is ".$mobile.".";
+                                $name = $request->fname;
+                                $message="Dear ".$name." Your userid is - ".$userid.". And Password is ".$mobile." to login http://61.12.81.38/hrms";
                                 $this->load->library("Sms");
                                 $this->sms->send($mobile,$message);
                                 $data['message']="Insert successful.";

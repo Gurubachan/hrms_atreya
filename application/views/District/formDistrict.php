@@ -33,6 +33,11 @@ $cname = $this->uri->segment(2);
                             <input type="text" id="distname" name="distname" class="form-control" onclick="charachters_validate('distname')" minlength="3" maxlength="20"  placeholder="Enter district name." required>
                             <small class="errormsg_distname"></small>
                         </div>
+                        <div class="form-group">
+                            <label for="statename" class="control-label mb-1">Shortname<span class="red">*</span></label>
+                            <input type="text" id="districtShortname" name="districtShortname" class="form-control" aria-required="true" aria-invalid="false" onclick="charachters_validate('districtShortname')" minlength="2" maxlength="5" required placeholder="Enter shortname">
+                            <small class="errormsg_districtShortname"></small>
+                        </div>
                         <br>
                         <div class="text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
@@ -74,6 +79,7 @@ $cname = $this->uri->segment(2);
                         <tr>
                             <th>Sl#</th>
                             <th>District name</th>
+                            <th>District Short name</th>
                             <th>IsActive</th>
                             <th>Action</th>
                         </tr>
@@ -89,98 +95,4 @@ $cname = $this->uri->segment(2);
     </div>
 </div>
 </div>
-<script>
-    $(function () {
-        load_state();
-    });
-    $("#districtname").submit(function(e){
-        e.preventDefault();
-        var frm = $("#districtname").serialize();
-        $.ajax({
-            type:'post',
-            url: "<?= base_url('District/create_district')?>",
-            data:frm,
-            success:function(data){
-                if(data!=false){
-                    console.log(data);
-                    if($('#createDistrict').html()=='Update'){
-                        $("#districtname").val('');
-                        window.location.reload();
-                    }else{
-                        $("#districtname").val('');
-                        reportFunction(1);
-                    }
-                }else{
-                    console.log(data);
-                }
-            }
-        });
-    });
-    function load_state(){
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('State/load_state')?>",
-            success:function(data){
-                var data = JSON.parse(data);
-                if(data!=false){
-                    $("#stateid").html(data);
-                }
-            }
-        });
-    }
-    $("#stateid").change(function () {
-        reportFunction(2);
-    });
-    function loadAjaxForReport(data){
-            var stateid = $('#stateid').val();
-           if(stateid == ''){
-               alert("Please Select a State.");
-           }else{
-               $.ajax({
-                   type:'post',
-                   url:"<?= base_url('District/report_district')?>",
-                   data:{stateid:stateid,checkparams:data},
-                   crossDomain:true,
-                   success:function(data){
-                       var jsondata = JSON.parse(data);
-                       if(data!=false){
-                           var j=0;
-                           var z = jsondata.length;
-                           // alert(z);
-                           var html = "";
-                           var isactive='';
-                           for(var i=0; i<z; i++){
-                               j++;
-                               var checkId = jsondata[i].id;
-                               var checkIsactive = jsondata[i].isactive;
-                               var editisactive = JSON.stringify(checkIsactive);
-                               var district = jsondata[i].distname;
-                               var strdistrict = JSON.stringify(district);
-                               var updatedid = '"<?= $cname ?>"';
-                               var urlid = '"../Common/record_active_deactive"';
-                               if(checkIsactive=='t'){
-                                   isactive= "<button id='action"+checkId+"' onclick='editIsactive(1,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-on fa-2x'></i></button>";
-                               }else{
-                                   isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
-                               }
-                               html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].distname+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditDistrict(" +checkId+ "," +strdistrict+ "," +editisactive+ ")'>Edit</button></td></tr>");
-                           }
-                           $("#load_district").html(html);
-                       }
-                   }
-               });
-           }
-        }
-    function reportEditDistrict(id,strdistrict,isactive) {
-        if(isactive=='t'){
-            var isactiveval=1;
-        }else{
-            isactiveval=0;
-        }
-        $('#txtid').val(id);
-        $('#distname').val(strdistrict);
-        $('#isactive').val(isactiveval);
-        $('#distname').focus();
-        $('#createDistrict').html('Update');
-    }
-</script>
+

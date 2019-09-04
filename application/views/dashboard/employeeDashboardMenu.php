@@ -27,7 +27,7 @@
                         </ul>
                         <hr>
                         <ul class="nav nav-pills nav-stacked main-menu">
-                            <li onclick="loadDepartmentMapping()"><i class="fa fa-check-square "></i> &nbsp; Department Mapping</li>
+<!--                            <li onclick="loadDepartmentMapping()"><i class="fa fa-check-square "></i> &nbsp; Department Mapping</li>-->
                         </ul>
                     </div>
                 </div>

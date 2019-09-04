@@ -149,7 +149,10 @@ $cname = $this->uri->segment(2);
                                 <th>Sl#</th>
                                 <th>Company Name</th>
                                 <th>Company Short Name</th>
+                                <th>Company Type</th>
                                 <th>Address</th>
+                                <th>State</th>
+                                <th>District</th>
                                 <th>Pincode</th>
                                 <th>GST Number</th>
                                 <th>URL</th>
@@ -167,119 +170,4 @@ $cname = $this->uri->segment(2);
             </div>
         </div>
     </div>
-<script>
-    $(function () {
-        load_company_type();
-        load_state();
-    });
-    $('#stateid').change(function () {
-        load_district();
-    });
-    $("#newCompanyForm").submit(function(e){
-        $("#reportCompany").show();
-        e.preventDefault();
-        var frm = $("#newCompanyForm").serialize();
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('Company/create_company')?>",
-            crossDomain:true,
-            data:frm,
-            success:function(data){
-                if(data!=false){
-                    if($('#createCompany').html()=='Update'){
-                        window.location.reload();
-                    }else{
-                        reportFunction(1);
-                        $('#companyname').val('');
-                        $("#companyshortname").val('');
-                        $("#address").val('');
-                        $("#pincode").val('');
-                        $("#gstno").val('');
-                        $("#url").val('');
-                        $("#companyemail").val('');
-                        $("#mobile").val('');
-                        $("#establishedon").val('');
-                        $("#distname").val('');
-                        $('#isactive').val('');
-                        $('#companyname').focus();
 
-                    }
-                }
-            }
-        });
-    });
-    function loadAjaxForReport(data){
-            var companyid = $("#companytype").val();
-            if(companyid==''){
-                alert('Please select company type.');
-            }else{
-                $("#reportCompany").show();
-                $.ajax({
-                    type:'post',
-                    url:"<?= base_url('Company/report_company')?>",
-                    data:{typeid:companyid,checkparams:data},
-                    crossDomain:true,
-                    success:function(data){
-                        var jsondata = JSON.parse(data);
-                        if(data!=false){
-                            var j=0;
-                            var z = jsondata.length;
-                            // alert(z);
-                            var html = "";
-                            var isactive="";
-                            for(var i=0; i<z; i++){
-                                j++;
-                                var checkId = jsondata[i].id;
-                                var checkIsactive = jsondata[i].isactive;
-                                var updatedid = '"<?= $cname ?>"';
-                                var strcompanyname=JSON.stringify(jsondata[i].companyname);
-                                var strcompanyshortname = JSON.stringify(jsondata[i].companyshortname);
-                                var straddress= JSON.stringify(jsondata[i].address);
-                                var pincode = jsondata[i].pincode;
-                                var strgstno= JSON.stringify(jsondata[i].gstno);
-                                var strurl= JSON.stringify(jsondata[i].url);
-                                var stremailed= JSON.stringify(jsondata[i].emailid);
-                                var mobile= jsondata[i].mobile;
-                                var editisactive = JSON.stringify(jsondata[i].isactive);
-                                var strestablishedon = JSON.stringify(jsondata[i].establishedon);
-                                var district = jsondata[i].distid;
-                                var urlid = '"../Common/record_active_deactive"';
-                                if(checkIsactive=='t'){
-                                    isactive= "<button id='action"+checkId+"' onclick='editIsactive(1,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-on fa-2x'></i></button>";
-                                }else{
-                                    isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
-                                }
-                                html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].companyname+"</td><td>"+jsondata[i].companyshortname +"</td><td>"+jsondata[i].address+"</td><td>"+jsondata[i].pincode +"</td>" +
-                                    "<td>"+jsondata[i].gstno +"</td><td>"+jsondata[i].url+"</td><td>"+jsondata[i].emailid+"</td><td>"+jsondata[i].mobile +"</td><td>"+isactive+"</td>" +
-                                    "<td><button class='btn editBtn btn-sm' onclick='reportEditCompany(" +checkId+ "," +strcompanyname+ " ," +strcompanyshortname+ "," +straddress+ "," +pincode+ "," +strgstno+ "," +strurl+ "," +stremailed+ "," +mobile+ ","+strestablishedon+","+district+"," +editisactive+ ")'>Edit</button></td></tr>");
-                            }
-                            $("#load_company").html(html);
-                        }else{
-                            $("#newCompany_report").hide();
-                        }
-                    }
-                });
-            }
-    }
-    function reportEditCompany(id,strcompanyname,strcompanyshortname,straddress,pincode,strgstno,strurl,stremaileid,mobile,strestablishedon,disctrict,isactive) {
-        if(isactive=='t'){
-            var isactiveval=1;
-        }else{
-            isactiveval=0;
-        }
-        $('#txtid').val(id);
-        $('#companyname').val(strcompanyname);
-        $("#companyshortname").val(strcompanyshortname);
-        $("#address").val(straddress);
-        $("#pincode").val(pincode);
-        $("#gstno").val(strgstno);
-        $("#url").val(strurl);
-        $("#companyemail").val(stremaileid);
-        $("#mobile").val(mobile);
-        $("#establishedon").val(strestablishedon);
-        $("#distname").val(disctrict);
-        $('#isactive').val(isactiveval);
-        $('#companyname').focus();
-        $("#createCompany").html("Update");
-    }
-</script>

@@ -19,8 +19,8 @@ class Designation extends CI_Controller {
             }else{
                 $status=false;
             }
-			if(isset($request->designationshortname) && preg_match("/^[a-zA-Z ]{2,5}$/",$request->designationshortname)){
-				$insert[0]['designationshortname']=$request->designationshortname;
+			if(isset($request->designationShortname) && preg_match("/^[a-zA-Z ]{2,5}$/",$request->designationShortname)){
+				$insert[0]['designationshortname']=$request->designationShortname;
 			}else{
 				$status=false;
 			}
@@ -134,6 +134,7 @@ class Designation extends CI_Controller {
                         $data[] = array(
                             'id' => $r->id,
                             'designationname' => $r->designationname,
+                            'designationshortname' => $r->designationshortname,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive

@@ -37,13 +37,6 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <!--                                                <div class="text">-->
 <!--                                                    <h2>11</h2>-->
 <!--                                                    <span>Projects-->
-<!--<!--                                                    -->--><?php
-////                                                    if(isset($this->session->login)) {
-////                                                        print_r($this->session->login);
-////                                                    }
-////                                                    echo $this->session->login['userid'];
-////                                                    echo "Hello sipence";
-////                                                    ?>
 <!--                                                    </span>-->
 <!--                                                </div>-->
 <!--                                            </div>-->

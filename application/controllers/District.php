@@ -24,6 +24,11 @@ class District extends CI_Controller {
             }else{
                 $status=false;
             }
+            if(isset($request->districtShortname) && preg_match("/[a-zA-Z ]{2,5}/",$request->districtShortname)){
+                $insert[0]['distshortname']=$request->districtShortname;
+            }else{
+                $status=false;
+            }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
                     $insert[0]['isactive']=true;
@@ -154,6 +159,7 @@ class District extends CI_Controller {
                             'id' => $r->id,
                             'stateid' => $r->stateid,
                             'distname' => $r->distname,
+                            'distshortname' => $r->distshortname,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive

@@ -19,6 +19,11 @@ class Employee extends CI_Controller {
             }else{
                 $status=false;
             }
+            if(isset($request->employeeTypeShortname) && preg_match("/^[a-zA-Z ]{2,5}$/",$request->employeeTypeShortname)){
+                $insert[0]['typeshortname']=$request->employeeTypeShortname;
+            }else{
+                $status=false;
+            }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
                     $insert[0]['isactive']=true;
@@ -130,6 +135,7 @@ class Employee extends CI_Controller {
                     $data[]=array(
                         'id'=>$r->id,
                         'typename'=>$r->typename,
+                        'typeshortname'=>$r->typeshortname,
                         'creationdate'=>$r->createdat,
                         'lastmodifiedon'=>$r->updatedat,
                         'isactive'=>$r->isactive
@@ -154,7 +160,7 @@ class Employee extends CI_Controller {
 //            $postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $status=true;
-            if(isset($request->slno) && preg_match("/^[0-9]{0,20}$/",$request->slno)){
+            if(isset($request->slno) && preg_match("/^[a-zA-Z0-9]{0,20}$/",$request->slno)){
                 $insert[0]['slno']=$request->slno;
             }else{
                 $status=false;
@@ -254,10 +260,13 @@ class Employee extends CI_Controller {
             }else{
                 $status=false;
             }
-            if(isset($request->epfno) && is_numeric($request->epfno)){
-                $insert[0]['epfno']=$request->epfno;
+            $epfno = strtoupper($request->epfno);
+            if(isset($epfno) && preg_match("/[A-Z0-9]{0,60}/",$epfno)){
+                $insert[0]['epfno']=$epfno;
             }else{
-                $insert[0]['epfno']="";
+//                $insert[0]['epfno']="";
+                $status=false;
+                echo $epfno;
             }
             if(isset($request->esifno) && is_numeric($request->esifno)){
                 $insert[0]['esifno']=$request->esifno;
@@ -336,7 +345,7 @@ class Employee extends CI_Controller {
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(31,null,$where);
+            $res=$this->Model_Db->select(29,null,$where);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -475,6 +484,9 @@ class Employee extends CI_Controller {
                             'educationid' => $r->educationid,
                             'address' => $r->address,
                             'districtid' => $r->districtid,
+                            'distname'=>$r->districtname,
+                            'stateid'=>$r->statid,
+                            'statename'=>$r->statename,
                             'dob' => $r->dob,
                             'epfno' => $r->epfno,
                             'esifno' => $r->esifno,
@@ -483,11 +495,9 @@ class Employee extends CI_Controller {
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive,
-                            'departmentname' => $r->departmentname,
                             'designationname' =>$r->designationname,
                             'gendername'=>$r->gendername,
                             'maritalstatusname' =>$r->statusname,
-                            'distname'=>$r->distname,
                             'educationname'=>$r->educationname
                         );
                     }
@@ -514,21 +524,26 @@ class Employee extends CI_Controller {
                 $insert[0]['empid']=$request->employeename;
             }else{
                 $status=false;
+               echo $request->employeename;
             }
             if(isset($request->employeebankname) && is_numeric($request->employeebankname)){
                 $insert[0]['bankid']=$request->employeebankname;
             }else{
                 $status=false;
+                echo $request->employeebankname;
             }
             if(isset($request->bankaccountnumber) && is_numeric($request->bankaccountnumber)){
                 $insert[0]['acno']=$request->bankaccountnumber;
             }else{
                 $status=false;
+                echo $request->bankaccountnumber;
             }
-            if(isset($request->bankifscnumber) && preg_match("/^[A-Z0-9]{12}$/",$request->bankifscnumber)){
-                $insert[0]['ifsccode']=$request->bankifscnumber;
+            $bankifscnumber=strtoupper($request->bankifscnumber);
+            if(isset($bankifscnumber) && preg_match("/^[A-Z0-9]{12}$/",$bankifscnumber)){
+                $insert[0]['ifsccode']=$bankifscnumber;
             }else{
                 $status=false;
+                echo $bankifscnumber;
             }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){

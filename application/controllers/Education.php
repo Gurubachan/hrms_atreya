@@ -14,8 +14,13 @@ class Education extends CI_Controller {
 			$postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $status=true;
-            if(isset($request->educationname) && preg_match("/^[a-zA-Z]{3,20}$/",$request->educationname)){
+            if(isset($request->educationname) && preg_match("/^[a-zA-Z0-9 ]{3,20}$/",$request->educationname)){
                 $insert[0]['educationname']=$request->educationname;
+            }else{
+                $status=false;
+            }
+            if(isset($request->educationShortname) && preg_match("/^[a-zA-Z0-9]{2,5}$/",$request->educationShortname)){
+                $insert[0]['educationshortname']=$request->educationShortname;
             }else{
                 $status=false;
             }
@@ -129,6 +134,7 @@ class Education extends CI_Controller {
                         $data[] = array(
                             'id' => $r->id,
                             'educationname' => $r->educationname,
+                            'educationshortname' => $r->educationshortname,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive
