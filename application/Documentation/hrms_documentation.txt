@@ -6,7 +6,38 @@
 Human Resource Management System of Atreya Associates.
 
 #modules
-1.company
-2.employee
-3.attendance
-4.
+0.user type
+1.user
+2.authentication
+3.state
+4.district
+5.education
+6.years
+7.bank details
+8.attendance
+9.leave
+10.id card
+11.resource
+12.maintenance
+13.gender
+14.marital status
+15.company
+16.company type
+17.employee
+18.employee type
+19.attendance
+20.recruitment
+#0.user type
+-------------
+a.user type creation
+--------------------
+id (text box)(hidden)
+usertype name(text box)
+isactive(boolean)(default: true)
+
+b. user type report
+--------------------
+id,user type name,isactive(true/false),action(edit)
+
+#1.user
+--------

@@ -30,6 +30,13 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
+    public function recruitmentSidebar(){
+        try{
+            $this->load->view('include/recruitmentSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
     public function employeeDashboardMenu(){
         try{
             $this->load->view('dashboard/employeeDashboardMenu');
@@ -370,6 +377,22 @@ class Forms extends CI_Controller {
             extract($_POST);
             $this->load->view('Company/formMappingCompanyDepartment');
 
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formRecruitment(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->recruitmentSidebar();
+                $this->load->view('Recruitment/formRecruitment');
+                $this->footer();
+                $this->load->view('Recruitment/recruitment-script');
             }else{
                 redirect('welcome/');
             }

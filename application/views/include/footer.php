@@ -77,6 +77,9 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     function loadUser() {
         window.location.href="<?= base_url('Forms/userDashboard')?>";
     }
+    function loadRecruitment() {
+        window.location.href="<?= base_url('Forms/formRecruitment')?>";
+    }
 </script>
 </div>
 </div>
