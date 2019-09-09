@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
-echo $cname;
 ?>
 <div class="row">
     <div class="box col-md-12">

@@ -200,5 +200,5 @@ create table tbl_communication_details
 	foreign key (apid) references tbl_recruitment_application(id) on delete restrict on update cascade ,
 	foreign key (dist) references tbl_district(id) on delete restrict on update cascade ,
 	foreign key (state) references tbl_state(id) on delete restrict on update cascade ,
-	foreign key (commtid) references tbl_communication_type (id) on delete restrict on update cascade
+	foreign key (commtid) references ttttt (id) on delete restrict on update cascade
 );

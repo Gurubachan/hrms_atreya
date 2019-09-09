@@ -190,7 +190,6 @@ class Forms extends CI_Controller {
             echo "Message:" .$e->getMessage();
         }
     }
-
     public function formDistrict(){
         try{
             if($this->session->login['userid']) {
@@ -393,6 +392,71 @@ class Forms extends CI_Controller {
                 $this->load->view('Recruitment/formRecruitment');
                 $this->footer();
                 $this->load->view('Recruitment/recruitment-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formReligion(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->sidebar();
+                $this->load->view('Religion/formReligion');
+                $this->footer();
+                $this->load->view('Religion/religion-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+
+    }
+    public function formSkill(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->recruitmentSidebar();
+                $this->load->view('Skill/formSkill');
+                $this->footer();
+                $this->load->view('Skill/skill-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formCommunicationType(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->recruitmentSidebar();
+                $this->load->view('Communication/formCommunicationType');
+                $this->footer();
+                $this->load->view('Communication/communicationtype-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formExperienceType(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->recruitmentSidebar();
+                $this->load->view('Experience/formExperienceType');
+                $this->footer();
+                $this->load->view('Experience/experiencetype-script');
             }else{
                 redirect('welcome/');
             }

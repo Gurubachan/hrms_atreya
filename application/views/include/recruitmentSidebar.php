@@ -16,6 +16,9 @@ defined("BASEPATH") or exit("No direct script access allowed.");
             <hr>
             <ul class="main-menu">
                 <li onclick="loadNewRecruitment()"><i class="fa fa-circle-o-notch "></i> &nbsp; New Recruitment</li>
+                <li onclick="loadSkill()"><i class="fa fa-circle-o-notch "></i> &nbsp; Skill</li>
+                <li onclick="loadCommunicationType()"><i class="fa fa-circle-o-notch "></i> &nbsp; Communication Type</li>
+                <li onclick="loadExperienceType()"><i class="fa fa-circle-o-notch "></i> &nbsp; Experience Type</li>
             </ul>
         </div>
         <hr>

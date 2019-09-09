@@ -53,6 +53,14 @@ class Common extends CI_Controller
                     $tableid=1;
                 }else if($request->tableid == 'formUser'){
                     $tableid=3;
+                }else if($request->tableid == 'formReligion'){
+                    $tableid=39;
+                }else if($request->tableid == 'formSkill'){
+                    $tableid=41;
+                }else if($request->tableid == 'formCommunicationType'){
+                    $tableid=45;
+                }else if($request->tableid == 'formExperienceType'){
+                    $tableid=43;
                 };
             }
             if(isset($request->isactive) && is_numeric($request->isactive)){

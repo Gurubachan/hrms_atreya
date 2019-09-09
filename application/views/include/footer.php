@@ -80,6 +80,18 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     function loadRecruitment() {
         window.location.href="<?= base_url('Forms/formRecruitment')?>";
     }
+    function loadReligion() {
+        window.location.href="<?= base_url('Forms/formReligion')?>";
+    }
+    function loadSkill() {
+        window.location.href="<?= base_url('Forms/formSkill')?>";
+    }
+    function loadCommunicationType() {
+        window.location.href="<?= base_url('Forms/formCommunicationType')?>";
+    }
+    function loadExperienceType() {
+        window.location.href="<?= base_url('Forms/formExperienceType')?>";
+    }
 </script>
 </div>
 </div>

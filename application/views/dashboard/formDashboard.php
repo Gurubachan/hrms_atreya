@@ -120,15 +120,47 @@
                             <div class="card overview-item--c4" onclick="loadUser()">
                                 <div class="card-header">User</div>
                                 <div class="card-body form-fa-item">
+                                    <i class="fa fa-user fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="card overview-item--c2" onclick="loadRecruitment()">
+                                <div class="card-header">Recruitment</div>
+                                <div class="card-body form-fa-item">
                                     <i class="fa fa-users fa-3x"></i>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-lg-2 col-md-2">
-                            <div class="card overview-item--c4" onclick="loadRecruitment()">
-                                <div class="card-header">Recruitment</div>
+                            <div class="card overview-item--c1" onclick="loadReligion()">
+                                <div class="card-header">Religion</div>
                                 <div class="card-body form-fa-item">
-                                    <i class="fa fa-users fa-3x"></i>
+                                    <i class="fa fa-snowflake-o fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="card overview-item--c3" onclick="loadSkill()">
+                                <div class="card-header">Skill</div>
+                                <div class="card-body form-fa-item">
+                                    <i class="fa fa-window-restore fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="card overview-item--c1" onclick="loadExperienceType()">
+                                <div class="card-header">Experience Type</div>
+                                <div class="card-body form-fa-item">
+                                    <i class="fa fa-anchor fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="card overview-item--c4" onclick="loadCommunicationType()">
+                                <div class="card-header">Communication Type</div>
+                                <div class="card-body form-fa-item">
+                                    <i class="fa fa-grav fa-3x"></i>
                                 </div>
                             </div>
                         </div>
