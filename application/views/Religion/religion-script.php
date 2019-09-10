@@ -76,3 +76,5 @@ $cname = $this->uri->segment(2);
         $("#createReligion").html("Update");
     }
 </script>
+
+

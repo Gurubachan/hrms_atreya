@@ -147,3 +147,4 @@ class Skill extends CI_Controller {
         }
     }
 }
+
