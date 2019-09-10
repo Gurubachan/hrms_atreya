@@ -285,7 +285,7 @@ $cname = $this->uri->segment(2);
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="employeedoj" class="control-label mb-1">Cause of Leaving</label>
-                                    <input id="dol" name="dol" type="text" class="form-control">
+                                    <input id="dol" name="dol" type="date" class="form-control">
                                 </div>
                             </div>
                         </div>
