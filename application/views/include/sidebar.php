@@ -23,7 +23,7 @@ defined("BASEPATH") or exit("No direct script access allowed.");
             </ul>
             <hr>
             <ul class="main-menu">
-                <li onclick="loadReligion()"><i class="fa fa-gem "></i> &nbsp; Religion</li>
+                <li onclick="loadReligion()"><i class="fa fa-snowflake "></i> &nbsp; Religion</li>
                 <li onclick="loadGender();"><i class="fa fa-venus-mars "></i> &nbsp; Gender</li>
                 <li onclick="loadMaritalStatus()"><i class="fa fa-gem "></i> &nbsp; Marital Status</li>
             </ul>
