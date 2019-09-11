@@ -15,20 +15,29 @@ $cname = $this->uri->segment(2);
                     </div>
                 </div>
                 <div class="box-content">
-                    <form  class="" id="newEmployeeForm"  name="newEmployeeForm" autocomplete="off">
+                    <form  class="" id="newJobPostingForm"  name="newJobPostingForm" autocomplete="off">
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <input type="hidden" id="txtid" name="txtid" value="0">
                                     <input type="hidden" id="isactive" name="isactive" value="1">
-                                    <label for="employeetype" class="control-label mb-1">Post Name<span style="color:red;">*</span></label>
+                                    <label for="" class="control-label mb-1">Post Name<span style="color:red;">*</span></label>
                                     <input type="text" id="postname" name="postname" class="form-control text-uppercase" maxlength="20" placeholder="Enter post name"  required>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="companytype" class="control-label mb-1">Company Type</label>
+                                    <select id="companytype" name="companytype" class="select" required>
+                                        <option value="">Select</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">Company<span style="color:red;">*</span></label>
                                     <select id="companyid" name="companyid" class="select" required>
+                                        <option value="">Select</option>
                                     </select>
                                 </div>
                             </div>
@@ -41,51 +50,62 @@ $cname = $this->uri->segment(2);
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">Number of vacancy<span style="color:red;">*</span></label>
-                                    <input type="text" id="nov" name="nov" class="form-control" maxlength="20" placeholder="Enter Vacancy" required>
+                                    <input type="text" id="vacancy" name="vacancy" class="form-control" maxlength="20" placeholder="Enter Vacancy" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="" class="control-label mb-1">Qualifications<span style="color:red;">*</span></label>
+                                    <input type="text" id="qualification" name="qualification" class="form-control" maxlength="20" placeholder="Enter Vacancy" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="" class="control-label mb-1">Skill<span style="color:red;">*</span></label>
+                                    <input type="text" id="skill" name="skill" class="form-control" maxlength="20" placeholder="Enter Vacancy" required>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">Location<span style="color:red;">*</span></label>
-                                    <input type="text" id="location" name="location" class="form-control" maxlength="20" placeholder="Enter location" required>
+                                    <input type="text" id="location" name="location" class="form-control" maxlength="20" placeholder="Job location" required>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">Description<span style="color:red;">*</span></label>
-                                    <textarea id="description" name="description"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Enter address"></textarea>
+                                    <textarea id="jobdescription" name="jobdescription"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Job Description"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">Experience<span style="color:red;">*</span></label>
-                                    <textarea id="description" name="description"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Enter address"></textarea>
+                                    <textarea id="experience" name="experience"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Job Experience"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">Responsibility<span style="color:red;">*</span></label>
-                                    <textarea id="description" name="description"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Enter address"></textarea>
+                                    <textarea id="responsibility" name="responsibility"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Job Responsibility"></textarea>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">Start<span style="color:red;">*</span></label>
-                                    <input type="date" id="description" name="description"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Enter address">
+                                    <input type="date" id="jobpoststartingdate" name="jobpoststartingdate"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Valid From">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">End<span style="color:red;">*</span></label>
-                                    <input type="date" id="description" name="description"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Enter address">
+                                    <input type="date" id="jobpostendingdate" name="jobpostendingdate"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Valid To">
                                 </div>
                             </div>
                         </div>
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                            <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">Create</button>
-
+                            <button type="submit" class="btn btn-primary btn-sm" id="createJobPosting">Create</button>
                         </div>
                     </form>
                     <br>
@@ -101,9 +121,7 @@ $cname = $this->uri->segment(2);
             </div>
         </div>
     </div>
-
 </div>
-
 </div>
 <div class="row">
     <div class="box col-md-12">
@@ -135,7 +153,7 @@ $cname = $this->uri->segment(2);
                             <th>Action</th>
                         </tr>
                         </thead>
-                        <tbody id="load_status_names">
+                        <tbody id="load_jobposting">
                         </tbody>
                     </table>
                 </div>
