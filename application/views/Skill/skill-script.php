@@ -76,3 +76,6 @@ $cname = $this->uri->segment(2);
         $("#createSkill").html("Update");
     }
 </script>
+
+
+

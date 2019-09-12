@@ -160,7 +160,15 @@
                             <div class="card overview-item--c4" onclick="loadCommunicationType()">
                                 <div class="card-header">Communication Type</div>
                                 <div class="card-body form-fa-item">
-                                    <i class="fa fa-grav fa-3x"></i>
+                                    <i class="fa fa-random fa-3x"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-lg-2 col-md-2">
+                            <div class="card overview-item--c2" onclick="loadJobPosting()">
+                                <div class="card-header">Job Posting</div>
+                                <div class="card-body form-fa-item">
+                                    <i class="fa fa-hourglass-1 fa-3x"></i>
                                 </div>
                             </div>
                         </div>
