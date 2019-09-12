@@ -3,21 +3,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
 ?>
 <script>
-    $("#maritalStatusForm").submit(function(e){
+    $(function () {
+        load_company_type();
+        load_designation();
+        load_education();
+        load_skill();
+        // $("#educationid").select2();
+    });
+    // $("#addmorequalification").click(function(){
+    //     $("#qualificationadd").append("<br><select id=\"educationid\" name=\"educationid\"  class=\"select\" required></select>\n");
+    // });
+    $("#companytype").change(function () {
+        load_company();
+    });
+    $("#newJobPostingForm").submit(function(e){
         e.preventDefault();
-        var frm = $("#maritalStatusForm").serialize();
+        var frm = $("#newJobPostingForm").serialize();
         $.ajax({
             type:'post',
-            url: "<?= base_url('MaritalStatus/create_marital_status')?>",
+            url: "<?= base_url('JobPosting/create_jobposting')?>",
             crossDomain:true,
             data:frm,
             success:function(data){
                 if(data!=false){
-                    if($("#createMaritalStatus").html()=="Update"){
+                    if($("#createJobPosting").html()=="Update"){
                         window.location.reload();
                     }else {
-                        $('#maritalStatusForm').trigger("reset");
-                        $(".notice").show();
+                        // $('#newJobPostingForm').trigger("reset");
                         reportFunction(1);
                     }
                 }else{

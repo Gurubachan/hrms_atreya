@@ -329,8 +329,6 @@ class Company extends CI_Controller {
         try{
             $data=array();
             $request = json_decode(json_encode($_POST), FALSE);
-//			$postdata = file_get_contents("php://input");
-//			$request = json_decode($postdata);
             if(isset($request->onlyactive) && is_numeric($request->onlyactive)){
                 $where="isactive=true";
             }else{

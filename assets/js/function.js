@@ -1,3 +1,4 @@
+
 //editIsactive function is for used for active/deactive
 // of all the records which are retrived from database and print on the report part.
 
@@ -316,6 +317,34 @@ function load_userid(){
             var data = JSON.parse(data);
             if(data!=false){
                 $("#userid").html(data);
+            }
+        }
+    });
+}
+function load_company(){
+    var companytype=$("#companytype").val();
+    $.ajax({
+        type:'post',
+        url: "../Company/load_company",
+        crossDomain:true,
+        data:{typeid:companytype},
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#companyid").html(data);
+            }
+        }
+    });
+}
+function load_skill(){
+    $.ajax({
+        type:'post',
+        url: "../Skill/load_skill",
+        crossDomain:true,
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#skillid").html(data);
             }
         }
     });
