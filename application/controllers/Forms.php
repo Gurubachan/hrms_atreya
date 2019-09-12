@@ -32,7 +32,7 @@ class Forms extends CI_Controller {
     }
     public function recruitmentSidebar(){
         try{
-            $this->load->view('include/recruitmentSidebar');
+            $this->load->view('Recruitment/recruitmentSidebar');
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
         }
@@ -457,6 +457,29 @@ class Forms extends CI_Controller {
                 $this->load->view('Experience/formExperienceType');
                 $this->footer();
                 $this->load->view('Experience/experiencetype-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function jobPostingSidebar(){
+        try{
+            $this->load->view('Jobposting/jobPostingSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formJobPosting(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->jobPostingSidebar();
+                $this->load->view('Jobposting/formJobPosting');
+                $this->footer();
+                $this->load->view('Jobposting/jobposting-script');
             }else{
                 redirect('welcome/');
             }

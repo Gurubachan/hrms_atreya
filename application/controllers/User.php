@@ -150,13 +150,7 @@ class User extends CI_Controller {
 	    try{
 	        $data=array();
 			$postdata = file_get_contents("php://input");
-//			$request = json_decode($postdata);
             $request = json_decode(json_encode($_POST), FALSE);
-            /*echo $this->session->tempuser['userid'] ."<br>";
-            echo $request->userid."<br>";
-            echo $this->session->loginAtempt['userid']."<br>";
-            echo $this->session->loginAtempt['otp']."<br>";
-            echo $request->otp."<br>";*/
 	        if(isset($request->otp) && is_numeric($request->otp) && isset($request->userid) && is_numeric($request->userid)){
 
 	            if($this->session->tempuser['userid']==$request->userid && $this->session->tempuser['userid']==$this->session->loginAtempt['userid'] && $this->session->loginAtempt['otp']==$request->otp){

@@ -147,3 +147,4 @@ class Religion extends CI_Controller {
         }
     }
 }
+

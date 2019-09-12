@@ -92,6 +92,9 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     function loadExperienceType() {
         window.location.href="<?= base_url('Forms/formExperienceType')?>";
     }
+    function loadJobPosting() {
+        window.location.href="<?= base_url('Forms/formJobPosting')?>";
+    }
 </script>
 </div>
 </div>

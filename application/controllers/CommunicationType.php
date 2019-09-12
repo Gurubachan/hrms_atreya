@@ -147,3 +147,4 @@ class CommunicationType extends CI_Controller {
         }
     }
 }
+

@@ -76,3 +76,4 @@ $cname = $this->uri->segment(2);
         $("#createCommunicationType").html("Update");
     }
 </script>
+
