@@ -6,7 +6,13 @@ $cname = $this->uri->segment(2);
     $(function () {
         load_company_type();
         load_designation();
+        load_education();
+        load_skill();
+        // $("#educationid").select2();
     });
+    // $("#addmorequalification").click(function(){
+    //     $("#qualificationadd").append("<br><select id=\"educationid\" name=\"educationid\"  class=\"select\" required></select>\n");
+    // });
     $("#companytype").change(function () {
         load_company();
     });
@@ -23,7 +29,7 @@ $cname = $this->uri->segment(2);
                     if($("#createJobPosting").html()=="Update"){
                         window.location.reload();
                     }else {
-                        $('#newJobPostingForm').trigger("reset");
+                        // $('#newJobPostingForm').trigger("reset");
                         reportFunction(1);
                     }
                 }else{

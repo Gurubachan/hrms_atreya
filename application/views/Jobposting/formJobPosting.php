@@ -53,18 +53,7 @@ $cname = $this->uri->segment(2);
                                     <input type="text" id="vacancy" name="vacancy" class="form-control" maxlength="20" placeholder="Enter Vacancy" required>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="" class="control-label mb-1">Qualifications<span style="color:red;">*</span></label>
-                                    <input type="text" id="qualification" name="qualification" class="form-control" maxlength="20" placeholder="Enter Vacancy" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="" class="control-label mb-1">Skill<span style="color:red;">*</span></label>
-                                    <input type="text" id="skill" name="skill" class="form-control" maxlength="20" placeholder="Enter Vacancy" required>
-                                </div>
-                            </div>
+
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">Location<span style="color:red;">*</span></label>
@@ -101,6 +90,21 @@ $cname = $this->uri->segment(2);
                                     <input type="date" id="jobpostendingdate" name="jobpostendingdate"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Valid To">
                                 </div>
                             </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group" id="qualificationadd">
+                                    <label for="" class="control-label mb-1">Qualifications<span style="color:red;">*</span></label>
+                                    <select id="educationid" name="educationid"  class="select" required></select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="" class="control-label mb-1">Skill<span style="color:red;">*</span></label>
+                                    <select id="skillid" name="skillid"  class="select" required></select>
+                                </div>
+                            </div>
                         </div>
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
@@ -121,8 +125,6 @@ $cname = $this->uri->segment(2);
             </div>
         </div>
     </div>
-</div>
-</div>
 <div class="row">
     <div class="box col-md-12">
         <div class="box-inner">
@@ -162,4 +164,7 @@ $cname = $this->uri->segment(2);
     </div>
 </div>
 </div>
+</div>
+</div>
+
 

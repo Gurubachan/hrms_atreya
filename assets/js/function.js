@@ -336,3 +336,16 @@ function load_company(){
         }
     });
 }
+function load_skill(){
+    $.ajax({
+        type:'post',
+        url: "../Skill/load_skill",
+        crossDomain:true,
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#skillid").html(data);
+            }
+        }
+    });
+}
