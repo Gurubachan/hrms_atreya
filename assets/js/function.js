@@ -349,3 +349,16 @@ function load_skill(){
         }
     });
 }
+function load_experience(){
+    $.ajax({
+        type:'post',
+        url: "../ExperienceType/load_experience_type",
+        crossDomain:true,
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#experience").html(data);
+            }
+        }
+    });
+}

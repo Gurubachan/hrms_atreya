@@ -9,7 +9,20 @@ $cname = $this->uri->segment(2);
         load_education();
         load_skill();
         // $("#educationid").select2();
+        load_experience();
+
+
     });
+    // $('#jobpostendingdate').click(function () {
+    //     var starttime = $("#jobpoststartingdate").val();
+    //     var endtime = $("#jobpostendingdate").val();
+    //     if(starttime>endtime){
+    //         alert('Closing time should not lesser than start time');
+    //     }
+    // });
+    function datecomaprison(){
+
+    }
     // $("#addmorequalification").click(function(){
     //     $("#qualificationadd").append("<br><select id=\"educationid\" name=\"educationid\"  class=\"select\" required></select>\n");
     // });
@@ -18,26 +31,36 @@ $cname = $this->uri->segment(2);
     });
     $("#newJobPostingForm").submit(function(e){
         e.preventDefault();
-        var frm = $("#newJobPostingForm").serialize();
-        $.ajax({
-            type:'post',
-            url: "<?= base_url('JobPosting/create_jobposting')?>",
-            crossDomain:true,
-            data:frm,
-            success:function(data){
-                if(data!=false){
-                    if($("#createJobPosting").html()=="Update"){
-                        window.location.reload();
-                    }else {
-                        // $('#newJobPostingForm').trigger("reset");
-                        reportFunction(1);
+        var starttime = new Date($("#jobpoststartingdate").val());
+        var endtime = new Date($("#jobpostendingdate").val());
+        if(starttime>endtime){
+            alert('Closing time should not lesser than start time');
+        }else{
+            var frm = $("#newJobPostingForm").serialize();
+            $.ajax({
+                type:'post',
+                url: "<?= base_url('JobPosting/create_jobposting')?>",
+                crossDomain:true,
+                data:frm,
+                success:function(data){
+                    if(data!=false){
+                        if($("#createJobPosting").html()=="Update"){
+                            window.location.reload();
+                        }else {
+                            $('#newJobPostingForm').trigger("reset");
+                            reportFunction(1);
+                            // $("#jobpostingform").hide();
+                            // $("#jobpostingreport").show();
+                            loadJobPostingReport();
+                        }
+                    }else{
+                        console.log(data);
                     }
-                }else{
-                    console.log(data);
                 }
-            }
-        });
+            });
+        }
     });
+
     function loadAjaxForReport(id){
         $.ajax({
             type:'post',
@@ -45,7 +68,7 @@ $cname = $this->uri->segment(2);
             data:{checkparams:id},
             success:function(data){
                 if(data!=false){
-                    jsondata = JSON.parse(data);
+                   var jsondata = JSON.parse(data);
                     var j=0;
                     var z = jsondata.length;
                     // alert(z);
@@ -85,5 +108,14 @@ $cname = $this->uri->segment(2);
         $('#isactive').val(isactiveval);
         $('#statusname').focus();
         $('#createMaritalStatus').html("Update");
+    }
+    function loadJobPostingReport() {
+        $.ajax({
+            type:'post',
+            url:'<?=base_url('JobPosting/loadJopPostingReport')?>',
+            success:function (d) {
+                alert(d);
+            }
+        });
     }
 </script>

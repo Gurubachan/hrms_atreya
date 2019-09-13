@@ -50,7 +50,7 @@ class JobPosting extends CI_Controller {
 //                $status=false;
                 echo $insert[0]['jobdescriptiom']="";
             }
-            if(isset($request->experience) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->experience)){
+            if(isset($request->experience) && preg_match("/^[a-zA-Z0-9 ]{3,20}$/",$request->experience)){
                 $insert[0]['experiance']=$request->experience;
             }else{
 //                $status=false;
@@ -66,12 +66,14 @@ class JobPosting extends CI_Controller {
                 $jpsd=date("Y-m-d",strtotime($request->jobpoststartingdate));
                 $insert[0]['startdate']=$jpsd;
             }else{
+//                $status=false;
                 echo $insert[0]['startdate']="";
             }
             if(isset($request->jobpostendingdate) && preg_match("/^[0-9-]{3,20}$/",$request->jobpostendingdate)){
                 $jped=date("Y-m-d",strtotime($request->jobpostendingdate));
                 $insert[0]['enddate']=$jped;
             }else{
+//                $status=false;
                 echo $insert[0]['enddate']="";
             }
             if(isset($request->skillid) && is_numeric($request->skillid)){
@@ -101,7 +103,7 @@ class JobPosting extends CI_Controller {
             }else{
                 $status=false;
             }
-            if($status){
+            if($status){ //multiple table insert
                 if(isset($request->txtid) && is_numeric($request->txtid)){
                     if($request->txtid>0){
                         $insert[0]['updatedby']=$this->session->login['userid'];
@@ -223,6 +225,24 @@ class JobPosting extends CI_Controller {
                 }
                 echo json_encode($data);
             }
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
+    public function loadJopPostingReport(){
+        try{
+            $data=array();
+            $last_id = "SELECT @last_id := MAX(id) FROM tbl_job_posting";
+//           $lastinserted_id = " SELECT * FROM tbl_job_posting WHERE id = @last_id";
+//            SELECT * FROM `table_name` WHERE id=(SELECT MAX(id) FROM `table_name`);
+            $where="$last_id and isactive=true";
+            $res=$this->Model_Db->select(47,null,$where);
+            print_r($res);
+            echo json_encode($res);
         }catch (Exception $e){
             $data['message']= "Message:".$e->getMessage();
             $data['status']=false;

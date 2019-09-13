@@ -14,7 +14,7 @@ class ExperienceType extends CI_Controller {
 //			$postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $status=true;
-            if(isset($request->experiencetypename) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->experiencetypename)){
+            if(isset($request->experiencetypename) && preg_match("/^[a-zA-Z0-9+ ]{3,20}$/",$request->experiencetypename)){
                 $insert[0]['type']=$request->experiencetypename;
             }else{
                 $status=false;
