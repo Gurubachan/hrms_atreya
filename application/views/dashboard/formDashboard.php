@@ -6,7 +6,7 @@
                     <div class="row formsCard">
                         <div class="col-sm-12 col-lg-2 col-md-2">
                             <div class="card overview-item--c4" onclick="loadState()" style="cursor: pointer;">
-                                <div class="card-header"  >State</div>
+                                <div class="card-header">State</div>
                                 <div class="card-body form-fa-item">
                                     <i class="fa fa-cubes fa-3x"></i>
                                 </div>
@@ -56,7 +56,7 @@
                             <div class="card overview-item--c3" onclick="loadEmployee()">
                                 <div class="card-header">Employee</div>
                                 <div class="card-body form-fa-item">
-                                    <i class="fa fa-users fa-2x"></i>
+                                    <i class="fa fa-users fa-3x"></i>
                                 </div>
                             </div>
                         </div>

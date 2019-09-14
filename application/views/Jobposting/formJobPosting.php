@@ -26,15 +26,6 @@ $cname = $this->uri->segment(2);
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-sm-5 text-right"> <label for="companytype" class="control-label mb-1">For which company ?&nbsp;<span style="color:red;">*</span>&nbsp;:</label> </div>
-                            <div class="col-sm-3">
-                                <select id="companytype" name="companytype" class="select" required>
-                                    <option value="">Select</option>
-                                </select>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
                             <div class="col-sm-5 text-right">
                                 <label for="" class="control-label mb-1">For which Company ?&nbsp;<span style="color:red;">*</span>&nbsp;:</label>
                             </div>
@@ -134,7 +125,6 @@ $cname = $this->uri->segment(2);
                                 <input type="date" id="jobpostendingdate" name="jobpostendingdate"  class="form-control textarea"  minlength="5" maxlength="60" required placeholder="Valid To">
                             </div>
                         </div>
-
                         <br>
                         <div class="row">
 <!--                            <div class="col-sm-3">-->
@@ -228,6 +218,7 @@ $cname = $this->uri->segment(2);
                         </div>
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
+                            <button type="button" class="btn btn-success btn-sm">Preview</button>
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="submit" class="btn btn-primary btn-sm" id="createJobPosting">Create</button>
                         </div>
@@ -257,28 +248,85 @@ $cname = $this->uri->segment(2);
                 </div>
             </div>
             <div class="box-content">
-                <div class="table-responsive">
-                    <table class="table  table-striped table-bordered bootstrap-datatable datatable  table-earning">
-                        <thead>
-                        <tr>
-                            <th>Sl#</th>
-                            <th>Post name</th>
-                            <th>Company</th>
-                            <th>Designation</th>
-                            <th>Vacancy</th>
-                            <th>Description</th>
-                            <th>Experience</th>
-                            <th>Responsibility</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                            <th>IsActive</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody id="load_jobposting">
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Job Post Name
+                    </div>
+                    <div class="col-sm-8">
+                        <span id="jpstname"></span>
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Company Id
+                    </div>
+                    <div class="col-sm-8">
+                        <span id="cmpid"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Designation Id
+                    </div>
+                    <div class="col-sm-8">
+                        <span id="desid"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Number of Vacancy
+                    </div>
+                    <div class="col-sm-8">
+                        <span id="nov"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Location
+                    </div>
+                    <div class="col-sm-8">
+                        <span id="localtion"></span>
+                    </div>
+                </div><div class="row">
+                    <div class="col-sm-4">
+                        Job Description
+                    </div>
+                    <div class="col-sm-8">
+                        <span id="jobdescriptiom"></span>
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    Experience
+                </div>
+                <div class="col-sm-8">
+                    <span id="experiance"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    Responsibility
+                </div>
+                <div class="col-sm-8">
+                    <span id="responsibility"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    Start Date
+                </div>
+                <div class="col-sm-8">
+                    <span id="startdate"></span>
+                </div>
+            </div>
+            <div class="row">
+            <div class="col-sm-4">
+                End Date
+            </div>
+            <div class="col-sm-8">
+                <span id="enddate"></span>
+            </div>
+            </div>
             </div>
         </div>
     </div>

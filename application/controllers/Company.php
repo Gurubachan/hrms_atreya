@@ -325,7 +325,7 @@ class Company extends CI_Controller {
             exit();
         }
     }
-    public function load_company(){
+    public function load_company($status = null){
         try{
             $data=array();
             $request = json_decode(json_encode($_POST), FALSE);
@@ -334,14 +334,19 @@ class Company extends CI_Controller {
             }else{
                 $where="1=1";
             }
-            if(isset($request->typeid) && is_numeric($request->typeid) && $request->typeid>0){
-                $where.=" and companytypeid=$request->typeid";
+            if($status!=null){
+                $where="1=1";
             }else{
-                $data['message']="Bad request.";
-                $data['status']=false;
-                echo json_encode($data);
-                exit();
+                if(isset($request->typeid) && is_numeric($request->typeid) && $request->typeid>0){
+                    $where.=" and companytypeid=$request->typeid";
+                }else{
+                    $data['message']="Bad request.";
+                    $data['status']=false;
+                    echo json_encode($data);
+                    exit();
+                }
             }
+
             $res=$this->Model_Db->select(13,null,$where);
             $data[]="<option value=''>Select</option>";
             if($res!=false){

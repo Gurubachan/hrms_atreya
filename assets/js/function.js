@@ -362,3 +362,16 @@ function load_experience(){
         }
     });
 }
+function loadOnlyCompany(){
+    $.ajax({
+        type:'post',
+        url: "../Company/load_company/1",
+        crossDomain:true,
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#companyid").html(data);
+            }
+        }
+    });
+}

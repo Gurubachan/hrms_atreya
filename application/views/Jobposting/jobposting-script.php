@@ -4,7 +4,7 @@ $cname = $this->uri->segment(2);
 ?>
 <script>
     $(function () {
-        load_company_type();
+        loadOnlyCompany();
         load_designation();
         load_education();
         load_skill();
@@ -13,28 +13,17 @@ $cname = $this->uri->segment(2);
 
 
     });
-    // $('#jobpostendingdate').click(function () {
-    //     var starttime = $("#jobpoststartingdate").val();
-    //     var endtime = $("#jobpostendingdate").val();
-    //     if(starttime>endtime){
-    //         alert('Closing time should not lesser than start time');
-    //     }
-    // });
-    function datecomaprison(){
-
-    }
-    // $("#addmorequalification").click(function(){
-    //     $("#qualificationadd").append("<br><select id=\"educationid\" name=\"educationid\"  class=\"select\" required></select>\n");
-    // });
     $("#companytype").change(function () {
         load_company();
     });
+
     $("#newJobPostingForm").submit(function(e){
         e.preventDefault();
         var starttime = new Date($("#jobpoststartingdate").val());
         var endtime = new Date($("#jobpostendingdate").val());
         if(starttime>endtime){
             alert('Closing time should not lesser than start time');
+            $('#jobpostendingdate').focus();
         }else{
             var frm = $("#newJobPostingForm").serialize();
             $.ajax({
@@ -114,7 +103,39 @@ $cname = $this->uri->segment(2);
             type:'post',
             url:'<?=base_url('JobPosting/loadJopPostingReport')?>',
             success:function (d) {
-                alert(d);
+                $("#jobpostingform").hide();
+                $("#jobpostingreport").show();
+                if(d!=false){
+                    var jsondata = JSON.parse(d);
+                    var j=0;
+                    var z = jsondata.length;
+                    // alert(z);
+                    var html = "";
+                    var isactive='';
+                    for(var i=0; i<z; i++){
+                        j++;
+                        var postname = jsondata[i].postname;
+                        var nov = jsondata[i].nov;
+                        var cmpid = jsondata[i].companyid;
+                        var desid = jsondata[i].designationid;
+                        var  localtion= jsondata[i].localtion;
+                        var  jobdescriptiom= jsondata[i].jobdescriptiom;
+                        var  experiance= jsondata[i].experiance;
+                        var  responsibility= jsondata[i].responsibility;
+                        var  startdate= jsondata[i].startdate;
+                        var  enddate= jsondata[i].enddate;
+                    }
+                    $("#jpstname").html(postname);
+                    $("#cmpid").html(cmpid);
+                    $("#desid").html(desid);
+                    $("#nov").html(nov);
+                    $("#localtion").html(localtion);
+                    $("#jobdescriptiom").html(jobdescriptiom);
+                    $("#experiance").html(experiance);
+                    $("#responsibility").html(responsibility);
+                    $("#startdate").html(startdate);
+                    $("#enddate").html(enddate);
+                }
             }
         });
     }

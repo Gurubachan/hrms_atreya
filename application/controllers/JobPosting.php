@@ -236,12 +236,17 @@ class JobPosting extends CI_Controller {
     public function loadJopPostingReport(){
         try{
             $data=array();
-            $last_id = "SELECT @last_id := MAX(id) FROM tbl_job_posting";
+            $last_id = "SELECT MAX(id) FROM tbl_job_posting";
+            $a = $this->Model_Db->query($last_id);
+            $b = $a[0]->max;
+//            $result = "select max(id) from tbl_job_posting";
+            $where ="id=$b";
+//            $lastId=$this->Model_Db->select(47, null,$where);
 //           $lastinserted_id = " SELECT * FROM tbl_job_posting WHERE id = @last_id";
 //            SELECT * FROM `table_name` WHERE id=(SELECT MAX(id) FROM `table_name`);
-            $where="$last_id and isactive=true";
+//            $where="$maxid and isactive=true";
             $res=$this->Model_Db->select(47,null,$where);
-            print_r($res);
+//            print_r($res);
             echo json_encode($res);
         }catch (Exception $e){
             $data['message']= "Message:".$e->getMessage();

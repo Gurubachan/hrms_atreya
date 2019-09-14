@@ -98,7 +98,7 @@ class User extends CI_Controller {
                                     $data['status']=true;
                                     $data['userid']=$request->userid;
                                     $otp=rand(324653,876532);
-                                    //$otp=123456;
+//                                    $otp=123456;
                                     $mobile=$this->session->tempuser['usermobile'];
                                     $message="Your login otp is - ".$otp.". Please do not share this with any one.";
                                     $this->load->library("Sms");
