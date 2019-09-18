@@ -1,6 +1,6 @@
 
 create view view_job_posting(id,companyid,companyname,postname,designationid,designationname,nov,
-    localtion,jobdescriptiom,experiance,responsibility,startdate,enddate,qualificationidcreatedat,
+    localtion,jobdescriptiom,experiance,responsibility,startdate,enddate,qualificationid,
     educationname,skillid,skill,createdat,updatedby,updatedat,isactive) as
 select
 jp.id,

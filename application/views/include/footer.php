@@ -36,8 +36,7 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <script type="text/javascript" src="<?= base_url('assets/vendor/vector-map/jquery.vmap.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/vendor/vector-map/jquery.vmap.sampledata.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/vendor/vector-map/jquery.vmap.world.js')?>"></script>
-
-<!-- Main JS-->
+<link href="https://fonts.googleapis.com/css?family=Abel|Arima+Madurai|Caudex|Roboto+Condensed|Squada+One|Turret+Road|Varela+Round&display=swap" rel="stylesheet"> <!-- Main JS-->
 <script type="text/javascript" src="<?= base_url('assets/js/main.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/custom.js')?>"></script>
 <script>

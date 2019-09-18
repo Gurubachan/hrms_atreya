@@ -14,7 +14,7 @@ class JobPosting extends CI_Controller {
             $insert_qualification=array();
             $request= json_decode(json_encode($_POST), false);
             $status=true;
-            if(isset($request->postname) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->postname)){
+            if(isset($request->postname) && preg_match("/^[a-zA-Z ]{0,50}$/",$request->postname)){
                 $insert[0]['postname']=$request->postname;
             }else{
 //                $status=false;
@@ -38,25 +38,25 @@ class JobPosting extends CI_Controller {
 //                $status=false;
                 echo $insert[0]['nov']="";
             }
-            if(isset($request->location) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->location)){
+            if(isset($request->location) && preg_match("/^[a-zA-Z ]{0,20}$/",$request->location)){
                 $insert[0]['localtion']=$request->location;
             }else{
 //                $status=false;
                 echo $insert[0]['localtion']="";
             }
-            if(isset($request->jobdescription) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->jobdescription)){
+            if(isset($request->jobdescription) && preg_match("/^[a-zA-Z ]{0,120}$/",$request->jobdescription)){
                 $insert[0]['jobdescriptiom']=$request->jobdescription;
             }else{
 //                $status=false;
                 echo $insert[0]['jobdescriptiom']="";
             }
-            if(isset($request->experience) && preg_match("/^[a-zA-Z0-9 ]{3,20}$/",$request->experience)){
+            if(isset($request->experience) && is_numeric($request->experience)){
                 $insert[0]['experiance']=$request->experience;
             }else{
 //                $status=false;
                 echo $insert[0]['experiance']="";
             }
-            if(isset($request->responsibility) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->responsibility)){
+            if(isset($request->responsibility) && preg_match("/^[a-zA-Z0-9 ]{0,120}$/",$request->responsibility)){
                 $insert[0]['responsibility']=$request->responsibility;
             }else{
 //                $status=false;
@@ -210,13 +210,25 @@ class JobPosting extends CI_Controller {
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(17, null, $where);
+                $res = $this->Model_Db->select(48, null, $where);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(
                             'id' => $r->id,
-                            'gendername' => $r->gendername,
-                            'gendernshortame' => $r->gendernshortame,
+                            'companyid' => $r->companyid,
+                            'companyname' => $r->companyname,
+                            'postname' => $r->postname,
+                            'designationid' => $r->designationid,
+                            'designationname' => $r->designationname,
+                            'nov' => $r->nov,
+                            'location' => $r->localtion,
+                            'jobdescription' => $r->jobdescriptiom,
+                            'experience' => $r->experiance,
+                            'reponsibility' => $r->responsibility,
+                            'startdate' => $r->startdate,
+                            'enddate' => $r->enddate,
+                            'education'=>$r->educationname,
+                            'skill'=>$r->skill,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive
@@ -245,7 +257,7 @@ class JobPosting extends CI_Controller {
 //           $lastinserted_id = " SELECT * FROM tbl_job_posting WHERE id = @last_id";
 //            SELECT * FROM `table_name` WHERE id=(SELECT MAX(id) FROM `table_name`);
 //            $where="$maxid and isactive=true";
-            $res=$this->Model_Db->select(47,null,$where);
+            $res=$this->Model_Db->select(48,null,$where);
 //            print_r($res);
             echo json_encode($res);
         }catch (Exception $e){

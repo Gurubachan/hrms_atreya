@@ -53,14 +53,14 @@ $cname = $this->uri->segment(2);
     function loadAjaxForReport(id){
         $.ajax({
             type:'post',
-            url:"<?= base_url('MaritalStatus/report_marital_status')?>",
+            url:"<?= base_url('JobPosting/report_jobposting')?>",
             data:{checkparams:id},
             success:function(data){
                 if(data!=false){
                    var jsondata = JSON.parse(data);
                     var j=0;
                     var z = jsondata.length;
-                    // alert(z);
+                    alert(data);
                     var html = "";
                     var isactive='';
                     for(var i=0; i<z; i++){
@@ -68,9 +68,20 @@ $cname = $this->uri->segment(2);
                         var checkId = jsondata[i].id;
                         var checkIsactive = jsondata[i].isactive;
                         var editisactive = JSON.stringify(checkIsactive);
-                        var maritalstatus = jsondata[i].statusname;
-                        var strmaritalstatusShortname = JSON.stringify(jsondata[i].statusnshortame);
-                        var strmaritalstatus = JSON.stringify(maritalstatus);
+                        var companyid = jsondata[i].companyid;
+                        var strCompanyname=JSON.stringify(jsondata[i].companyname);
+                        var strPostname = JSON.stringify(jsondata[i].postname);
+                        var designationid = jsondata[i].designationid;
+                        var strDesignationname = jsondata[i].designationname;
+                        var nov = jsondata[i].nov;
+                        var location =JSON.stringify(jsondata[i].location);
+                        var description =  JSON.stringify(jsondata[i].jobdescription);
+                        var exp = jsondata[i].experience;
+                        var res = JSON.stringify(jsondata[i].responsibility);
+                        var education = jsondata[i].educationidcreatedat;
+                        var skill = jsondata[i].skillid;
+                        var startdate = jsondata[i].startdate;
+                        var enddate = jsondata[i].enddate;
                         var updatedid = '"<?= $cname ?>"';
                         var urlid = '"../Common/record_active_deactive"';
                         if(checkIsactive=='t'){
@@ -78,25 +89,39 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].statusname+"</td><td>"+ jsondata[i].statusnshortame+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditStatus(" +checkId+ "," +strmaritalstatus+ "," +strmaritalstatusShortname+ "," +editisactive+ ")'>Edit</button></td></tr>");
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].companyname+"</td><td>"+ jsondata[i].postname+"</td><td>"+ jsondata[i].designationname+"</td>" +
+                            "<td>"+ jsondata[i].nov+"</td><td>"+ jsondata[i].location+"</td><td>"+ jsondata[i].experience+"</td>" +
+                            "<td>"+ jsondata[i].education+"</td><td>"+ jsondata[i].skill+"</td><td>"+ jsondata[i].startdate+"</td>" +
+                            "<td>"+ jsondata[i].enddate+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm'" +
+                            " onclick='reportEditStatus(" +checkId+ "," +strPostname+ "," +companyid+ "," +designationid+ "," +nov+ "," +location+ "," +description+ "," +exp+ "," +res+ "," +education+ "," +skill+ "," +startdate+ "," +enddate+ "," +editisactive+ ")'>Edit</button></td></tr>");
                     }
-                    $("#load_status_names").html(html);
+                    $("#load_jobposting").html(html);
                 }
             }
         });
     }
-    function reportEditStatus(id,strmaritalstatus,strmaritalstatusShortname,isactive) {
+    function reportEditStatus(id,strPostname,companyid,designationid,nov,location,description,exp,res,education,skill,startdate,enddate,isactive) {
         if(isactive=='t'){
             var isactiveval=1;
         }else{
             isactiveval=0;
         }
         $('#txtid').val(id);
-        $('#statusname').val(strmaritalstatus);
-        $('#maritalStatusShortname').val(strmaritalstatusShortname);
+        $('#postname').val(strPostname);
+        $('#companyid').val(companyid);
+        $('#designationid').val(designationid);
+        $('#vacancy').val(nov);
+        $('#location').val(location);
+        $('#jobdescription').val(description);
+        $('#experience').val(exp);
+        $('#responsibility').val(res);
+        $('#educationid').val(education);
+        $('#skillid').val(skill);
+        $('#jobpoststartingdate').val(startdate);
+        $('#jobpostendingdate').val(enddate);
         $('#isactive').val(isactiveval);
-        $('#statusname').focus();
-        $('#createMaritalStatus').html("Update");
+        $('#postname').focus();
+        $('#createJobPosting').html("Update");
     }
     function loadJobPostingReport() {
         $.ajax({
@@ -116,8 +141,8 @@ $cname = $this->uri->segment(2);
                         j++;
                         var postname = jsondata[i].postname;
                         var nov = jsondata[i].nov;
-                        var cmpid = jsondata[i].companyid;
-                        var desid = jsondata[i].designationid;
+                        var cmpname = jsondata[i].companyname;
+                        var desname = jsondata[i].designationname;
                         var  localtion= jsondata[i].localtion;
                         var  jobdescriptiom= jsondata[i].jobdescriptiom;
                         var  experiance= jsondata[i].experiance;
@@ -126,17 +151,20 @@ $cname = $this->uri->segment(2);
                         var  enddate= jsondata[i].enddate;
                     }
                     $("#jpstname").html(postname);
-                    $("#cmpid").html(cmpid);
-                    $("#desid").html(desid);
+                    $("#cmpid").html(cmpname);
+                    $("#desid").html(desname);
                     $("#nov").html(nov);
                     $("#localtion").html(localtion);
                     $("#jobdescriptiom").html(jobdescriptiom);
                     $("#experiance").html(experiance);
-                    $("#responsibility").html(responsibility);
+                    $("#responsibilityreport").html(responsibility);
                     $("#startdate").html(startdate);
                     $("#enddate").html(enddate);
                 }
             }
         });
     }
+    $("#jobPostingForm").click(function () {
+        window.location.reload();
+    });
 </script>
