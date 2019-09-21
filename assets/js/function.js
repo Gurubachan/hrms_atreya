@@ -375,3 +375,16 @@ function loadOnlyCompany(){
         }
     });
 }
+function load_religion() {
+    $.ajax({
+        type: 'post',
+        url: "../Religion/load_religion",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#religionid").html(data);
+            }
+        }
+    });
+}

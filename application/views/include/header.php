@@ -39,6 +39,6 @@ $cname = $this->uri->segment(2);
     <link href="<?= base_url('assets/css/theme.css')?>" rel="stylesheet" media="all">
     <title>HRMS</title>
 </head>
-<body class="animsition">
+<body class="animsition" id="mainContainer">
 <div class="col-sm-12">
 <!--<body>-->

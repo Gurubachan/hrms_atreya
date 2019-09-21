@@ -361,7 +361,6 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <!--                                                <div class="au-message__noti">-->
 <!--                                                    <p>You Have-->
 <!--                                                        <span>2</span>-->
-<!---->
 <!--                                                        new messages-->
 <!--                                                    </p>-->
 <!--                                                </div>-->
@@ -531,19 +530,19 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
-<!---->
+
 <!--                <section>-->
 <!--                    <div class="container-fluid">-->
 <!--                        <div class="row">-->
 <!--                            <div class="col-md-12 col-sm-12">-->
 <!--                                <div class="copyright">-->
-<!--                                    <!-- <p>Copyright © 2018. All rights reserved.</p> -->-->
+<!--                                    <p>Copyright © 2018. All rights reserved.</p> -->
 <!--                                </div>-->
 <!--                            </div>-->
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </section>-->
-<!--                <!-- END PAGE CONTAINER-->-->
+<!--               END PAGE CONTAINER-->
 <!--            </div>-->
 <!--        </div>-->
 <!--    </div>-->

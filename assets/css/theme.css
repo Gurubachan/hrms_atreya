@@ -2335,10 +2335,10 @@ section {
     display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
+    -webkit-justify-content: space-between;
     -moz-box-pack: end;
     -ms-flex-pack: end;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 @media (max-width: 991px) {
@@ -2348,6 +2348,21 @@ section {
         -moz-box-pack: justify;
         -ms-flex-pack: justify;
         justify-content: space-between;
+    }
+    #mainContainer{
+        margin-top: 8%;
+    }
+}
+@media (max-width: 628px) {
+    .header-wrap2 {
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -moz-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+    #mainContainer{
+        margin-top: 15%;
     }
 }
 
@@ -2849,7 +2864,7 @@ section {
 
 @media (max-width: 1315px) and (min-width: 992px) {
     .header__tool .account-item > .content {
-        display: none;
+        /*display: none;*/
     }
 }
 
@@ -14670,6 +14685,9 @@ section {
     text-align: center;
     cursor:pointer;
     color:#ffffff;
+    -webkit-box-shadow: -3px 48px 35px -29px rgba(0,0,0,0.35);
+    -moz-box-shadow: -3px 48px 35px -29px rgba(0,0,0,0.35);
+    box-shadow: -3px 48px 35px -29px rgba(0,0,0,0.35);
 }
 .compCard .card{
     height: 150px;
@@ -14677,6 +14695,16 @@ section {
     text-align: center;
     cursor:pointer;
     color:#ffffff;
+}
+.formsCard .card i{
+    -webkit-transition: 0.6s ease-out;
+    -moz-transition: 0.6s ease-out;
+    transition: 1s ease-out;
+}
+.formsCard .card i:hover{
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
 }
 .bg-blue{
     background-color: darkblue;
@@ -15990,4 +16018,18 @@ ul.github-buttons li {
 .cornflowerblue .fa {
     font-size: 13px;
     color:dodgerblue;
+}
+.the-legend {
+    border-style: none;
+    border-width: 0;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 0;
+    width: auto;
+    padding: 0 10px;
+    border: 1px solid #e0e0e0;
+}
+.the-fieldset {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
 }

@@ -17,76 +17,76 @@ class JobPosting extends CI_Controller {
             if(isset($request->postname) && preg_match("/^[a-zA-Z ]{0,50}$/",$request->postname)){
                 $insert[0]['postname']=$request->postname;
             }else{
-//                $status=false;
-                echo $insert[0]['postname']="";
+                $status=false;
+//                echo $insert[0]['postname']="";
             }
             if(isset($request->companyid) && is_numeric($request->companyid)){
                 $insert[0]['companyid']=$request->companyid;
             }else{
-//                $status=false;
-                echo $insert[0]['companyid']="";
+                $status=false;
+//                echo $insert[0]['companyid']="";
             }
             if(isset($request->designationid) && is_numeric($request->designationid)){
                 $insert[0]['designationid']=$request->designationid;
             }else{
-//                $status=false;
-                echo $insert[0]['designationid']="";
+                $status=false;
+//                echo $insert[0]['designationid']="";
             }
             if(isset($request->vacancy) && is_numeric($request->vacancy)){
                 $insert[0]['nov']=$request->vacancy;
             }else{
-//                $status=false;
-                echo $insert[0]['nov']="";
+                $status=false;
+                echo $insert[0]['nov']=$request->vacancy;
             }
             if(isset($request->location) && preg_match("/^[a-zA-Z ]{0,20}$/",$request->location)){
                 $insert[0]['localtion']=$request->location;
             }else{
-//                $status=false;
-                echo $insert[0]['localtion']="";
+                $status=false;
+//                echo $insert[0]['localtion']="";
             }
             if(isset($request->jobdescription) && preg_match("/^[a-zA-Z ]{0,120}$/",$request->jobdescription)){
-                $insert[0]['jobdescriptiom']=$request->jobdescription;
+                $insert[0]['jobdescription']=$request->jobdescription;
             }else{
-//                $status=false;
-                echo $insert[0]['jobdescriptiom']="";
+                $status=false;
+//                echo $insert[0]['jobdescription']="";
             }
-            if(isset($request->experience) && is_numeric($request->experience)){
-                $insert[0]['experiance']=$request->experience;
+            if(isset($request->experience) && preg_match("/^[a-zA-Z0-9, ]{0,120}$/",$request->experience)){
+                $insert[0]['experience']=$request->experience;
             }else{
-//                $status=false;
-                echo $insert[0]['experiance']="";
+                $status=false;
+//                echo $insert[0]['experience']="";
             }
             if(isset($request->responsibility) && preg_match("/^[a-zA-Z0-9 ]{0,120}$/",$request->responsibility)){
                 $insert[0]['responsibility']=$request->responsibility;
             }else{
-//                $status=false;
-                echo $request->responsibility;
+                $status=false;
+//                echo $request->responsibility;
             }
             if(isset($request->jobpoststartingdate) && preg_match("/^[0-9-]{3,20}$/",$request->jobpoststartingdate)){
                 $jpsd=date("Y-m-d",strtotime($request->jobpoststartingdate));
                 $insert[0]['startdate']=$jpsd;
             }else{
-//                $status=false;
-                echo $insert[0]['startdate']="";
+                $status=false;
+//                echo $insert[0]['startdate']="";
             }
             if(isset($request->jobpostendingdate) && preg_match("/^[0-9-]{3,20}$/",$request->jobpostendingdate)){
                 $jped=date("Y-m-d",strtotime($request->jobpostendingdate));
                 $insert[0]['enddate']=$jped;
             }else{
-//                $status=false;
-                echo $insert[0]['enddate']="";
+                $status=false;
+//                echo $insert[0]['enddate']="";
             }
             if(isset($request->skillid) && is_numeric($request->skillid)){
                 $insert_skill[0]['skillid']=$request->skillid;
             }else{
-//                $status=false;
-                echo $insert_skill[0]['skillid']="";
+                $status=false;
+//                echo $insert_skill[0]['skillid']="";
             }
             if(isset($request->educationid) && is_numeric($request->educationid)){
                     $insert_qualification[0]['qualificationid']=$request->educationid;
             }else{
-//                $status=false;
-                echo $insert_qualification[0]['qualificationid']="";
+                $status=false;
+//                echo $insert_qualification[0]['qualificationid']="";
             }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
@@ -140,6 +140,7 @@ class JobPosting extends CI_Controller {
                         }else{
                             $data['message']="Insert failed.";
                             $data['status']=false;
+
                         }
                     }else{
                         $data['message']="Insufficient/Invalid data.";
@@ -222,12 +223,14 @@ class JobPosting extends CI_Controller {
                             'designationname' => $r->designationname,
                             'nov' => $r->nov,
                             'location' => $r->localtion,
-                            'jobdescription' => $r->jobdescriptiom,
-                            'experience' => $r->experiance,
+                            'jobdescription' => $r->jobdescription,
+                            'experience' => $r->experiancename,
                             'reponsibility' => $r->responsibility,
                             'startdate' => $r->startdate,
                             'enddate' => $r->enddate,
-                            'education'=>$r->educationname,
+                            'educationname'=>$r->educationname,
+                            'educationid'=>$r->qualificationid,
+                            'skillid'=>$r->skillid,
                             'skill'=>$r->skill,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,

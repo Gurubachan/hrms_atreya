@@ -16,15 +16,86 @@ class Recruitment extends CI_Controller
             $postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $status=true;
-            if(isset($request->statename) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->statename)){
-                $insert[0]['statename']=$request->statename;
+            if(isset($request->fname) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->fname)){
+                $insert[0]['fname']=$request->fname;
+            }else{
+//                $status=false;
+                echo $insert[0]['fname']="";
+            }
+            if(isset($request->mname) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->mname)){
+                $insert[0]['mname']=$request->mname;
+            }else{
+//                $status=false;
+                echo $insert[0]['mname']="";
+            }
+            if(isset($request->lname) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->lname)){
+                $insert[0]['lname']=$request->lname;
+            }else{
+//                $status=false;
+                echo $insert[0]['lname']="";
+            }
+            if(isset($request->dob) && preg_match("/^[0-9-]{10}$/",$request->dob)){
+                $dob=date("Y-m-d",strtotime($request->dob));
+                $insert[0]['dob']=$dob;
+            }else{
+//                $status=false;
+                echo $insert[0]['dob']="";
+            }
+            if(isset($request->fathername) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->fathername)){
+                $insert[0]['fathername']=$request->fathername;
+            }else{
+//                $status=false;
+                echo $insert[0]['fathername']="";
+            }
+            if(isset($request->mothername) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->mothername)){
+                $insert[0]['mothername']=$request->mothername;
+            }else{
+//                $status=false;
+                echo $insert[0]['mothername']="";
+            }
+            if(isset($request->spousename) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->spousename)){
+                $insert[0]['spousename']=$request->spousename;
+            }else{
+//                $status=false;
+                echo $insert[0]['spousename']="";
+            }
+            if(isset($request->genderid) && is_numeric($request->genderid)){
+                $insert[0]['genderid']=$request->genderid;
+            }else{
+//                $status=false;
+                echo $insert[0]['genderid']="";
+            }
+            if(isset($request->maritalstatusid) && is_numeric($request->maritalstatusid)){
+                $insert[0]['maritalstatusid']=$request->maritalstatusid;
+            }else{
+//                $status=false;
+                echo $insert[0]['maritalstatusid']="";
+            }
+            if(isset($request->religionid) && is_numeric($request->religionid)){
+                $insert[0]['religionid']=$request->religionid;
+            }else{
+//                $status=false;
+                echo $insert[0]['religionid']="";
+            }
+            if(isset($request->mobile) && preg_match("/[6,7,8,9]{1}+[0-9]{9}/",$request->mobile)){
+                $insert[0]['contact']=$request->mobile;
             }else{
                 $status=false;
             }
-            if(isset($request->stateShortname) && preg_match("/^[a-zA-Z]{2,5}$/",$request->stateShortname)){
-                $insert[0]['stateshortname']=$request->stateShortname;
+            if(isset($request->altmobile) && preg_match("/[6,7,8,9]{1}+[0-9]{9}/",$request->altmobile)){
+                $insert[0]['altcontact']=$request->altmobile;
             }else{
                 $status=false;
+            }
+            if(isset($request->whatsappnumber) && preg_match("/[6,7,8,9]{1}+[0-9]{9}/",$request->whatsappnumber)){
+                $insert[0]['whatsapp']=$request->whatsappnumber;
+            }else{
+                $status=false;
+            }
+            if(isset($request->emailid) && preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/",$request->emailid)){
+                $insert[0]['email']=$request->emailid;
+            }else{
+                echo $insert[0]['email']="";
             }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
@@ -42,7 +113,7 @@ class Recruitment extends CI_Controller
                     if($request->txtid>0){
                         $insert[0]['updatedby']=$this->session->login['userid'];
                         $insert[0]['updatedat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->update(7,$insert,"id",$request->txtid);
+                        $res=$this->Model_Db->update(53,$insert,"id",$request->txtid);
                         if($res!=false){
                             $data['message']="Update successful.";
                             $data['status']=true;
@@ -53,7 +124,7 @@ class Recruitment extends CI_Controller
                     }else if($request->txtid==0){
                         $insert[0]['entryby']=$this->session->login['userid'];
                         $insert[0]['createdat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->insert(7,$insert);
+                        $res=$this->Model_Db->insert(53,$insert);
                         if($res!=false){
                             $data['message']="Insert successful.";
                             $data['status']=true;

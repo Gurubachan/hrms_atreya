@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" >
     <div class="col-sm-12" style="margin-top:5%; min-height: 600px;">
         <div class="col-sm-12">
             <div class="row" style="margin-top:2%;">

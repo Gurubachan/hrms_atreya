@@ -9,7 +9,7 @@ $cname = $this->uri->segment(2);
         load_education();
         load_skill();
         // $("#educationid").select2();
-        load_experience();
+        // load_experience();
 
 
     });
@@ -40,7 +40,7 @@ $cname = $this->uri->segment(2);
                             reportFunction(1);
                             // $("#jobpostingform").hide();
                             // $("#jobpostingreport").show();
-                            loadJobPostingReport();
+                            // loadJobPostingReport();
                         }
                     }else{
                         console.log(data);
@@ -51,6 +51,7 @@ $cname = $this->uri->segment(2);
     });
 
     function loadAjaxForReport(id){
+        $("#jobPostingReport").show();
         $.ajax({
             type:'post',
             url:"<?= base_url('JobPosting/report_jobposting')?>",
@@ -60,7 +61,6 @@ $cname = $this->uri->segment(2);
                    var jsondata = JSON.parse(data);
                     var j=0;
                     var z = jsondata.length;
-                    alert(data);
                     var html = "";
                     var isactive='';
                     for(var i=0; i<z; i++){
@@ -76,12 +76,12 @@ $cname = $this->uri->segment(2);
                         var nov = jsondata[i].nov;
                         var location =JSON.stringify(jsondata[i].location);
                         var description =  JSON.stringify(jsondata[i].jobdescription);
-                        var exp = jsondata[i].experience;
-                        var res = JSON.stringify(jsondata[i].responsibility);
-                        var education = jsondata[i].educationidcreatedat;
-                        var skill = jsondata[i].skillid;
-                        var startdate = jsondata[i].startdate;
-                        var enddate = jsondata[i].enddate;
+                        var exp = JSON.stringify(jsondata[i].experience);
+                        var res = JSON.stringify(jsondata[i].reponsibility);
+                        var education = jsondata[i].educationid;
+                        var skillid = jsondata[i].skillid;
+                        var startdate = JSON.stringify(jsondata[i].startdate);
+                        var enddate = JSON.stringify(jsondata[i].enddate);
                         var updatedid = '"<?= $cname ?>"';
                         var urlid = '"../Common/record_active_deactive"';
                         if(checkIsactive=='t'){
@@ -89,25 +89,25 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].companyname+"</td><td>"+ jsondata[i].postname+"</td><td>"+ jsondata[i].designationname+"</td>" +
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].postname+"</td><td>"+ jsondata[i].companyname+"</td><td>"+ jsondata[i].designationname+"</td>" +
                             "<td>"+ jsondata[i].nov+"</td><td>"+ jsondata[i].location+"</td><td>"+ jsondata[i].experience+"</td>" +
-                            "<td>"+ jsondata[i].education+"</td><td>"+ jsondata[i].skill+"</td><td>"+ jsondata[i].startdate+"</td>" +
+                            "<td>"+ jsondata[i].educationname+"</td><td>"+ jsondata[i].skill+"</td><td>"+ jsondata[i].startdate+"</td>" +
                             "<td>"+ jsondata[i].enddate+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm'" +
-                            " onclick='reportEditStatus(" +checkId+ "," +strPostname+ "," +companyid+ "," +designationid+ "," +nov+ "," +location+ "," +description+ "," +exp+ "," +res+ "," +education+ "," +skill+ "," +startdate+ "," +enddate+ "," +editisactive+ ")'>Edit</button></td></tr>");
+                            " onclick='reportEditJobPosting(" +checkId+ "," +strPostname+ "," +companyid+ "," +designationid+ "," +nov+ "," +location+ "," +description+ "," +exp+ "," +res+ "," +education+ "," +skillid+ "," +startdate+ "," +enddate+ "," +editisactive+ ")'>Edit</button></td></tr>");
                     }
                     $("#load_jobposting").html(html);
                 }
             }
         });
     }
-    function reportEditStatus(id,strPostname,companyid,designationid,nov,location,description,exp,res,education,skill,startdate,enddate,isactive) {
+    function reportEditJobPosting(id,strpostname,companyid,designationid,nov,location,description,exp,res,education,skillid,startdate,enddate,isactive) {
         if(isactive=='t'){
             var isactiveval=1;
         }else{
             isactiveval=0;
         }
         $('#txtid').val(id);
-        $('#postname').val(strPostname);
+        $('#postname').val(strpostname);
         $('#companyid').val(companyid);
         $('#designationid').val(designationid);
         $('#vacancy').val(nov);
@@ -116,7 +116,7 @@ $cname = $this->uri->segment(2);
         $('#experience').val(exp);
         $('#responsibility').val(res);
         $('#educationid').val(education);
-        $('#skillid').val(skill);
+        $('#skillid').val(skillid);
         $('#jobpoststartingdate').val(startdate);
         $('#jobpostendingdate').val(enddate);
         $('#isactive').val(isactiveval);
@@ -144,8 +144,8 @@ $cname = $this->uri->segment(2);
                         var cmpname = jsondata[i].companyname;
                         var desname = jsondata[i].designationname;
                         var  localtion= jsondata[i].localtion;
-                        var  jobdescriptiom= jsondata[i].jobdescriptiom;
-                        var  experiance= jsondata[i].experiance;
+                        var  jobdescriptions= jsondata[i].jobdescription;
+                        var  experiences= jsondata[i].experiancename;
                         var  responsibility= jsondata[i].responsibility;
                         var  startdate= jsondata[i].startdate;
                         var  enddate= jsondata[i].enddate;
@@ -155,8 +155,8 @@ $cname = $this->uri->segment(2);
                     $("#desid").html(desname);
                     $("#nov").html(nov);
                     $("#localtion").html(localtion);
-                    $("#jobdescriptiom").html(jobdescriptiom);
-                    $("#experiance").html(experiance);
+                    $("#jobdescriptions").html(jobdescriptions);
+                    $("#experiences").html(experiences);
                     $("#responsibilityreport").html(responsibility);
                     $("#startdate").html(startdate);
                     $("#enddate").html(enddate);

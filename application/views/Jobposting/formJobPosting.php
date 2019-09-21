@@ -50,7 +50,7 @@ $cname = $this->uri->segment(2);
                                 <label for="" class="control-label mb-1">Number of vacancy <span style="color:red;">*</span>&nbsp;:</label>
                             </div>
                             <div class="col-sm-3">
-                                <input type="text" id="vacancy" name="vacancy" class="form-control" maxlength="20" placeholder="Enter Vacancy" required>
+                                <input type="text" id="vacancy" name="vacancy" onclick="number_validate('vacancy')" class="form-control" maxlength="3" placeholder="Enter Vacancy" required>
                             </div>
                         </div>
                         <br>
@@ -77,7 +77,8 @@ $cname = $this->uri->segment(2);
                                 <label for="" class="control-label mb-1">Experience required &nbsp;<span style="color:red;">*</span>&nbsp;:</label>
                             </div>
                             <div class="col-sm-3">
-                                <select id="experience" name="experience"  class="select" required></select>
+                                <input type="text" id="experience" name="experience" class="form-control" maxlength="10" required placeholder="Enter experience">
+<!--                                <select id="experience" name="experience"  class="select" required></select>-->
                             </div>
                         </div>
                         <br>
@@ -144,7 +145,7 @@ $cname = $this->uri->segment(2);
             </div>
         </div>
     </div>
-    <div class="row">
+<div class="row" style="height: 500px;overflow-y: scroll; display: none;" id="jobPostingReport">
         <div class="box col-md-12">
             <div class="box-inner">
                 <div class="box-header well">
@@ -226,12 +227,12 @@ $cname = $this->uri->segment(2);
                         <br>
                         <div class="row">
                             <div class="col-sm-3 cornflowerblue"><i class="fa fa-long-arrow-alt-right"></i>&nbsp;Job Description :</div>
-                            <div class="col-sm-9"><span id="jobdescriptiom"></span></div>
+                            <div class="col-sm-9"><span id="jobdescriptions"></span></div>
                         </div>
                         <br>
                         <div class="row">
                             <div class="col-sm-3 cornflowerblue"><i class="fa fa-long-arrow-alt-right"></i>&nbsp;Experience :</div>
-                            <div class="col-sm-9"><span id="experiance"></span></div>
+                            <div class="col-sm-9"><span id="experiences"></span></div>
                         </div>
                         <br>
                         <div class="row">
@@ -258,9 +259,9 @@ $cname = $this->uri->segment(2);
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
+   </div>
+  </div>
+ </div>
 </div>
 
 

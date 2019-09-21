@@ -34,7 +34,8 @@ class Model_Db extends CI_Model
                 '45'=>'tbl_communication_type','46'=>'view_communication_type',
                 '47'=>'tbl_job_posting','48'=>'view_job_posting',
                 '49'=>'tbl_job_posting_qualification','50'=>'view_job_posting_qualification',
-                '51'=>'tbl_job_posting_skill','52'=>'view_job_posting_skill'
+                '51'=>'tbl_job_posting_skill','52'=>'view_job_posting_skill',
+                '53'=>'tbl_recruitment_application','54'=>'tbl_recruitment_application'
             );
             if($table[$tblno]){
                 return $table[$tblno];
