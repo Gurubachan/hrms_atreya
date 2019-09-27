@@ -14702,9 +14702,10 @@ section {
     transition: 1s ease-out;
 }
 .formsCard .card i:hover{
-    -webkit-transform: rotateZ(360deg);
-    -moz-transform: rotateZ(360deg);
-    transform: rotateZ(360deg);
+    /*-webkit-transform: rotateZ(360deg);*/
+    /*-moz-transform: rotateZ(360deg);*/
+    /*transform: rotateZ(360deg);*/
+    transform: scale(1.5);
 }
 .bg-blue{
     background-color: darkblue;
@@ -15215,27 +15216,27 @@ label{
 /*}*/
 
 input[type=text]{
-border-radius: 7px;
+/*border-radius: 7px;*/
     height: 30px;
     font-size: 12px;
 }
 input[type=email]{
-border-radius: 7px;
+/*border-radius: 7px;*/
     height: 30px;
     font-size: 12px;
 }
 input[type=date]{
-border-radius: 7px;
+/*border-radius: 7px;*/
     height: 30px;
     font-size: 12px;
 }
 input[type=password]{
-    border-radius: 7px;
+    /*border-radius: 7px;*/
     height: 30px;
     font-size: 12px;
 }
 select{
-    border-radius: 7px;
+    /*border-radius: 7px;*/
     width: 100%;
     padding: auto;
     height: 30px;
@@ -15248,7 +15249,7 @@ select{
 /*}*/
 .textarea{
    font-size: 12px;
-    border-radius: 7px;
+    /*border-radius: 7px;*/
     height: 35px;
 }
 /*charisma*/

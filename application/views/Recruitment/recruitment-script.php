@@ -3,32 +3,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
 ?>
 <script>
+    apid=0;
     $(function () {
         load_marital_status();
         load_gender();
         load_religion();
+        load_state();
+        load_communicationType();
+        load_experiencetype();
     });
-    $("#newRecruitmentForm").submit(function(e){
+    $('#stateid').change(function () {
+        load_district($(this).val());
+    });
+    $("#applicantBasicDetailsForm").submit(function(e){
         e.preventDefault();
-            var frm = $("#newRecruitmentForm").serialize();
+            var frm = $("#applicantBasicDetailsForm").serialize();
         if(confirm("Sure to submit?")) {
             $.ajax({
                 type: 'post',
-                url: "<?= base_url('Recruitment/create_new_recruitment')?>",
+                url: "<?= base_url('Recruitment/createBasicDetails')?>",
                 crossDomain: true,
                 data: frm,
                 success: function (data) {
                     if (data != false) {
-                        if ($("#createJobPosting").html() == "Update") {
-                            window.location.reload();
-                        } else {
-                            $('#newRecruitmentForm').trigger("reset");
-                            // reportFunction(1);
-                            // $("#jobpostingform").hide();
-                            // $("#jobpostingreport").show();
-                            // loadJobPostingReport();
-                            $('#newRecruitmentForm').hide();
-                            $('#newRecruitmentForm2').show();
+                        var jsondata = JSON.parse(data);
+                        if(jsondata.status == true){
+                            alert("Create successfull, 'OK' to next page.");
+                            apid = jsondata.apid;
+                            if ($("#createApplicant").html() == "Update") {
+                                window.location.reload();
+                            } else {
+                                // $('#newRecruitmentForm').trigger("reset");
+                                // reportFunction(1);
+                                // $("#jobpostingform").hide();
+                                // $("#jobpostingreport").show();
+                                // loadJobPostingReport();
+                                $('#applicantBasicDetailsForm').hide();
+                                $('#applicantAddressDetailsForm').show();
+                            }
+                        }else{
+                          if(jsondata.token == 1){
+                              $('#fname').focus();
+                          }else if(jsondata.token == 2){
+                              $('#lname').focus();
+                          }else if(jsondata.token == 3){
+                              $('#dob').focus();
+                          }else if(jsondata.token == 4){
+                              $('#genderid').focus();
+                          }else if(jsondata.token == 5){
+                              $('#maritalstatusid').focus();
+                          }else if(jsondata.token == 6){
+                              $('#religionid').focus();
+                          }else if(jsondata.token == 7){
+                              $('#mobile').focus();
+                          }else if(jsondata.token == 8){
+                              $('#whatsappnumber').focus();
+                          }else if(jsondata.token == 9){
+                              $('#emailid').focus();
+                          }
                         }
                     } else {
                         console.log(data);
@@ -38,6 +70,163 @@ $cname = $this->uri->segment(2);
         }else {
             return false;
         }
+    });
+    $("#applicantAddressDetailsForm").submit(function(e){
+        e.preventDefault();
+        var frm = $("#applicantAddressDetailsForm").serialize();
+        if(confirm("Sure to submit?")) {
+            $.ajax({
+                type: 'post',
+                url: "<?= base_url('Recruitment/createAddressDetails/')?>"+apid,
+                crossDomain: true,
+                data: frm,
+                success: function (data) {
+                    if (data != false) {
+                        var jsondata = JSON.parse(data);
+                        if(jsondata.status == true) {
+                            alert("Create successfull, 'OK' to next page.");
+                            if ($("#createApplicant").html() == "Update") {
+                                window.location.reload();
+                            } else {
+                                // $('#newRecruitmentForm').trigger("reset");
+                                // reportFunction(1);
+                                // $("#jobpostingform").hide();
+                                // $("#jobpostingreport").show();
+                                // loadJobPostingReport();
+                                $('#applicantBasicDetailsForm').hide();
+                                $('#applicantAddressDetailsForm').hide();
+                                $('#applicantEducationalDetailsForm').show();
+                            }
+                        }else{
+                                if(jsondata.token == 10){
+                                    $('#applicantAt').focus();
+                                }else if(jsondata.token == 11){
+                                    $('#applicantPo').focus();
+                                }else if(jsondata.token == 12){
+                                    $('#applicantPs').focus();
+                                }else if(jsondata.token == 13){
+                                    $('#pincode').focus();
+                                }
+                            }
+
+                    } else {
+                        console.log(data);
+                    }
+                }
+            });
+        }else {
+            return false;
+        }
+    });
+    $("#applicantEducationalDetailsForm").submit(function(e){
+        e.preventDefault();
+        var frm = $("#applicantEducationalDetailsForm").serialize();
+        var totalmark = $("#applicantTotalMark").val();
+        var securedmark = $("#applicantSecuredMark").val();
+        if(parseInt(totalmark)<parseInt(securedmark)){
+            alert("Secured mark should be equall or less than total mark.");
+            $("#applicantSecuredMark").val("");
+        }else{
+            if(confirm("Sure to submit?")) {
+                $.ajax({
+                    type: 'post',
+                    url: "<?= base_url('Recruitment/createEducationalDetails/')?>"+apid,
+                    crossDomain: true,
+                    data: frm,
+                    success: function (data) {
+                        if (data != false) {
+                            var jsondata = JSON.parse(data);
+                            if(jsondata.status == true) {
+                                alert("Create successfull, 'OK' to next page.");
+                                if ($("#createApplicant").html() == "Update") {
+                                    window.location.reload();
+                                } else {
+                                    // $('#newRecruitmentForm').trigger("reset");
+                                    // reportFunction(1);
+                                    // $("#jobpostingform").hide();
+                                    // $("#jobpostingreport").show();
+                                    // loadJobPostingReport();
+                                    $('#applicantBasicDetailsForm').hide();
+                                    $('#applicantAddressDetailsForm').hide();
+                                    $('#applicantEducationalDetailsForm').hide();
+                                    $('#applicantWorkingDetailsForm').show();
+                                }
+                            }else{
+                                if(jsondata.token == 14){
+                                    $('#applicantInstitue').focus();
+                                }else if(jsondata.token == 15){
+                                    $('#applicantBoard').focus();
+                                }else if(jsondata.token == 16){
+                                    $('#applicantExam').focus();
+                                }else if(jsondata.token == 17){
+                                    $('#applicantPassingYear').focus();
+                                }else if(jsondata.token == 18){
+                                    $('#applicantTotalMark').focus();
+                                }else if(jsondata.token == 19){
+                                    $('#applicantSecuredMark').focus();
+                                }
+                            }
+                        } else {
+                            console.log(data);
+                        }
+                    }
+                });
+            }else {
+                return false;
+            }
+        }
+    });
+    $("#applicantWorkingDetailsForm").submit(function(e){
+
+        e.preventDefault();
+        var frm = $("#applicantWorkingDetailsForm").serialize();
+        var doj = $("#doj").val();
+        var dol = $("#dol").val();
+        if(dol<doj){
+            alert("Leaving date should be less than Joining date.");
+            $("#applicantSecuredMark").val("");
+        }else{
+            if(confirm("Sure to submit?")) {
+                $.ajax({
+                    type: 'post',
+                    url: "<?= base_url('Recruitment/createWorkExperienceDetails/')?>"+apid,
+                    crossDomain: true,
+                    data: frm,
+                    success: function (data) {
+                        if (data != false) {
+                            var jsondata = JSON.parse(data);
+                            if (jsondata.status == true) {
+                                alert("Create successfull, 'OK' to next page.");
+                                if ($("#createApplicant").html() == "Update") {
+                                    window.location.reload();
+                                } else {
+                                    // $('#newRecruitmentForm').trigger("reset");
+                                    // reportFunction(1);
+                                    // $("#jobpostingform").hide();
+                                    // $("#jobpostingreport").show();
+                                    // loadJobPostingReport();
+                                    $('#applicantBasicDetailsForm').hide();
+                                    $('#applicantAddressDetailsForm').hide();
+                                    $('#applicantEducationalDetailsForm').hide();
+                                    $('#applicantWorkingDetailsForm').hide();
+                                }
+                            } else {
+                                if (jsondata.token == 21) {
+                                    $('#companyname').focus();
+                                } else if (jsondata.token == 22) {
+                                    $('#role').focus();
+                                }
+                            }
+                        } else {
+                            console.log(data);
+                        }
+                    }
+                });
+            }else {
+                return false;
+            }
+        }
+
     });
     function loadAjaxForReport(id){
         $("#jobPostingReport").show();
@@ -167,5 +356,10 @@ $cname = $this->uri->segment(2);
     $("#spousename").keypress(function () {
         var a = $('#spousename').val();
         $("#maritalstatusid").val(1);
+    });
+    $("#previous1").click(function () {
+        $("#newRecruitmentForm").prop('disable',true);
+        $("#newRecruitmentForm").show();
+        $("#newRecruitmentForm1").hide();
     });
 </script>

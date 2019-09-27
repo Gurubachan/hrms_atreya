@@ -349,7 +349,7 @@ function load_skill(){
         }
     });
 }
-function load_experience(){
+function load_experiencetype(){
     $.ajax({
         type:'post',
         url: "../ExperienceType/load_experience_type",
@@ -357,7 +357,7 @@ function load_experience(){
         success:function(data){
             var data = JSON.parse(data);
             if(data!=false){
-                $("#experience").html(data);
+                $("#experiencetypeid").html(data);
             }
         }
     });
@@ -388,3 +388,17 @@ function load_religion() {
         }
     });
 }
+function load_communicationType() {
+    $.ajax({
+        type: 'post',
+        url: "../CommunicationType/load_communication_type",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#communicationtypeid").html(data);
+            }
+        }
+    });
+}
+
