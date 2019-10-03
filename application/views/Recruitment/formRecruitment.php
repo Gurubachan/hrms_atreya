@@ -129,7 +129,7 @@ $cname = $this->uri->segment(2);
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                            <button type="submit" class="btn btn-primary btn-sm" id="createApplicant">Save & Next</button>
+                            <button type="submit" class="btn btn-primary btn-sm" id="applicantBasicDetails">Save & Next</button>
                         </div>
                     </form>
                     <br>
@@ -139,7 +139,7 @@ $cname = $this->uri->segment(2);
                                 <legend class="the-legend"><span class="blue">Address Details</span></legend>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <input type="hidden" id="txtid" name="txtid" value="0">
+<!--                                        <input type="hidden" id="txtid" name="txtid" value="">-->
                                         <input type="hidden" id="isactive" name="isactive" value="1">
                                         <div class="form-group">
                                             <label for="employeeaddress" class="control-label mb-1">At/Street/Plot.No.<span style="color:red;">*</span></label>
@@ -198,7 +198,7 @@ $cname = $this->uri->segment(2);
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                            <button type="button" class="btn btn-success btn-sm" id="applicationBasicDetails">Previous</button>
+                            <button type="button" class="btn btn-success btn-sm" id="">Previous</button>
                             <button type="submit" class="btn btn-primary btn-sm" id="applicantCommunication">Save</button>
                         </div>
                     </form>
@@ -206,7 +206,7 @@ $cname = $this->uri->segment(2);
                     <form  class="" id="applicantEducationalDetailsForm"  name="applicantEducationalDetailsForm" autocomplete="off" style="display: none;">
                         <div class="form-group">
                             <fieldset class="the-fieldset">
-                                <input type="hidden" id="txtid" name="txtid" value="0">
+<!--                                <input type="hidden" id="txtid" name="txtid" value="">-->
                                 <input type="hidden" id="isactive" name="isactive" value="1">
                                 <legend class="the-legend"><span class="blue">Educational Details</span></legend>
                                 <div class="row">
@@ -253,12 +253,12 @@ $cname = $this->uri->segment(2);
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="button" class="btn btn-success btn-sm">Previous</button>
-                            <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">Save</button>
+                            <button type="submit" class="btn btn-primary btn-sm" id="applicantEducation">Save</button>
                         </div>
                     </form>
                     <form  class="" id="applicantWorkingDetailsForm"  name="applicantWorkingDetailsForm" autocomplete="off" style="display: none;">
                         <div class="form-group">
-                            <input type="hidden" id="txtid" name="txtid" value="0">
+<!--                            <input type="hidden" id="txtid" name="txtid" value="">-->
                             <input type="hidden" id="isactive" name="isactive" value="1">
                             <fieldset class="the-fieldset">
                                 <legend class="the-legend"><span class="blue">Working Details</span></legend>
@@ -308,7 +308,7 @@ $cname = $this->uri->segment(2);
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="button" class="btn btn-success btn-sm">Previous</button>
-                            <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">Save</button>
+                            <button type="submit" class="btn btn-primary btn-sm" id="applicantWorkExperience">Save</button>
                         </div>
                     </form>
                     <hr>
@@ -342,12 +342,13 @@ $cname = $this->uri->segment(2);
                                 <th>Sl#</th>
                                 <th>Name</th>
                                 <th>Father name</th>
-                                <th>Mother name</th>
-                                <th>Spouse name</th>
                                 <th>Dob</th>
-                                <th>Marital Status</th>
                                 <th>Gender</th>
+                                <th>Mobile</th>
+                                <th>Whatsapp</th>
+                                <th>Email</th>
                                 <th>IsActive</th>
+                                <th>Details View</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -362,5 +363,24 @@ $cname = $this->uri->segment(2);
 </div>
 </div>
 </div>
+<!--<div class="modal fade" id="recruitment">-->
+<!--    <div class="modal-dialog">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header" style="background-color: cornflowerblue;">-->
+<!--                <h3 class="modal-title text-white" style="">Grievances</h3>-->
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <div class="form-group">-->
+<!--                    <label for="" class="control-label mb-1">Griev-1:</label>-->
+<!--                    <input type="checkbox" id="" name=""  class="" required>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-danger pull-right btn-sm" data-dismiss="modal">Close</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 

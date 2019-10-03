@@ -63,6 +63,8 @@ class Common extends CI_Controller
                     $tableid=43;
                 }else if($request->tableid == 'formJobPosting'){
                     $tableid=47;
+                }else if($request->tableid == 'formRecruitment'){
+                    $tableid=53;
                 };
             }
             if(isset($request->isactive) && is_numeric($request->isactive)){

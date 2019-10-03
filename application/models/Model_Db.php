@@ -35,7 +35,7 @@ class Model_Db extends CI_Model
                 '47'=>'tbl_job_posting','48'=>'view_job_posting',
                 '49'=>'tbl_job_posting_qualification','50'=>'view_job_posting_qualification',
                 '51'=>'tbl_job_posting_skill','52'=>'view_job_posting_skill',
-                '53'=>'tbl_recruitment_application','54'=>'tbl_recruitment_application',
+                '53'=>'tbl_recruitment_application','54'=>'view_recruitment_application',
                 '55'=>'tbl_communication_details','56'=>'view_communication_details',
                 '57'=>'tbl_applicant_qualification','58'=>'view_applicant_qualification',
                 '59'=>'tbl_applicant_work_experiance','60'=>'view_applicant_work_experiance',

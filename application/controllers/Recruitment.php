@@ -9,15 +9,17 @@ class Recruitment extends CI_Controller
     {
         parent::__construct();
     }
-public $apid;
+    public $apid;
+    public $txtid;
     public function createBasicDetails(){
         try{
             global $apid;
+            global $txtid;
             extract($_POST);
             $data=array();
             $insert=array();
             $request = json_decode(json_encode($_POST), FALSE);
-            $postdata = file_get_contents("php://input");
+//            $postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $status=true;
             $token=array();
@@ -133,6 +135,8 @@ public $apid;
                         if($res!=false){
                             $data['message']="Update successful.";
                             $data['status']=true;
+                            $data['apid']=$request->txtid;
+                            $data['txtid']=1;
                         }else{
                             $data['message']="Update failed.";
                             $data['status']=false;
@@ -145,6 +149,7 @@ public $apid;
                             $data['message']="Insert successful.";
                             $data['status']=true;
                             $data['apid']=$apid;
+                            $data['txtid']=0;
                         }else{
                             $data['message']="Insert failed.";
                             $data['status']=false;
@@ -250,10 +255,13 @@ public $apid;
                     if($request->txtid>0){
                         $insert[0]['updatedby']=$this->session->login['userid'];
                         $insert[0]['updatedat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->update(55,$insert,"id",$request->txtid);
+                        $res=$this->Model_Db->update(55,$insert,"apid",$apid);
+//                        $id = $this->Model_Db->select(55,"apid",$where);
                         if($res!=false){
                             $data['message']="Update successful.";
                             $data['status']=true;
+                            $data['txtid']=1;
+//                            $data['apid']=$id;
                         }else{
                             $data['message']="Update failed.";
                             $data['status']=false;
@@ -266,6 +274,7 @@ public $apid;
                         if($res!=false){
                             $data['message']="Insert successful.";
                             $data['status']=true;
+                            $data['txtid']=0;
                         }else{
                             $data['message']="Insert failed.";
                             $data['status']=false;
@@ -362,10 +371,12 @@ public $apid;
                     if($request->txtid>0){
                         $insert[0]['updatedby']=$this->session->login['userid'];
                         $insert[0]['updatedat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->update(57,$insert,"id",$request->txtid);
+                        $res=$this->Model_Db->update(57,$insert,"apid",$apid);
                         if($res!=false){
                             $data['message']="Update successful.";
                             $data['status']=true;
+                            $data['txtid']=1;
+//                            $data['apid']=$apid;
                         }else{
                             $data['message']="Update failed.";
                             $data['status']=false;
@@ -378,6 +389,7 @@ public $apid;
                         if($res!=false){
                             $data['message']="Insert successful.";
                             $data['status']=true;
+                            $data['txtid']=0;
                         }else{
                             $data['message']="Insert failed.";
                             $data['status']=false;
@@ -475,10 +487,12 @@ public $apid;
                     if($request->txtid>0){
                         $insert[0]['updatedby']=$this->session->login['userid'];
                         $insert[0]['updatedat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->update(59,$insert,"id",$request->txtid);
+                        $res=$this->Model_Db->update(59,$insert,"apid",$apid);
                         if($res!=false){
                             $data['message']="Update successful.";
                             $data['status']=true;
+                            $data['txtid']=1;
+//                            $data['apid']=$apid;
                         }else{
                             $data['message']="Update failed.";
                             $data['status']=false;
@@ -491,6 +505,7 @@ public $apid;
                         if($res!=false){
                             $data['message']="Insert successful.";
                             $data['status']=true;
+                            $data['txtid']=0;
                         }else{
                             $data['message']="Insert failed.";
                             $data['status']=false;
@@ -541,8 +556,8 @@ public $apid;
     public function report_recruitment(){
         try{
             $data=array();
-            $request = json_decode(json_encode($_POST), FALSE);
-            $postdata = file_get_contents("php://input");
+            $request= json_decode(json_encode($_POST), false);
+//			$postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $current_date=Date('Y-m-d');
             if(isset($request->checkparams) && is_numeric($request->checkparams)) {
@@ -560,26 +575,66 @@ public $apid;
                         $where = "isactive=false";
                         break;
                     default:
-                        $data['message']="ID not found";
-                        $data['status']=false;
-                        $data['error']=true;
+                        $data['message'] = "ID not found";
+                        $data['status'] = false;
+                        $data['error'] = true;
                         exit();
                 }
-            }
-            $res=$this->Model_Db->select(7,null,$where);
-            if($res!=false){
-                foreach ($res as $r){
-                    $data[]=array(
-                        'id'=>$r->id,
-                        'statename'=>$r->statename,
-                        'stateshortname'=>$r->stateshortname,
-                        'creationdate'=>$r->createdat,
-                        'lastmodifiedon'=>$r->updatedat,
-                        'isactive'=>$r->isactive
-                    );
+                $res = $this->Model_Db->select(54, null, $where);
+                if ($res != false) {
+                    foreach ($res as $r) {
+                        $data[] = array(
+                            'id' => $r->id,
+                            'fname' => $r->fname,
+                            'mname' => $r->mname,
+                            'lname' => $r->lname,
+                            'fathername' => $r->fathername,
+                            'mothername' => $r->mothername,
+                            'spousename'=>$r->spousename,
+                            'dob' => $r->dob,
+                            'maritalstatus' => $r->maritalstatusid,
+                            'statusname'=>$r->statusname,
+                            'genderid' => $r->genderid,
+                            'gendername'=>$r->gendername,
+                            'religionid'=>$r->religionid,
+                            'religionname'=>$r->religion,
+                            'contact' => $r->contact,
+                            'altcontact' => $r->altcontact,
+                            'whatsapp' => $r->whatsapp,
+                            'email' => $r->email,
+                            'at'=>$r->at,
+                            'po'=>$r->po,
+                            'ps'=>$r->ps,
+                            'pincode'=>$r->pincode,
+                            'commitid'=>$r->commitid,
+                            'ctype'=>$r->ctype,
+                            'stateid'=>$r->stateid,
+                            'statename'=>$r->statename,
+                            'distid'=>$r->distid,
+                            'distname'=>$r->distname,
+                            'orgname'=>$r->orgname,
+                            'boad'=>$r->boad,
+                            'examname'=>$r->examname,
+                            'yop'=>$r->yop,
+                            'totalmark'=>$r->totalmark,
+                            'securedmark'=>$r->securedmark,
+                            'exetypeid'=>$r->exetypeid,
+                            'exetypename'=>$r->exetypename,
+                            'companyname'=>$r->companyname,
+                            'doj'=>$r->doj,
+                            'dol'=>$r->dol,
+                            'role'=>$r->role,
+                            'remark'=>$r->remark,
+                            'entryby'=>$r->entryby,
+                            'creationdate'=>$r->createdat,
+                            'updatedby' => $r->updatedby,
+                            'lastmodifiedon' => $r->updatedat,
+                            'isactive' => $r->isactive
+                        );
+                    }
                 }
+                echo json_encode($data);
             }
-            echo json_encode($data);
         }catch (Exception $e){
             $data['message']= "Message:".$e->getMessage();
             $data['status']=false;

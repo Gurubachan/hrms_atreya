@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
+echo $cname;
 ?>
 <script>
     apid=0;
+    txtid=0;
     $(function () {
         load_marital_status();
         load_gender();
@@ -16,6 +18,7 @@ $cname = $this->uri->segment(2);
         load_district($(this).val());
     });
     $("#applicantBasicDetailsForm").submit(function(e){
+        // $("#txtid").val(txtid);
         e.preventDefault();
             var frm = $("#applicantBasicDetailsForm").serialize();
         if(confirm("Sure to submit?")) {
@@ -30,8 +33,12 @@ $cname = $this->uri->segment(2);
                         if(jsondata.status == true){
                             alert("Create successfull, 'OK' to next page.");
                             apid = jsondata.apid;
+                            txtid = jsondata.txtid;
+                            // alert(data);
+                            $("#report_newRecruitment").show();
                             if ($("#createApplicant").html() == "Update") {
                                 window.location.reload();
+                                $("#report_newRecruitment").show();
                             } else {
                                 // $('#newRecruitmentForm').trigger("reset");
                                 // reportFunction(1);
@@ -72,8 +79,10 @@ $cname = $this->uri->segment(2);
         }
     });
     $("#applicantAddressDetailsForm").submit(function(e){
+
         e.preventDefault();
-        var frm = $("#applicantAddressDetailsForm").serialize();
+        var frm = $("#applicantAddressDetailsForm").serialize()+'&'+$.param({ 'txtid': txtid });
+        // $("#txtid").val(txtid);
         if(confirm("Sure to submit?")) {
             $.ajax({
                 type: 'post',
@@ -96,6 +105,7 @@ $cname = $this->uri->segment(2);
                                 $('#applicantBasicDetailsForm').hide();
                                 $('#applicantAddressDetailsForm').hide();
                                 $('#applicantEducationalDetailsForm').show();
+
                             }
                         }else{
                                 if(jsondata.token == 10){
@@ -119,8 +129,9 @@ $cname = $this->uri->segment(2);
         }
     });
     $("#applicantEducationalDetailsForm").submit(function(e){
+        // $("#txtid").val(1);
         e.preventDefault();
-        var frm = $("#applicantEducationalDetailsForm").serialize();
+        var frm = $("#applicantEducationalDetailsForm").serialize()+'&'+$.param({ 'txtid': txtid });;
         var totalmark = $("#applicantTotalMark").val();
         var securedmark = $("#applicantSecuredMark").val();
         if(parseInt(totalmark)<parseInt(securedmark)){
@@ -139,7 +150,8 @@ $cname = $this->uri->segment(2);
                             if(jsondata.status == true) {
                                 alert("Create successfull, 'OK' to next page.");
                                 if ($("#createApplicant").html() == "Update") {
-                                    window.location.reload();
+                                    // window.location.reload();
+
                                 } else {
                                     // $('#newRecruitmentForm').trigger("reset");
                                     // reportFunction(1);
@@ -150,6 +162,7 @@ $cname = $this->uri->segment(2);
                                     $('#applicantAddressDetailsForm').hide();
                                     $('#applicantEducationalDetailsForm').hide();
                                     $('#applicantWorkingDetailsForm').show();
+
                                 }
                             }else{
                                 if(jsondata.token == 14){
@@ -177,9 +190,9 @@ $cname = $this->uri->segment(2);
         }
     });
     $("#applicantWorkingDetailsForm").submit(function(e){
-
+        // $("#txtid").val(1);
         e.preventDefault();
-        var frm = $("#applicantWorkingDetailsForm").serialize();
+        var frm = $("#applicantWorkingDetailsForm").serialize()+'&'+$.param({ 'txtid': txtid });;
         var doj = $("#doj").val();
         var dol = $("#dol").val();
         if(dol<doj){
@@ -198,7 +211,7 @@ $cname = $this->uri->segment(2);
                             if (jsondata.status == true) {
                                 alert("Create successfull, 'OK' to next page.");
                                 if ($("#createApplicant").html() == "Update") {
-                                    window.location.reload();
+                                    // window.location.reload();
                                 } else {
                                     // $('#newRecruitmentForm').trigger("reset");
                                     // reportFunction(1);
@@ -209,6 +222,7 @@ $cname = $this->uri->segment(2);
                                     $('#applicantAddressDetailsForm').hide();
                                     $('#applicantEducationalDetailsForm').hide();
                                     $('#applicantWorkingDetailsForm').hide();
+
                                 }
                             } else {
                                 if (jsondata.token == 21) {
@@ -226,13 +240,12 @@ $cname = $this->uri->segment(2);
                 return false;
             }
         }
-
     });
     function loadAjaxForReport(id){
-        $("#jobPostingReport").show();
+        $("#report_newRecruitment").show();
         $.ajax({
             type:'post',
-            url:"<?= base_url('JobPosting/report_jobposting')?>",
+            url:"<?= base_url('Recruitment/report_recruitment')?>",
             data:{checkparams:id},
             success:function(data){
                 if(data!=false){
@@ -243,23 +256,44 @@ $cname = $this->uri->segment(2);
                     var isactive='';
                     for(var i=0; i<z; i++){
                         j++;
-                        var checkId = jsondata[i].id;
+                        checkId = jsondata[i].id;
                         var checkIsactive = jsondata[i].isactive;
                         var editisactive = JSON.stringify(checkIsactive);
-                        var companyid = jsondata[i].companyid;
-                        var strCompanyname=JSON.stringify(jsondata[i].companyname);
-                        var strPostname = JSON.stringify(jsondata[i].postname);
-                        var designationid = jsondata[i].designationid;
-                        var strDesignationname = jsondata[i].designationname;
-                        var nov = jsondata[i].nov;
-                        var location =JSON.stringify(jsondata[i].location);
-                        var description =  JSON.stringify(jsondata[i].jobdescription);
-                        var exp = JSON.stringify(jsondata[i].experience);
-                        var res = JSON.stringify(jsondata[i].reponsibility);
-                        var education = jsondata[i].educationid;
-                        var skillid = jsondata[i].skillid;
-                        var startdate = JSON.stringify(jsondata[i].startdate);
-                        var enddate = JSON.stringify(jsondata[i].enddate);
+                        var strfname = JSON.stringify(jsondata[i].fname);
+                        var strmname = JSON.stringify(jsondata[i].mname);
+                        var strlname = JSON.stringify(jsondata[i].lname);
+                        var strmother = JSON.stringify(jsondata[i].mothername);
+                        var strfather = JSON.stringify(jsondata[i].fathername);
+                        var strspouse = JSON.stringify(jsondata[i].spousename);
+                        var dob = JSON.stringify(jsondata[i].dob);
+                        var maritalstatusid = jsondata[i].maritalstatus;
+                        var genderid = jsondata[i].genderid;
+                        var religionid=jsondata[i].religionid;
+                        var contact = jsondata[i].contact;
+                        var altcontact = jsondata[i].altcontact;
+                        var whatsapp = jsondata[i].whatsapp;
+                        var email = JSON.stringify(jsondata[i].email);
+                        var at =JSON.stringify(jsondata[i].at);
+                        var po =JSON.stringify(jsondata[i].po);
+                        var ps =JSON.stringify(jsondata[i].ps);
+                        var landmark = JSON.stringify(jsondata[i].landmark);
+                        var pincode =jsondata[i].pincode;
+                        var commitid =jsondata[i].commitid;
+                        var stateid =jsondata[i].stateid;
+                        var orgname = JSON.stringify(jsondata[i].orgname);
+                        var board= JSON.stringify(jsondata[i].boad);
+                        var examname= JSON.stringify(jsondata[i].examname);
+                        var yop= JSON.stringify(jsondata[i].yop);
+                        var totalmark =jsondata[i].totalmark;
+                        var securedmark =jsondata[i].securedmark;
+                        var etid=jsondata[i].exetypeid;
+                        var providedby= JSON.stringify(jsondata[i].providedby);
+                        var startdate = JSON.stringify(jsondata[i].doj);
+                        var enddate = JSON.stringify(jsondata[i].dol);
+                        var role= JSON.stringify(jsondata[i].role);
+                        var remark= JSON.stringify(jsondata[i].remark);
+                        var distid =jsondata[i].distid;
+                        var ctype = JSON.stringify(jsondata[i].ctype);
                         var updatedid = '"<?= $cname ?>"';
                         var urlid = '"../Common/record_active_deactive"';
                         if(checkIsactive=='t'){
@@ -267,81 +301,75 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].postname+"</td><td>"+ jsondata[i].companyname+"</td><td>"+ jsondata[i].designationname+"</td>" +
-                            "<td>"+ jsondata[i].nov+"</td><td>"+ jsondata[i].location+"</td><td>"+ jsondata[i].experience+"</td>" +
-                            "<td>"+ jsondata[i].educationname+"</td><td>"+ jsondata[i].skill+"</td><td>"+ jsondata[i].startdate+"</td>" +
-                            "<td>"+ jsondata[i].enddate+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm'" +
-                            " onclick='reportEditJobPosting(" +checkId+ "," +strPostname+ "," +companyid+ "," +designationid+ "," +nov+ "," +location+ "," +description+ "," +exp+ "," +res+ "," +education+ "," +skillid+ "," +startdate+ "," +enddate+ "," +editisactive+ ")'>Edit</button></td></tr>");
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].fname+" "+jsondata[i].mname+ " "+jsondata[i].lname+"</td><td>"+ jsondata[i].fathername+"</td>" +
+                            "<td>"+ jsondata[i].dob+"</td>"+
+                            "<td>"+ jsondata[i].gendername+"</td><td>"+ jsondata[i].contact+"</td><td>"+ jsondata[i].whatsapp+"</td>" +
+                            "<td>"+ jsondata[i].email+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm'   data-toggle='modal' data-target='#recruitment'><i class='fa fa-check'></i>" +
+                            " </button></td><td><button class='btn editBtn btn-sm'" +
+                            " onclick='reportEditRecruitment(" +checkId+ "," +strfname+ "," +strmname+ "," +strlname+ "," +strfather+ "," +strmother+ "," +strspouse+ "," +dob+ "," +maritalstatusid+ "," +genderid+ "," +religionid+ "," +contact+ "," +altcontact+ "," +
+                        "" +whatsapp+ "," +email+ "," +at+ "," +po+ "," +ps+ "," +landmark+ "," +pincode+ "," +commitid+ "," +stateid+ "," +orgname+ "," +board+ "," +examname+ "," +yop+ "," +totalmark+ "," +securedmark+ "," +etid+ "," +providedby+ "," +
+                            "" +startdate+ "," +enddate+ "," +role+ "," +remark+ "," +distid+ "," +ctype+ "," +editisactive+ ")'><i class='fa fa-edit fa-2x></i>' </button></td></tr>");
                     }
-                    $("#load_jobposting").html(html);
+                    $("#load_newRecruitment").html(html);
                 }
             }
         });
     }
-    function reportEditJobPosting(id,strpostname,companyid,designationid,nov,location,description,exp,res,education,skillid,startdate,enddate,isactive) {
+    function reportEditRecruitment(id,strfname,strmname,strlname,strfather,
+                                   strmother,strspouse,dob,maritalstatusid,genderid,
+                                   religionid,contact,altcontact,whatsapp,
+                                   email,at,po,ps,landmark,pincode,commitid,
+                                   stateid,orgname,boad,examname,yop,totalmark,
+                                   securedmark,etid,providedby,startdate,enddate,
+                                   roll,remark,distid,ctype,isactive) {
         if(isactive=='t'){
             var isactiveval=1;
         }else{
             isactiveval=0;
         }
         $('#txtid').val(id);
-        $('#postname').val(strpostname);
-        $('#companyid').val(companyid);
-        $('#designationid').val(designationid);
-        $('#vacancy').val(nov);
-        $('#location').val(location);
-        $('#jobdescription').val(description);
-        $('#experience').val(exp);
-        $('#responsibility').val(res);
-        $('#educationid').val(education);
-        $('#skillid').val(skillid);
-        $('#jobpoststartingdate').val(startdate);
-        $('#jobpostendingdate').val(enddate);
+        $('#fname').val(strfname);
+        $('#mname').val(strmname);
+        $('#lname').val(strlname);
+        $('#dob').val(dob);
+        $('#fathername').val(strfather);
+        $('#mothername').val(strmother);
+        $('#spousename').val(strspouse);
+        $('#genderid').val(genderid);
+        $('#maritalstatusid').val(maritalstatusid);
+        $('#religionid').val(religionid);
+        $('#mobile').val(contact);
+        $('#altmobile').val(altcontact);
+        $('#whatsappnumber').val(whatsapp);
+        $('#emailid').val(email);
+        $('#applicantAt').val(at);
+        $('#applicantPo').val(po);
+        $('#applicantPs').val(ps);
+        $('#applicantLandmark').val(landmark);
+        $('#stateid').val(stateid);
+        $('#distid').val(distid);
+        $('#applicantPincode').val(pincode);
+        $('#communicationtypeid').val(commitid);
+        $('#applicantInstitue').val(orgname);
+        $('#applicantBoard').val(boad);
+        $('#applicantExam').val(examname);
+        $('#applicantPassingYear').val(yop);
+        $('#applicantTotalMark').val(totalmark);
+        $('#applicantSecuredMark').val(securedmark);
+        $('#experiencetypeid').val(etid);
+        $('#companyname').val(providedby);
+        $('#role').val(roll);
+        $('#doj').val(startdate);
+        $('#dol').val(enddate);
+        $('#remark').val(remark);
         $('#isactive').val(isactiveval);
-        $('#postname').focus();
-        $('#createJobPosting').html("Update");
+        $('#fname').focus();
+        $('#applicantBasicDetails').html("Update and Next");
+        $('#applicantCommunication').html("Update and Next");
+        $('#applicantEducation').html("Update and Next");
+        $('#applicantWorkExperience').html("Update and Next");
     }
-    function loadJobPostingReport() {
-        $.ajax({
-            type:'post',
-            url:'<?=base_url('JobPosting/loadJopPostingReport')?>',
-            success:function (d) {
-                $("#jobpostingform").hide();
-                $("#jobpostingreport").show();
-                if(d!=false){
-                    var jsondata = JSON.parse(d);
-                    var j=0;
-                    var z = jsondata.length;
-                    // alert(z);
-                    var html = "";
-                    var isactive='';
-                    for(var i=0; i<z; i++){
-                        j++;
-                        var postname = jsondata[i].postname;
-                        var nov = jsondata[i].nov;
-                        var cmpname = jsondata[i].companyname;
-                        var desname = jsondata[i].designationname;
-                        var  localtion= jsondata[i].localtion;
-                        var  jobdescriptions= jsondata[i].jobdescription;
-                        var  experiences= jsondata[i].experiancename;
-                        var  responsibility= jsondata[i].responsibility;
-                        var  startdate= jsondata[i].startdate;
-                        var  enddate= jsondata[i].enddate;
-                    }
-                    $("#jpstname").html(postname);
-                    $("#cmpid").html(cmpname);
-                    $("#desid").html(desname);
-                    $("#nov").html(nov);
-                    $("#localtion").html(localtion);
-                    $("#jobdescriptions").html(jobdescriptions);
-                    $("#experiences").html(experiences);
-                    $("#responsibilityreport").html(responsibility);
-                    $("#startdate").html(startdate);
-                    $("#enddate").html(enddate);
-                }
-            }
-        });
-    }
+
     $("#jobPostingForm").click(function () {
         window.location.reload();
     });
@@ -362,4 +390,7 @@ $cname = $this->uri->segment(2);
         $("#newRecruitmentForm").show();
         $("#newRecruitmentForm1").hide();
     });
+    function recruitmentViewDetails() {
+
+    }
 </script>
