@@ -20,6 +20,7 @@ $cname = $this->uri->segment(2);
                 <div class="box-content">
                     <br>
                     <form  class="" id="frmBankName" name="frmBankName">
+                        <div class="col-sm-6" style="display: block; margin-left: auto;margin-right: auto">
                         <div class="form-group">
                             <input type="hidden" id="txtid" name="txtid" value="0">
                             <label for="" class="control-label mb-1">Bank Name</label>
@@ -33,9 +34,10 @@ $cname = $this->uri->segment(2);
                             <small class="errormsg_bankShortname"></small>
                         </div>
                         <br>
-                        <div class="form-actions form-group text-right" style="margin-right: 20%;">
+                        <div class="form-actions form-group text-right">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="submit" class="btn btn-primary btn-sm" id="createBank">Create</button>
+                        </div>
                         </div>
                     </form>
                     <br>

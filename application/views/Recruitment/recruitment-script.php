@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
-echo $cname;
 ?>
 <script>
     apid=0;
@@ -35,6 +34,8 @@ echo $cname;
                             apid = jsondata.apid;
                             txtid = jsondata.txtid;
                             // alert(data);
+                            $(".tagcolor").css('color','gray');
+                            $("#address").css('color','blue');
                             $("#report_newRecruitment").show();
                             if ($("#createApplicant").html() == "Update") {
                                 window.location.reload();
@@ -94,6 +95,8 @@ echo $cname;
                         var jsondata = JSON.parse(data);
                         if(jsondata.status == true) {
                             alert("Create successfull, 'OK' to next page.");
+                            $(".tagcolor").css('color','gray');
+                            $("#qualification").css('color','blue');
                             if ($("#createApplicant").html() == "Update") {
                                 window.location.reload();
                             } else {
@@ -149,6 +152,8 @@ echo $cname;
                             var jsondata = JSON.parse(data);
                             if(jsondata.status == true) {
                                 alert("Create successfull, 'OK' to next page.");
+                                $(".tagcolor").css('color','gray');
+                                $("#workexperience").css('color','blue');
                                 if ($("#createApplicant").html() == "Update") {
                                     // window.location.reload();
 
@@ -192,7 +197,7 @@ echo $cname;
     $("#applicantWorkingDetailsForm").submit(function(e){
         // $("#txtid").val(1);
         e.preventDefault();
-        var frm = $("#applicantWorkingDetailsForm").serialize()+'&'+$.param({ 'txtid': txtid });;
+        var frm = $("#applicantWorkingDetailsForm").serialize()+'&'+$.param({ 'txtid': txtid });
         var doj = $("#doj").val();
         var dol = $("#dol").val();
         if(dol<doj){
@@ -210,6 +215,8 @@ echo $cname;
                             var jsondata = JSON.parse(data);
                             if (jsondata.status == true) {
                                 alert("Create successfull, 'OK' to next page.");
+                                $(".tagcolor").css('color','gray');
+                                $("#basic").css('color','blue');
                                 if ($("#createApplicant").html() == "Update") {
                                     // window.location.reload();
                                 } else {
@@ -301,10 +308,10 @@ echo $cname;
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].fname+" "+jsondata[i].mname+ " "+jsondata[i].lname+"</td><td>"+ jsondata[i].fathername+"</td>" +
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].fname+" "+jsondata[i].mname+ " "+jsondata[i].lname+"</td>"+
                             "<td>"+ jsondata[i].dob+"</td>"+
                             "<td>"+ jsondata[i].gendername+"</td><td>"+ jsondata[i].contact+"</td><td>"+ jsondata[i].whatsapp+"</td>" +
-                            "<td>"+ jsondata[i].email+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm'   data-toggle='modal' data-target='#recruitment'><i class='fa fa-check'></i>" +
+                            "<td>"+ jsondata[i].email+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='loadRecruitmentDetails(" +checkId+ ")' data-toggle='modal' data-target='#recruitment'><i class='fa fa-check'></i>" +
                             " </button></td><td><button class='btn editBtn btn-sm'" +
                             " onclick='reportEditRecruitment(" +checkId+ "," +strfname+ "," +strmname+ "," +strlname+ "," +strfather+ "," +strmother+ "," +strspouse+ "," +dob+ "," +maritalstatusid+ "," +genderid+ "," +religionid+ "," +contact+ "," +altcontact+ "," +
                         "" +whatsapp+ "," +email+ "," +at+ "," +po+ "," +ps+ "," +landmark+ "," +pincode+ "," +commitid+ "," +stateid+ "," +orgname+ "," +board+ "," +examname+ "," +yop+ "," +totalmark+ "," +securedmark+ "," +etid+ "," +providedby+ "," +
@@ -392,5 +399,24 @@ echo $cname;
     });
     function recruitmentViewDetails() {
 
+    }
+    // $("#basicDetails").click(function () {
+    //     $("#applicantBasicDetails").show();
+    //     $("#applicantAddressDetailsForm").hide();
+    //
+    // });
+    function loadRecruitmentDetails(id) {
+        $.ajax({
+            type:'post',
+            url:'<?= base_url("Recruitment/recruitmentViewDetails/")?>',
+            data:{id:id},
+            success:function (res) {
+                if(res!=false){
+                    $('#loadRecordDetails').html(res);
+                    // $('#loadRecordDetails').attr('href').attr('target','_blank').html(res);
+                    // var url = $('#loadRecordDetails').html(res);
+                }
+            }
+        });
     }
 </script>

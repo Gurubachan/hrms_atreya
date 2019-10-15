@@ -46,7 +46,7 @@ $cname = $this->uri->segment(2);
                 crossDomain:true,
                 success:function(data){
                     var jsondata = JSON.parse(data);
-                    alert(data);
+                    // alert(data);
                     if(data!=false){
                         var j=0;
                         var z = jsondata.length;

@@ -643,4 +643,11 @@ class Recruitment extends CI_Controller
             exit();
         }
     }
+    public function recruitmentViewDetails(){
+        extract($_POST);
+//        print_r($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(54,null,$where);
+        $this->load->view("Recruitment/viewDetails",$data);
+    }
 }

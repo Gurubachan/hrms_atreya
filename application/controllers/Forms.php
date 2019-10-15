@@ -39,7 +39,7 @@ class Forms extends CI_Controller {
     }
     public function employeeDashboardMenu(){
         try{
-            $this->load->view('dashboard/employeeDashboardMenu');
+            $this->load->view('Employee/employeeDashboardMenu');
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
         }
@@ -383,15 +383,14 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
-    public function formRecruitment(){
+    public function formRecruitmentDashboard(){
         try{
             if($this->session->login['userid']) {
                 $this->header();
                 $this->navbar();
                 $this->recruitmentSidebar();
-                $this->load->view('Recruitment/formRecruitment');
+                $this->load->view('dashboard/recruitmentDashboard');
                 $this->footer();
-                $this->load->view('Recruitment/recruitment-script');
             }else{
                 redirect('welcome/');
             }
@@ -480,6 +479,22 @@ class Forms extends CI_Controller {
                 $this->load->view('Jobposting/formJobPosting');
                 $this->footer();
                 $this->load->view('Jobposting/jobposting-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formRecruitment(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->recruitmentSidebar();
+                $this->load->view('Recruitment/formRecruitment');
+                $this->footer();
+                $this->load->view('Recruitment/recruitment-script');
             }else{
                 redirect('welcome/');
             }

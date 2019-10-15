@@ -76,8 +76,8 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     function loadUser() {
         window.location.href="<?= base_url('Forms/userDashboard')?>";
     }
-    function loadRecruitment() {
-        window.location.href="<?= base_url('Forms/formRecruitment')?>";
+    function loadRecruitmentDashboard() {
+        window.location.href="<?= base_url('Forms/formRecruitmentDashboard')?>";
     }
     function loadReligion() {
         window.location.href="<?= base_url('Forms/formReligion')?>";
@@ -93,6 +93,9 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     }
     function loadJobPosting() {
         window.location.href="<?= base_url('Forms/formJobPosting')?>";
+    }
+    function loadNewRecruitment() {
+        window.location.href="<?= base_url('Forms/formRecruitment')?>";
     }
 </script>
 </div>

@@ -17,17 +17,19 @@ $cname = $this->uri->segment(2);
                 <div class="box-content">
                     <form  class="" id="experienceTypeForm" autocomplete="off">
                         <br>
+                        <div class="col-sm-6" style="display: block; margin-left: auto;margin-right: auto">
                         <div class="form-group">
-                            <input type="hidden" id="txtid" name="txtid" value="0">
-                            <label for="" class="control-label mb-1">Type Name<span class="red">*</span></label>
-                            <input type="text" id="experiencetypename" name="experiencetypename" class="form-control" aria-required="true" aria-invalid="false"  minlength="3" maxlength="20" required placeholder="Enter experience type name">
-                            <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
-                            <small class="errormsg_experiencetypename"></small>
+                                <input type="hidden" id="txtid" name="txtid" value="0">
+                                <label for="" class="control-label mb-1">Experience Type<span class="red">*</span></label>
+                                <input type="text" id="experiencetypename" name="experiencetypename" class="form-control" aria-required="true" aria-invalid="false"  minlength="3" maxlength="20" required placeholder="Enter experience type name">
+                                <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
+                                <small class="errormsg_experiencetypename"></small>
                         </div>
                         <br>
-                        <div class="text-right form-group" style="margin-right: 20%;">
+                        <div class="text-right form-group">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="submit" class="btn btn-primary btn-sm" id="createExperienceType">Create</button>
+                        </div>
                         </div>
                     </form>
                     <br>

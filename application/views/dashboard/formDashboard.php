@@ -125,7 +125,7 @@
                             </div>
                         </div>
                         <div class="col-sm-12 col-lg-2 col-md-2">
-                            <div class="card overview-item--c2" onclick="loadRecruitment()">
+                            <div class="card overview-item--c2" onclick="loadRecruitmentDashboard()">
                                 <div class="card-header">Recruitment</div>
                                 <div class="card-body form-fa-item">
                                     <i class="fa fa-users fa-3x"></i>

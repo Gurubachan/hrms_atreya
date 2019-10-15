@@ -15,6 +15,7 @@ $cname = $this->uri->segment(2);
                     </div>
                 </div>
                 <div class="box-content">
+                    <h4 class="tagcolor text-center"><span class="tagcolor" id="basic" style="color: #00aced;">Basic Details -></span><span class="tagcolor" id="address" style="color: grey;"> Address Details-></span><span class="tagcolor" id="qualification" style="color: grey;"> Qualification Details-></span> <span class="tagcolor" id="workexperience" style="color: grey;">Work Experience</span></h4>
                     <form  class="" id="applicantBasicDetailsForm"  name="applicantBasicDetailsForm" autocomplete="off">
                         <br>
                         <div class="form-group">
@@ -198,7 +199,7 @@ $cname = $this->uri->segment(2);
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                            <button type="button" class="btn btn-success btn-sm" id="">Previous</button>
+<!--                            <button type="button" class="btn btn-success btn-sm" id="basicDetails">Previous</button>-->
                             <button type="submit" class="btn btn-primary btn-sm" id="applicantCommunication">Save</button>
                         </div>
                     </form>
@@ -252,7 +253,7 @@ $cname = $this->uri->segment(2);
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                            <button type="button" class="btn btn-success btn-sm">Previous</button>
+<!--                            <button type="button" class="btn btn-success btn-sm">Previous</button>-->
                             <button type="submit" class="btn btn-primary btn-sm" id="applicantEducation">Save</button>
                         </div>
                     </form>
@@ -307,7 +308,7 @@ $cname = $this->uri->segment(2);
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                            <button type="button" class="btn btn-success btn-sm">Previous</button>
+<!--                            <button type="button" class="btn btn-success btn-sm">Previous</button>-->
                             <button type="submit" class="btn btn-primary btn-sm" id="applicantWorkExperience">Save</button>
                         </div>
                     </form>
@@ -341,7 +342,7 @@ $cname = $this->uri->segment(2);
                             <tr>
                                 <th>Sl#</th>
                                 <th>Name</th>
-                                <th>Father name</th>
+<!--                                <th>Father name</th>-->
                                 <th>Dob</th>
                                 <th>Gender</th>
                                 <th>Mobile</th>
@@ -360,27 +361,30 @@ $cname = $this->uri->segment(2);
             </div>
         </div>
     </div>
+<!--    <div id="loadRecordDetails"></div>-->
+<!--    <a href="" target="_blank" id="loadRecordDetails"></a>-->
+<!--    <a id="loadRecordDetails" href=""></a>-->
 </div>
 </div>
 </div>
-<!--<div class="modal fade" id="recruitment">-->
-<!--    <div class="modal-dialog">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="modal-header" style="background-color: cornflowerblue;">-->
-<!--                <h3 class="modal-title text-white" style="">Grievances</h3>-->
-<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
-<!--            </div>-->
-<!--            <div class="modal-body">-->
-<!--                <div class="form-group">-->
-<!--                    <label for="" class="control-label mb-1">Griev-1:</label>-->
-<!--                    <input type="checkbox" id="" name=""  class="" required>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="modal-footer">-->
-<!--                <button type="button" class="btn btn-danger pull-right btn-sm" data-dismiss="modal">Close</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div class="modal fade" id="recruitment">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: cornflowerblue;">
+                <h3 class="modal-title text-white" style="">Recruitment</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                   <div id="loadRecordDetails"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-right btn-sm" data-dismiss="modal">Edit</button>
+                <button type="button" class="btn btn-danger pull-right btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 

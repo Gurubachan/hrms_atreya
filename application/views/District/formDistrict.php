@@ -19,6 +19,7 @@ $cname = $this->uri->segment(2);
                 </div>
                 <div class="box-content">
                     <form  class="" id="districtname" autocomplete="off">
+                        <div class="col-sm-6" style="display: block; margin-left: auto;margin-right: auto">
                         <div class="form-group">
                             <input type="hidden" id="txtid" name="txtid" value="0">
                             <label for="stateid" class="control-label mb-1">State Name</label>
@@ -27,7 +28,6 @@ $cname = $this->uri->segment(2);
                                 <option value="">Select</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label for="" class="control-label mb-1">District Name<span class="red">*</span></label>
                             <input type="text" id="distname" name="distname" class="form-control" onclick="charachters_validate('distname')" minlength="3" maxlength="20"  placeholder="Enter district name." required>
@@ -39,9 +39,10 @@ $cname = $this->uri->segment(2);
                             <small class="errormsg_districtShortname"></small>
                         </div>
                         <br>
-                        <div class="text-right" style="margin-right: 20%;">
+                        <div class="text-right">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="submit" class="btn btn-primary btn-sm" id="createDistrict">Create</button>
+                        </div>
                         </div>
                     </form>
                     <br>
