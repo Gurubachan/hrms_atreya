@@ -19,7 +19,7 @@ $cname = $this->uri->segment(2);
                         <div class="form-group">
                             <input type="hidden" id="txtid" name="txtid" value="0">
                             <label for="" class="control-label mb-1">Employee Type Name<span style="color:red;">*</span></label>
-                            <input type="text" id="typename" name="typename" onclick="charachters_validate('companytypename')" minlength="5" maxlength="60" class="form-control" placeholder="Enter company type name." required>
+                            <input type="text" id="typename" name="typename" onclick="charachters_validate('companytypename')" minlength="5" maxlength="60" class="form-control" placeholder="Enter Working type name." required>
                             <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
                             <small class="errormsg_companytypename"></small>
                         </div>
