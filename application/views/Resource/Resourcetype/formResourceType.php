@@ -18,7 +18,7 @@ $cname = $this->uri->segment(2);
                                 <div class="form-group">
                                     <input type="hidden" id="txtid" name="txtid" value="0">
                                     <label for="" class="control-label mb-1">Type Name</label>
-                                    <input type="text" id="resourcetype" name="resourcetype" onclick="charachters_validate('resourcetype')" minlength="5" maxlength="60" class="form-control" placeholder="Enter type name, Only charachters and space are allowed." required>
+                                    <input type="text" id="resourcetype" name="resourcetype" onclick="charachters_validate('resourcetype')" minlength="2" maxlength="20" class="form-control" placeholder="Enter type name, Only charachters and space are allowed." required>
                                     <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
                                     <small class="errormsg_resourcetype"></small>
                                 </div>

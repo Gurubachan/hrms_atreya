@@ -18,10 +18,16 @@ $cname = $this->uri->segment(2);
                         duplicate_entries();
                     }else{
                         successfull_entries();
+                        reportFunction(1);
                     }
-                        $("#btnCompanies").html('Create');
-                    $("#resourceCompanyForm").trigger("reset");
-                    reportFunction(1);
+                        // $("#btnCompanies").html('Create');
+                    // $("#resourceCompanyForm").trigger("reset");
+                    // if($('#btnCompanies').html()=='Update'){
+                    //     window.location.reload();
+                    // }else{
+                    //     $('#resourceCompanyForm').trigger('reset');
+                    //     reportFunction(1);
+                    // }
                 }else{
                     console.log(data);
                 }
@@ -67,7 +73,7 @@ $cname = $this->uri->segment(2);
         });
     }
 
-    function reportEditResourceCompanies(id,strattendancetype,strresourcecompanyshortname,isactive) {
+    function reportEditResourceCompanies(id,strresourcecompanyname,strresourcecompanyshortname,isactive) {
         if(isactive=='t'){
             var isactiveval=1;
         }else{
@@ -75,7 +81,7 @@ $cname = $this->uri->segment(2);
         }
         txtid=id;
         $('#txtid').val(id);
-        $('#resourcecompanyname').val(strattendancetype);
+        $('#resourcecompanyname').val(strresourcecompanyname);
         $('#resourcecompanyshortname').val(strresourcecompanyshortname);
         $('#isactive').val(isactive);
         $('#attendancetypename').focus();

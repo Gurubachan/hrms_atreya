@@ -73,7 +73,7 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].resourcetypeid+"</td><td>"+ jsondata[i].companyid+"</td><td>"+ jsondata[i].modelnumber+"</td><td>"+ jsondata[i].serialnumber+"</td><td>"+ jsondata[i].purchangingdate+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditAttendanceType(" +checkId+ "," +strattendancetype+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsViewResource(" +checkId+ ")' data-toggle='modal' data-target='#resource'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].resourncename+"</td><td>"+ jsondata[i].companyname+"</td><td>"+ jsondata[i].modelnumber+"</td><td>"+ jsondata[i].serialnumber+"</td><td>"+ jsondata[i].purchangingdate+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditAttendanceType(" +checkId+ "," +strattendancetype+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsViewResource(" +checkId+ ")' data-toggle='modal' data-target='#resource'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_resources").html(html);
                 }

@@ -16,9 +16,10 @@ $cname = $this->uri->segment(2);
     $('#stateid').change(function () {
         load_district($(this).val());
     });
-    $('#dob').pignoseCalendar({
-        format:"DD-MM-YYYY"
-    });
+    // $('#dob').pignoseCalendar({
+    //     format:"DD-MM-YYYY",
+    //     modal:false
+    // });
     $("#applicantBasicDetailsForm").submit(function(e){
         // $("#txtid").val(txtid);
         e.preventDefault();

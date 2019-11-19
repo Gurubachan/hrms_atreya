@@ -69,3 +69,29 @@ create table tbl_resource
     foreign key (assurancetypeid)references tbl_assurance on delete restrict on update cascade,
     foreign key (periodtypeid)references tbl_periodtype on delete restrict on update cascade
 );
+create view view_resource as
+select
+        tr.id,
+        trt.typename,
+       trt.typeshortname,
+       trc.id as companyid,
+       trc.companyname,
+       trc.comapnyshortname,
+       tr.modelnumber,
+       tr.serialnumber,
+       tr.purchagingDate,
+       tr.servicecenteraddress,
+       tr.servicecentermobile,
+       ta.id as assuranceid,
+       ta.assurance,
+       tp.id as periodid,
+       tp.periodtype,
+       tr.assuranceexpired,
+       tr.entryby,
+       tr.updatedby,
+       tr.updatedat,
+       tr.isactive
+  from ( tbl_resource tr left join tbl_resource_type trt on tr.resourcetypeid = trt.id
+    left join tbl_resource_company trc on tr.companyid = trc.id
+        left join tbl_assurance ta on tr.assurancetypeid = ta.id
+            left join tbl_periodtype tp on tr.periodtypeid = tp.id);

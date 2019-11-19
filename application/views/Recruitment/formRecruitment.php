@@ -45,7 +45,7 @@ $cname = $this->uri->segment(2);
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="employeedob" class="control-label mb-1">Date of Birth<span style="color:red;">*</span></label>
-                                            <input id="dob" name="dob" type="text" class="form-control" placeholder="dd-mm-yyyy" required>
+                                            <input id="dob" name="dob" type="date" class="form-control" placeholder="dd-mm-yyyy" required>
                                         </div>
                                     </div>
 
@@ -137,7 +137,7 @@ $cname = $this->uri->segment(2);
                     <form  class="" id="applicantAddressDetailsForm"  name="applicantAddressDetailsForm" autocomplete="off" style="display: none;">
                         <div class="form-group">
                             <fieldset class="the-fieldset">
-                                <legend class="the-legend"><span class="blue">Address Details</span></legend>
+                                <legend class="the-legend"><b>Address Details</b></legend>
                                 <div class="row">
                                     <div class="col-sm-3">
 <!--                                        <input type="hidden" id="txtid" name="txtid" value="">-->
@@ -209,7 +209,7 @@ $cname = $this->uri->segment(2);
                             <fieldset class="the-fieldset">
 <!--                                <input type="hidden" id="txtid" name="txtid" value="">-->
                                 <input type="hidden" id="isactive" name="isactive" value="1">
-                                <legend class="the-legend"><span class="blue">Educational Details</span></legend>
+                                <legend class="the-legend"><b>Educational Details</b></legend>
                                 <div class="row">
                                     <div class="col-sm-2">
                                         <div class="form-group">
@@ -262,7 +262,7 @@ $cname = $this->uri->segment(2);
 <!--                            <input type="hidden" id="txtid" name="txtid" value="">-->
                             <input type="hidden" id="isactive" name="isactive" value="1">
                             <fieldset class="the-fieldset">
-                                <legend class="the-legend"><span class="blue">Working Details</span></legend>
+                                <legend class="the-legend"><b>Working Details</b></legend>
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -287,13 +287,13 @@ $cname = $this->uri->segment(2);
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="" class="control-label mb-1">Date of Joining<span style="color:red;">*</span></label>
-                                            <input type="text" id="doj" name="doj" minlength="10" maxlength="10" class="form-control" required>
+                                            <input type="date" id="doj" name="doj" minlength="10" maxlength="10" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="employeedoj" class="control-label mb-1">Date of Leaving</label>
-                                            <input type="text" id="dol" name="dol" minlength="10" maxlength="10" class="form-control">
+                                            <input type="date" id="dol" name="dol" minlength="10" maxlength="10" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">

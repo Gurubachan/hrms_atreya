@@ -469,10 +469,10 @@ class Resource extends CI_Controller
     public function create_resourcecompany()
     {
         try {
+            $request = json_decode(json_encode($_POST), FALSE);
             $data = array();
             $insert = array();
-            $request = json_decode(json_encode($_POST), FALSE);
-            $postdata = file_get_contents("php://input");
+//            $postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $status = true;
             if (isset($request->resourcecompanyname) && preg_match("/^[a-zA-Z ]{1,20}$/", $request->resourcecompanyname)) {
@@ -537,7 +537,7 @@ class Resource extends CI_Controller
                     $data['status'] = false;
                 }
             } else {
-                $data['message'] = "Insufficient/Invalid data.";
+                $data['message'] = "Insufficient/Invalid data.3";
                 $data['status'] = false;
             }
             echo json_encode($data);
@@ -815,23 +815,26 @@ class Resource extends CI_Controller
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(73, null, $where);
+                $res = $this->Model_Db->select(74, null, $where);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(
                             'id' => $r->id,
-                            'resourcetypeid' => $r->resourcetypeid,
+                            'resourcetypeid' => $r->id,
+                            'resourncename' => $r->typename,
                             'companyid' => $r->companyid,
+                            'companyname' => $r->companyname,
                             'modelnumber' => $r->modelnumber,
                             'serialnumber' => $r->serialnumber,
                             'purchangingdate' => $r->purchagingdate,
                             'scenteraddress' => $r->servicecenteraddress,
                             'scenternumber' => $r->servicecentermobile,
-                            'assurancetype' => $r->assurancetypeid,
-                            'assuranceperiod' => $r->assuranceperiod,
-                            'assuranceperiodtype' => $r->periodtypeid,
+                            'assurancetype' => $r->assuranceid,
+                            'assurancename' => $r->assurance,
+                            'assuranceperiod' => $r->periodid,
+                            'assuranceperiodtype' => $r->periodtype,
                             'assuranceexpired' => $r->assuranceexpired,
-                            'creationdate' => $r->createdat,
+//                            'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive
                         );

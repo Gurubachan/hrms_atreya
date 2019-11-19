@@ -18,13 +18,13 @@ $cname = $this->uri->segment(2);
                     <div class="form-group">
                         <input type="hidden" id="txtid" name="txtid" value="0">
                         <label for="" class="control-label mb-1">Company Name</label>
-                        <input type="text" id="resourcecompanyname" name="resourcecompanyname" onclick="charachters_validate('resourcecompanyname')" minlength="5" maxlength="60" class="form-control" placeholder="Enter company name." required>
+                        <input type="text" id="resourcecompanyname" name="resourcecompanyname" onclick="charachters_validate('resourcecompanyname')" minlength="2" maxlength="20" class="form-control" placeholder="Enter company name." required>
                         <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
                         <small class="errormsg_resourcecompanyname"></small>
                     </div>
                     <div class="form-group">
                         <label for="" class="control-label mb-1">Company Short Name</label>
-                        <input type="text" id="resourcecompanyshortname" name="resourcecompanyshortname" onclick="charachters_validate('resourcecompanyshortname')" minlength="5" maxlength="60" class="form-control" placeholder="Enter company shortname." required>
+                        <input type="text" id="resourcecompanyshortname" name="resourcecompanyshortname" onclick="charachters_validate('resourcecompanyshortname')" minlength="2" maxlength="5" class="form-control" placeholder="Enter company shortname." required>
                         <small class="errormsg_resourcecompanyshortname"></small>
                     </div>
                     <br>
