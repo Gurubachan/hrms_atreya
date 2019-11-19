@@ -16,6 +16,9 @@ $cname = $this->uri->segment(2);
     $('#stateid').change(function () {
         load_district($(this).val());
     });
+    $('#dob').pignoseCalendar({
+        format:"DD-MM-YYYY"
+    });
     $("#applicantBasicDetailsForm").submit(function(e){
         // $("#txtid").val(txtid);
         e.preventDefault();
@@ -156,7 +159,6 @@ $cname = $this->uri->segment(2);
                                 $("#workexperience").css('color','blue');
                                 if ($("#createApplicant").html() == "Update") {
                                     // window.location.reload();
-
                                 } else {
                                     // $('#newRecruitmentForm').trigger("reset");
                                     // reportFunction(1);
@@ -167,7 +169,6 @@ $cname = $this->uri->segment(2);
                                     $('#applicantAddressDetailsForm').hide();
                                     $('#applicantEducationalDetailsForm').hide();
                                     $('#applicantWorkingDetailsForm').show();
-
                                 }
                             }else{
                                 if(jsondata.token == 14){
@@ -312,7 +313,7 @@ $cname = $this->uri->segment(2);
                             "<td>"+ jsondata[i].dob+"</td>"+
                             "<td>"+ jsondata[i].gendername+"</td><td>"+ jsondata[i].contact+"</td><td>"+ jsondata[i].whatsapp+"</td>" +
                             "<td>"+ jsondata[i].email+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='loadRecruitmentDetails(" +checkId+ ")' data-toggle='modal' data-target='#recruitment'><i class='fa fa-check'></i>" +
-                            " </button></td><td><button class='btn editBtn btn-sm'" +
+                            " </button><button class='btn editBtn btn-sm'" +
                             " onclick='reportEditRecruitment(" +checkId+ "," +strfname+ "," +strmname+ "," +strlname+ "," +strfather+ "," +strmother+ "," +strspouse+ "," +dob+ "," +maritalstatusid+ "," +genderid+ "," +religionid+ "," +contact+ "," +altcontact+ "," +
                         "" +whatsapp+ "," +email+ "," +at+ "," +po+ "," +ps+ "," +landmark+ "," +pincode+ "," +commitid+ "," +stateid+ "," +orgname+ "," +board+ "," +examname+ "," +yop+ "," +totalmark+ "," +securedmark+ "," +etid+ "," +providedby+ "," +
                             "" +startdate+ "," +enddate+ "," +role+ "," +remark+ "," +distid+ "," +ctype+ "," +editisactive+ ")'><i class='fa fa-edit fa-2x></i>' </button></td></tr>");

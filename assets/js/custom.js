@@ -54,3 +54,16 @@ function password_validate(id) {
         }
     });
 }
+
+function duplicate_entries() {
+    toastr.options.rtl = true;
+    toastr.options.positionClass = 'toast-bottom-right';
+    toastr.error("Duplicate Entries");
+    toastr.options.showMethod = 'slideDown';
+}
+function successfull_entries() {
+    toastr.options.rtl = true;
+    toastr.options.positionClass = 'toast-bottom-right';
+    toastr.success("Record Inserted Successfully");
+    toastr.options.showMethod = 'slideDown';
+}

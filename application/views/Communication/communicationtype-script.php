@@ -16,6 +16,12 @@ $cname = $this->uri->segment(2);
             data:frm,
             success:function(data){
                 if(data!=false){
+                    var jsondata = JSON.parse(data);
+                    if(jsondata.flag==0){
+                        duplicate_entries();
+                    }else{
+                        successfull_entries();
+                    }
                     if($("#createCommunicationType").html()=="Update"){
                         window.location.reload();
                     }else {

@@ -3,6 +3,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
 ?>
 <script>
+    $(function () {
+        load_emp('employeename');
+        load_attendance_type('attendancetype');
+    });
+    $("#attendancetype").change(function () {
+        var status = $('#attendancetype').val();
+        if(status==1){
+            $('#intime').prop("disabled",false);
+            $('#outtime').prop("disabled",false);
+        }else if(status==2){
+            $('#intime').prop("disabled",true);
+            $('#outtime').prop("disabled",true);
+        }else if(status==3){
+            $('#intime').prop("disabled",false);
+            $('#outtime').prop("disabled",false);
+        }
+    });
+    $('#intime').timepicker();
+    $('#setInTimeButton').on('click', function (){
+        $('#intime').timepicker('setTime', new Date());
+    });
+    $('#outtime').timepicker();
+    $('#setOutTimeButton').on('click', function (){
+        $('#outtime').timepicker('setTime', new Date());
+    });
     $("#maritalStatusForm").submit(function(e){
         e.preventDefault();
         var frm = $("#maritalStatusForm").serialize();
@@ -54,7 +79,7 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].statusname+"</td><td>"+ jsondata[i].statusnshortame+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditStatus(" +checkId+ "," +strmaritalstatus+ "," +strmaritalstatusShortname+ "," +editisactive+ ")'>Edit</button></td></tr>");
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].statusname+"</td><td>"+ jsondata[i].statusnshortame+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditStatus(" +checkId+ "," +strmaritalstatus+ "," +strmaritalstatusShortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_status_names").html(html);
                 }

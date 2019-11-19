@@ -43,6 +43,7 @@ class Dashboard extends CI_Controller {
                 $this->navbar();
                 $this->load->view('dashboard/dashboard');
                 $this->footer();
+//                $this->load->view('dashboard/dashboard-script');
             }else{
                 redirect('welcome/');
 //                $this->header();
@@ -55,4 +56,5 @@ class Dashboard extends CI_Controller {
         }
 
     }
+
 }

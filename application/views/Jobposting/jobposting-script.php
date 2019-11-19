@@ -23,6 +23,7 @@ $cname = $this->uri->segment(2);
         var endtime = new Date($("#jobpostendingdate").val());
         if(starttime>endtime){
             alert('Closing time should not lesser than start time');
+            toastr.wartning
             $('#jobpostendingdate').focus();
         }else{
             var frm = $("#newJobPostingForm").serialize();
@@ -93,7 +94,7 @@ $cname = $this->uri->segment(2);
                             "<td>"+ jsondata[i].nov+"</td><td>"+ jsondata[i].location+"</td><td>"+ jsondata[i].experience+"</td>" +
                             "<td>"+ jsondata[i].educationname+"</td><td>"+ jsondata[i].skill+"</td><td>"+ jsondata[i].startdate+"</td>" +
                             "<td>"+ jsondata[i].enddate+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm'" +
-                            " onclick='reportEditJobPosting(" +checkId+ "," +strPostname+ "," +companyid+ "," +designationid+ "," +nov+ "," +location+ "," +description+ "," +exp+ "," +res+ "," +education+ "," +skillid+ "," +startdate+ "," +enddate+ "," +editisactive+ ")'>Edit</button></td></tr>");
+                            " onclick='reportEditJobPosting(" +checkId+ "," +strPostname+ "," +companyid+ "," +designationid+ "," +nov+ "," +location+ "," +description+ "," +exp+ "," +res+ "," +education+ "," +skillid+ "," +startdate+ "," +enddate+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_jobposting").html(html);
                 }

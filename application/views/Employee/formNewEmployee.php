@@ -15,6 +15,9 @@ $cname = $this->uri->segment(2);
                 </div>
                 <div class="box-content">
                     <form  class="" id="newEmployeeForm"  name="newEmployeeForm" autocomplete="off">
+                <div class="form-group">
+                    <fieldset class="the-fieldset">
+                        <legend class="the-legend">Description</legend>
                         <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
@@ -44,6 +47,13 @@ $cname = $this->uri->segment(2);
                                     <select id="designationid" name="designationid" class="select" required></select>
                                 </div>
                             </div>
+                        </div>
+                    </fieldset>
+                    <br>
+                <div class="form-group">
+                    <fieldset class="the-fieldset">
+                        <legend class="the-legend">Basic Information</legend>
+                        <div class="row">
                            <div class="col-sm-3">
                                <div class="form-group">
                                    <label for="employeefirstname" class="control-label mb-1">First Name<span style="color:red;">*</span></label>
@@ -84,18 +94,6 @@ $cname = $this->uri->segment(2);
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="employeedoj" class="control-label mb-1">Date of Joining<span style="color:red;">*</span></label>
-                                    <input id="doj" name="doj" type="date" class="form-control" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="employeedoj" class="control-label mb-1">Date of Leaving</label>
-                                    <input id="dol" name="dol" type="date" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
                                     <label for="employeefathername" class="control-label mb-1">Father Name</label>
                                     <input id="fathername" name="fathername" type="text" class="form-control" maxlength="20" placeholder="Enter father name">
                                 </div>
@@ -112,6 +110,13 @@ $cname = $this->uri->segment(2);
                                     <input id="spousename" name="spousename" type="text" class="form-control" placeholder="Enter spouse name">
                                 </div>
                             </div>
+                        </div>
+                    </fieldset>
+                    <br>
+                <div class="form-group">
+                    <fieldset class="the-fieldset">
+                        <legend class="the-legend">Communication Details</legend>
+                        <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="employeeaddress" class="control-label mb-1">Address<span style="color:red;">*</span></label>
@@ -144,6 +149,13 @@ $cname = $this->uri->segment(2);
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                    </fieldset>
+                    <br>
+                <div class="form-group">
+                    <fieldset class="the-fieldset">
+                        <legend class="the-legend">Documents</legend>
+                        <div class="row">
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="employeeeducation" class="control-label mb-1">Education<span style="color:red;">*</span></label>
@@ -180,6 +192,26 @@ $cname = $this->uri->segment(2);
                                 </div>
                             </div>
                         </div>
+                    </fieldset>
+                    <br>
+                <div class="form-group">
+                    <fieldset class="the-fieldset">
+                        <legend class="the-legend">Documents</legend>
+                            <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="employeedoj" class="control-label mb-1">Date of Joining<span style="color:red;">*</span></label>
+                                    <input id="doj" name="doj" type="date" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="employeedoj" class="control-label mb-1">Date of Leaving</label>
+                                    <input id="dol" name="dol" type="date" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
                         <br>
                         <div class=" text-right" style="margin-right: 20%;">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>

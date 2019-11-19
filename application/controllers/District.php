@@ -54,16 +54,24 @@ class District extends CI_Controller {
                             $data['status']=false;
                         }
                     }else if($request->txtid==0){
-                        $insert[0]['entryby']=$this->session->login['userid'];
-                        $insert[0]['createdat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->insert(9,$insert);
-                        if($res!=false){
-                            $data['message']="Insert successful.";
-                            $data['status']=true;
-                        }else{
-                            $data['message']="Insert failed.";
-                            $data['status']=false;
-                        }
+                      $where="distname='$request->distname'";
+                      $duplicate_entry=$this->Model_Db->select(9,null,$where);
+                      if($duplicate_entry!=false){
+                          $data['message']="Duplicate Entry";
+                          $data['status']=false;
+                          $data['flag']=0;
+                      }else{
+                          $insert[0]['entryby']=$this->session->login['userid'];
+                          $insert[0]['createdat']=date("Y-m-d H:i:s");
+                          $res=$this->Model_Db->insert(9,$insert);
+                          if($res!=false){
+                              $data['message']="Insert successful.";
+                              $data['status']=true;
+                          }else{
+                              $data['message']="Insert failed.";
+                              $data['status']=false;
+                          }
+                      }
                     }else{
                         $data['message']="Insufficient/Invalid data.";
                         $data['status']=false;

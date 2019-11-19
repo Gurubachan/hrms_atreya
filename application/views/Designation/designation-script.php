@@ -14,6 +14,12 @@ $cname = $this->uri->segment(1);
             data:frm,
             success:function(data){
                 if(data!=false){
+                    var jsondata = JSON.parse(data);
+                    if(jsondata.flag==0){
+                        duplicate_entries();
+                    }else{
+                        successfull_entries();
+                    }
                     if($('#crateDesignation').html()=='Update'){
                         window.location.reload();
                     }else{
@@ -55,7 +61,7 @@ $cname = $this->uri->segment(1);
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
                         html += ("<tr> <td>" + j + "</td><td>" + jsondata[i].designationname + "</td><td>" + jsondata[i].designationshortname + "</td><td>" +isactive + "</td>" +
-                            "<td><button class='btn editBtn btn-sm' onclick='reportEditDesignation(" +checkId+ "," +strdesignationname+ "," +strdesignationshortname+ "," +editisactive+ ")'>Edit</button></td></tr>");
+                            "<td><button class='btn editBtn btn-sm' onclick='reportEditDesignation(" +checkId+ "," +strdesignationname+ "," +strdesignationshortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_designation").html(html);
                 }

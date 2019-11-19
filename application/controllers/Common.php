@@ -65,6 +65,18 @@ class Common extends CI_Controller
                     $tableid=47;
                 }else if($request->tableid == 'formRecruitment'){
                     $tableid=53;
+                }else if($request->tableid == 'formAttendanceType'){
+                    $tableid=61;
+                }else if($request->tableid == 'formResource'){
+                    $tableid=73;
+                }else if($request->tableid == 'formAssurance'){
+                    $tableid=65;
+                }else if($request->tableid == 'formCompanies'){
+                    $tableid=71;
+                }else if($request->tableid == 'formResourceType'){
+                    $tableid=69;
+                }else if($request->tableid == 'formPeriodtype'){
+                    $tableid=67;
                 };
             }
             if(isset($request->isactive) && is_numeric($request->isactive)){

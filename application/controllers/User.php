@@ -97,8 +97,8 @@ class User extends CI_Controller {
                                     $data['message']="Password matched. Otp sent.";
                                     $data['status']=true;
                                     $data['userid']=$request->userid;
-                                    $otp=rand(324653,876532);
-//                                    $otp=123456;
+//                                    $otp=rand(324653,876532);
+                                    $otp=123456;
                                     $mobile=$this->session->tempuser['usermobile'];
                                     $message="Your login otp is - ".$otp.". Please do not share this with any one.";
                                     $this->load->library("Sms");
@@ -422,8 +422,8 @@ class User extends CI_Controller {
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(3, null, $where);
-                $result = $this->Model_Db->select(5,null,$where);
+                $res = $this->Model_Db->select(4, null, $where);
+//                $result = $this->Model_Db->select(5,null,$where);
 
                 if ($res != false) {
                     foreach ($res as $r) {
@@ -432,15 +432,15 @@ class User extends CI_Controller {
                                 $data[] = array(
                                     'id' => $r->id,
                                     'usertypeid' => $r->usertypeid,
-                                    'fname' => $r->fname,
+                                    'typename'=> $r->typename,
                                     'mname' => $r->mname,
                                     'lname' => $r->lname,
                                     'username' => $r->username,
                                     'emailid' => $r->emailid,
                                     'mobile' => $r->mobile,
                                     'dob' => $r->dob,
-                                    'creationdate' => $r->createdat,
-                                    'lastmodifiedon' => $r->updatedat,
+//                                    'creationdate' => $r->createdat,
+//                                    'lastmodifiedon' => $r->updatedat,
                                     'isactive' => $r->isactive
                                 );
 //                            }
@@ -500,16 +500,24 @@ class User extends CI_Controller {
                             $data['status']=false;
                         }
                     }else if($request->txtid==0){
-                        $insert[0]['entryby']=$this->session->login['userid'];
-                        $insert[0]['createdat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->insert(1,$insert);
-                        if($res!=false){
-                            $data['message']="Insert successful.";
-                            $data['status']=true;
-                        }else{
-                            $data['message']="Insert failed.";
-                            $data['status']=false;
-                        }
+                       $where ="typename='$request->usertypename'";
+                       $duplicate_entry=$this->Model_Db->select(1,null,$where);
+                       if($duplicate_entry!=false){
+                           $data['message']="Duplicate entry";
+                           $data['status']=false;
+                           $data['flag']=0;
+                       }else{
+                           $insert[0]['entryby']=$this->session->login['userid'];
+                           $insert[0]['createdat']=date("Y-m-d H:i:s");
+                           $res=$this->Model_Db->insert(1,$insert);
+                           if($res!=false){
+                               $data['message']="Insert successful.";
+                               $data['status']=true;
+                           }else{
+                               $data['message']="Insert failed.";
+                               $data['status']=false;
+                           }
+                       }
                     }else{
                         $data['message']="Insufficient/Invalid data.";
                         $data['status']=false;

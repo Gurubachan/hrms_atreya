@@ -49,15 +49,23 @@ class MaritalStatus extends CI_Controller {
                             $data['status']=false;
                         }
                     }else if($request->txtid==0){
-                        $insert[0]['entryby']=$this->session->login['userid'];
-                        $insert[0]['createdat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->insert(19,$insert);
-                        if($res!=false){
-                            $data['message']="Insert successful.";
-                            $data['status']=true;
-                        }else{
-                            $data['message']="Insert failed.";
+                        $where="statusname='$request->statusname'";
+                        $duplicate_check=$this->Model_Db->select(19,null,$where);
+                        if($duplicate_check!=false){
+                            $data['message']="Duplicate entry";
                             $data['status']=false;
+                            $data['flag']=0;
+                        }else{
+                            $insert[0]['entryby']=$this->session->login['userid'];
+                            $insert[0]['createdat']=date("Y-m-d H:i:s");
+                            $res=$this->Model_Db->insert(19,$insert);
+                            if($res!=false){
+                                $data['message']="Insert successful.";
+                                $data['status']=true;
+                            }else{
+                                $data['message']="Insert failed.";
+                                $data['status']=false;
+                            }
                         }
                     }else{
                         $data['message']="Insufficient/Invalid data.";

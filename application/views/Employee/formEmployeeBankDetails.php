@@ -19,6 +19,7 @@ $cname = $this->uri->segment(2);
                 </div>
                 <div class="box-content">
                     <form  class="" id="frmBankDetails" name="frmBankDetails" autocomplete="off">
+                        <div class="col-sm-6" style="display: block; margin-left: auto;margin-right: auto">
                         <div class="form-group">
                             <label for="" class="control-label mb-1">Employee Name</label>
                             <input type="hidden" id="txtid" name="txtid" value="0">
@@ -39,9 +40,10 @@ $cname = $this->uri->segment(2);
                             <label for="bankifscnumber" class="control-label mb-1">IFSC Number</label>
                             <input id="bankifscnumber" name="bankifscnumber" type="text"  class="form-control text-uppercase"  minlength="12" maxlength="12" placeholder="Enter ifsc code.">
                         </div>
-                        <div class="form-actions form-group text-center " style="margin-right: 20%;">
+                        <div class="form-actions form-group text-right">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
                         </div>
                     </form>
                     <br>
@@ -109,9 +111,13 @@ $cname = $this->uri->segment(2);
             data:frm,
             success:function(data){
                 if(data!=false){
+                    var jsondata = JSON.parse(data);
+                    if(jsondata.flag==0){
+                        alert('Duplicate Entry');
+                    }
                     console.log(data);
                     $("#bankaccountnumber").val('').focus();
-                    $("#bankifscnumber").val('');
+                    $("#frmBankDetails").trigger('reset');
                     reportFunction(1);
                 }else{
                     console.log(data);
@@ -177,7 +183,7 @@ $cname = $this->uri->segment(2);
                             }else{
                                 isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                             }
-                            html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].empid+"</td><td>"+ jsondata[i].bankid+"</td><td>"+ jsondata[i].acno+"</td><td>"+ jsondata[i].ifsccode+"</td>" +
+                            html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].fname+" "+jsondata[i].mname+" "+jsondata[i].lname+"</td><td>"+ jsondata[i].bankname+"</td><td>"+ jsondata[i].acno+"</td><td>"+ jsondata[i].ifsccode+"</td>" +
                                 "<td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditEmployeeBankDetails(" +checkId+ "," +accountnumber+ "," +ifscnumber+ "," +editisactive+ ")'>Edit</button></td></tr>");
                         }
                         $("#load_bank_employee").html(html);

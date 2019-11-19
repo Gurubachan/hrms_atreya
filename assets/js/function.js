@@ -401,4 +401,88 @@ function load_communicationType() {
         }
     });
 }
+function load_emp(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Employee/load_employee",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+function load_attendance_type(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Attendance/load_attendance_type",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+function load_resourcetype(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Resource/load_resourcetype",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+function load_resourcecompanyname(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Resource/load_resourcecompany",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+function load_assurancetype(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Resource/load_assurance",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}function load_assuranceperiodtype(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Resource/load_periodtype",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+$('input[type=text],input[type=email],input[type=password],input[type=number]').keypress(function() {
+    $(this).css("border-color","black");
+});
+// $('#dob').pignoseCalendar({
+//     format:"dd-mm-yyyy"
+// });
+
 

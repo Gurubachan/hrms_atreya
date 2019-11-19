@@ -20,7 +20,7 @@ $cname = $this->uri->segment(2);
                         <br>
                         <div class="form-group">
                             <fieldset class="the-fieldset">
-                                <legend class="the-legend"><span class="blue">Basic Details</span></legend>
+                                <legend class="the-legend"><b>Basic Details</b></legend>
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <input type="hidden" id="txtid" name="txtid" value="0">
@@ -45,7 +45,7 @@ $cname = $this->uri->segment(2);
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="employeedob" class="control-label mb-1">Date of Birth<span style="color:red;">*</span></label>
-                                            <input id="dob" name="dob" type="date" class="form-control" required>
+                                            <input id="dob" name="dob" type="text" class="form-control" placeholder="dd-mm-yyyy" required>
                                         </div>
                                     </div>
 
@@ -68,7 +68,7 @@ $cname = $this->uri->segment(2);
                                         </div>
                                     </div>
                                 </div>
-                            <div class="row">
+                                <div class="row">
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label for="employeegender" class="control-label mb-1">Gender<span style="color:red;">*</span></label>
@@ -96,7 +96,7 @@ $cname = $this->uri->segment(2);
                         <br>
                         <div class="form-group">
                             <fieldset class="the-fieldset">
-                                <legend class="the-legend"><span class="blue">Contact Details</span></legend>
+                                <legend class="the-legend"><b>Contact Details</b></legend>
                                     <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
@@ -108,13 +108,13 @@ $cname = $this->uri->segment(2);
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="employeemobile" class="control-label mb-1">Alternative Mobile</label>
-                                            <input type="text" id="altmobile" name="altmobile"  class="form-control" onclick="number_validate('altmobile')"  minlength="10" maxlength="10" placeholder="Enter mobile number">
+                                            <input type="text" id="altmobile" name="altmobile"  class="form-control" onclick="number_validate('altmobile')"  minlength="10" maxlength="10" placeholder="Enter alternate mobile number">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="employeeemail" class="control-label mb-1">Whatsapp Number<span style="color:red;">*</span></label>
-                                            <input  type="text"  id="whatsappnumber" name="whatsappnumber" class="form-control" onclick="number_validate('whatsappnumber')"  minlength="10" maxlength="10" placeholder="Enter email id." required>
+                                            <input  type="text"  id="whatsappnumber" name="whatsappnumber" class="form-control" onclick="number_validate('whatsappnumber')"  minlength="10" maxlength="10" placeholder="Enter whatsapp number." required>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -287,13 +287,13 @@ $cname = $this->uri->segment(2);
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="" class="control-label mb-1">Date of Joining<span style="color:red;">*</span></label>
-                                            <input type="date" id="doj" name="doj" minlength="10" maxlength="10" class="form-control" required>
+                                            <input type="text" id="doj" name="doj" minlength="10" maxlength="10" class="form-control" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="employeedoj" class="control-label mb-1">Date of Leaving</label>
-                                            <input type="date" id="dol" name="dol" minlength="10" maxlength="10" class="form-control">
+                                            <input type="text" id="dol" name="dol" minlength="10" maxlength="10" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -349,7 +349,7 @@ $cname = $this->uri->segment(2);
                                 <th>Whatsapp</th>
                                 <th>Email</th>
                                 <th>IsActive</th>
-                                <th>Details View</th>
+<!--                                <th>Details View</th>-->
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -371,7 +371,7 @@ $cname = $this->uri->segment(2);
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header" style="background-color: cornflowerblue;">
-                <h3 class="modal-title text-white" style="">Recruitment</h3>
+                <h3 class="modal-title text-white" style="">Application Details</h3>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">

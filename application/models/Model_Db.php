@@ -39,6 +39,14 @@ class Model_Db extends CI_Model
                 '55'=>'tbl_communication_details','56'=>'view_communication_details',
                 '57'=>'tbl_applicant_qualification','58'=>'view_applicant_qualification',
                 '59'=>'tbl_applicant_work_experiance','60'=>'view_applicant_work_experiance',
+                '61'=>'tbl_attendance_type','62'=>'view_attendance_type',
+                '63'=>'tbl_attendance','64'=>'view_attendance',
+                '65'=>'tbl_assurance','66'=>'view_assurance',
+                '67'=>'tbl_periodtype','68'=>'view_periodtype',
+                '69'=>'tbl_resource_type','70'=>'view_resource_type',
+                '71'=>'tbl_resource_company','72'=>'view_resource_company',
+                '73'=>'tbl_resource','74'=>'view_resource',
+
             );
             if($table[$tblno]){
                 return $table[$tblno];
@@ -155,7 +163,6 @@ class Model_Db extends CI_Model
             echo "Message :".$e->getMessage();
         }
     }
-
     public function update($tblno,$data=array(),$column_name,$ids,$where=null)
     {
         try{
@@ -199,7 +206,6 @@ class Model_Db extends CI_Model
                         return false;
                     }
                 }
-
             }else{
                 return false;
             }

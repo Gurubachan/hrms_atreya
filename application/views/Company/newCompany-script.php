@@ -79,7 +79,7 @@ $cname = $this->uri->segment(2);
                             }
                             html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].companyname+"</td><td>"+jsondata[i].companyshortname +"</td><td>"+jsondata[i].companytypename +"</td><td>"+jsondata[i].address+"</td><td>"+jsondata[i].statename+"</td><td>"+jsondata[i].distname+"</td><td>"+jsondata[i].pincode +"</td>" +
                                 "<td>"+jsondata[i].gstno +"</td><td>"+jsondata[i].url+"</td><td>"+jsondata[i].emailid+"</td><td>"+jsondata[i].mobile +"</td><td>"+isactive+"</td>" +
-                                "<td><button class='btn editBtn btn-sm' onclick='reportEditCompany(" +checkId+ "," +strcompanyname+ " ," +strcompanyshortname+ "," +straddress+ "," +pincode+ "," +strgstno+ "," +strurl+ "," +stremailed+ "," +mobile+ ","+strestablishedon+","+stateid+","+distid+"," +editisactive+ ")'>Edit</button></td></tr>");
+                                "<td><button class='btn editBtn btn-sm' onclick='reportEditCompany(" +checkId+ "," +strcompanyname+ " ," +strcompanyshortname+ "," +straddress+ "," +pincode+ "," +strgstno+ "," +strurl+ "," +stremailed+ "," +mobile+ ","+strestablishedon+","+stateid+","+distid+"," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                         }
                         $("#load_company").html(html);
                     }else{
