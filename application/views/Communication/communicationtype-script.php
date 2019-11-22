@@ -16,11 +16,21 @@ $cname = $this->uri->segment(2);
             data:frm,
             success:function(data){
                 if(data!=false){
-                    if($("#createCommunicationType").html()=="Update"){
-                        window.location.reload();
-                    }else {
-                        $('#communicationTypeForm').trigger("reset");
-                        reportFunction(1);
+                    var jsondata = JSON.parse(data);
+                    if(jsondata.flag==0){
+                        duplicate_entries();
+                    }else{
+                        if($('#createCommunicationType').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#communicationTypeForm").trigger("reset");
+                        }else if($('#createCommunicationType').html()=='Update'){
+                            $('#createCommunicationType').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#communicationTypeForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }else{
                     console.log(data);

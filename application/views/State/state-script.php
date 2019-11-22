@@ -4,6 +4,11 @@ $cname = $this->uri->segment(2);
 ?>
 <script>
     $("#stateForm").submit(function(e){
+        // $('#stateTable').dataTable({
+        //     "bPaginate": false,
+        //     "bFilter": false,
+        //     "bInfo": false
+        // });
         e.preventDefault();
         var x = location.hostname;
         var frm = $("#stateForm").serialize();
@@ -14,15 +19,22 @@ $cname = $this->uri->segment(2);
             data:frm,
             success:function(data){
                 if(data!=false){
-
-                    if($("#createState").html()=='Update'){
-                        window.location.reload();
-                        $("#statename").val("");
+                    var jsondata = JSON.parse(data);
+                    if(jsondata.flag==0){
+                        duplicate_entries();
                     }else{
-                        $("#stateForm").trigger("reset");
-                        reportFunction(1);
+                        if($('#createState').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#stateForm").trigger("reset");
+                        }else if($('#createState').html()=='Update'){
+                            $('#createState').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#stateForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
-
                 }else{
                     console.log(data);
                 }
@@ -31,6 +43,11 @@ $cname = $this->uri->segment(2);
         });
     });
     function loadAjaxForReport(data) {
+        // $('#stateTable').dataTable({
+        //     "bPaginate": false,
+        //     "bFilter": false,
+        //     "bInfo": false
+        // });
         $.ajax({
             type: 'post',
             url: "<?= base_url('State/report_state')?>",
@@ -59,7 +76,7 @@ $cname = $this->uri->segment(2);
                         } else {
                             isactive = "<button id='action" + checkId + "' onclick='editIsactive(0," + checkId + "," + updatedid + "," + urlid + ")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html += ("<tr> <td>" + j + "</td><td>" + jsondata[i].statename + "</td><td>" + jsondata[i].stateshortname + "</td><td>" + isactive + "</td><td><button class='btn editBtn btn-sm' onclick='reportEditState(" +checkId+ "," +strState+ "," +strStateShortName+ "," +editisactive+ ")'>Edit</button></td></tr>");
+                        html += ("<tr> <td>" + j + "</td><td>" + jsondata[i].statename + "</td><td>" + jsondata[i].stateshortname + "</td><td>" + isactive + "</td><td><button class='btn editBtn btn-sm' onclick='reportEditState(" +checkId+ "," +strState+ "," +strStateShortName+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")' data-toggle='modal' data-target='#stateDetials'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_state").html(html);
                 }
@@ -78,5 +95,17 @@ $cname = $this->uri->segment(2);
         $('#isactive').val(isactiveval);
         $('#statename').focus();
         $('#createState').html('Update');
+    }
+    function detailsView(id) {
+        $.ajax({
+            type:'post',
+            url:'<?= base_url("State/stateDetailsView/")?>',
+            data:{id:id},
+            success:function (res) {
+                if(res!=false){
+                    $('#loadStateDetails').html(res);
+                }
+            }
+        });
     }
 </script>

@@ -6,15 +6,17 @@ defined("BASEPATH") or exit("No direct script access allowed.");
            <header class="header-desktop2">
                <div class="section__content section__content--p30">
                    <div class="container-fluid">
-                       <div class="header-wrap2 ">
-                           <div class="header-button-item pull-left">
+                       <div class="header-wrap2">
+                           <div class="header-button-item">
                                <a href="<?= base_url('Dashboard/')?>">
-                                   <h3 style="color:#fff;">HRMS</h3>
+                                   <h3 style="color:#fff;"><img src="<?=base_url('assets/images/favicon.png')?>" height="50" width="120" alt=""></h3>
                                </a>
                            </div>
                            <div class="header-button2">
                                <div class="header-button-item js-item-menu">
+                                   <small class="" id="current_time"></small>&nbsp;&nbsp;
                                    <i class="zmdi zmdi-search"></i>
+
                                    <div class="search-dropdown js-dropdown">
                                        <form action="">
                                            <input class="au-input au-input--full au-input--h65" type="text" placeholder="Search for datas &amp; reports..." />
@@ -65,7 +67,7 @@ defined("BASEPATH") or exit("No direct script access allowed.");
                                <div class="header-button-item mr-0 js-sidebar-btn">
                                    <i class="zmdi zmdi-menu"></i>
                                </div>
-                               <div class="setting-menu js-right-sidebar d-none d-lg-block">
+                               <div class="setting-menu js-right-sidebar d-lg-block">
                                    <div class="account-dropdown__body">
                                        <div class="account-dropdown__item">
                                            <a href="#">

@@ -16,7 +16,9 @@ $cname = $this->uri->segment(2);
     $('#stateid').change(function () {
         load_district($(this).val());
     });
-
+    $('#dob').datepicker();
+    $('#doj').datepicker();
+    $('#dol').datepicker();
     $("#newEmployeeForm").submit(function(e){
         $('#toggle_new_employee').show();
         e.preventDefault();
@@ -85,7 +87,7 @@ $cname = $this->uri->segment(2);
                             "<td>"+ jsondata[i].spousename+"</td><td>"+ jsondata[i].address+"</td><td>"+ jsondata[i].emailid+"</td><td>"+ jsondata[i].mobile+"</td><td>"+ jsondata[i].statename+"</td><td>"+ jsondata[i].distname+"</td><td>"+ jsondata[i].educationname+"</td>" +
                             "<td>"+ jsondata[i].epfno+"</td><td>"+ jsondata[i].esifno+"</td><td>"+ jsondata[i].aadharno+"</td><td>"+ jsondata[i].panno+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' " +
                             "onclick='reportEditEmployee(" +checkId+ ","+jsondata[i].slno+","+strempid+","+jsondata[i].departmentmappingid+","+jsondata[i].designationid+","+strdoj+","+strdol+","+strfname+","+strmname+","+strlname+","+jsondata[i].genderid+","+jsondata[i].mobile+"," +
-                            ""+stremailid+","+strfathername+","+strmothername+","+jsondata[i].maritalstatusid+","+strspoucsename+","+jsondata[i].educationid+","+straddress+","+strdob+","+strepf+","+jsondata[i].esifno+","+jsondata[i].aadharno+","+strpan+","+jsondata[i].distid+","+stateid+","+editisactive+ ")'>Edit</button></td></tr>");
+                            ""+stremailid+","+strfathername+","+strmothername+","+jsondata[i].maritalstatusid+","+strspoucsename+","+jsondata[i].educationid+","+straddress+","+strdob+","+strepf+","+jsondata[i].esifno+","+jsondata[i].aadharno+","+strpan+","+jsondata[i].distid+","+stateid+","+editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_employeess").html(html);
                 }

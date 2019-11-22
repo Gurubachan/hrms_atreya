@@ -14,77 +14,79 @@ class JobPosting extends CI_Controller {
             $insert_qualification=array();
             $request= json_decode(json_encode($_POST), false);
             $status=true;
-            if(isset($request->postname) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->postname)){
+            if(isset($request->postname) && preg_match("/^[a-zA-Z ]{0,50}$/",$request->postname)){
                 $insert[0]['postname']=$request->postname;
             }else{
-//                $status=false;
-                echo $insert[0]['postname']="";
+                $status=false;
+//                echo $insert[0]['postname']="";
             }
             if(isset($request->companyid) && is_numeric($request->companyid)){
                 $insert[0]['companyid']=$request->companyid;
             }else{
-//                $status=false;
-                echo $insert[0]['companyid']="";
+                $status=false;
+//                echo $insert[0]['companyid']="";
             }
             if(isset($request->designationid) && is_numeric($request->designationid)){
                 $insert[0]['designationid']=$request->designationid;
             }else{
-//                $status=false;
-                echo $insert[0]['designationid']="";
+                $status=false;
+//                echo $insert[0]['designationid']="";
             }
             if(isset($request->vacancy) && is_numeric($request->vacancy)){
                 $insert[0]['nov']=$request->vacancy;
             }else{
-//                $status=false;
-                echo $insert[0]['nov']="";
+                $status=false;
+                echo $insert[0]['nov']=$request->vacancy;
             }
-            if(isset($request->location) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->location)){
+            if(isset($request->location) && preg_match("/^[a-zA-Z ]{0,20}$/",$request->location)){
                 $insert[0]['localtion']=$request->location;
             }else{
-//                $status=false;
-                echo $insert[0]['localtion']="";
+                $status=false;
+//                echo $insert[0]['localtion']="";
             }
-            if(isset($request->jobdescription) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->jobdescription)){
-                $insert[0]['jobdescriptiom']=$request->jobdescription;
+            if(isset($request->jobdescription) && preg_match("/^[a-zA-Z ]{0,120}$/",$request->jobdescription)){
+                $insert[0]['jobdescription']=$request->jobdescription;
             }else{
-//                $status=false;
-                echo $insert[0]['jobdescriptiom']="";
+                $status=false;
+//                echo $insert[0]['jobdescription']="";
             }
-            if(isset($request->experience) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->experience)){
-                $insert[0]['experiance']=$request->experience;
+            if(isset($request->experience) && preg_match("/^[a-zA-Z0-9, ]{0,120}$/",$request->experience)){
+                $insert[0]['experience']=$request->experience;
             }else{
-//                $status=false;
-                echo $insert[0]['experiance']="";
+                $status=false;
+//                echo $insert[0]['experience']="";
             }
-            if(isset($request->responsibility) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->responsibility)){
+            if(isset($request->responsibility) && preg_match("/^[a-zA-Z0-9 ]{0,120}$/",$request->responsibility)){
                 $insert[0]['responsibility']=$request->responsibility;
             }else{
-//                $status=false;
-                echo $request->responsibility;
+                $status=false;
+//                echo $request->responsibility;
             }
             if(isset($request->jobpoststartingdate) && preg_match("/^[0-9-]{3,20}$/",$request->jobpoststartingdate)){
                 $jpsd=date("Y-m-d",strtotime($request->jobpoststartingdate));
                 $insert[0]['startdate']=$jpsd;
             }else{
-                echo $insert[0]['startdate']="";
+                $status=false;
+//                echo $insert[0]['startdate']="";
             }
             if(isset($request->jobpostendingdate) && preg_match("/^[0-9-]{3,20}$/",$request->jobpostendingdate)){
                 $jped=date("Y-m-d",strtotime($request->jobpostendingdate));
                 $insert[0]['enddate']=$jped;
             }else{
-                echo $insert[0]['enddate']="";
+                $status=false;
+//                echo $insert[0]['enddate']="";
             }
             if(isset($request->skillid) && is_numeric($request->skillid)){
                 $insert_skill[0]['skillid']=$request->skillid;
             }else{
-//                $status=false;
-                echo $insert_skill[0]['skillid']="";
+                $status=false;
+//                echo $insert_skill[0]['skillid']="";
             }
             if(isset($request->educationid) && is_numeric($request->educationid)){
                     $insert_qualification[0]['qualificationid']=$request->educationid;
             }else{
-//                $status=false;
-                echo $insert_qualification[0]['qualificationid']="";
+                $status=false;
+//                echo $insert_qualification[0]['qualificationid']="";
             }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
@@ -101,7 +103,7 @@ class JobPosting extends CI_Controller {
             }else{
                 $status=false;
             }
-            if($status){
+            if($status){ //multiple table insert
                 if(isset($request->txtid) && is_numeric($request->txtid)){
                     if($request->txtid>0){
                         $insert[0]['updatedby']=$this->session->login['userid'];
@@ -138,6 +140,7 @@ class JobPosting extends CI_Controller {
                         }else{
                             $data['message']="Insert failed.";
                             $data['status']=false;
+
                         }
                     }else{
                         $data['message']="Insufficient/Invalid data.";
@@ -208,13 +211,27 @@ class JobPosting extends CI_Controller {
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(17, null, $where);
+                $res = $this->Model_Db->select(48, null, $where);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(
                             'id' => $r->id,
-                            'gendername' => $r->gendername,
-                            'gendernshortame' => $r->gendernshortame,
+                            'companyid' => $r->companyid,
+                            'companyname' => $r->companyname,
+                            'postname' => $r->postname,
+                            'designationid' => $r->designationid,
+                            'designationname' => $r->designationname,
+                            'nov' => $r->nov,
+                            'location' => $r->localtion,
+                            'jobdescription' => $r->jobdescription,
+                            'experience' => $r->experiancename,
+                            'reponsibility' => $r->responsibility,
+                            'startdate' => $r->startdate,
+                            'enddate' => $r->enddate,
+                            'educationname'=>$r->educationname,
+                            'educationid'=>$r->qualificationid,
+                            'skillid'=>$r->skillid,
+                            'skill'=>$r->skill,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive
@@ -223,6 +240,29 @@ class JobPosting extends CI_Controller {
                 }
                 echo json_encode($data);
             }
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
+    public function loadJopPostingReport(){
+        try{
+            $data=array();
+            $last_id = "SELECT MAX(id) FROM tbl_job_posting";
+            $a = $this->Model_Db->query($last_id);
+            $b = $a[0]->max;
+//            $result = "select max(id) from tbl_job_posting";
+            $where ="id=$b";
+//            $lastId=$this->Model_Db->select(47, null,$where);
+//           $lastinserted_id = " SELECT * FROM tbl_job_posting WHERE id = @last_id";
+//            SELECT * FROM `table_name` WHERE id=(SELECT MAX(id) FROM `table_name`);
+//            $where="$maxid and isactive=true";
+            $res=$this->Model_Db->select(48,null,$where);
+//            print_r($res);
+            echo json_encode($res);
         }catch (Exception $e){
             $data['message']= "Message:".$e->getMessage();
             $data['status']=false;

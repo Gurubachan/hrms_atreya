@@ -9,27 +9,27 @@ $cname = $this->uri->segment(2);
                 <div class="box-header well">
                     <h2><i class="fa fa-angle-double-right "></i> Create Year</h2>
                     <div class="box-icon">
-                        <a href="#" class="btn btn-setting btn-round btn-default"><i
-                                    class="fa fa-cog"></i></a>
-                        <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                    class="fa fa-chevron-up"></i></a>
-                        <a href="#" class="btn btn-close btn-round btn-default"><i
-                                    class="fa fa-remove"></i></a>
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i class="fa fa-cog"></i></a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i class="fa fa-remove"></i></a>
                     </div>
                 </div>
                 <div class="box-content">
                     <br>
+
                     <form  class="" id="yearForm" autocomplete="off">
+                        <div class="col-sm-6" style="display: block; margin-left: auto;margin-right: auto">
                         <div class="form-group wow flash">
                             <input type="hidden" id="txtid" name="txtid" value="0">
                             <label for="yearname" class="control-label mb-1">Add New Year<span class="red">*</span></label>
-                            <input type="text" id="year" name="year" class="form-control" aria-required="true" aria-invalid="false" placeholder="Enter year.">
+                            <input type="text" id="year" name="year" class="form-control" pattern="[1-2]{1}[0-9]{3}" aria-required="true" aria-invalid="false" maxlength="4" minlength="4" placeholder="Enter year. i.e 1987,2019 etc">
                             <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
                         </div>
                         <br>
-                        <div class=" form-group text-right" style="margin-right: 20%;">
+                        <div class=" form-group text-right">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="submit" class="btn btn-primary btn-sm" id="createYear">Create</button>
+                        </div>
                         </div>
                     </form>
                     <br>
@@ -50,14 +50,10 @@ $cname = $this->uri->segment(2);
             <div class="box-inner">
                 <div class="box-header well">
                     <h2><i class="fa fa-angle-double-right "></i> Report</h2>
-
                     <div class="box-icon">
-                        <a href="#" class="btn btn-setting btn-round btn-default"><i
-                                    class="fa fa-cog"></i></a>
-                        <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                    class="fa fa-chevron-up"></i></a>
-                        <a href="#" class="btn btn-close btn-round btn-default"><i
-                                    class="fa fa-remove"></i></a>
+                        <a href="#" class="btn btn-setting btn-round btn-default"><i class="fa fa-cog"></i></a>
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i class="fa fa-chevron-up"></i></a>
+                        <a href="#" class="btn btn-close btn-round btn-default"><i class="fa fa-remove"></i></a>
                     </div>
                 </div>
                 <div class="box-content">
@@ -85,69 +81,4 @@ $cname = $this->uri->segment(2);
 <?php
 
 ?>
-<script>
-    $("#yearForm").submit(function(e){
-        e.preventDefault();
-        var frm = $("#yearForm").serialize();
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('Year/action/')?>",
-            data:frm,
-            success:function(data){
-               if(data!=false){
-                   if($('#createYear').html()=='Update'){
-                       window.location.reload();
-                   }else{
-                        $('#yearname').val('');
-                       reportFunction(1);
-                   }
-               }
-            }
-        });
-    });
-    function loadAjaxForReport(id){
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('Year/report_year')?>",
-            data:{checkparams:id},
-            success:function(data){
-                if(data!=false){
-                    jsondata = JSON.parse(data);
-                    var j=0;
-                    var z = jsondata.length;
-                    // alert(z);
-                    var html = "";
-                    var isactive='';
-                    for(var i=0; i<z; i++){
-                        j++;
-                        var checkId = jsondata[i].id;
-                        var checkIsactive = jsondata[i].isactive;
-                        var editisactive = JSON.stringify(checkIsactive);
-                        var year = jsondata[i].year;
-                        var updatedid = '"<?= $cname ?>"';
-                        var urlid = '"../Common/record_active_deactive"';
-                        if(checkIsactive=='t'){
-                            isactive= "<button id='action"+checkId+"' onclick='editIsactive(1,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-on fa-2x'></i></button>";
-                        }else{
-                            isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
-                        }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].year+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditYear(" +checkId+ "," +year+ "," +editisactive+ ")'>Edit</button></td></tr>");
-                    }
-                    $("#load_year").html(html);
-                }
-            }
-        });
-     }
-    function reportEditYear(id,year,isactive) {
-        if(isactive=='t'){
-            var isactiveval=1;
-        }else{
-            isactiveval=0;
-        }
-        $('#txtid').val(id);
-        $('#year').val(year);
-        $('#isactive').val(isactiveval);
-        $('#year').focus();
-        $("#createYear").html('Update');
-    }
-</script>
+

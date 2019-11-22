@@ -15,6 +15,11 @@
                         </div>
                     </div>
                     <div class="box-content">
+                        <ul class="main-menu">
+                            <li onclick="mainDashboard()"><i class="fa fa-home "></i> &nbsp; Home</li>
+                            <li onclick="formDashboard()"><i class="fa fa-link "></i> &nbsp; Dashboard</li>
+                        </ul>
+                        <hr>
                         <ul class="nav nav-pills nav-stacked main-menu">
                             <li onclick="loadEmployeeType()"><i class="fa fa-check-square "></i> &nbsp; Employee Type</li>
                             <li onclick="loadNewEmployee()"><i class="fa fa-check-square "></i> &nbsp; New Employee</li>

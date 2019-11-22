@@ -49,16 +49,24 @@ class Employee extends CI_Controller {
                             $data['status']=false;
                         }
                     }else if($request->txtid==0){
-                        $insert[0]['entryby']=$this->session->login['userid'];
-                        $insert[0]['createdat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->insert(15,$insert);
-                        if($res!=false){
-                            $data['message']="Insert successful.";
-                            $data['status']=true;
-                        }else{
-                            $data['message']="Insert failed.";
-                            $data['status']=false;
-                        }
+                       $where="typename='$request->typename'";
+                       $res=$this->Model_Db->select(15,null,$where);
+                       if($res!=false){
+                           $data['message']="Duplicate entry";
+                           $data['status']="false";
+                           $data['flag']=0;
+                       }else{
+                           $insert[0]['entryby']=$this->session->login['userid'];
+                           $insert[0]['createdat']=date("Y-m-d H:i:s");
+                           $res=$this->Model_Db->insert(15,$insert);
+                           if($res!=false){
+                               $data['message']="Insert successful.";
+                               $data['status']=true;
+                           }else{
+                               $data['message']="Insert failed.";
+                               $data['status']=false;
+                           }
+                       }
                     }else{
                         $data['message']="Insufficient/Invalid data.";
                         $data['status']=false;
@@ -345,7 +353,8 @@ class Employee extends CI_Controller {
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(29,null,$where);
+            $orderby = "fname";
+            $res=$this->Model_Db->select(29,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -524,26 +533,26 @@ class Employee extends CI_Controller {
                 $insert[0]['empid']=$request->employeename;
             }else{
                 $status=false;
-               echo $request->employeename;
+//               echo $request->employeename;
             }
             if(isset($request->employeebankname) && is_numeric($request->employeebankname)){
                 $insert[0]['bankid']=$request->employeebankname;
             }else{
                 $status=false;
-                echo $request->employeebankname;
+//                echo $request->employeebankname;
             }
             if(isset($request->bankaccountnumber) && is_numeric($request->bankaccountnumber)){
                 $insert[0]['acno']=$request->bankaccountnumber;
             }else{
                 $status=false;
-                echo $request->bankaccountnumber;
+//                echo $request->bankaccountnumber;
             }
             $bankifscnumber=strtoupper($request->bankifscnumber);
             if(isset($bankifscnumber) && preg_match("/^[A-Z0-9]{12}$/",$bankifscnumber)){
                 $insert[0]['ifsccode']=$bankifscnumber;
             }else{
                 $status=false;
-                echo $bankifscnumber;
+//                echo $bankifscnumber;
             }
             if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
                 if($request->isactive==1){
@@ -570,15 +579,23 @@ class Employee extends CI_Controller {
                             $data['status']=false;
                         }
                     }else if($request->txtid==0){
-                        $insert[0]['entryby']=$this->session->login['userid'];
-                        $insert[0]['createdat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->insert(35,$insert);
+                        $where="empid=$request->employeename";
+                        $res=$this->Model_Db->select(35,null,$where);
                         if($res!=false){
-                            $data['message']="Insert successful.";
-                            $data['status']=true;
-                        }else{
-                            $data['message']="Insert failed.";
+                            $data['message']="Duplicate entry.";
                             $data['status']=false;
+                            $data['flag']=0;
+                        }else{
+                            $insert[0]['entryby']=$this->session->login['userid'];
+                            $insert[0]['createdat']=date("Y-m-d H:i:s");
+                            $res=$this->Model_Db->insert(35,$insert);
+                            if($res!=false){
+                                $data['message']="Insert successful.";
+                                $data['status']=true;
+                            }else{
+                                $data['message']="Insert failed.";
+                                $data['status']=false;
+                            }
                         }
                     }else{
                         $data['message']="Insufficient/Invalid data.";
@@ -630,13 +647,17 @@ class Employee extends CI_Controller {
                         exit();
                 }
             }
-            $res=$this->Model_Db->select(35,null,$where);
+            $res=$this->Model_Db->select(36,null,$where);
             if($res!=false){
                 foreach ($res as $r){
                     $data[]=array(
                         'id'=>$r->id,
                         'empid'=>$r->empid,
+                        'fname'=>$r->fname,
+                        'mname'=>$r->mname,
+                        'lname'=>$r->lname,
                         'bankid'=>$r->bankid,
+                        'bankname'=>$r->bankname,
                         'acno'=>$r->acno,
                         'ifsccode'=>$r->ifsccode,
                         'creationdate'=>$r->createdat,

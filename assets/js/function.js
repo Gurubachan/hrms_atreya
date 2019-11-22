@@ -349,3 +349,140 @@ function load_skill(){
         }
     });
 }
+function load_experiencetype(){
+    $.ajax({
+        type:'post',
+        url: "../ExperienceType/load_experience_type",
+        crossDomain:true,
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#experiencetypeid").html(data);
+            }
+        }
+    });
+}
+function loadOnlyCompany(){
+    $.ajax({
+        type:'post',
+        url: "../Company/load_company/1",
+        crossDomain:true,
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#companyid").html(data);
+            }
+        }
+    });
+}
+function load_religion() {
+    $.ajax({
+        type: 'post',
+        url: "../Religion/load_religion",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#religionid").html(data);
+            }
+        }
+    });
+}
+function load_communicationType() {
+    $.ajax({
+        type: 'post',
+        url: "../CommunicationType/load_communication_type",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#communicationtypeid").html(data);
+            }
+        }
+    });
+}
+function load_emp(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Employee/load_employee",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+function load_attendance_type(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Attendance/load_attendance_type",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+function load_resourcetype(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Resource/load_resourcetype",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+function load_resourcecompanyname(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Resource/load_resourcecompany",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+function load_assurancetype(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Resource/load_assurance",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}function load_assuranceperiodtype(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Resource/load_periodtype",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+$('input[type=text],input[type=email],input[type=password],input[type=number]').keypress(function() {
+    $(this).css("border-color","black");
+});
+// $('#dob').pignoseCalendar({
+//     format:"dd-mm-yyyy"
+// });
+
+

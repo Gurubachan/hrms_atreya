@@ -16,6 +16,7 @@ $cname = $this->uri->segment(2);
                 </div>
                 <div class="box-content">
                     <form  class="" id="userTypeForm" name="userTypeForm" autocomplete="off">
+                        <div class="col-sm-6" style="display: block; margin-left: auto;margin-right: auto">
                         <div class="form-group">
                             <input type="hidden" id="txtid" name="txtid" value="0">
                             <label for="" class="control-label mb-1">Name</label>
@@ -29,9 +30,10 @@ $cname = $this->uri->segment(2);
                             <small class="errormsg_usertypeshortname"></small>
                         </div>
                         <br>
-                        <div class="form-actions form-group text-right" style="margin-right: 20%;">
+                        <div class="form-actions form-group text-right">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="submit" class="btn btn-primary btn-sm" id="createUserType">Create</button>
+                        </div>
                         </div>
                     </form>
                     <br>

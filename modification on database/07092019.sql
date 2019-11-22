@@ -152,7 +152,7 @@ create table tbl_applicant_work_experiance
 	etid smallint not null /* experiance type id*/,
 	providedby varchar(30) ,
 	startdate date,
-	enddate date check ( startdate > enddate :: date ),
+	enddate date check ( startdate < enddate :: date ),
 	role varchar(20) ,
 	remark varchar(255),
 	entryby int not null ,

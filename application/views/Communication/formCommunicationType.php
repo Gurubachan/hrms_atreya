@@ -17,6 +17,7 @@ $cname = $this->uri->segment(2);
                 <div class="box-content">
                     <form  class="" id="communicationTypeForm" autocomplete="off">
                         <br>
+                        <div class="col-sm-6" style="display: block; margin-left: auto;margin-right: auto">
                         <div class="form-group">
                             <input type="hidden" id="txtid" name="txtid" value="0">
                             <label for="statename" class="control-label mb-1">Type Name<span class="red">*</span></label>
@@ -25,9 +26,10 @@ $cname = $this->uri->segment(2);
                             <small class="errormsg_communicationtypename"></small>
                         </div>
                         <br>
-                        <div class="text-right form-group" style="margin-right: 20%;">
+                        <div class="text-right form-group">
                             <button type="reset" class="btn btn-danger btn-sm">Reset</button>
                             <button type="submit" class="btn btn-primary btn-sm" id="createCommunicationType">Create</button>
+                        </div>
                         </div>
                     </form>
                     <br>

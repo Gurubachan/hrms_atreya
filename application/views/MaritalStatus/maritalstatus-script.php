@@ -13,12 +13,21 @@ $cname = $this->uri->segment(2);
             data:frm,
             success:function(data){
                 if(data!=false){
-                    if($("#createMaritalStatus").html()=="Update"){
-                        window.location.reload();
-                    }else {
-                        $('#maritalStatusForm').trigger("reset");
-                        $(".notice").show();
-                        reportFunction(1);
+                    var jsondata = JSON.parse(data);
+                    if(jsondata.flag==0){
+                        duplicate_entries();
+                    }else{
+                        if($('#createMaritalStatus').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#maritalStatusForm").trigger("reset");
+                        }else if($('#createMaritalStatus').html()=='Update'){
+                            $('#createMaritalStatus').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#maritalStatusForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }else{
                     console.log(data);
@@ -54,7 +63,7 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].statusname+"</td><td>"+ jsondata[i].statusnshortame+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditStatus(" +checkId+ "," +strmaritalstatus+ "," +strmaritalstatusShortname+ "," +editisactive+ ")'>Edit</button></td></tr>");
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].statusname+"</td><td>"+ jsondata[i].statusnshortame+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditStatus(" +checkId+ "," +strmaritalstatus+ "," +strmaritalstatusShortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_status_names").html(html);
                 }

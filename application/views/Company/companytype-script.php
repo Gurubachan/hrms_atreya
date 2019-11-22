@@ -17,12 +17,22 @@ $cname = $this->uri->segment(2);
             data:frm,
             success:function(data){
                 if(data!=false){
-                    // if(txtid > 0){
-                    //     txtid=0;
-                        $("#createCompanyType").html('Create');
-                    // }
-                    $("#companyTypeForm").trigger("reset");
-                    reportFunction(1);
+                    var jsondata = JSON.parse(data);
+                    if(jsondata.flag==0){
+                        duplicate_entries();
+                    }else{
+                        if($('#createCompanyType').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#companyTypeForm").trigger("reset");
+                        }else if($('#createCompanyType').html()=='Update'){
+                            $('#createCompanyType').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#companyTypeForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
+                    }
                 }else{
                     console.log(data);
                 }
@@ -59,7 +69,7 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].typename+"</td><td>"+ jsondata[i].typeshortname+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditCompanyType(" +checkId+ "," +strcompanytype+ "," +strcompanytypeshortname+ "," +editisactive+ ")'>Edit</button></td></tr>");
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].typename+"</td><td>"+ jsondata[i].typeshortname+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditCompanyType(" +checkId+ "," +strcompanytype+ "," +strcompanytypeshortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_company_type").html(html);
                 }

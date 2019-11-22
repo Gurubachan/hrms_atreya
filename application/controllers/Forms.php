@@ -37,9 +37,23 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
+    public function attendanceSidebar(){
+        try{
+            $this->load->view('Attendance/attendanceSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function resourceSidebar(){
+        try{
+            $this->load->view('Resource/resourceSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
     public function employeeDashboardMenu(){
         try{
-            $this->load->view('dashboard/employeeDashboardMenu');
+            $this->load->view('Employee/employeeDashboardMenu');
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
         }
@@ -58,6 +72,7 @@ class Forms extends CI_Controller {
                 $this->navbar();
                 $this->load->view('dashboard/formDashboard');
                 $this->footer();
+                $this->load->view('dashboard/dashboard-script');
         }else{
             redirect('welcome/');
         }
@@ -222,7 +237,6 @@ class Forms extends CI_Controller {
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
         }
-
     }
     public function formYear(){
         try{
@@ -232,6 +246,7 @@ class Forms extends CI_Controller {
             $this->sidebar();
             $this->load->view('Year/formYear');
             $this->footer();
+            $this->load->view('Year/year-script');
             }else{
                 redirect('welcome/');
             }
@@ -264,6 +279,7 @@ class Forms extends CI_Controller {
             $this->employeeDashboardMenu();
             $this->load->view('dashboard/employeeDashboard');
             $this->footer();
+            $this->load->view('Employee/employeedashboard-script');
             }else{
                 redirect('welcome/');
             }
@@ -383,15 +399,14 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
-    public function formRecruitment(){
+    public function formRecruitmentDashboard(){
         try{
             if($this->session->login['userid']) {
                 $this->header();
                 $this->navbar();
                 $this->recruitmentSidebar();
-                $this->load->view('Recruitment/formRecruitment');
+                $this->load->view('dashboard/recruitmentDashboard');
                 $this->footer();
-                $this->load->view('Recruitment/recruitment-script');
             }else{
                 redirect('welcome/');
             }
@@ -485,6 +500,292 @@ class Forms extends CI_Controller {
             }
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formRecruitment(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->recruitmentSidebar();
+                $this->load->view('Recruitment/formRecruitment');
+                $this->footer();
+                $this->load->view('Recruitment/recruitment-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+
+    public function loadAttendanceDashboard(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->attendanceSidebar();
+                $this->load->view('Attendance/attendanceDashboard');
+                $this->footer();
+                $this->load->view('Attendance/attendance-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formAttendance(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->attendanceSidebar();
+                $this->load->view('Attendance/formAttencance');
+                $this->footer();
+                $this->load->view('Attendance/attendance-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formAttendanceType(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->attendanceSidebar();
+                $this->load->view('Attendance/formAttendanceType');
+                $this->footer();
+                $this->load->view('Attendance/formAttendancetype-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formAttendanceSheet(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->attendanceSidebar();
+                $this->load->view('Attendance/formAttendanceSheet');
+                $this->footer();
+                $this->load->view('Attendance/formAttendanceSheet-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function loadResourceDashboard(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->resourceSidebar();
+                $this->load->view('Resource/resourceDashboard');
+                $this->footer();
+                $this->load->view('Resource/Resource/formResource-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formResourceType(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->resourceSidebar();
+                $this->load->view('Resource/Resourcetype/formResourceType');
+                $this->footer();
+                $this->load->view('Resource/Resourcetype/formResourcetype-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formCompanies(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->resourceSidebar();
+                $this->load->view('Resource/Company/formCompanies');
+                $this->footer();
+                $this->load->view('Resource/Company/formCompanies-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formAssurance(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->resourceSidebar();
+                $this->load->view('Resource/Assurance/formAssurance');
+                $this->footer();
+                $this->load->view('Resource/Assurance/formAssurance-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formResource(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->resourceSidebar();
+                $this->load->view('Resource/Resource/formResource');
+                $this->footer();
+                $this->load->view('Resource/Resource/formResource-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formPeriodtype(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->resourceSidebar();
+                $this->load->view('Resource/Periodtype/formPeriodtype');
+                $this->footer();
+                $this->load->view('Resource/Periodtype/formPeriodtype-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function iCardSidebar(){
+        try{
+            $this->load->view('Idcard/idcardSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formIdCardDashboard(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->iCardSidebar();
+                $this->load->view('Idcard/IdCardDashboard/idcardDashboard');
+                $this->footer();
+                $this->load->view('Idcard/IdCardDashboard/idcarddashboard-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formIdCardGenerate(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->iCardSidebar();
+                $this->load->view('Idcard/IdCardGenerate/formIdcardGenerate');
+                $this->footer();
+                $this->load->view('Idcard/IdCardGenerate/idcardgenerate-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formIdCardIssued(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->iCardSidebar();
+                $this->load->view('Idcard/IdCardIssued/formIdcardIssued');
+                $this->footer();
+                $this->load->view('Idcard/IdCardIssued/idcardissued-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formIdCardFormate(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->iCardSidebar();
+                $this->load->view('Idcard/IdCardFormat/formIdcardFormat');
+                $this->footer();
+                $this->load->view('Idcard/IdCardFormat/idcardformat-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function load_dashboard_forms(){
+        try{
+            if($this->session->login['userid']){
+                $this->load->view('dashboard/dashBoardForms');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function load_dashboard_reports(){
+        try{
+            if($this->session->login['userid']){
+                $this->load->view('dashboard/dashBoardReports');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function employeeReports(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+//                $this->resourceSidebar();
+                $this->load->view('Employee/Reports/employeeReportsDetails');
+                $this->footer();
+                $this->load->view('Employee/Reports/employeeReport-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:".$e->getMessage();
         }
     }
 }

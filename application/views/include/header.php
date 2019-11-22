@@ -33,12 +33,15 @@ $cname = $this->uri->segment(2);
     <link href="<?= base_url('assets/vendor/select2/select2.min.css')?>" rel="stylesheet" media="all">
     <link href="<?= base_url('assets/vendor/perfect-scrollbar/perfect-scrollbar.css')?>" rel="stylesheet" media="all">
     <link href="<?= base_url('assets/vendor/vector-map/jqvmap.min.css')?>" rel="stylesheet" media="all">
-
-
+    <link href="<?= base_url('assets/css/datatables.min.css')?>" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets/css/DataTables-1.10.20/dataTables.bootstrap4.min.css')?>" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets/css/jquery-ui.min.css')?>" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets/css/Chart.min.css')?>" rel="stylesheet" media="all">
+    <!-- calender-->
     <!-- Main CSS-->
-    <link href="<?= base_url('assets/css/theme.css')?>" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets/css/theme.css')?>" rel="stylesheet" media="all" >
     <title>HRMS</title>
 </head>
-<body class="animsition">
+<body class="animsition" id="mainContainer">
 <div class="col-sm-12">
 <!--<body>-->
