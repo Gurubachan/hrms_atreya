@@ -656,10 +656,9 @@ class Resource extends CI_Controller
                 $status = false;
                 echo $request->serialnumber;
             }
-
             if (isset($request->purchasingdate) && preg_match("/^[0-9-]{10}$/", $request->purchasingdate)) {
-                $pdate = date("Y-m-d",strtotime($request->purchasingdate));
-                $insert[0]['purchagingdate'] = $pdate;
+//                $pdate = date("Y-m-d",strtotime($request->purchasingdate));
+                $insert[0]['purchagingdate'] = $request->purchasingdate;
             } else {
                 $status = false;
                 echo $request->purchasingdate;
@@ -695,8 +694,8 @@ class Resource extends CI_Controller
                 echo $request->assuranceperiodtype;
             }
             if (isset($request->expiringdate) && preg_match("/^[0-9-]{10}$/", $request->expiringdate)) {
-                $edate = date("Y-m-d",strtotime($request->purchasingdate));
-                $insert[0]['assuranceexpired'] = $edate;
+//                $edate = date("Y-m-d",strtotime($request->purchasingdate));
+                $insert[0]['assuranceexpired'] = $request->expiringdate;
             } else {
                 $status = false;
                 echo $request->purchasingdate;

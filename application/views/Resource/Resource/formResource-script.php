@@ -11,13 +11,44 @@ $cname = $this->uri->segment(2);
     });
     // $('#expiringdate').pignoseCalendar({
     // });
-        $('#expiringdate').pignoseCalendar({
-            // theme:'dark'
-            format:"DD-MM-YYYY"
-        });
-        $('#purchasingdate').pignoseCalendar({
-            format:"DD-MM-YYYY"
-        });
+    //     $('#expiringdate').datepicker();
+    //     $('#purchasingdate').datepicker();
+    var dateFormat = "dd-mm-yy",
+        from = $( "#purchasingdate" )
+            .datepicker({
+                //defaultDate: "+1w",
+                dateFormat:'dd-mm-yy',
+                changeMonth: true,
+                changeYear:true,
+                numberOfMonths: 1,
+                showAnim: "slideDown"
+            })
+            .on( "change", function() {
+                to.datepicker( "option", "minDate", getDate( this ) );
+            }),
+        to = $( "#expiringdate" ).datepicker({
+            //defaultDate: "+1w",
+            dateFormat:'dd-mm-yy',
+            changeMonth: true,
+            changeYear:true,
+            numberOfMonths: 1,
+            showAnim: "slideDown"
+        })
+            .on( "change", function() {
+                from.datepicker( "option", "maxDate", getDate( this ) );
+            });
+
+    function getDate( element ) {
+        var date;
+        try {
+            date = $.datepicker.parseDate( dateFormat, element.value );
+        } catch( error ) {
+            date = null;
+        }
+
+        return date;
+    }
+    // });
     $("#resourceform").submit(function(e){
         e.preventDefault();
         var frm = $("#resourceform").serialize();
@@ -44,7 +75,6 @@ $cname = $this->uri->segment(2);
         });
     });
     function loadAjaxForReport(data){
-
         $.ajax({
             type:'post',
             url:"<?= base_url('Resource/report_resource')?>",
@@ -89,7 +119,7 @@ $cname = $this->uri->segment(2);
         txtid=id;
         $('#txtid').val(id);
         $('#attendancetypename').val(strattendancetype);
-        $('#isactive').val(isactive);
+        $('#isactive').val(isactiveval);
         $('#attendancetypename').focus();
         $("#createResource").html('Update');
     }

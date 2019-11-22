@@ -17,11 +17,18 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
+                        if($('#btnAssurance').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#assuranceForm").trigger("reset");
+                        }else if($('#btnAssurance').html()=='Update'){
+                            $('#btnAssurance').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#assuranceForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
-                        $("#btnAssurance").html('Create');
-                    $("#assuranceForm").trigger("reset");
-                    reportFunction(1);
                 }else{
                     console.log(data);
                 }
@@ -74,7 +81,7 @@ $cname = $this->uri->segment(2);
         txtid=id;
         $('#txtid').val(id);
         $('#assurancename').val(strassurance);
-        $('#isactive').val(isactive);
+        $('#isactive').val(isactiveval);
         $('#assurancename').focus();
         $("#btnAssurance").html('Update');
     }

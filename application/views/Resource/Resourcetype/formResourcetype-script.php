@@ -17,11 +17,20 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
+                        if($('#btnResourceType').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#resourceTypeForm").trigger("reset");
+                        }else{
+                            if($('#btnResourceType').html()=='Update'){
+                                $('#btnResourceType').html('Create');
+                                successfully_updates();
+                                reportFunction(2);
+                                $("#resourceTypeForm").trigger("reset");
+                                $('#txtid').val(0);
+                            }
+                        }
                     }
-                        $("#btnResourceType").html('Create');
-                    $("#resourceTypeForm").trigger("reset");
-                    reportFunction(1);
                 }else{
                     console.log(data);
                 }
@@ -76,7 +85,7 @@ $cname = $this->uri->segment(2);
         $('#txtid').val(id);
         $('#resourcetype').val(strresorucetype);
         $('#resourceTypeShortname').val(strresoruceshorttype);
-        $('#isactive').val(isactive);
+        $('#isactive').val(isactiveval);
         $('#resourcetype').focus();
         $("#btnResourceType").html('Update');
     }

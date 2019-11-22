@@ -67,3 +67,9 @@ function successfull_entries() {
     toastr.success("Record Inserted Successfully");
     toastr.options.showMethod = 'slideDown';
 }
+function successfully_updates() {
+    toastr.options.rtl = true;
+    toastr.options.positionClass = 'toast-bottom-right';
+    toastr.success("Record Updated Successfully");
+    toastr.options.showMethod = 'slideDown';
+}

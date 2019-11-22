@@ -279,6 +279,7 @@ class Forms extends CI_Controller {
             $this->employeeDashboardMenu();
             $this->load->view('dashboard/employeeDashboard');
             $this->footer();
+            $this->load->view('Employee/employeedashboard-script');
             }else{
                 redirect('welcome/');
             }
@@ -769,6 +770,22 @@ class Forms extends CI_Controller {
             }
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
+        }
+    }
+    public function employeeReports(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+//                $this->resourceSidebar();
+                $this->load->view('Employee/Reports/employeeReportsDetails');
+                $this->footer();
+                $this->load->view('Employee/Reports/employeeReport-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:".$e->getMessage();
         }
     }
 }

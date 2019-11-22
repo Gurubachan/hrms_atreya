@@ -21,14 +21,17 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
-                    }
-                    if($("#createDepartment").html()=='Update'){
-                        window.location.reload();
-                    }else{
-                        reportFunction(1);
-                        $('#departmentname').val("");
-                        $('#departmentShortname').val("");
+                        if($('#createDepartment').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#departmentForm").trigger("reset");
+                        }else if($('#createDepartment').html()=='Update'){
+                            $('#createDepartment').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#departmentForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }else{
                     console.log(data);

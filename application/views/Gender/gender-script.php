@@ -4,8 +4,6 @@ $cname = $this->uri->segment(2);
 ?>
 <script>
     $(document).ready(function() {
-        toastr.options.timeOut = 1500; // 1.5s
-        toastr.info('Page Loaded!');
     });
     $("#genderForm").submit(function(e){
         e.preventDefault();
@@ -21,17 +19,17 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
-                    }
-                    if($("#createGender").html()=="Update"){
-                        window.location.reload();
-                    }else {
-                        // var toast = new iqwerty.toast.Toast();
-                        // toast.setText('This is a basic toast message!')
-                        //     .setDuration(5000)
-                        //     .show();
-                        $('#genderForm').trigger("reset");
-                        reportFunction(1);
+                        if($('#createGender').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#genderForm").trigger("reset");
+                        }else if($('#createGender').html()=='Update'){
+                            $('#createGender').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#genderForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }else{
                     console.log(data);

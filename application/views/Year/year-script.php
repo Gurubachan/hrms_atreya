@@ -16,13 +16,17 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
-                    }
-                    if($('#createYear').html()=='Update'){
-                        window.location.reload();
-                    }else{
-                        $('#yearForm').trigger('reset');
-                        reportFunction(1);
+                        if($('#createYear').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#yearForm").trigger("reset");
+                        }else if($('#createYear').html()=='Update'){
+                            $('#createYear').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#yearForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }
             }

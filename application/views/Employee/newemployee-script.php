@@ -16,9 +16,9 @@ $cname = $this->uri->segment(2);
     $('#stateid').change(function () {
         load_district($(this).val());
     });
-    // $('#dob').pignoseCalendar();
-    // $('#doj').pignoseCalendar();
-    // $('#dol').pignoseCalendar();
+    $('#dob').datepicker();
+    $('#doj').datepicker();
+    $('#dol').datepicker();
     $("#newEmployeeForm").submit(function(e){
         $('#toggle_new_employee').show();
         e.preventDefault();

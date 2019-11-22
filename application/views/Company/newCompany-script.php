@@ -6,6 +6,9 @@ $cname = $this->uri->segment(2);
     $(function () {
         load_company_type();
         load_state();
+        $("#establishedon").datepicker({
+            format:"dd/mm/yyyy"
+        });
     });
     $('#stateid').change(function () {
        load_district($(this).val());

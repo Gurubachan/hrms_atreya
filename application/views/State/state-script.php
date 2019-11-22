@@ -23,17 +23,18 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
+                        if($('#createState').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#stateForm").trigger("reset");
+                        }else if($('#createState').html()=='Update'){
+                            $('#createState').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#stateForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
-                    // $("#stateForm").trigger('reset');
-                    if($("#createState").html()=='Update'){
-                        window.location.reload();
-                        $("#statename").val("");
-                    }else{
-                        $("#stateForm").trigger("reset");
-                        reportFunction(1);
-                    }
-
                 }else{
                     console.log(data);
                 }

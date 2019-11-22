@@ -17,17 +17,18 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
-                        reportFunction(1);
+                        if($('#btnCompanies').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#resourceCompanyForm").trigger("reset");
+                        }else if($('#btnCompanies').html()=='Update'){
+                            $('#btnCompanies').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#resourceCompanyForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
-                        // $("#btnCompanies").html('Create');
-                    // $("#resourceCompanyForm").trigger("reset");
-                    // if($('#btnCompanies').html()=='Update'){
-                    //     window.location.reload();
-                    // }else{
-                    //     $('#resourceCompanyForm').trigger('reset');
-                    //     reportFunction(1);
-                    // }
                 }else{
                     console.log(data);
                 }
@@ -83,7 +84,7 @@ $cname = $this->uri->segment(2);
         $('#txtid').val(id);
         $('#resourcecompanyname').val(strresourcecompanyname);
         $('#resourcecompanyshortname').val(strresourcecompanyshortname);
-        $('#isactive').val(isactive);
+        $('#isactive').val(isactiveval);
         $('#attendancetypename').focus();
         $("#btnCompanies").html('Update');
     }

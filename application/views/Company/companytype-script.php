@@ -21,14 +21,18 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
+                        if($('#createCompanyType').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#companyTypeForm").trigger("reset");
+                        }else if($('#createCompanyType').html()=='Update'){
+                            $('#createCompanyType').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#companyTypeForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
-                    // if(txtid > 0){
-                    //     txtid=0;
-                        $("#createCompanyType").html('Create');
-                    // }
-                    $("#companyTypeForm").trigger("reset");
-                    reportFunction(1);
                 }else{
                     console.log(data);
                 }

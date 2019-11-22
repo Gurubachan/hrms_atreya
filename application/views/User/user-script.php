@@ -6,6 +6,7 @@ $cname = $this->uri->segment(2);
     $(function () {
         load_user_type();
         load_userid();
+        $( "#dob" ).datepicker();
     });
     function load_user_type(){
         $.ajax({

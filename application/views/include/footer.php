@@ -49,6 +49,8 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <script type="text/javascript" src="<?= base_url('assets/js/datatables.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/DataTables-1.10.20/jquery.dataTables.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/DataTables-1.10.20/dataTables.bootstrap4.min.js')?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/jquery-ui.min.js')?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/Chart.min.js')?>"></script>
 
    <script> function loadCompany() {
         window.location.href="<?= base_url('Forms/companyDashboard')?>";
@@ -149,7 +151,16 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     function loadIDcardFormat() {
         window.location.href="<?= base_url('Forms/formIdCardFormate')?>";
     }
+    function employee_details_reports(){
+        window.location.href="<?= base_url('Forms/employeeReports')?>";
+   }
+       let myVar = setInterval(myTimer, 1000);
 
+       function myTimer() {
+           let d = new Date();
+           let t = d.toLocaleTimeString();
+           document.getElementById("current_time").innerHTML = t;
+       }
 </script>
 </div>
 </div>

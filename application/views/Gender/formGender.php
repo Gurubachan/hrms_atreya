@@ -33,6 +33,7 @@ $cname = $this->uri->segment(2);
                                 <input type="text" id="genderShortname" name="genderShortname" class="form-control" aria-required="true" aria-invalid="false" onclick="charachters_validate('genderShortname')" minlength="2" maxlength="5" required placeholder="Enter shortname">
                                 <small class="errormsg_genderShortname"></small>
                             </div>
+
                             <br>
                             <div class="form-actions form-group text-right">
                                 <button type="reset" class="btn btn-danger btn-sm">Reset</button>
@@ -49,6 +50,8 @@ $cname = $this->uri->segment(2);
                             <button type="button" class="btn  btn-sm" onclick="reportFunction(4)">Inactive Entries</button>
                             <button type="button" class="btn btn-sm" onclick="reportFunction(5)">Details View</button>
                         </form>
+                        <br>
+
                     </div>
                 </div>
             </div>

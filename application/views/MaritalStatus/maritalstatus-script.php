@@ -17,14 +17,17 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
-                    }
-                    if($("#createMaritalStatus").html()=="Update"){
-                        window.location.reload();
-                    }else {
-                        $('#maritalStatusForm').trigger("reset");
-                        $(".notice").show();
-                        reportFunction(1);
+                        if($('#createMaritalStatus').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#maritalStatusForm").trigger("reset");
+                        }else if($('#createMaritalStatus').html()=='Update'){
+                            $('#createMaritalStatus').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#maritalStatusForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }else{
                     console.log(data);

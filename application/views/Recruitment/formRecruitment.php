@@ -45,7 +45,7 @@ $cname = $this->uri->segment(2);
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="employeedob" class="control-label mb-1">Date of Birth<span style="color:red;">*</span></label>
-                                            <input id="dob" name="dob" type="date" class="form-control" placeholder="dd-mm-yyyy" required>
+                                            <input id="dob" name="dob" type="text" class="form-control" placeholder="dd-mm-yyyy" required>
                                         </div>
                                     </div>
 
@@ -287,13 +287,13 @@ $cname = $this->uri->segment(2);
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="" class="control-label mb-1">Date of Joining<span style="color:red;">*</span></label>
-                                            <input type="date" id="doj" name="doj" minlength="10" maxlength="10" class="form-control" required>
+                                            <input type="text" id="doj" name="doj" minlength="10" maxlength="10" class="form-control" required placeholder="dd/mm/yyyy">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="employeedoj" class="control-label mb-1">Date of Leaving</label>
-                                            <input type="date" id="dol" name="dol" minlength="10" maxlength="10" class="form-control">
+                                            <input type="text" id="dol" name="dol" minlength="10" maxlength="10" class="form-control" placeholder="dd/mm/yyyy">
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
@@ -386,5 +386,3 @@ $cname = $this->uri->segment(2);
         </div>
     </div>
 </div>
-
-

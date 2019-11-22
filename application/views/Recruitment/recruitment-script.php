@@ -12,6 +12,9 @@ $cname = $this->uri->segment(2);
         load_state();
         load_communicationType();
         load_experiencetype();
+        $("#dob").datepicker();
+        $("#doj").datepicker();
+        $("#dol").datepicker();
     });
     $('#stateid').change(function () {
         load_district($(this).val());
@@ -84,7 +87,6 @@ $cname = $this->uri->segment(2);
         }
     });
     $("#applicantAddressDetailsForm").submit(function(e){
-
         e.preventDefault();
         var frm = $("#applicantAddressDetailsForm").serialize()+'&'+$.param({ 'txtid': txtid });
         // $("#txtid").val(txtid);
@@ -112,7 +114,6 @@ $cname = $this->uri->segment(2);
                                 $('#applicantBasicDetailsForm').hide();
                                 $('#applicantAddressDetailsForm').hide();
                                 $('#applicantEducationalDetailsForm').show();
-
                             }
                         }else{
                                 if(jsondata.token == 10){
@@ -125,7 +126,6 @@ $cname = $this->uri->segment(2);
                                     $('#pincode').focus();
                                 }
                             }
-
                     } else {
                         console.log(data);
                     }

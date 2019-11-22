@@ -16077,9 +16077,11 @@ ul.github-buttons li {
     border: 1px solid #e0e0e0;
     padding: 10px;
 }
-/*.d-icon:hover{*/
-/*    color:#c82333;*/
-/*}*/
+.d-icon .fa{
+    color:#11998e;
+    /*transition-duration: 200ms;*/
+    /*transform: scale(1,2);*/
+}
 input[type="file"]{
     border: none;
     padding: 2px;

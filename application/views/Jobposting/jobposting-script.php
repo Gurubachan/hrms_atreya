@@ -10,13 +10,13 @@ $cname = $this->uri->segment(2);
         load_skill();
         // $("#educationid").select2();
         // load_experience();
-
-
+        $("#jobpoststartingdate").datepicker();
+        $("#jobpostendingdate").datepicker();
     });
+
     $("#companytype").change(function () {
         load_company();
     });
-
     $("#newJobPostingForm").submit(function(e){
         e.preventDefault();
         var starttime = new Date($("#jobpoststartingdate").val());

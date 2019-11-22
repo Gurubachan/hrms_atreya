@@ -19,17 +19,17 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
-                    }
-                    // $('#districtname').trigger('reset');
-                    console.log(data);
-                    if($('#createDistrict').html()=='Update'){
-                        $("#districtname").val('');
-                        window.location.reload();
-                    }else{
-                        reportFunction(1);
-                        $("#districtname").trigger('reset');
-
+                        if($('#createDistrict').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#districtname").trigger("reset");
+                        }else if($('#createDistrict').html()=='Update'){
+                            $('#createDistrict').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#districtname").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }else{
                     console.log(data);

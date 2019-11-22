@@ -18,14 +18,17 @@ $cname = $this->uri->segment(1);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
-                    }
-                    if($('#crateDesignation').html()=='Update'){
-                        window.location.reload();
-                    }else{
-                        $('#designationname').val("");
-                        $('#designationShortname').val("");
-                        reportFunction(1);
+                        if($('#crateDesignation').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#designationForm").trigger("reset");
+                        }else if($('#crateDesignation').html()=='Update'){
+                            $('#crateDesignation').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#designationForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }
             }

@@ -20,13 +20,17 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
-                    }
-                    if($("#createExperienceType").html()=="Update"){
-                        window.location.reload();
-                    }else {
-                        $('#experienceTypeForm').trigger("reset");
-                        reportFunction(1);
+                        if($('#createExperienceType').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#experienceTypeForm").trigger("reset");
+                        }else if($('#createExperienceType').html()=='Update'){
+                            $('#createExperienceType').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#experienceTypeForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }else{
                     console.log(data);

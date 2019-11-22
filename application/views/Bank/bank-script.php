@@ -20,14 +20,20 @@ $cname = $this->uri->segment(2);
                         if(jsondata.flag==0){
                             duplicate_entries();
                         }else{
-                            successfull_entries();
-                        }
-                        if($('#createBank').html()=='Update'){
-                            window.location.reload();
-                            }else{
-                            $('#frmBankName').trigger('reset');
+                            if($('#createBank').html()=='Create'){
+                                successfull_entries();
                                 reportFunction(1);
+                                $("#frmBankName").trigger("reset");
+                            }else{
+                                if($('#createBank').html()=='Update'){
+                                    $('#createBank').html('Create');
+                                    successfully_updates();
+                                    reportFunction(2);
+                                    $("#frmBankName").trigger("reset");
+                                    $('#txtid').val(0);
+                                }
                             }
+                        }
                         }else{
                         console.log(data);
                     }

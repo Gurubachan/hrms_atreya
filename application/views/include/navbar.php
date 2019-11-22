@@ -14,7 +14,9 @@ defined("BASEPATH") or exit("No direct script access allowed.");
                            </div>
                            <div class="header-button2">
                                <div class="header-button-item js-item-menu">
+                                   <small class="" id="current_time"></small>&nbsp;&nbsp;
                                    <i class="zmdi zmdi-search"></i>
+
                                    <div class="search-dropdown js-dropdown">
                                        <form action="">
                                            <input class="au-input au-input--full au-input--h65" type="text" placeholder="Search for datas &amp; reports..." />

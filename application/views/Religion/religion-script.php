@@ -20,13 +20,17 @@ $cname = $this->uri->segment(2);
                     if(jsondata.flag==0){
                         duplicate_entries();
                     }else{
-                        successfull_entries();
-                    }
-                    if($("#createReligion").html()=="Update"){
-                        window.location.reload();
-                    }else {
-                        $('#religionForm').trigger("reset");
-                        reportFunction(1);
+                        if($('#createReligion').html()=='Create'){
+                            successfull_entries();
+                            reportFunction(1);
+                            $("#religionForm").trigger("reset");
+                        }else if($('#createReligion').html()=='Update'){
+                            $('#createReligion').html('Create');
+                            successfully_updates();
+                            reportFunction(2);
+                            $("#religionForm").trigger("reset");
+                            $('#txtid').val(0);
+                        }
                     }
                 }else{
                     console.log(data);
