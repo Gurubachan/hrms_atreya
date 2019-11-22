@@ -20,7 +20,7 @@ create table tbl_job_posting
 	nov smallint not null check ( nov > '0' :: smallint ) /*No of vacancies*/,
 	localtion varchar(20) not null ,
 	jobdescriptiom text not null ,
-	experiance varchar(10) not null ,
+	experiance varchar(10) not null /*experiance in year*/,
 	responsibility text  not null ,
 	startdate date,
 	enddate date,
