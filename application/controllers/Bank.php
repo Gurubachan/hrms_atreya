@@ -165,4 +165,11 @@ class Bank extends CI_Controller
             exit();
         }
     }
+    public function bankViewDetails(){
+        extract($_POST);
+//        print_r($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(33,null,$where);
+        $this->load->view("Bank/viewDetails",$data);
+    }
 }

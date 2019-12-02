@@ -81,4 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     //     })
     //
     // })
+	$('.cardhover').hover(function () {
+		$(this).addClass('skewClass');
+	});
 </script>

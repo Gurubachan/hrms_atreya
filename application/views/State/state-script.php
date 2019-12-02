@@ -99,7 +99,7 @@ $cname = $this->uri->segment(2);
     function detailsView(id) {
         $.ajax({
             type:'post',
-            url:'<?= base_url("State/stateDetailsView/")?>',
+            url:'<?= base_url("State/stateViewDetails/")?>',
             data:{id:id},
             success:function (res) {
                 if(res!=false){

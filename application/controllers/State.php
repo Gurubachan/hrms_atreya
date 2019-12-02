@@ -191,4 +191,11 @@ class State extends CI_Controller {
             exit();
         }
     }
+    public function stateViewDetails(){
+        extract($_POST);
+//        print_r($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(7,null,$where);
+        $this->load->view("State/viewDetails",$data);
+    }
 }

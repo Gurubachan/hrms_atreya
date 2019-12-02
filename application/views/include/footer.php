@@ -42,17 +42,17 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <script type="text/javascript" src="<?= base_url('assets/js/custom.js')?>"></script>
 <link href="<?= base_url('assets/toastr-master/build/toastr.css')?>" rel="stylesheet" media="all">
 <script type="text/javascript" src="<?= base_url('assets/js/toastr.js')?>"></script>
-<link href="<?= base_url('assets/pg-calendar-master/dist/css/pignose.calendar.css')?>" rel="stylesheet" media="all">
-<link href="<?= base_url('assets/jquery-timpicker-master/jquery.timepicker.css')?>" rel="stylesheet" media="all">
-<script type="text/javascript" src="<?= base_url('assets/pg-calendar-master/dist/js/pignose.calendar.full.js')?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/jquery-timepicker-master/jquery.timepicker.js')?>"></script>
+<!--<link href="--><?//= base_url('assets/pg-calendar-master/dist/css/pignose.calendar.css')?><!--" rel="stylesheet" media="all">-->
+<!--<script type="text/javascript" src="--><?//= base_url('assets/pg-calendar-master/dist/js/pignose.calendar.full.js')?><!--"></script>-->
+<script type="text/javascript" src="<?= base_url('assets/js/jquery.timepicker.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/datatables.min.js')?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/DataTables-1.10.20/jquery.dataTables.min.js')?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/DataTables-1.10.20/dataTables.bootstrap4.min.js')?>"></script>
+<!--<script type="text/javascript" src="--><?//= base_url('assets/js/jquery.dataTables.min.js')?><!--"></script>-->
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables.bootstrap4.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/jquery-ui.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/Chart.min.js')?>"></script>
 
-   <script> function loadCompany() {
+   <script>
+       function loadCompany() {
         window.location.href="<?= base_url('Forms/companyDashboard')?>";
     }
     function loadBankDetails() {
@@ -155,11 +155,14 @@ defined("BASEPATH") or exit("No direct script access allowed.");
         window.location.href="<?= base_url('Forms/employeeReports')?>";
    }
        let myVar = setInterval(myTimer, 1000);
-
        function myTimer() {
            let d = new Date();
            let t = d.toLocaleTimeString();
+           let a = d.getDate();
+           let b = d.getMonth();
+           let c = d.getFullYear();
            document.getElementById("current_time").innerHTML = t;
+           document.getElementById("current_date").innerHTML = a +"/"+ b +"/"+ c;
        }
 </script>
 </div>

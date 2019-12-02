@@ -110,13 +110,12 @@ $cname = $this->uri->segment(2);
         var stateid = $('#stateid').val();
         $.ajax({
             type:'post',
-            url:'<?= base_url("District/report_district")?>',
+            url:'<?= base_url("District/districtViewDetails")?>',
             data:{id:id,stateid: stateid},
             success:function (res) {
-                var jsondata = JSON.parse(res);
                 if(res!=false){
-                $('#loadDistrictDetails').html(res);
-                $("#dname").html(res.distname);
+                $('#loadDistrictDetailsView').html(res);
+                // $("#dname").html(res.distname);
                 }
             }
         });

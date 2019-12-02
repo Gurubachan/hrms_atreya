@@ -125,7 +125,7 @@ class Forms extends CI_Controller {
         if($this->session->login['userid']){
             $this->header();
             $this->navbar();
-            $this->load->view('dashboard/companyDashboard');
+            $this->load->view('Company/companyDashboard');
             $this->footer();
         }else{
             redirect('welcome/');
@@ -139,8 +139,8 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']){
                 extract($_POST);
-                $this->load->view('Company/formCompanyType');
-                $this->load->view('Company/companytype-script');
+                $this->load->view('Company/Companytype/formCompanyType');
+                $this->load->view('Company/Companytype/companytype-script');
             }else{
                 redirect("Welcome/");
             }
@@ -153,8 +153,8 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
                 extract($_POST);
-                $this->load->view('Company/formNewCompany');
-                $this->load->view('Company/newCompany-script');
+                $this->load->view('Company/NewCompany/formNewCompany');
+                $this->load->view('Company/NewCompany/newCompany-script');
             }else{
                 redirect('welcome/');
             }

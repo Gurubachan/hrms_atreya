@@ -16088,14 +16088,13 @@ input[type="file"]{
    border-bottom: 1px solid red;
 }
 .cardhover:hover{
-    background-color: #6f42c1;
-    color: #FFFFFF;
+    background-color: #f3efc2;
     cursor: pointer;
-
+    transition: background-color 200ms ease-out;
 }
 legend{
     background-color: #11998e;
-    color: #f2f2f2;;
+    color: #f2f2f2;
 }
 
 .shadowColor{
@@ -16142,4 +16141,20 @@ legend{
     font-weight: bold;
 }
 
-
+/*.modal-header h3{*/
+/*    padding: 0;*/
+/*    margin:0;*/
+/*    font-weight: bold;*/
+/*    text-align: center;*/
+/*    !*color: red;*!*/
+/*}*/
+.w_60{
+    width: 60px;
+}
+.skewClass{
+	-moz-transform: translate(15px, 0px) skew(-16deg, 0deg);
+	-webkit-transform: translate(15px, 0px) skew(-16deg, 0deg);
+	-o-transform: translate(15px, 0px) skew(-16deg, 0deg);
+	-ms-transform: translate(15px, 0px) skew(-16deg, 0deg);
+	transform: translate(15px, 0px) skew(-16deg, 0deg);
+}

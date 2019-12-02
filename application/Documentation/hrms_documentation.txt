@@ -27,6 +27,9 @@ Human Resource Management System of Atreya Associates.
 18.employee type
 19.attendance
 20.recruitment
+21.salary
+22.task manager
+23.expenditure
 #0.user type
 -------------
 a.user type creation

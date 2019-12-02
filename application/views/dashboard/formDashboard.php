@@ -1,7 +1,6 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12" style="margin-top:5%; min-height: 600px;">
-            <div class="col-sm-12">
                 <div class="row" style="margin-top:2%;">
                     <div class="col-sm-12">
                         <!--                    <div class="row formsCard">-->
@@ -191,7 +190,7 @@
                         <div class="card cardhover shadowDiv" id="reportsFormMenu" style="border-radius: 0 0 15px 0; height: 55px;">
                             <div class="card-body" style="padding: 12px 20px">
                                 <div class="form-group mr-auto ml-auto d-block p-t-0">
-                                    <label for="" id="reportsLabel" >Reports</label>
+                                    <label for="" id="reportsLabel">Reports</label>
 <!--                                    <input type="text" class="form-control">-->
 <!--                                    <button class="btn" id="reportsLabel" value="0">Reports</button>-->
                                 </div>
@@ -212,7 +211,6 @@
                         <div id="allforms_and_reports" style="margin-top: 15px;"></div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

@@ -73,3 +73,37 @@ function successfully_updates() {
     toastr.success("Record Updated Successfully");
     toastr.options.showMethod = 'slideDown';
 }
+function custome_datepicker(fromdate, todate){
+    var dateFormat = "dd-mm-yy",
+        from = $( "#"+fromdate ).datepicker({
+            //defaultDate: "+1w",
+            dateFormat:'dd-mm-yy',
+            changeMonth: true,
+            changeYear:true,
+            numberOfMonths: 1,
+            showAnim: "slideDown"
+        }).on( "change", function() {
+            to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+        to = $( "#"+todate ).datepicker({
+            //defaultDate: "+1w",
+            dateFormat:'dd-mm-yy',
+            changeMonth: true,
+            changeYear:true,
+            numberOfMonths: 1,
+            showAnim: "slideDown"
+        }).on( "change", function() {
+            from.datepicker( "option", "maxDate", getDate( this ) );
+        });
+
+    function getDate( element ) {
+        var date;
+        try {
+            date = $.datepicker.parseDate( dateFormat, element.value );
+        } catch( error ) {
+            date = null;
+        }
+
+        return date;
+    }
+}
