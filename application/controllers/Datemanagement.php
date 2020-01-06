@@ -1,32 +1,26 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Kolkata');
-//header("Access-Control-Allow-Origin: *");
-class
-Bank extends CI_Controller
-{
+class Datemanagement extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
     }
-
-    public function create_bank(){
+    public function action(){
         try{
-            $request = json_decode(json_encode($_POST), FALSE);
-//            $postdata = file_get_contents("php://input");
-//            $request = json_decode($postdata);
             $data=array();
             $insert=array();
+            $request = json_decode(json_encode($_POST), FALSE);
+			$postdata = file_get_contents("php://input");
+//			$request = json_decode($postdata);
             $status=true;
-            if(isset($request->bankname) && preg_match("/[a-zA-Z ]{3,60}/",$request->bankname)){
-                //echo json_encode($companytypename);
-                $insert[0]['bankname']=$request->bankname;
+            if(isset($request->txtDate) && preg_match("/^[0-9- ]{10}$/",$request->txtDate)){
+                $insert[0]['date']=$request->txtDate;
             }else{
                 $status=false;
             }
-            if(isset($request->bankShortname) && preg_match("/[a-zA-Z]{2,5}/",$request->bankShortname)){
-                //echo json_encode($companytypename);
-                $insert[0]['bankshortname']=$request->bankShortname;
+            if(isset($request->txtDateType) && preg_match("/^[0-9]{0,5}$/",$request->txtDateType)){
+                $insert[0]['datetype']=$request->txtDateType;
             }else{
                 $status=false;
             }
@@ -46,7 +40,7 @@ Bank extends CI_Controller
                     if($request->txtid>0){
                         $insert[0]['updatedby']=$this->session->login['userid'];
                         $insert[0]['updatedat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->update(33,$insert,"id",$request->txtid);
+                        $res=$this->Model_Db->update(75,$insert,"id",$request->txtid);
                         if($res!=false){
                             $data['message']="Update successful.";
                             $data['status']=true;
@@ -55,24 +49,24 @@ Bank extends CI_Controller
                             $data['status']=false;
                         }
                     }else if($request->txtid==0){
-                      $where="bankname='$request->bankname'";
-                      $duplicate_check=$this->Model_Db->select(33,null,$where);
-                      if($duplicate_check!=false){
-                          $data['message']="Duplicate entry";
-                          $data['status']=false;
-                          $data['flag']=0;
-                      }else{
-                          $insert[0]['entryby']=$this->session->login['userid'];
-                          $insert[0]['createdat']=date("Y-m-d H:i:s");
-                          $res=$this->Model_Db->insert(33,$insert);
-                          if($res!=false){
-                              $data['message']="Insert successful.";
-                              $data['status']=true;
-                          }else{
-                              $data['message']="Insert failed.";
-                              $data['status']=false;
-                          }
-                      }
+                       $where="date='$request->txtDate'";
+                       $duplicate_check=$this->Model_Db->select(75,null,$where);
+                       if($duplicate_check!=false){
+                           $data['message']="Duplicate entry.";
+                           $data['status']=false;
+                           $data['flag']=0;
+                       }else{
+                           $insert[0]['entryby']=$this->session->login['userid'];
+                           $insert[0]['createdat']=date("Y-m-d H:i:s");
+                           $res=$this->Model_Db->insert(75,$insert);
+                           if($res!=false){
+                               $data['message']="Insert successful.";
+                               $data['status']=true;
+                           }else{
+                               $data['message']="Insert failed.";
+                               $data['status']=false;
+                           }
+                       }
                     }else{
                         $data['message']="Insufficient/Invalid data.";
                         $data['status']=false;
@@ -95,15 +89,15 @@ Bank extends CI_Controller
             exit();
         }
     }
-    public function load_bank(){
+    public function load_date_type(){
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(33,null,$where);
-            $data[]="<option value=''>Select</option>";
+            $res=$this->Model_Db->select(77,null,$where);
+//            $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
-                    $data[]="<option value='$r->id'>$r->bankname</option>";
+                    $data[]="<option value='$r->id'>$r->name</option>";
                 }
             }
             echo json_encode($data);
@@ -115,14 +109,13 @@ Bank extends CI_Controller
             exit();
         }
     }
-    public function report_bank_details(){
+    public function report_education(){
         try{
             $data=array();
             $request = json_decode(json_encode($_POST), FALSE);
-            $postdata = file_get_contents("php://input");
+			$postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
-//            $datanow = date("Y-m-d H:i:s");
-            $current_date=Date("Y-m-d");
+            $current_date=Date('Y-m-d');
             if(isset($request->checkparams) && is_numeric($request->checkparams)) {
                 switch ($request->checkparams) {
                     case 1:
@@ -143,21 +136,21 @@ Bank extends CI_Controller
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(33, null, $where);
+                $res = $this->Model_Db->select(21, null, $where);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(
                             'id' => $r->id,
-                            'bankname' => $r->bankname,
-                            'bankshortname' => $r->bankshortname,
+                            'educationname' => $r->educationname,
+                            'educationshortname' => $r->educationshortname,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive
                         );
                     }
                 }
+                echo json_encode($data);
             }
-            echo json_encode($data);
         }catch (Exception $e){
             $data['message']= "Message:".$e->getMessage();
             $data['status']=false;
@@ -166,11 +159,18 @@ Bank extends CI_Controller
             exit();
         }
     }
-    public function bankViewDetails(){
-        extract($_POST);
+    public function educationViewDetails(){
+    	try {
+			extract($_POST);
 //        print_r($_POST);
-        $where="id=$id";
-        $data['result']=$this->Model_Db->select(33,null,$where);
-        $this->load->view("Bank/viewDetails",$data);
+			$where = "id=$id";
+			$data['result'] = $this->Model_Db->select(21, null, $where);
+			$this->load->view("Education/viewDetails", $data);
+		}catch (Exception $e){
+    		$data['message']="Message:".$e->getMessage();
+		}
+
+
     }
+
 }

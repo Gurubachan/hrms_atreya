@@ -149,8 +149,8 @@ class Company extends CI_Controller {
                 echo $request->companyshortname;
             }
             if(isset($request->establishedon) && preg_match("/^[0-9 -]{10}$/",$request->establishedon)){
-                $doe=date("Y-m-d",strtotime($request->establishedon));
-                $insert[0]['establishedon']=$doe;
+//                $doe=date("Y-m-d",strtotime($request->establishedon));
+                $insert[0]['establishedon']=$request->establishedon;
             }else{
                 $status=false;
                 echo $request->establishedon;

@@ -6,7 +6,8 @@ class State extends CI_Controller {
     {
         parent::__construct();
     }
-    public function create_state(){
+    public function
+	create_state(){
         try{
             extract($_POST);
             $data=array();

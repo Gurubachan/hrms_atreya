@@ -233,6 +233,7 @@ class User extends CI_Controller {
             $password=array();
             $status=true;
             $request= json_decode(json_encode($_POST), false);
+            print_r($request);
             if(isset($request->usertypeid) && is_numeric($request->usertypeid)){
                 $insert[0]['usertypeid']=$request->usertypeid;
             }else{
@@ -303,6 +304,26 @@ class User extends CI_Controller {
             }else{
                 $status=false;
             }
+			if(isset($request->images)) {
+				if (!empty($_FILES['images']['name'])) {
+					$config['upload_path'] = './assets/images/';
+					$config['allowed_types'] = 'gif|jpg|png|jpeg';
+					$config['file_name'] = $_FILES['images']['name'];
+					$this->load->library('upload', $config);
+					$this->upload->initialize($config);
+					if ($this->upload->do_upload('images')) {
+						$upload_data = $this->upload->data();
+						$insert[0]['logo'] = $upload_data['file_name'];
+					} else {
+						$insert[0]['logo'] = '';
+					}
+				} else {
+					$insert[0]['logo'] = '';
+				}
+			}else{
+				echo "sorry";
+
+			}
             if($status){
                 if(isset($request->txtid) && is_numeric($request->txtid)){
                     if($request->txtid>0){

@@ -54,7 +54,17 @@ function password_validate(id) {
         }
     });
 }
-
+function custom_datepicker(id){
+	$("#"+id).datepicker({
+		dateFormat:'dd-mm-yy',
+		changeMonth: true,
+		changeYear:true,
+		numberOfMonths: 1,
+		showAnim: "slideDown",
+		// yearRange: '1980:2002'
+		yearRange: "-35:+0"
+	});
+}
 function duplicate_entries() {
     toastr.options.rtl = true;
     toastr.options.positionClass = 'toast-bottom-right';
@@ -107,3 +117,28 @@ function custome_datepicker(fromdate, todate){
         return date;
     }
 }
+function datepicker(id){
+	var dateFormat = "dd-mm-yy",
+		from = $( "#"+id ).datepicker({
+			//defaultDate: "+1w",
+			dateFormat:'dd-mm-yy',
+			changeMonth: true,
+			changeYear:true,
+			numberOfMonths: 1,
+			showAnim: "slideDown"
+		}).on( "change", function() {
+			to.datepicker( "option", "minDate", getDate( this ) );
+		})
+}
+
+function getDate( element ) {
+	var date;
+	try {
+		date = $.datepicker.parseDate( dateFormat, element.value );
+	} catch( error ) {
+		date = null;
+	}
+
+	return date;
+}
+

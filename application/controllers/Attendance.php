@@ -442,4 +442,69 @@ class Attendance extends CI_Controller {
 //            echo "Message:".$exception->getMessage();
 //        }
 //    }
+
+	public function employeeAttendanceSheet(){
+		try{
+			$request = json_decode(json_encode($_POST), FALSE);
+			$data=array();
+			$insert=array();
+			$status=true;
+			$current_date = Date('Y-m-d');
+			$current_time = Date('H:i:s');
+			if(isset($request->empid) && is_numeric($request->empid)){
+				$where="isactive=true and isattendance=true and id='$request->empid'";
+				$orderby = "fname";
+				$res=$this->Model_Db->select(30,null,$where,$orderby);
+				if(isset($request->status) && $request->status==0){
+					if($res!=false){
+						$insert[0]['empid']=$res[0]->id;
+						$insert[0]['date']=$current_date;
+						$insert[0]['intime']=$current_time;
+						$insert[0]['empid']=$res[0]->id;
+						$insert[0]['entryby']=$this->session->login['userid'];
+						$insert[0]['createdat']=date("Y-m-d H:i:s");
+					}
+					$res=$this->Model_Db->insert(63,$insert);
+				}else{
+					$where="1=1 and DATE(date)=DATE('$current_date')";
+					$res=$this->Model_Db->select(63,null,$where);
+					$rowid = $res[0]->id;
+					if($res!=false){
+						$insert[0]['outtime']=$current_time;
+					}
+					$res=$this->Model_Db->update(63,$insert,"id",$rowid);
+				}
+				if($res!=false){
+					$data['message']="Insert successful.";
+					$data['status']=true;
+				}else{
+					$data['message']="Insert failed.";
+					$data['status']=false;
+				}
+			}else{
+				$status=false;
+			}
+			echo json_encode($data);
+		}catch (Exception $e){
+			$data['message']="Message:".$e->getMessage();
+		}
+	}
+	public function checkInOutTime(){
+    	try{
+    		extract($_POST);
+    		$where="1=1";
+			$res=$this->Model_Db->select(63,null,$where);
+			if($res!=false){
+				$data[]=$res;
+			}
+			echo json_encode($data);
+			exit();
+		}catch (Exception $e){
+			$data['message']= "Message:".$e->getMessage();
+			$data['status']=false;
+			$data['error']=true;
+			echo json_encode($data);
+			exit();
+		}
+	}
 }

@@ -3,6 +3,84 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
 ?>
 <script>
+	$(function () {
+		custom_datepicker('attendance_date');
+		load_employee_attendance();
+		checkTimeInOut();
+	});
+	// $('#timeIn').click(function (){
+	// 	alert('hi');
+	// 	$('#showTimeIn').timepicker('setTime', new Date());
+	// });
+	function checkEmpTime(id,timecheck) {
+		// $("#timeIn"+id).click(function () {
+		// $("#timeOut"+id).prop("disabled",true);
+		let status;
+		if(timecheck == 0){
+			status =0;
+		}else{
+			status =1;
+		}
+		if ($("input[type=checkbox]").is(":checked")) {
+			$.ajax({
+				type:'post',
+				url:'<?=base_url("Attendance/employeeAttendanceSheet")?>',
+				data:{empid:id,status:status},
+				success:function (e) {
+					if(e!=false){
+						let jsondata = JSON.parse(e);
+						$("#timeIn"+id).prop("disabled",true);
+						$("#timeOut"+id).prop("disabled",false);
+					}
+				}
+			});
+		}
+		// });
+	}
+	function timeout(id,timecheck) {
+		// $("#timeIn"+id).click(function () {
+		if ($("input[type=checkbox]").is(":checked")) {
+			$.ajax({
+				type:'post',
+				url:'<?=base_url("Datemanagement/employeeAttendanceOuttimeSheet")?>',
+				data:{empid:id},
+				success:function (e) {
+					if(e!=false){
+						let jsondata = JSON.parse(e);
+						$("#timeIn"+id).prop("disabled",true);
+					}
+				}
+			});
+		}
+		// });
+	}
+	function checkTimeInOut(){
+
+	}
+	function load_employee_attendance(){
+		$.ajax({
+			type:'post',
+			url:'<?=base_url("Employee/load_employee_data")?>',
+			success:function (e) {
+				if (e != false) {
+					const jsondata = JSON.parse(e);
+								let html = "";
+								let j = 0;
+								let l = 0;
+								for (let i in jsondata) {
+									j++;
+									let empname = jsondata[i].fname + " " + jsondata[i].mname + " " + jsondata[i].lname;
+									html += "<tr><td>" + j + "</td><td>" + empname + "</td><td>" + jsondata[i].empid + "</td><td>" + jsondata[i].companyname + "</td><td>" + jsondata[i].designationname + "</td><td><input type='checkbox' id='timeIn"+jsondata[i].id+"'  onclick='checkEmpTime("+jsondata[i].id+",0)'><span id='showTimeIn'></span></td><td><input type='checkbox' id='timeOut"+jsondata[i].id+"'  onclick='checkEmpTime("+jsondata[i].id+",1)' style=' disabled = true '><span id='showTimeOut'></span></td></tr>";
+								}
+								$("#load_attendance_sheet").html(html);
+							}
+						}
+					});
+
+				}
+
+
+
     $("#attendanceTypeForm").submit(function(e){
         e.preventDefault();
         var frm = $("#attendanceTypeForm").serialize();

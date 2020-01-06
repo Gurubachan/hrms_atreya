@@ -45,9 +45,9 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <!--<link href="--><?//= base_url('assets/pg-calendar-master/dist/css/pignose.calendar.css')?><!--" rel="stylesheet" media="all">-->
 <!--<script type="text/javascript" src="--><?//= base_url('assets/pg-calendar-master/dist/js/pignose.calendar.full.js')?><!--"></script>-->
 <script type="text/javascript" src="<?= base_url('assets/js/jquery.timepicker.min.js')?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/datatables.min.js')?>"></script>
+<!--<script type="text/javascript" src="--><?//= base_url('assets/js/datatables.min.js')?><!--"></script>-->
 <!--<script type="text/javascript" src="--><?//= base_url('assets/js/jquery.dataTables.min.js')?><!--"></script>-->
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables.bootstrap4.min.js')?>"></script>
+<!--<script type="text/javascript" src="--><?//= base_url('assets/js/dataTables.bootstrap4.min.js')?><!--"></script>-->
 <script type="text/javascript" src="<?= base_url('assets/js/jquery-ui.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/Chart.min.js')?>"></script>
 
@@ -153,6 +153,9 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     }
     function employee_details_reports(){
         window.location.href="<?= base_url('Forms/employeeReports')?>";
+   }
+    function dateManagement(){
+        window.location.href="<?= base_url('Forms/formDateManagement')?>";
    }
        let myVar = setInterval(myTimer, 1000);
        function myTimer() {
