@@ -94,24 +94,17 @@ $cname = $this->uri->segment(2);
 <div class="modal fade" id="districtDetials">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: cornflowerblue;text-align: center">
-                <h3 class="modal-title " style="">District Details</h3>
+            <div class="modal-header" style="background-color: cornflowerblue;color: #fff;">
+                <h4 class="modal-title " style="">District Details</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-<!--                <div class="form-group">-->
-<!--                    <div id="loadDistrictDetails"></div>-->
-<!--                </div>-->
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <tbody class="" style="color: #0B1022; font-size: 13px;">
-                        <tr><td>Sl#</td><td id='slno'></td></tr>
-                        <tr><td>District Name</td><td id="dname"> </td></tr>
-                        <tr><td>Created On</td><td id="cdate"></td></tr>
-                        <tr><td>Entry By </td><td id="eby"></td></tr>
-                        <tr><td>Isactive</td><td id="isactive"></td></tr>
-                        </tbody>
-                    </table>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="loadDistrictDetailsView"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

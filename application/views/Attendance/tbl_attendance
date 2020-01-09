@@ -1,0 +1,13 @@
+tbl_id
+-------
+id,
+empid,
+date,
+status,
+intime,
+outtime,
+entryby,
+updatedby,
+updateat,
+createdat,
+isactive

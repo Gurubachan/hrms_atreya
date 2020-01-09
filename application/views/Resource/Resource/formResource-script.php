@@ -9,21 +9,19 @@ $cname = $this->uri->segment(2);
         load_assurancetype('assurancetype');
         load_assuranceperiodtype('assuranceperiodtype');
     });
-    // $('#expiringdate').pignoseCalendar({
-    // });
-    //     $('#expiringdate').datepicker();
-    //     $('#purchasingdate').datepicker();
+        // $('#expiringdate').pignoseCalendar({});
+        // $('#expiringdate').datepicker();
+        // $('#purchasingdate').datepicker();
+
     var dateFormat = "dd-mm-yy",
-        from = $( "#purchasingdate" )
-            .datepicker({
+        from = $( "#purchasingdate" ).datepicker({
                 //defaultDate: "+1w",
                 dateFormat:'dd-mm-yy',
                 changeMonth: true,
                 changeYear:true,
                 numberOfMonths: 1,
                 showAnim: "slideDown"
-            })
-            .on( "change", function() {
+            }).on( "change", function() {
                 to.datepicker( "option", "minDate", getDate( this ) );
             }),
         to = $( "#expiringdate" ).datepicker({
@@ -33,8 +31,7 @@ $cname = $this->uri->segment(2);
             changeYear:true,
             numberOfMonths: 1,
             showAnim: "slideDown"
-        })
-            .on( "change", function() {
+        }).on( "change", function() {
                 from.datepicker( "option", "maxDate", getDate( this ) );
             });
 

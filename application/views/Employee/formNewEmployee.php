@@ -23,6 +23,7 @@ $cname = $this->uri->segment(2);
                                     <div class="form-group">
                                         <input type="hidden" id="txtid" name="txtid" value="0">
                                         <input type="hidden" id="isactive" name="isactive" value="1">
+                                        <input type="hidden" id="isattendance" name="isattendance" value="0">
                                         <label for="slno" class="control-label mb-1">#Slno<span
                                                     style="color:red;">*</span>.</label>
                                         <input id="slno" name="slno" type="text" class="form-control"
@@ -282,7 +283,9 @@ $cname = $this->uri->segment(2);
                     <button type="button" class="btn  btn-sm" onclick="reportFunction(2)">All Entries</button>
                     <button type="button" class="btn  btn-sm" onclick="reportFunction(3)">Active Entries</button>
                     <button type="button" class="btn  btn-sm" onclick="reportFunction(4)">Inactive Entries</button>
-                    <button type="button" class="btn btn-sm" onclick="reportFunction(5)">Details View</button>
+                    <button type="button" class="btn btn-sm" onclick="reportFunction(5)">Allow Attendance</button>
+                    <button type="button" class="btn btn-sm" onclick="reportFunction(6)">Not Allowed Attendance</button>
+                    <button type="button" class="btn btn-sm" onclick="reportFunction(7)">Details View</button>
                 </form>
             </div>
         </div>
@@ -294,9 +297,9 @@ $cname = $this->uri->segment(2);
             <div class="box-header well">
                 <h2><i class="fa fa-angle-double-right "></i> Report</h2>
                 <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="fa fa-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i class="fa fa-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i class="fa fa-remove"></i></a>
+<!--                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="fa fa-cog"></i></a>-->
+<!--                    <a href="#" class="btn btn-minimize btn-round btn-default"><i class="fa fa-chevron-up"></i></a>-->
+<!--                    <a href="#" class="btn btn-close btn-round btn-default"><i class="fa fa-remove"></i></a>-->
                 </div>
             </div>
             <div class="box-content">
@@ -328,6 +331,7 @@ $cname = $this->uri->segment(2);
                             <th>Aadhar Number</th>
                             <th>Pan Number</th>
                             <th>IsActive</th>
+                            <th>IsAttendance</th>
                             <th>Action</th>
                         </tr>
                         </thead>

@@ -3,6 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
 ?>
 <script>
+    // $(document).bind("contextmenu",function(e){
+    //     return false;
+    // });
     // var txtid=0;
     $("#companyTypeForm").submit(function(e){
         e.preventDefault();
@@ -69,14 +72,13 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].typename+"</td><td>"+ jsondata[i].typeshortname+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditCompanyType(" +checkId+ "," +strcompanytype+ "," +strcompanytypeshortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].typename+"</td><td>"+ jsondata[i].typeshortname+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditCompanyType(" +checkId+ "," +strcompanytype+ "," +strcompanytypeshortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='companyTypeDetailsView(" +checkId+ ")' data-toggle='modal' data-target='#companytypedatails'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_company_type").html(html);
                 }
             }
         });
     }
-
     function reportEditCompanyType(id,strcompanytype,strcompanytypeshortname,isactive) {
         if(isactive=='t'){
             var isactiveval=1;
@@ -90,5 +92,18 @@ $cname = $this->uri->segment(2);
         $('#isactive').val(isactiveval);
         $('#designationname').focus();
         $("#createCompanyType").html('Update');
+    }
+    function companyTypeDetailsView(id) {
+        $.ajax({
+            type:'post',
+            url:'<?= base_url("Company/companyTypeViewDetails")?>',
+            data:{id:id},
+            success:function (res) {
+                if(res!=false){
+                    $('#loadCompanyTypeDetailsView').html(res);
+                    // $("#dname").html(res.distname);
+                }
+            }
+        });
     }
 </script>

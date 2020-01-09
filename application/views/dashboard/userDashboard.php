@@ -23,21 +23,21 @@
                     </div>
                 </div>
                 <br>
-                <div class="box-inner">
-                    <div class="box-header well">
-                        <h2><i class="fa fa-angle-double-right "></i> Reports</h2>
-                    </div>
-                    <div class="box-content">
-                        <ul class="nav nav-pills nav-stacked main-menu">
-                            <li onclick="loadUserTypeReport()"><i class="fa fa-check-square "></i> &nbsp; User Type</li>
-                            <li onclick="loadNewUserReport()"><i class="fa fa-check-square "></i> &nbsp; New User</li>
-                        </ul>
-                        <hr>
-                        <ul class="nav nav-pills nav-stacked main-menu">
-                            <li onclick="loadUserPasswordReport()"><i class="fa fa-check-square "></i> &nbsp; User Authentication</li>
-                        </ul>
-                    </div>
-                </div>
+<!--                <div class="box-inner">-->
+<!--                    <div class="box-header well">-->
+<!--                        <h2><i class="fa fa-angle-double-right "></i> Reports</h2>-->
+<!--                    </div>-->
+<!--                    <div class="box-content">-->
+<!--                        <ul class="nav nav-pills nav-stacked main-menu">-->
+<!--                            <li onclick="loadUserTypeReport()"><i class="fa fa-check-square "></i> &nbsp; User Type</li>-->
+<!--                            <li onclick="loadNewUserReport()"><i class="fa fa-check-square "></i> &nbsp; New User</li>-->
+<!--                        </ul>-->
+<!--                        <hr>-->
+<!--                        <ul class="nav nav-pills nav-stacked main-menu">-->
+<!--                            <li onclick="loadUserPasswordReport()"><i class="fa fa-check-square "></i> &nbsp; User Authentication</li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
             <div class="col-sm-10">
                 <div class=" " style="min-height: 600px;">

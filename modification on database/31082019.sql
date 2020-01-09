@@ -24,7 +24,7 @@ FROM (((tbl_company c
     JOIN tbl_district td ON ((c.distid = td.id)))
          JOIN tbl_state ts ON ((td.stateid = ts.id)));
 
-create or replace view view_temp_employee(id, slno, fname, mname, lname, departmentmappingid, dob, mobile, emailid, aadharno, address, createdat, designationid, districtid, districtname, statid, statename, doj, dol, educationid, empid, epfno, esifno, fathername, genderid, mothername, maritalstatusid, panno, spousename, updatedat, updatedby, entryby, designationname, gendername, statusname, educationname, isactive) as
+create or replace view view_temp_employee(id, slno, fname, mname, lname, departmentmappingid, dob, mobile, emailid, aadharno, address, createdat, designationid, districtid, districtname, statid, statename, doj, dol, educationid, empid, epfno, esifno, fathername, genderid, mothername, maritalstatusid, panno, spousename, updatedat, updatedby, entryby, designationname, gendername, statusname, educationname, isactive,isattendance) as
 SELECT tte.id,
        tte.slno,
        tte.fname,
@@ -61,7 +61,8 @@ SELECT tte.id,
        tg.gendername,
        tms.statusname,
        te.educationname,
-       tte.isactive
+       tte.isactive,
+       tte.isattendance
 FROM (((((((tbl_temp_employee tte
     JOIN tbl_department_mapping tdm ON ((tte.departmentmappingid = tdm.id)))
     JOIN tbl_designation tdg ON ((tte.designationid = tdg.id)))

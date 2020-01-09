@@ -184,4 +184,11 @@ class District extends CI_Controller {
             exit();
         }
     }
+    public function districtViewDetails(){
+        extract($_POST);
+//        print_r($_POST);
+        $where="id=$id and stateid = $stateid";
+        $data['result']=$this->Model_Db->select(9,null,$where);
+        $this->load->view("District/viewDetails",$data);
+    }
 }

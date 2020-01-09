@@ -69,6 +69,7 @@ create table tbl_resource
     foreign key (assurancetypeid)references tbl_assurance on delete restrict on update cascade,
     foreign key (periodtypeid)references tbl_periodtype on delete restrict on update cascade
 );
+drop view view_resource
 create view view_resource as
 select
         tr.id,
@@ -88,6 +89,7 @@ select
        tp.periodtype,
        tr.assuranceexpired,
        tr.entryby,
+       tr.createdat,
        tr.updatedby,
        tr.updatedat,
        tr.isactive

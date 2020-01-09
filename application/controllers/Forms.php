@@ -51,6 +51,13 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
+    public function datemanagementSidebar(){
+        try{
+            $this->load->view('Datemanagement/datemanagementSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
     public function employeeDashboardMenu(){
         try{
             $this->load->view('Employee/employeeDashboardMenu');
@@ -125,7 +132,7 @@ class Forms extends CI_Controller {
         if($this->session->login['userid']){
             $this->header();
             $this->navbar();
-            $this->load->view('dashboard/companyDashboard');
+            $this->load->view('Company/companyDashboard');
             $this->footer();
         }else{
             redirect('welcome/');
@@ -139,8 +146,8 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']){
                 extract($_POST);
-                $this->load->view('Company/formCompanyType');
-                $this->load->view('Company/companytype-script');
+                $this->load->view('Company/Companytype/formCompanyType');
+                $this->load->view('Company/Companytype/companytype-script');
             }else{
                 redirect("Welcome/");
             }
@@ -153,8 +160,8 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
                 extract($_POST);
-                $this->load->view('Company/formNewCompany');
-                $this->load->view('Company/newCompany-script');
+                $this->load->view('Company/NewCompany/formNewCompany');
+                $this->load->view('Company/NewCompany/newCompany-script');
             }else{
                 redirect('welcome/');
             }
@@ -781,6 +788,22 @@ class Forms extends CI_Controller {
                 $this->load->view('Employee/Reports/employeeReportsDetails');
                 $this->footer();
                 $this->load->view('Employee/Reports/employeeReport-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:".$e->getMessage();
+        }
+    }
+    public function formDateManagement(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->datemanagementSidebar();
+                $this->load->view('Datemanagement/formDatemanagement');
+                $this->footer();
+                $this->load->view('Datemanagement/datemanagement-script');
             }else{
                 redirect('welcome/');
             }

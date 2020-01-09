@@ -34,8 +34,8 @@ $cname = $this->uri->segment(2);
                            </div>
                            <div class="col-sm-3" >
                                <div class="form-group">
-                                   <label for="statename" class="control-label mb-1">Model Number<span class="red">*</span></label>
-                                   <input type="text" id="modelnumber" name="modelnumber" class="form-control" aria-required="true" aria-invalid="false" onclick="alfa_numeric('modelnumber')"  required placeholder="Enter Model Number">
+                                   <label for="statename" class="control-label mb-1">Model<span class="red">*</span></label>
+                                   <input type="text" id="modelnumber" name="modelnumber" class="form-control" aria-required="true" aria-invalid="false" onclick="alfa_numeric('modelnumber')"  required placeholder="Enter Model Name">
                                    <small class="errormsg_modelnumber"></small>
                                </div>
                            </div>

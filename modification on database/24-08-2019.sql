@@ -35,7 +35,8 @@ create view view_temp_employee
               tms.statusname,
               tdst.distname,
               te.educationname,
-              tte.isactive
+              tte.isactive,
+              tte.isattendance
      from(
     tbl_temp_employee tte
     join tbl_department td on (tte.departmentmappingid = td.id)

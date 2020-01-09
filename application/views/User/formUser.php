@@ -14,7 +14,8 @@ $cname = $this->uri->segment(2);
                 </div>
             </div>
             <div class="box-content">
-                <form  class="" id="newUserForm" action="<?= base_url('Forms/formUser') ?>" method="post" name="newUserForm" autocomplete="off">
+<!--				--><?php //echo form_open_multipart('upload/do_upload');?>
+                <form  class="" id="newUserForm" action="<?= base_url('Forms/formUser') ?>" method="post" name="newUserForm" enctype="multipart/form-data" autocomplete="off">
                     <div class="col-sm-8 ml-auto mr-auto d-block">
                         <div class="row">
                             <div class="col-sm-3">
@@ -57,7 +58,8 @@ $cname = $this->uri->segment(2);
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">Email</label>
                                     <input id="emailid" name="emailid" type="email" onclick="email_validate('emailid')" class="form-control" placeholder="Enter email id.">
-                                    <small id="" class="errormsg_emailid"></small>
+                                    <small id="" class="error
+                                    msg_emailid"></small>
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -66,6 +68,7 @@ $cname = $this->uri->segment(2);
                                     <input id="mobile" name="mobile" type="text" class="form-control"  minlength="10" onclick="number_validate('mobile')" maxlength="10" placeholder="Enter mobile number" required>
                                     <small id="" class="errormsg_mobile"></small>
                                 </div>
+
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group">
@@ -74,20 +77,23 @@ $cname = $this->uri->segment(2);
                                     <small id="" class="errormsg_username"></small>
                                 </div>
                             </div>
-                            <!--                        <div class="col-sm-3">-->
-                            <!--                            <div class="form-group">-->
-                            <!--                                <label for="" class="control-label mb-1">Password</label>-->
-                            <!--                                <input id="userpassword" name="userpassword" type="text" class="form-control" minlength="5"  maxlength="16" onclick="password_validate('userpassword')" placeholder="Enter Password" title="Enter username for login" required>-->
-                            <!--                                <small class="errormsg_userpassword"></small>-->
-                            <!--                            </div>-->
-                            <!--                        </div>-->
-                            <!--                        <div class="col-sm-3">-->
-                            <!--                            <div class="form-group">-->
-                            <!--                                <label for="" class="control-label mb-1">Re-Enter Password </label>-->
-                            <!--                                <input id="reenteruserpassword" name="reenteruserpassword" type="text" class="form-control" minlength="5" onclick="password_validate('reenteruserpassword')"  maxlength="16" placeholder="Enter Password" title="Enter username for login" required>-->
-                            <!--                                <small class="errormsg_reenteruserpassword"></small>-->
-                            <!--                            </div>-->
-                            <!--                        </div>-->
+							<div class="col-sm-3">
+								<div class="form-group">
+									<label for="" class="control-label mb-1">Photo</label>
+									<div class="imgUp">
+										<div class="imagePreview"></div>
+<!--										<label class="btn btn-primary">Upload Photo<input type="file" id="images" name="images" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"></label>-->
+
+									<input id="images" name="images" type="file" class="uploadFile form-control">
+<!--									<small class="errormsg_photo"></small>-->
+								</div></div>
+							</div>
+							<div class="offset-6 col-sm-3" style="border: 1px solid red; height: 100px; width: 100px;" >
+<!--								<div class="imgUp">-->
+<!--									<div class="imagePreview"></div>-->
+<!--									<label class="btn btn-primary">Upload Photo<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"></label>-->
+<!--								</div>-->
+							</div>
                         </div>
                     </div>
                     <br>

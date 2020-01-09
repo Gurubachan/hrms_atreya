@@ -6,7 +6,8 @@ class State extends CI_Controller {
     {
         parent::__construct();
     }
-    public function create_state(){
+    public function
+	create_state(){
         try{
             extract($_POST);
             $data=array();
@@ -190,5 +191,12 @@ class State extends CI_Controller {
             echo json_encode($data);
             exit();
         }
+    }
+    public function stateViewDetails(){
+        extract($_POST);
+//        print_r($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(7,null,$where);
+        $this->load->view("State/viewDetails",$data);
     }
 }

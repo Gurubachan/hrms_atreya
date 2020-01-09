@@ -11,14 +11,13 @@ $cname = $this->uri->segment(2);
         load_marital_status();
         load_gender();
         load_state();
+		custom_datepicker('dob');
+		custom_datepicker('doj');
+		custom_datepicker('dol');
     });
-
     $('#stateid').change(function () {
         load_district($(this).val());
     });
-    $('#dob').datepicker();
-    $('#doj').datepicker();
-    $('#dol').datepicker();
     $("#newEmployeeForm").submit(function(e){
         $('#toggle_new_employee').show();
         e.preventDefault();
@@ -32,7 +31,9 @@ $cname = $this->uri->segment(2);
                 if(data!=false){
                     var josndata = JSON.parse(data);
                     if($('#createNewEmployee').html()=='Update'){
-                        window.location.reload();
+                        // window.location.reload();
+						$('#newEmployeeForm').trigger('reset');
+						reportFunction(2);
                     }else{
                         reportFunction(1);
                         $('#newEmployeeForm').trigger('reset');
@@ -55,10 +56,13 @@ $cname = $this->uri->segment(2);
                     var z = jsondata.length;
                     var html = "";
                     var isactive='';
+                    var isattendance='';
                     for(var i=0; i<z; i++){
                         j++;
                         var checkId = jsondata[i].id;
                         var checkIsactive = jsondata[i].isactive;
+                        var checkIsattendance = jsondata[i].isattendance;
+                        var editisattendance = JSON.stringify(checkIsattendance);
                         var editisactive = JSON.stringify(checkIsactive);
                         var updatedid = '"<?= $cname ?>"';
                         var urlid = '"../Common/record_active_deactive"';
@@ -82,12 +86,17 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
+						if(checkIsattendance=='t'){
+							isattendance= "<button id='action"+checkId+"' onclick='editIsattendance(1,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-on fa-2x'></i></button>";
+						}else{
+							isattendance= "<button id='action"+checkId+"' onclick='editIsattendance(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
+						}
                         html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].slno+"</td><td>"+ jsondata[i].empid+"</td><td>"+ jsondata[i].designationname+"</td><td>"+ jsondata[i].fname+" "+jsondata[i].mname+" "+jsondata[i].lname+"</td>" +
                             "<td>"+ jsondata[i].gendername+"</td><td>"+ jsondata[i].dob+"</td><td>"+ jsondata[i].maritalstatusname+"</td><td>"+ jsondata[i].doj+"</td><td>"+ jsondata[i].dol+"</td><td>"+ jsondata[i].fathername+"</td><td>"+ jsondata[i].mothername+"</td>" +
                             "<td>"+ jsondata[i].spousename+"</td><td>"+ jsondata[i].address+"</td><td>"+ jsondata[i].emailid+"</td><td>"+ jsondata[i].mobile+"</td><td>"+ jsondata[i].statename+"</td><td>"+ jsondata[i].distname+"</td><td>"+ jsondata[i].educationname+"</td>" +
-                            "<td>"+ jsondata[i].epfno+"</td><td>"+ jsondata[i].esifno+"</td><td>"+ jsondata[i].aadharno+"</td><td>"+ jsondata[i].panno+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' " +
+                            "<td>"+ jsondata[i].epfno+"</td><td>"+ jsondata[i].esifno+"</td><td>"+ jsondata[i].aadharno+"</td><td>"+ jsondata[i].panno+"</td><td>"+isactive+"</td><td>"+isattendance+"</td><td><button class='btn editBtn btn-sm' " +
                             "onclick='reportEditEmployee(" +checkId+ ","+jsondata[i].slno+","+strempid+","+jsondata[i].departmentmappingid+","+jsondata[i].designationid+","+strdoj+","+strdol+","+strfname+","+strmname+","+strlname+","+jsondata[i].genderid+","+jsondata[i].mobile+"," +
-                            ""+stremailid+","+strfathername+","+strmothername+","+jsondata[i].maritalstatusid+","+strspoucsename+","+jsondata[i].educationid+","+straddress+","+strdob+","+strepf+","+jsondata[i].esifno+","+jsondata[i].aadharno+","+strpan+","+jsondata[i].distid+","+stateid+","+editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
+                            ""+stremailid+","+strfathername+","+strmothername+","+jsondata[i].maritalstatusid+","+strspoucsename+","+jsondata[i].educationid+","+straddress+","+strdob+","+strepf+","+jsondata[i].esifno+","+jsondata[i].aadharno+","+strpan+","+jsondata[i].distid+","+stateid+","+editisactive+ ","+editisattendance+")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_employeess").html(html);
                 }
@@ -96,12 +105,17 @@ $cname = $this->uri->segment(2);
     }
     function reportEditEmployee(id,slno,strempid,departmentmappingid,designationid,strdoj,strdol,strfname,strmname,strlname,
                                 genderid,mobile,stremailid,strfathername,strmothername,maritalstatusid,
-                                strspoucsename,educationid,straddress,strdob,strepf,esifno,aadharno,strpan,distid,stateid,isactive) {
+                                strspoucsename,educationid,straddress,strdob,strepf,esifno,aadharno,strpan,distid,stateid,isactive,isattendance) {
         if(isactive=='t'){
             var isactiveval=1;
         }else{
             isactiveval=0;
         }
+		if(isattendance=='t'){
+			var attendanceval=1;
+		}else{
+			attendanceval=0;
+		}
         $('#txtid').val(id);
         $('#slno').val(slno);
         $('#empid').val(strempid);
@@ -130,6 +144,7 @@ $cname = $this->uri->segment(2);
         $("#stateid").val(stateid).change();
         dist=distid;
         $('#isactive').val(isactiveval);
+        $('#isattendance').val(attendanceval);
         $('#slno').focus();
         $("#createNewEmployee").html("Update");
 

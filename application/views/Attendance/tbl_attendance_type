@@ -1,0 +1,9 @@
+tbl_id
+-------
+id,
+type,
+entryby,
+updatedby,
+updateat,
+createdat,
+isactive
