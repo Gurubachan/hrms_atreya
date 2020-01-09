@@ -331,7 +331,7 @@
 						<div class="form-group text-center">
 							<i class="fa fa-calendar-check-o fa-2x move"></i>
 							<hr style="margin: 5px;">
-							<span class="">Date</span>
+							<span class="">Calender</span>
 						</div>
 						<!--						<hr>-->
 						<!--						<div class="fa fa-trash"> </div>-->
