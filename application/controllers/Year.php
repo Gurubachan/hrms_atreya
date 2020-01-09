@@ -205,6 +205,12 @@ class Year extends CI_Controller
             exit();
         }
     }
-
+    public function yearViewDetails(){
+        extract($_POST);
+//        print_r($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(37,null,$where);
+        $this->load->view("Year/viewDetails",$data);
+    }
 
 }

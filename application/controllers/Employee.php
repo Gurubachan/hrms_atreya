@@ -370,6 +370,36 @@ class Employee extends CI_Controller {
             exit();
         }
     }
+	public function load_employee_data(){
+		try{
+			$current_date = Date('Y-m-d');
+			$data=array();
+			$where = "DATE(date)=DATE('$current_date') and isactive=true";
+			$res=$this->Model_Db->select(75,null,$where);
+			if($res!=false){
+				if($res[0]->datetype == 4){
+					$data['message']="Today is Sunday";
+					exit();
+				}else{
+					$where="isactive=true and isattendance=true";
+					$orderby = "fname";
+					$res=$this->Model_Db->select(30,null,$where,$orderby);
+					if($res!=false){
+						foreach ($res as $r){
+							$data[]=$r;
+						}
+					}
+				}
+			}
+			echo json_encode($data);
+		}catch (Exception $e){
+			$data['message']= "Message:".$e->getMessage();
+			$data['status']=false;
+			$data['error']=true;
+			echo json_encode($data);
+			exit();
+		}
+	}
     public function report_employee(){
         try{
             $data=array();
@@ -428,6 +458,7 @@ class Employee extends CI_Controller {
                             'aadharno' => $r->aadharno,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
+                            'isattendance' => $r->isattendance,
                             'isactive' => $r->isactive
                         );
                     }
@@ -507,7 +538,8 @@ class Employee extends CI_Controller {
                             'designationname' =>$r->designationname,
                             'gendername'=>$r->gendername,
                             'maritalstatusname' =>$r->statusname,
-                            'educationname'=>$r->educationname
+                            'educationname'=>$r->educationname,
+							'isattendance' =>$r->isattendance
                         );
                     }
                 }

@@ -159,4 +159,11 @@ class Education extends CI_Controller {
             exit();
         }
     }
+    public function educationViewDetails(){
+        extract($_POST);
+//        print_r($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(21,null,$where);
+        $this->load->view("Education/viewDetails",$data);
+    }
 }

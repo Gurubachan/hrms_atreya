@@ -90,6 +90,29 @@ $cname = $this->uri->segment(2);
         </div>
     </div>
 </div>
+<div class="modal fade" id="educationDetails">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header text-center" style="background-color: cornflowerblue;color: #fff;">
+                <span class="modal-title ">Education Details</span>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="loadEducationDetailsView"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--                <button type="button" class="btn btn-danger pull-right btn-sm" data-dismiss="modal">Edit</button>-->
+                <button type="button" class="btn btn-danger pull-right btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 </div>
 

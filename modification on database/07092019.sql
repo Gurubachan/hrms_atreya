@@ -27,7 +27,7 @@ create table tbl_job_posting
 	entryby int not null ,
 	createdat timestamp default current_timestamp,
 	updatedby int,
-	updatedat timestamp,
+	updatedat timestamp,                                        ``
 	isactive boolean default true,
 	foreign key (entryby) references tbl_user(id) on delete restrict on update cascade ,
 	foreign key (updatedby) references tbl_user (id) on delete restrict on update cascade,

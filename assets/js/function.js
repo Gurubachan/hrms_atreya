@@ -21,6 +21,24 @@ function editIsactive(isactive,checkid,updatedid,urlid){
         }
     });
 }
+function editIsattendance(isattendance,checkid,updatedid,urlid){
+    $.ajax({
+        type:'post',
+        url:urlid,
+        data:{txtid:checkid,isattendance:isattendance,tableid:updatedid},
+        success:function (res) {
+            if(res!=false){
+                if(isactive==1){
+                    $('#action'+checkid).html('<i class="fa fa-toggle-off fa-2x"></i>');
+                    $('#action'+checkid).attr("onclick","editIsattendance(0,"+checkid+",'"+updatedid+"','"+urlid+"')");
+                }else{
+                    $('#action'+checkid).html('<i class="fa fa-toggle-on fa-2x"></i>');
+                    $('#action'+checkid).attr("onclick","editIsattendance(1,"+checkid+",'"+updatedid+"','"+urlid+"')");
+                }
+            }
+        }
+    });
+}
 // report function for
 function reportFunction(id) {
     var data = '';
@@ -39,7 +57,6 @@ function reportFunction(id) {
 function checkIsactiveForEdit(checkIsactive,editisactiveval) {
     if(checkIsactive=='t'){
         return  editisactiveval=1;
-
     }else{
       return   editisactiveval=0;
     }
@@ -70,6 +87,7 @@ function loadUserAuthentication() {
             $("#load_pages").html(d);
         }
     });
+
 }
 
 function loadCompanyType() {

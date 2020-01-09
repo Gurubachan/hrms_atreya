@@ -10,8 +10,8 @@ $cname = $this->uri->segment(2);
         load_skill();
         // $("#educationid").select2();
         // load_experience();
-        $("#jobpoststartingdate").datepicker();
-        $("#jobpostendingdate").datepicker();
+        custom_datepicker('jobpoststartingdate');
+        custom_datepicker('jobpostendingdate');
     });
 
     $("#companytype").change(function () {

@@ -14,7 +14,8 @@ defined("BASEPATH") or exit("No direct script access allowed.");
                            </div>
                            <div class="header-button2">
                                <div class="header-button-item js-item-menu">
-                                   <small class="" id="current_time"></small>&nbsp;&nbsp;
+                                   <small style="font-size: 15px;" class="" id="current_date"></small>&nbsp;&nbsp;
+                                   <small style="font-size: 15px;" class="" id="current_time"></small>&nbsp;&nbsp;
                                    <i class="zmdi zmdi-search"></i>
 
                                    <div class="search-dropdown js-dropdown">

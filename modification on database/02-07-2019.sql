@@ -235,8 +235,10 @@ create table if not exists tbl_temp_employee(
 												isactive boolean default true,
 												isqueue boolean default false,
 												isrejeted boolean default false,
+												isattendance boolean default false,
 												isvalid boolean default false
 );
+alter table tbl_temp_employee add  column  isattendance boolean default false;
 create table if not exists tbl_employee(
 										   id smallserial not null primary key ,
 										   tempid int not null references tbl_temp_employee on update cascade,

@@ -12,9 +12,9 @@ $cname = $this->uri->segment(2);
         load_state();
         load_communicationType();
         load_experiencetype();
-        $("#dob").datepicker();
-        $("#doj").datepicker();
-        $("#dol").datepicker();
+      custom_datepicker('dob');
+      custom_datepicker('doj');
+      custom_datepicker('dol');
     });
     $('#stateid').change(function () {
         load_district($(this).val());

@@ -7,15 +7,12 @@ class Company extends CI_Controller {
     {
         parent::__construct();
     }
-
     public function header(){
         try{
-
             $this->load->view('include/header');
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
         }
-
     }
     public function footer(){
         try{
@@ -38,7 +35,6 @@ class Company extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
-
     public function create_company_type(){
         try{
             $request = json_decode(json_encode($_POST), FALSE);
@@ -153,8 +149,8 @@ class Company extends CI_Controller {
                 echo $request->companyshortname;
             }
             if(isset($request->establishedon) && preg_match("/^[0-9 -]{10}$/",$request->establishedon)){
-                $doe=date("Y-m-d",strtotime($request->establishedon));
-                $insert[0]['establishedon']=$doe;
+//                $doe=date("Y-m-d",strtotime($request->establishedon));
+                $insert[0]['establishedon']=$request->establishedon;
             }else{
                 $status=false;
                 echo $request->establishedon;
@@ -449,4 +445,11 @@ class Company extends CI_Controller {
 //            echo "Message:".$exception->getMessage();
 //        }
 //    }
+    public function companyTypeViewDetails(){
+        extract($_POST);
+//        print_r($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(11,null,$where);
+        $this->load->view("Company/Companytype/viewDetails",$data);
+    }
 }

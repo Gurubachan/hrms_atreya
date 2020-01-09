@@ -89,6 +89,16 @@ class Common extends CI_Controller
                 $update[0]['updatedby']=$this->session->login['userid'];
                 $update[0]['updatedat']=date("Y-m-d H:i:s");
             }
+			if(isset($request->isattendance) && is_numeric($request->isattendance)){
+				if($request->isattendance==1){
+					$request->isattendance=false;
+				}else{
+					$request->isattendance=true;
+				}
+				$update[0]['isattendance']=$request->isattendance;
+				$update[0]['updatedby']=$this->session->login['userid'];
+				$update[0]['updatedat']=date("Y-m-d H:i:s");
+			}
             $res=$this->Model_Db->update($tableid,$update,"id",$request->txtid);
             if($res!=false){
                 $data['message']="Update successful.";

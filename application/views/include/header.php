@@ -34,9 +34,11 @@ $cname = $this->uri->segment(2);
     <link href="<?= base_url('assets/vendor/perfect-scrollbar/perfect-scrollbar.css')?>" rel="stylesheet" media="all">
     <link href="<?= base_url('assets/vendor/vector-map/jqvmap.min.css')?>" rel="stylesheet" media="all">
     <link href="<?= base_url('assets/css/datatables.min.css')?>" rel="stylesheet" media="all">
-    <link href="<?= base_url('assets/css/DataTables-1.10.20/dataTables.bootstrap4.min.css')?>" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets/css/dataTables.bootstrap4.min.css')?>" rel="stylesheet" media="all">
     <link href="<?= base_url('assets/css/jquery-ui.min.css')?>" rel="stylesheet" media="all">
     <link href="<?= base_url('assets/css/Chart.min.css')?>" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets/css/toastr.css')?>" rel="stylesheet" media="all">
+    <link href="<?= base_url('assets/css/jquery.timepicker.min.css')?>" rel="stylesheet" media="all">
     <!-- calender-->
     <!-- Main CSS-->
     <link href="<?= base_url('assets/css/theme.css')?>" rel="stylesheet" media="all" >

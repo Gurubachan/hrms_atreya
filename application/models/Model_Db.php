@@ -46,7 +46,8 @@ class Model_Db extends CI_Model
                 '69'=>'tbl_resource_type','70'=>'view_resource_type',
                 '71'=>'tbl_resource_company','72'=>'view_resource_company',
                 '73'=>'tbl_resource','74'=>'view_resource',
-
+                '75'=>'tbl_datemanagement','76'=>'view_datemanagement',
+                '77'=>'tbl_datetype','78'=>'view_datetype'
             );
             if($table[$tblno]){
                 return $table[$tblno];
