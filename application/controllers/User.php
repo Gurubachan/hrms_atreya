@@ -452,6 +452,7 @@ class User extends CI_Controller {
 //                            foreach ($result as $rs) {
                                 $data[] = array(
                                     'id' => $r->id,
+                                    'fname'=>$r->name,
                                     'usertypeid' => $r->usertypeid,
                                     'typename'=> $r->typename,
                                     'mname' => $r->mname,
