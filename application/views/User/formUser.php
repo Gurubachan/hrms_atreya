@@ -127,7 +127,7 @@ $cname = $this->uri->segment(2);
                     <a href="#" class="btn btn-close btn-round btn-default"><i class="fa fa-remove"></i></a>
                 </div>
             </div>
-            <div class="box-content">
+            <div class="box-content" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
                 <div class="table-responsive">
                     <table class="table  table-striped table-bordered bootstrap-datatable datatable  table-earning">
                         <thead style="font-size: 10px;">

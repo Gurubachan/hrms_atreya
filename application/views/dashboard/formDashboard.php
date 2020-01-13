@@ -17,7 +17,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="card cardhover shadowDiv">
+					<div class="card cardhover shadowDiv"  onclick="loadUser()">
 						<div class="card-body">
 							<div class="form-group mr-auto ml-auto d-block p-t-0">
 								<span class="fa fa-caret-right">&nbsp;</span><label for=""> User</label>
