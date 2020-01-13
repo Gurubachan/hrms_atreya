@@ -55,7 +55,7 @@ $cname = $this->uri->segment(2);
         $('#toggle_new_user').show();
         e.preventDefault();
         var frm = $("#newUserForm").serialize();
-        alert(frm);
+        // alert(frm);
         $.ajax({
             type:'post',
             url:"<?= base_url('User/create_user')?>",
@@ -64,9 +64,9 @@ $cname = $this->uri->segment(2);
             success:function(data){
                 if(data!=false){
                     successfull_entries();
-                    var josndata = JSON.parse(data);
+                    var jsondata = JSON.parse(data);
+                    frm.trigger('reset');
                     reportFunction(1);
-                    $("#newUserForm").trigger('reset');
                 }
             }
         });
@@ -79,7 +79,6 @@ $cname = $this->uri->segment(2);
             data:{checkparams:id},
             crossDomain:true,
             success:function(data){
-                alert(data);
                 if(data!=false){
                     var jsondata = JSON.parse(data);
                     var j=0;
@@ -91,7 +90,7 @@ $cname = $this->uri->segment(2);
                         var checkId = jsondata[i].id;
                         var checkIsactive = jsondata[i].isactive;
                         var editisactive = JSON.stringify(checkIsactive);
-                        var fname = jsondata[i].name;
+                        var fname = jsondata[i].fname;
                         var mname = jsondata[i].mname;
                         var lname = jsondata[i].lname;
                         var strfname = JSON.stringify(jsondata[i].fname);
@@ -107,7 +106,7 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].typename+"</td><td>"+jsondata[i].username+"</td><td>"+ jsondata[i].username+" "+mname+" "+lname+"</td>" +
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].typename+"</td><td>"+jsondata[i].username+"</td><td>"+fname+" "+mname+" "+lname+"</td>" +
                             "<td>"+ jsondata[i].emailid+"</td><td>"+ jsondata[i].mobile+"</td><td>"+ jsondata[i].dob+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' " +
 							"onclick='reportEditUsertype(" +checkId+ "," +jsondata[i].usertypeid+ "," +jsondata[i].mobile+ "," +strfname+ ","+strmname+","+strlname+","+strusername+","+stremail+","+strdob+"," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
