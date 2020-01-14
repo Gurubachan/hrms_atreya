@@ -1,8 +1,9 @@
 //hrms user view modification
 // added createdat in the view
 //created by bijaya
-create view view_user(id, usertypeid, typename, name, mname, lname, emailid, mobile, dob, logo, isactive, username,
-                      createdat,password, authisactive, typeisactive) as
+
+drop view if exists view_user;
+create or replace view view_user as
 SELECT u.id,
        u.usertypeid,
        ut.typename,
