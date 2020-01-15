@@ -228,12 +228,12 @@ class User extends CI_Controller {
     }
     public function create_user(){
         try{
+
             $data=array();
             $insert=array();
             $password=array();
             $status=true;
             $request= json_decode(json_encode($_POST), false);
-            print_r($request);
             if(isset($request->usertypeid) && is_numeric($request->usertypeid)){
                 $insert[0]['usertypeid']=$request->usertypeid;
             }else{
@@ -282,6 +282,46 @@ class User extends CI_Controller {
                 $status=false;
                echo $request->dob;
             }
+            // file upload
+            $config['upload_path']          = './assets/images/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['max_size']             = 100;
+            $config['max_width']            = 1024;
+            $config['max_height']           = 768;
+            $config['file_name']           ='img'.date("Y-m-d@H-i-s");
+            $this->load->library('upload', $config);
+            if ( ! $this->upload->do_upload('uploadFile'))
+            {
+                $error_msg =  $this->upload->display_errors();
+                $data['message']="Faild";
+                $data['data']=$error_msg;
+                $data['status']=false;
+//                exit();
+            }
+            else
+            {
+                $upload_photo = $this->upload->data();
+                $data['message']="successful";
+                $data['data']="Data insert successful";
+                $data['status']=true;
+            }
+//            $config['file_name']    = 'sign'.date("Y-m-d@H-i-s");
+            $this->upload->initialize($config);
+//            if ( ! $this->upload->do_upload('uploadSign'))
+//            {
+//                echo $this->upload->display_errors();
+//                exit();
+//            }
+//            else
+//            {
+//                $upload_sign =$this->upload->data();
+//            }
+            if(isset($upload_photo)){
+                $insert[0]['logo']=$upload_photo['file_name'];
+            }else{
+                $status=false;
+                echo $upload_photo;
+            }
 //            if(isset($request->userpassword) && preg_match("/^[a-zA-Z0-9-_@.]{6,18}$/",$request->userpassword) && isset($request->reenteruserpassword) && preg_match("/^[a-zA-Z0-9-_@.]{6,18}$/",$request->reenteruserpassword)){
 //                if($request->userpassword == $request->reenteruserpassword){
 //                    $password[0]['password']=$request->mobile;
@@ -304,26 +344,6 @@ class User extends CI_Controller {
             }else{
                 $status=false;
             }
-			if(isset($request->images)) {
-				if (!empty($_FILES['images']['name'])) {
-					$config['upload_path'] = './assets/images/';
-					$config['allowed_types'] = 'gif|jpg|png|jpeg';
-					$config['file_name'] = $_FILES['images']['name'];
-					$this->load->library('upload', $config);
-					$this->upload->initialize($config);
-					if ($this->upload->do_upload('images')) {
-						$upload_data = $this->upload->data();
-						$insert[0]['logo'] = $upload_data['file_name'];
-					} else {
-						$insert[0]['logo'] = '';
-					}
-				} else {
-					$insert[0]['logo'] = '';
-				}
-			}else{
-				echo "sorry";
-
-			}
             if($status){
                 if(isset($request->txtid) && is_numeric($request->txtid)){
                     if($request->txtid>0){
