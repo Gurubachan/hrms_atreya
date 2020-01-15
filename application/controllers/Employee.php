@@ -538,8 +538,8 @@ class Employee extends CI_Controller {
                             'designationname' =>$r->designationname,
                             'gendername'=>$r->gendername,
                             'maritalstatusname' =>$r->statusname,
-                            'educationname'=>$r->educationname
-//							'isattendance' =>$r->isattendance
+                            'educationname'=>$r->educationname,
+							'isattendance' =>$r->isattendance
                         );
                     }
                 }
