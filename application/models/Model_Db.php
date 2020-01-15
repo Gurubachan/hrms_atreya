@@ -47,7 +47,11 @@ class Model_Db extends CI_Model
                 '71'=>'tbl_resource_company','72'=>'view_resource_company',
                 '73'=>'tbl_resource','74'=>'view_resource',
                 '75'=>'tbl_datemanagement','76'=>'view_datemanagement',
-                '77'=>'tbl_datetype','78'=>'view_datetype'
+                '77'=>'tbl_datetype','78'=>'view_datetype',
+                '79'=>'tbl_shift_type','80'=>'view_shift_type',
+                '81'=>'tbl_shift','82'=>'view_shift',
+                '83'=>'tbl_shift_assign','84'=>'view_shift_assign',
+                '85'=>'tbl_holiday_calender','86'=>'view_holiday_calender',
             );
             if($table[$tblno]){
                 return $table[$tblno];

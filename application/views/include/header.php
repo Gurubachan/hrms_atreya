@@ -39,6 +39,7 @@ $cname = $this->uri->segment(2);
     <link href="<?= base_url('assets/css/Chart.min.css')?>" rel="stylesheet" media="all">
     <link href="<?= base_url('assets/css/toastr.css')?>" rel="stylesheet" media="all">
     <link href="<?= base_url('assets/css/jquery.timepicker.min.css')?>" rel="stylesheet" media="all">
+<!--    <link href="--><?//= base_url('assets/toastr-master/build/toastr.css')?><!--" rel="stylesheet" media="all">-->
     <!-- calender-->
     <!-- Main CSS-->
     <link href="<?= base_url('assets/css/theme.css')?>" rel="stylesheet" media="all" >

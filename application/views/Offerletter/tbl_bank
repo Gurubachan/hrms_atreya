@@ -1,0 +1,10 @@
+tbl_id
+-------
+id,
+bankname,
+bankshortname,
+entryby,
+updatedby,
+updateat,
+createdat,
+isactive

@@ -27,7 +27,7 @@ $cname = $this->uri->segment(2);
                                         <label for="slno" class="control-label mb-1">#Slno<span
                                                     style="color:red;">*</span>.</label>
                                         <input id="slno" name="slno" type="text" class="form-control"
-                                               onclick="alfa_numeric('slno')" maxlength="20"
+                                               onclick="alfa_numeric('slno')" maxlength="8"
                                                placeholder="Enter serial number" required>
                                         <small class="errormsg_slno"></small>
                                     </div>

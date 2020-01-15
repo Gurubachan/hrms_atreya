@@ -58,6 +58,13 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
+    public function offerletterSidebar(){
+        try{
+            $this->load->view('Offerletter/offerLetterSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
     public function employeeDashboardMenu(){
         try{
             $this->load->view('Employee/employeeDashboardMenu');
@@ -590,6 +597,38 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
+    public function formShiftType(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->attendanceSidebar();
+                $this->load->view('Attendance/shiftType/formShiftType');
+                $this->footer();
+                $this->load->view('Attendance/shiftType/formShiftType-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formShift(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->attendanceSidebar();
+                $this->load->view('Attendance/shift/formShift');
+                $this->footer();
+                $this->load->view('Attendance/shift/formShift-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
     public function loadResourceDashboard(){
         try{
             if($this->session->login['userid']) {
@@ -804,6 +843,22 @@ class Forms extends CI_Controller {
                 $this->load->view('Datemanagement/formDatemanagement');
                 $this->footer();
                 $this->load->view('Datemanagement/datemanagement-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:".$e->getMessage();
+        }
+    }
+    public function formOfferLetter(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->offerletterSidebar();
+                $this->load->view('Offerletter/offerLetterDashboard');
+                $this->footer();
+                $this->load->view('Offerletter/offerletter-script');
             }else{
                 redirect('welcome/');
             }

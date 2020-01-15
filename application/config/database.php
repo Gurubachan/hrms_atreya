@@ -94,30 +94,30 @@ $query_builder = TRUE;
 	'failover' => array(),
 	'save_queries' => TRUE
 );*/
-$db['default'] = array(
+//$db['default'] = array(
 //	'dsn'	=> 'pgsql:host=127.0.0.1;port=5432;dbname=new_database;user=postgres;password=admin@123',
-    'dsn'	=> '',
+//    'dsn'	=> '',
     //	'hostname' => '34.80.242.213',
-    'hostname' => 'localhost',
-    'username' => 'postgres',
-    'password' => 'Sonu_7668',
-    'database' => 'db_hrms',
-    'dbdriver' => 'postgre',
-    'dbprefix' => '',
-    'pconnect' => FALSE,
-    'db_debug' => (ENVIRONMENT !== 'production'),
-    'cache_on' => FALSE,
-    'cachedir' => '',
-    'char_set' => 'utf8',
-    'dbcollat' => 'utf8_general_ci',
-    'swap_pre' => '',
-    'encrypt' => FALSE,
-    'compress' => FALSE,
-    'stricton' => FALSE,
-    'failover' => array(),
-    'save_queries' => TRUE,
-    'port'=>'5432'
-);
+//    'hostname' => 'localhost',
+//    'username' => 'postgres',
+//    'password' => 'superuser',
+//    'database' => 'db_hrms',
+//    'dbdriver' => 'postgre',
+//    'dbprefix' => '',
+//    'pconnect' => FALSE,
+//    'db_debug' => (ENVIRONMENT !== 'production'),
+//    'cache_on' => FALSE,
+//    'cachedir' => '',
+//    'char_set' => 'utf8',
+//    'dbcollat' => 'utf8_general_ci',
+//    'swap_pre' => '',
+//    'encrypt' => FALSE,
+//    'compress' => FALSE,
+//    'stricton' => FALSE,
+//    'failover' => array(),
+//    'save_queries' => TRUE,
+//    'port'=>'5432'
+//);
 //$db['default'] = array(
 ////	'dsn'	=> 'pgsql:host=127.0.0.1;port=5432;dbname=new_database;user=postgres;password=admin@123',
 //	'dsn'	=> '',
@@ -143,3 +143,27 @@ $db['default'] = array(
 //	'save_queries' => TRUE,
 //    'port'=>'5432'
 //);
+$db['default'] = array(
+//	'dsn'	=> 'pgsql:host=127.0.0.1;port=5432;dbname=new_database;user=postgres;password=admin@123',
+    'dsn'	=> '',
+    //	'hostname' => '34.80.242.213',
+    'hostname' => '192.168.1.3',
+    'username' => 'gurubachan',
+    'password' => 'n)th!ngt)5h@re',
+    'database' => 'db_hrms',
+    'dbdriver' => 'postgre',
+    'dbprefix' => '',
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => 'utf8',
+    'dbcollat' => 'utf8_general_ci',
+    'swap_pre' => '',
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE,
+    'port'=>'5432'
+);

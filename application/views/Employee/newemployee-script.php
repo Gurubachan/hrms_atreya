@@ -11,8 +11,9 @@ $cname = $this->uri->segment(2);
         load_marital_status();
         load_gender();
         load_state();
-		custom_datepicker('dob');
-		custom_datepicker('doj');
+
+        custom_datepicker('doj');
+        custom_datepicker('dob');
 		custom_datepicker('dol');
     });
     $('#stateid').change(function () {

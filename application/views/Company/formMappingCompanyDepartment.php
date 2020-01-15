@@ -117,7 +117,6 @@ $cname = $this->uri->segment(2);
             success:function(data){
                 if(data!=false){
                     var jsondata = JSON.parse(data);
-                    alert(data);
                     console.log(data);
                 }else{
                     console.log(data);

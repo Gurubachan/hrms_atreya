@@ -15,8 +15,6 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <!-- Bootstrap JS-->
 <script type="text/javascript" src="<?= base_url('assets/vendor/bootstrap-4.1/popper.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/vendor/bootstrap-4.1/bootstrap.min.js')?>"></script>
-
-
 <script src="<?= base_url('assets/vendor/js-toast-master/toast.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/function.js')?>"></script>
 <!-- Vendor JS       -->
@@ -40,7 +38,6 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <link href="https://fonts.googleapis.com/css?family=Abel|Arima+Madurai|Caudex|Roboto+Condensed|Squada+One|Turret+Road|Varela+Round&display=swap" rel="stylesheet"> <!-- Main JS-->
 <script type="text/javascript" src="<?= base_url('assets/js/main.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/custom.js')?>"></script>
-<link href="<?= base_url('assets/toastr-master/build/toastr.css')?>" rel="stylesheet" media="all">
 <script type="text/javascript" src="<?= base_url('assets/js/toastr.js')?>"></script>
 <!--<link href="--><?//= base_url('assets/pg-calendar-master/dist/css/pignose.calendar.css')?><!--" rel="stylesheet" media="all">-->
 <!--<script type="text/javascript" src="--><?//= base_url('assets/pg-calendar-master/dist/js/pignose.calendar.full.js')?><!--"></script>-->
@@ -121,6 +118,17 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     function loadAttendanceSheet() {
         window.location.href="<?= base_url('Forms/formAttendanceSheet')?>";
     }
+    /*
+      view form - Shift type and Shift
+       14/01/2020
+       created by shuvam
+    */
+    function loadShifttype() {
+        window.location.href="<?= base_url('Forms/formShiftType')?>";
+    }
+   function loadShift() {
+       window.location.href="<?= base_url('Forms/formShift')?>";
+   }
     function loadResourceDashboard() {
         window.location.href="<?= base_url('Forms/loadResourceDashboard')?>";
     }
@@ -157,12 +165,18 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     function dateManagement(){
         window.location.href="<?= base_url('Forms/formDateManagement')?>";
    }
+   function offerLetter(){
+        window.location.href="<?= base_url('Forms/formOfferLetter')?>";
+   }
+   function hrmsLogout(){
+        window.location.href="<?= base_url('User/logout')?>";
+   }
        let myVar = setInterval(myTimer, 1000);
        function myTimer() {
            let d = new Date();
            let t = d.toLocaleTimeString();
            let a = d.getDate();
-           let b = d.getMonth();
+           let b = d.getMonth()+1;
            let c = d.getFullYear();
            document.getElementById("current_time").innerHTML = t;
            document.getElementById("current_date").innerHTML = a +"/"+ b +"/"+ c;

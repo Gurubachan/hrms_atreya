@@ -189,7 +189,6 @@ function employeeAttendance() {
 }
 
 function load_company_type(){
-
     $.ajax({
         type:'post',
         url: "../Company/load_company_type",
@@ -202,6 +201,21 @@ function load_company_type(){
         }
     });
 }
+
+// function loadcompany(){
+//     // var companytype=$("#cboCompanyType").val();
+//     $.ajax({
+//         type:'post',
+//         url: "../Company/load_company",
+//         // crossDomain:true,
+//         success:function(data){
+//             var data = JSON.parse(data);
+//             if(data!=false){
+//                 $("#cboCompany").html(data);
+//             }
+//         }
+//     });
+// }
 function load_state(){
 
     $.ajax({
@@ -389,6 +403,7 @@ function loadOnlyCompany(){
             var data = JSON.parse(data);
             if(data!=false){
                 $("#companyid").html(data);
+                $("#cboCompany").html(data);
             }
         }
     });

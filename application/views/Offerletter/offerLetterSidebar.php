@@ -15,12 +15,9 @@ defined("BASEPATH") or exit("No direct script access allowed.");
                     </ul>
                     <hr>
                     <ul class="main-menu">
-                        <li onclick="loadResourceType()"><i class="fa fa-cubes "></i> &nbsp;Resource Type</li>
-                        <li onclick="loadResourceComapany()"><i class="fa fa-cubes "></i> &nbsp;Resource Company</li>
-                        <li onclick="loadAssurance()"><i class="fa fa-handshake-o "></i> &nbsp;Assurance</li>
-                        <li onclick="loadPeriodtype()"><i class="fa fa-cubes "></i> &nbsp;Assurance Period</li>
-                        <li onclick="loadResource()"><i class="fa fa-suitcase "></i> &nbsp; Resource</li>
-
+                        <li onclick="offerLetterForm()"><i class="fa fa-calendar "></i> &nbsp;Offer Letter</li>
+                        <li onclick="appointmentLetterForm()"><i class="fa fa-calendar-plus "></i> &nbsp; Appointment Letter</li>
+                        <li onclick="appraisalLetterForm()"><i class="fa fa-calendar-check"></i> &nbsp; Appraisal Letter</li>
                     </ul>
                 </div>
                 <hr>
@@ -30,9 +27,8 @@ defined("BASEPATH") or exit("No direct script access allowed.");
                 <div class="box-content">
                     <ul class="main-menu">
                         <li><i class="fa fa-feed "></i> &nbsp; Feedback</li>
-                        <li><i class="zmdi zmdi-sign-in"></i> &nbsp; Logout</li>
+                        <li onclick="hrmsLogout()"> <i class="zmdi zmdi-sign-in"></i> &nbsp; Logout</li>
                     </ul>
                 </div>
             </div>
         </div>
-

@@ -168,7 +168,7 @@ class Employee extends CI_Controller {
 //            $postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $status=true;
-            if(isset($request->slno) && preg_match("/^[a-zA-Z0-9]{0,20}$/",$request->slno)){
+            if(isset($request->slno) && preg_match("/^[a-zA-Z0-9]{0,8}$/",$request->slno)){
                 $insert[0]['slno']=$request->slno;
             }else{
                 $status=false;
@@ -272,9 +272,9 @@ class Employee extends CI_Controller {
             if(isset($epfno) && preg_match("/[A-Z0-9]{0,60}/",$epfno)){
                 $insert[0]['epfno']=$epfno;
             }else{
-//                $insert[0]['epfno']="";
-                $status=false;
-                echo $epfno;
+                $insert[0]['epfno']="";
+//                $status=false;
+//                echo $epfno;
             }
             if(isset($request->esifno) && is_numeric($request->esifno)){
                 $insert[0]['esifno']=$request->esifno;
@@ -538,8 +538,8 @@ class Employee extends CI_Controller {
                             'designationname' =>$r->designationname,
                             'gendername'=>$r->gendername,
                             'maritalstatusname' =>$r->statusname,
-                            'educationname'=>$r->educationname,
-							'isattendance' =>$r->isattendance
+                            'educationname'=>$r->educationname
+//							'isattendance' =>$r->isattendance
                         );
                     }
                 }

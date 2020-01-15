@@ -507,4 +507,337 @@ class Attendance extends CI_Controller {
 			exit();
 		}
 	}
+    public function create_shifttype(){
+        try{
+            $request = json_decode(json_encode($_POST), FALSE);
+            $data=array();
+            $insert=array();
+            $status=true;
+            if(isset($request->txtShifttype) && preg_match("/[a-zA-Z ]{3,15}/",$request->txtShifttype)){
+                $insert[0]['shifttypename']=$request->txtShifttype;
+            }else{
+                $status=false;
+                $data['data']="shift type name error";
+            }
+//            if(isset($request->isactive) && preg_match("/[0,1]{1}/",$request->isactive)){
+//                if($request->isactive==1){
+//                    $insert[0]['isactive']=true;
+//                }else if($request->isactive==0){
+//                    $insert[0]['isactive']=false;
+//                }else{
+//                    $status=false;
+//                }
+//            }else{
+//                $status=false;
+//            }
+            if($status){
+                if(isset($request->txtid) && is_numeric($request->txtid)){
+                    if($request->txtid>0){
+                        $insert[0]['updatedby']=$this->session->login['userid'];
+                        $insert[0]['updatedat']=date("Y-m-d H:i:s");
+                        $res=$this->Model_Db->update(79,$insert,"id",$request->txtid);
+                        if($res!=false){
+                            $data['message']="Update successful.";
+                            $data['status']=true;
+                        }else{
+                            $data['message']="Update failed.";
+                            $data['status']=false;
+                        }
+                    }else if($request->txtid==0){
+                        $where="shifttypename='$request->txtShifttype'";
+                        $duplicate_check=$this->Model_Db->select(79,null,$where);
+                        if($duplicate_check!=false){
+                            $data['message']="Duplicate entry";
+                            $data['data']=$request->txtShifttype." is already present in database";
+                            $data['status']=false;
+                        }else{
+//                            $insert[0]['entryby']=$this->session->login['userid'];
+                            $insert[0]['entryby']=1;
+                            $insert[0]['createdat']=date("Y-m-d H:i:s");
+                            $res=$this->Model_Db->insert(79,$insert);
+                            if($res!=false){
+                                $data['message']="successful";
+                                $data['data']=" Data insert successful";
+                                $data['status']=true;
+                            }else{
+                                $data['message']="failed.";
+                                $data['data']=" Data insert faild";
+                                $data['status']=false;
+                            }
+                        }
+                    }else{
+                        $data['message']="Insufficient/Invalid data.";
+                        $data['status']=false;
+                    }
+                }else{
+                    $data['message']="Insufficient/Invalid data.";
+                    $data['status']=false;
+                }
+            }else{
+                $data['message']="Insufficient/Invalid data.";
+                $data['status']=false;
+            }
+            echo json_encode($data);
+            exit();
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
+    public function load_shifttype(){
+        try{
+            $data=array();
+            $where="isactive=true";
+            $res=$this->Model_Db->select(79,null,$where);
+            $data['data']="<option value=''>Select</option>";
+            if($res!=false){
+                foreach ($res as $r){
+                    $data['data'] .="<option value='$r->id'>$r->shifttypename</option>";
+                }
+            }
+            echo json_encode($data);
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
+    public function report_dutytype_details(){
+        try{
+            $data=array();
+            $request = json_decode(json_encode($_POST), FALSE);
+            $current_date=Date("Y-m-d");
+            if(isset($request->checkparams) && is_numeric($request->checkparams)) {
+                switch ($request->checkparams) {
+                    case 1:
+                        $where = "DATE(createdat)=DATE('$current_date')";
+                        break;
+                    case 2:
+                        $where = "1=1";
+                        break;
+                    case 3:
+                        $where = "isactive=true";
+                        break;
+                    case 4:
+                        $where = "isactive=false";
+                        break;
+                    default:
+                        $data['message'] = "ID not found";
+                        $data['status'] = false;
+                        $data['error'] = true;
+                        exit();
+                }
+                $res = $this->Model_Db->select(79, null, $where);
+                if ($res != false) {
+                    foreach ($res as $r) {
+                        $data[] = array(
+                            'id' => $r->id,
+                            'shifttypename' => $r->shifttype,
+                            'creationdate' => $r->createdat,
+                            'lastmodifiedon' => $r->updatedat,
+                            'isactive' => $r->isactive
+                        );
+                    }
+                }
+            }
+            echo json_encode($data);
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
+    public function create_shift(){
+        try{
+            extract($_POST);
+            $data=array();
+            $insert=array();
+            $status=true;
+            if(isset($cboCompany) && is_numeric($cboCompany)){
+                $insert[0]['companyid']=$cboCompany;
+            }else{
+                $status=false;
+                $data['data']="shift company error";
+            }
+            if(isset($cboShift) && is_numeric($cboShift)){
+                $insert[0]['shifttypeid']=$cboShift;
+            }else{
+                $status=false;
+                $data['data']="shift type error";
+            }
+            if(isset($txtShiftname) && preg_match("/[a-zA-Z ]{3,60}/",$txtShiftname)){
+                $insert[0]['shiftname']=$txtShiftname;
+            }else{
+                $status=false;
+                $data['data']="shift name error";
+            }
+            if(isset($txtShiftshortname) && preg_match("/[a-zA-Z]{2,7}/",$txtShiftshortname)){
+                $insert[0]['shiftsrtname']=$txtShiftshortname;
+            }else{
+                $status=false;
+                $data['data']="shift short name error";
+            }
+            if(isset($txtIntime) && preg_match("/[0-9:]{8}/",$txtIntime)){
+                $insert[0]['shiftintime']=$txtIntime;
+            }else{
+                $status=false;
+                $data['data']="shift intime error";
+            }
+            if(isset($txtOuttime) && preg_match("/[0-9:]{8}/",$txtOuttime)){
+                $insert[0]['shiftouttime']=$txtOuttime;
+            }else{
+                $status=false;
+                $data['data']="shift outtime error";
+            }
+            if(isset($rdoIsdatechange) && is_numeric($rdoIsdatechange)){
+                $insert[0]['isdatechange']=$rdoIsdatechange;
+            }else{
+                $status=false;
+                $data['data']="shift isdatechange error";
+            }
+            if(isset($txtEffectFrom)){
+                $insert[0]['shiftwef']=$txtEffectFrom;
+            }else{
+                $status=false;
+                $data['data']="shift effect form error";
+            }
+            if($status){
+                if(isset($txtid) && is_numeric($txtid)){
+                    if($txtid>0){
+                        $insert[0]['updatedby']=$this->session->login['userid'];
+                        $insert[0]['updatedat']=date("Y-m-d H:i:s");
+                        $res=$this->Model_Db->update(81,$insert,"id",$txtid);
+                        if($res!=false){
+                            $data['message']="successful.";
+                            $data['data']="Data update successful.";
+                            $data['status']=true;
+                        }else{
+                            $data['message']="Update failed.";
+                            $data['status']=false;
+                        }
+                    }else if($txtid==0){
+                        $where="shiftname='$txtShiftname'";
+                        $duplicate_check=$this->Model_Db->select(81,null,$where);
+                        if($duplicate_check!=false){
+                            $data['message']="Duplicate entry";
+                            $data['data']=$txtShiftname."is already peresent in database";
+                            $data['status']=false;
+                            $data['flag']=0;
+                        }else{
+                            $insert[0]['entryby']=1;
+                            $insert[0]['createdat']=date("Y-m-d H:i:s");
+                            $res=$this->Model_Db->insert(81,$insert);
+                            if($res!=false){
+                                $data['message']="successful";
+                                $data['data']="Data insert successful";
+                                $data['status']=true;
+                            }else{
+                                $data['message']="Insert failed.";
+                                $data['data']="Data Insert failed.";
+                                $data['status']=false;
+                            }
+                        }
+                    }else{
+                        $data['message']="Insufficient/Invalid data.";
+                        $data['status']=false;
+                    }
+                }else{
+                    $data['message']="Insufficient/Invalid data.";
+                    $data['status']=false;
+                }
+            }else{
+                $data['message']="Insufficient/Invalid data.";
+                $data['status']=false;
+            }
+            echo json_encode($data);
+            exit();
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
+    public function load_shift(){
+        try{
+            $data=array();
+            $where="isactive=true";
+            $res=$this->Model_Db->select(81,null,$where);
+            $data[]="<option value=''>Select</option>";
+            if($res!=false){
+                foreach ($res as $r){
+                    $data[]="<option value='$r->id'>$r->shifttype</option>";
+                }
+            }
+            echo json_encode($data);
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
+    public function report_shift_details(){
+        try{
+            $data=array();
+            $request = json_decode(json_encode($_POST), FALSE);
+            $current_date=Date("Y-m-d");
+            if(isset($request->checkparams) && is_numeric($request->checkparams)) {
+                switch ($request->checkparams) {
+                    case 1:
+                        $where = "DATE(createdat)=DATE('$current_date')";
+                        break;
+                    case 2:
+                        $where = "1=1";
+                        break;
+                    case 3:
+                        $where = "isactive=true";
+                        break;
+                    case 4:
+                        $where = "isactive=false";
+                        break;
+                    default:
+                        $data['message'] = "ID not found";
+                        $data['status'] = false;
+                        $data['error'] = true;
+                        exit();
+                }
+                $res = $this->Model_Db->select(81, null, $where);
+                if ($res != false) {
+                    foreach ($res as $r) {
+                        $data[] = array(
+                            'id' => $r->id,
+                            'shifttypeid' => $r->shifttype,
+                            'shiftname' => $r->shiftname,
+                            'companyid' => $r->shiftcompany,
+                            'shiftshortname' => $r->txtShiftshorttname,
+                            'shiftintime' => $r->intime,
+                            'shiftouttime' => $r->outtime,
+                            'shiftwef' => $r->effectfrom,
+                            'isdatechange' => $r->isdatechange,
+                            'creationdate' => $r->createdat,
+                            'lastmodifiedon' => $r->updatedat,
+                            'isactive' => $r->isactive
+                        );
+                    }
+                }
+            }
+            echo json_encode($data);
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
 }

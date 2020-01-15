@@ -15,9 +15,11 @@ defined("BASEPATH") or exit("No direct script access allowed.");
                     </ul>
                     <hr>
                     <ul class="main-menu">
-                        <li onclick="loadAttendanceType()"><i class="fa fa-calendar "></i> &nbsp;Attendance Type</li>
-                        <li onclick="loadAttendance()"><i class="fa fa-calendar-plus "></i> &nbsp; Attendance Form</li>
-                        <li onclick="loadAttendanceSheet()"><i class="fa fa-calendar-check"></i> &nbsp; Attendance Sheet</li>
+<!--                        <li onclick="loadAttendanceType()"><i class="fa fa-calendar "></i> &nbsp;Attendance Type</li>-->
+<!--                        <li onclick="loadAttendance()"><i class="fa fa-calendar-plus "></i> &nbsp; Attendance Form</li>-->
+<!--                        <li onclick="loadAttendanceSheet()"><i class="fa fa-calendar-check"></i> &nbsp; Attendance Sheet</li>-->
+                        <li onclick="loadShifttype()"><i class="fa fa-calendar "></i> &nbsp;Shift Type</li>
+                        <li onclick="loadShift()"><i class="fa fa-calendar "></i> &nbsp;Shift</li>
                     </ul>
                 </div>
                 <hr>
@@ -27,7 +29,7 @@ defined("BASEPATH") or exit("No direct script access allowed.");
                 <div class="box-content">
                     <ul class="main-menu">
                         <li><i class="fa fa-feed "></i> &nbsp; Feedback</li>
-                        <li><i class="zmdi zmdi-sign-in"></i> &nbsp; Logout</li>
+                        <li onclick="hrmsLogout()"><i class="zmdi zmdi-sign-in"></i> &nbsp; Logout</li>
                     </ul>
                 </div>
             </div>

@@ -83,6 +83,23 @@ function successfully_updates() {
     toastr.success("Record Updated Successfully");
     toastr.options.showMethod = 'slideDown';
 }
+function mytoast(res) {
+    var title = res.message;
+    var msg = res.data;
+    if(res.status== true){
+        toastr.options.rtl = true;
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.success(msg,title);
+        toastr.options.showMethod = 'slideDown';
+
+    }else {
+        toastr.options.rtl = true;
+        toastr.options.positionClass = 'toast-bottom-right';
+        toastr.error(msg,title);
+        toastr.options.showMethod = 'slideDown';
+    }
+
+}
 function custome_datepicker(fromdate, todate){
     var dateFormat = "dd-mm-yy",
         from = $( "#"+fromdate ).datepicker({
