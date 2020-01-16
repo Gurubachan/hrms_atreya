@@ -15,7 +15,8 @@ $cname = $this->uri->segment(2);
             </div>
             <div class="box-content">
 <!--				--><?php //echo form_open_multipart('upload/do_upload');?>
-                <form  class="" id="newUserForm" action="<?= base_url('Forms/formUser') ?>" method="post" name="newUserForm" enctype="multipart/form-data" autocomplete="off">
+<!--                <form  class="" id="newUserForm" action="--><?//= base_url('Forms/formUser') ?><!--" method="post" name="newUserForm" enctype="multipart/form-data" autocomplete="off">-->
+                <form  class="" id="newUserForm"  name="newUserForm" enctype="multipart/form-data" autocomplete="off">
                     <div class="col-sm-8 ml-auto mr-auto d-block">
                         <div class="row">
                             <div class="col-sm-3">
@@ -84,15 +85,12 @@ $cname = $this->uri->segment(2);
 										<div class="imagePreview"></div>
 <!--										<label class="btn btn-primary">Upload Photo<input type="file" id="images" name="images" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"></label>-->
 
-									<input id="images" name="images" type="file" class="uploadFile form-control">
+									<input id="uploadFile" name="uploadFile" type="file" class="uploadFile form-control">
 <!--									<small class="errormsg_photo"></small>-->
 								</div></div>
 							</div>
 							<div class="offset-6 col-sm-3" style="border: 1px solid red; height: 100px; width: 100px;" >
-<!--								<div class="imgUp">-->
-<!--									<div class="imagePreview"></div>-->
-<!--									<label class="btn btn-primary">Upload Photo<input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"></label>-->
-<!--								</div>-->
+                                <img src="" alt="" id="uploadedImagePreview">
 							</div>
                         </div>
                     </div>

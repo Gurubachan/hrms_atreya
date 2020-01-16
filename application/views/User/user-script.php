@@ -51,6 +51,26 @@ $cname = $this->uri->segment(2);
             }
         });
     }
+    //$("#newUserForm").submit(function(e){
+    //    $('#toggle_new_user').show();
+    //    e.preventDefault();
+    //    var frm = $("#newUserForm").serialize();
+    //    // alert(frm);
+    //    $.ajax({
+    //        type:'post',
+    //        url:"<?//= base_url('User/create_user')?>//",
+    //        crossDomain:true,
+    //        data:frm,
+    //        success:function(data){
+    //            if(data!=false){
+    //                successfull_entries();
+    //                var jsondata = JSON.parse(data);
+    //                frm.trigger('reset');
+    //                reportFunction(1);
+    //            }
+    //        }
+    //    });
+    //});
     $("#newUserForm").submit(function(e){
         $('#toggle_new_user').show();
         e.preventDefault();
@@ -59,18 +79,35 @@ $cname = $this->uri->segment(2);
         $.ajax({
             type:'post',
             url:"<?= base_url('User/create_user')?>",
-            crossDomain:true,
-            data:frm,
-            success:function(data){
-                if(data!=false){
-                    successfull_entries();
-                    var jsondata = JSON.parse(data);
-                    frm.trigger('reset');
-                    reportFunction(1);
+            data:new FormData(this),
+            dataType:'json',
+            contentType: false,
+            cache: false,
+            processData:false,
+            success:function(res){
+                    if(res!=false){
+                        var jsondata = JSON.parse(res);
+                        mytoast(jsondata);
+                        if(jsondata.status==true){
+                            $("#newUserForm").trigger('reset');
+                        }
                 }
             }
         });
     });
+  $('#uploadFile').change(function () {
+      var input = document.getElementById("uploadFile");
+      var fReader = new FileReader();
+      fReader.readAsDataURL(input.files[0]);
+      fReader.onloadend = function(event){
+          var img = document.getElementById("uploadedImagePreview");
+          img.src = event.target.result;
+      }
+      // $("#uploadFile").change(function() {
+      //     $("#uploadedImagePreview").val(this.files && this.files.length ?
+      //         this.files[0].name : this.value.replace(/^C:\\fakepath\\/i, ''));
+      // })
+  });
     function loadAjaxForReport(id){
         $('#toggle_new_user').show();
         $.ajax({
