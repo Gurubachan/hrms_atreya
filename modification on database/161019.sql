@@ -4,7 +4,7 @@ alter table tbl_employee_bank_details
 	add constraint tbl_employee_bank_details_empid_fkey
 		foreign key (empid) references tbl_temp_employee
 			on update cascade;
-create or replace view view_employee_bank_details (id,empid,fname,mname,lname,bankid,bankname,bankshortname,acno,ifsccode,entryby,createdat,updatedby,updatedat,isactive)as
+create or replace view view_employee_bank_details as
     select tebd.id,
            tebd.empid,
            tte.fname,
