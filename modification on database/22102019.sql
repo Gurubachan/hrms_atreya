@@ -18,3 +18,4 @@ SELECT u.id,
 FROM ((tbl_user u
     JOIN tbl_user_type ut ON ((u.usertypeid = ut.id)))
          JOIN tbl_user_authentication tua ON ((u.id = tua.userid)));
+

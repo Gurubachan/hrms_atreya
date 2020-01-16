@@ -786,7 +786,7 @@ class Attendance extends CI_Controller {
             exit();
         }
     }
-    public function report_shift_details(){
+    public function report_shifts(){
         try{
             $data=array();
             $request = json_decode(json_encode($_POST), FALSE);
@@ -816,14 +816,61 @@ class Attendance extends CI_Controller {
                     foreach ($res as $r) {
                         $data[] = array(
                             'id' => $r->id,
-                            'shifttypeid' => $r->shifttype,
+                            'shifttypeid' => $r->shifttypeid,
                             'shiftname' => $r->shiftname,
-                            'companyid' => $r->shiftcompany,
-                            'shiftshortname' => $r->txtShiftshorttname,
-                            'shiftintime' => $r->intime,
-                            'shiftouttime' => $r->outtime,
-                            'shiftwef' => $r->effectfrom,
+                            'companyid' => $r->companyid,
+                            'shiftshortname' => $r->shiftsrtname,
+                            'shiftintime' => $r->shiftintime,
+                            'shiftouttime' => $r->shiftouttime,
+                            'shiftwef' => $r->shiftwef,
                             'isdatechange' => $r->isdatechange,
+                            'creationdate' => $r->createdat,
+                            'lastmodifiedon' => $r->updatedat,
+                            'isactive' => $r->isactive
+                        );
+                    }
+                }
+            }
+            echo json_encode($data);
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
+    public function report_shift_type(){
+        try{
+            $data=array();
+            $request = json_decode(json_encode($_POST), FALSE);
+            $current_date=Date("Y-m-d");
+            if(isset($request->checkparams) && is_numeric($request->checkparams)) {
+                switch ($request->checkparams) {
+                    case 1:
+                        $where = "DATE(createdat)=DATE('$current_date')";
+                        break;
+                    case 2:
+                        $where = "1=1";
+                        break;
+                    case 3:
+                        $where = "isactive=true";
+                        break;
+                    case 4:
+                        $where = "isactive=false";
+                        break;
+                    default:
+                        $data['message'] = "ID not found";
+                        $data['status'] = false;
+                        $data['error'] = true;
+                        exit();
+                }
+                $res = $this->Model_Db->select(79, null, $where);
+                if ($res != false) {
+                    foreach ($res as $r) {
+                        $data[] = array(
+                            'id' => $r->id,
+                            'shifttypename' => $r->shifttypename,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive

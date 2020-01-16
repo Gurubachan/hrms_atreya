@@ -77,6 +77,10 @@ class Common extends CI_Controller
                     $tableid=69;
                 }else if($request->tableid == 'formPeriodtype'){
                     $tableid=67;
+                }else if($request->tableid == 'formShift'){
+                    $tableid=81;
+                }else if($request->tableid == 'formShiftType'){
+                    $tableid=79;
                 };
             }
             if(isset($request->isactive) && is_numeric($request->isactive)){

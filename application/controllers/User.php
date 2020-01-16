@@ -284,10 +284,10 @@ class User extends CI_Controller {
             }
             // file upload
             $config['upload_path']          = './assets/images/';
-            $config['allowed_types']        = 'gif|jpg|png|jpeg';
-            $config['max_size']             = 100;
+            $config['allowed_types']        = 'jpg|jpeg';
+            $config['max_size']             = 1024;
             $config['max_width']            = 1024;
-            $config['max_height']           = 768;
+            $config['max_height']           = 1024;
             $config['file_name']           ='img'.date("Y-m-d@H-i-s");
             $this->load->library('upload', $config);
             if ( ! $this->upload->do_upload('uploadFile'))
@@ -296,7 +296,6 @@ class User extends CI_Controller {
                 $data['message']="Faild";
                 $data['data']=$error_msg;
                 $data['status']=false;
-//                exit();
             }
             else
             {
@@ -310,7 +309,6 @@ class User extends CI_Controller {
 //            if ( ! $this->upload->do_upload('uploadSign'))
 //            {
 //                echo $this->upload->display_errors();
-//                exit();
 //            }
 //            else
 //            {
@@ -320,7 +318,9 @@ class User extends CI_Controller {
                 $insert[0]['logo']=$upload_photo['file_name'];
             }else{
                 $status=false;
-                echo $upload_photo;
+//                $error_msg =  $this->upload->display_errors();
+                $data['message']="Faild";
+//                $data['data']=$error_msg;
             }
 //            if(isset($request->userpassword) && preg_match("/^[a-zA-Z0-9-_@.]{6,18}$/",$request->userpassword) && isset($request->reenteruserpassword) && preg_match("/^[a-zA-Z0-9-_@.]{6,18}$/",$request->reenteruserpassword)){
 //                if($request->userpassword == $request->reenteruserpassword){

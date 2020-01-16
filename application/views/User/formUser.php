@@ -89,8 +89,10 @@ $cname = $this->uri->segment(2);
 <!--									<small class="errormsg_photo"></small>-->
 								</div></div>
 							</div>
-							<div class="offset-6 col-sm-3" style="border: 1px solid red; height: 100px; width: 100px;" >
-                                <img src="" alt="" id="uploadedImagePreview">
+							<div class="offset-6 col-sm-3" >
+                                <div class="" style="border: 1px solid red; height: 150px; width: 150px;" >
+                                    <img src="" alt="" id="uploadedImagePreview" >
+                                </div>
 							</div>
                         </div>
                     </div>
