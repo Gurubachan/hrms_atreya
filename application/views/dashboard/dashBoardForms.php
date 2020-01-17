@@ -351,6 +351,19 @@
 					</div>
 				</div>
 			</div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="visitorsDashboard()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-user-secret fa-2x move"></i>
+                            <hr style="margin: 5px;">
+                            <span class="">Visitor Details</span>
+                        </div>
+                        <!--						<hr>-->
+                        <!--						<div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

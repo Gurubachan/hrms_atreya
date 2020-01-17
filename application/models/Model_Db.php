@@ -52,6 +52,9 @@ class Model_Db extends CI_Model
                 '81'=>'tbl_shift','82'=>'view_shift',
                 '83'=>'tbl_shift_assign','84'=>'view_shift_assign',
                 '85'=>'tbl_holiday_calender','86'=>'view_holiday_calender',
+                '87'=>'tbl_purpose_of_visit','88'=>'view_purpose_of_visit',
+                '89'=>'tbl_visitor_list','90'=>'view_visitor_list',
+                '91'=>'tbl_visitor_register','92'=>'view_visitor_register',
             );
             if($table[$tblno]){
                 return $table[$tblno];

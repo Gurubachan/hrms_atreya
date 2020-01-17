@@ -115,6 +115,18 @@ function loadNewCompany() {
         }
     });
 }
+function loadOnlyCompany(id) {
+    //window.location.href="<?//= base_url('Forms/loadNewCompany')?>//"
+    $.ajax({
+        url:"../Company/load_company",
+        type:"post",
+        success:function (d) {
+            // if(d!=false){
+            $("#"+id).html(d);
+            // }
+        }
+    });
+}
 function loadDepartment() {
     //window.location.href="<?//= base_url('Forms/loadDepartment')?>//";
     $.ajax({
@@ -310,6 +322,20 @@ function load_gender() {
             var data = JSON.parse(data);
             if (data != false) {
                 $("#genderid").html(data);
+                $("#cboGender").html(data);
+            }
+        }
+    });
+}
+function loadgender(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Gender/load_gender",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
             }
         }
     });

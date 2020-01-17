@@ -168,6 +168,15 @@ defined("BASEPATH") or exit("No direct script access allowed.");
    function offerLetter(){
         window.location.href="<?= base_url('Forms/formOfferLetter')?>";
    }
+   function visitorsDashboard(){
+        window.location.href="<?= base_url('Forms/formVisitorDashboard')?>";
+   }
+   function loadVisitorsPurpose(){
+        window.location.href="<?= base_url('Forms/formVisitorsPurpose')?>";
+   }
+   function loadVisitorsDetails(){
+        window.location.href="<?= base_url('Forms/formVisitorsrecord')?>";
+   }
    function hrmsLogout(){
         window.location.href="<?= base_url('User/logout')?>";
    }

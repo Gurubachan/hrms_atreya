@@ -81,6 +81,8 @@ class Common extends CI_Controller
                     $tableid=81;
                 }else if($request->tableid == 'formShiftType'){
                     $tableid=79;
+                }else if($request->tableid == 'visitorpurpose'){
+                    $tableid=87;
                 };
             }
             if(isset($request->isactive) && is_numeric($request->isactive)){

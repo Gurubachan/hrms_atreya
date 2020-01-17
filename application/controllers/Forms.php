@@ -65,6 +65,13 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
+    public function visitorsSidebar(){
+        try{
+            $this->load->view('Visitors/visitorsSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
     public function employeeDashboardMenu(){
         try{
             $this->load->view('Employee/employeeDashboardMenu');
@@ -859,6 +866,54 @@ class Forms extends CI_Controller {
                 $this->load->view('Offerletter/offerLetterDashboard');
                 $this->footer();
                 $this->load->view('Offerletter/offerletter-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:".$e->getMessage();
+        }
+    }
+    public function formVisitorDashboard(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->visitorsSidebar();
+                $this->load->view('Visitors/visitorsDashboard');
+                $this->footer();
+                $this->load->view('Visitors/visitorsDashboard-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:".$e->getMessage();
+        }
+    }
+    public function formVisitorsrecord(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->visitorsSidebar();
+                $this->load->view('Visitors/visitordetails/visitorsrecord');
+                $this->footer();
+                $this->load->view('Visitors/visitordetails/visitorsrecord-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:".$e->getMessage();
+        }
+    }
+    public function formVisitorsPurpose(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->visitorsSidebar();
+                $this->load->view('Visitors/visitpurpose/visitorpurpose');
+                $this->footer();
+                $this->load->view('Visitors/visitpurpose/visitpurpose-script');
             }else{
                 redirect('welcome/');
             }
