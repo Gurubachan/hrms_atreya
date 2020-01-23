@@ -58,11 +58,34 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
-    public function offerletterSidebar(){
+    public function companySidebar(){
         try{
-            $this->load->view('Offerletter/offerLetterSidebar');
+            $this->load->view('Company/companySidebar');
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
+        }
+    }
+    public function letterSidebar(){
+        try{
+            $this->load->view('LetterGenerate/letterSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formOfferLetter(){
+        try{
+            if($this->session->login['userid']) {
+                $this->header();
+                $this->navbar();
+                $this->letterSidebar();
+                $this->load->view('LetterGenerate/letterDashboard');
+                $this->footer();
+                $this->load->view('LetterGenerate/letter-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:".$e->getMessage();
         }
     }
     public function visitorsSidebar(){
@@ -72,9 +95,9 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
-    public function employeeDashboardMenu(){
+    public function employeeSidebar(){
         try{
-            $this->load->view('Employee/employeeDashboardMenu');
+            $this->load->view('Employee/employeeDashboardSidebar');
         }catch (Exception $e){
             echo "Message:" . $e->getMessage();
         }
@@ -146,6 +169,7 @@ class Forms extends CI_Controller {
         if($this->session->login['userid']){
             $this->header();
             $this->navbar();
+            $this->companySidebar();
             $this->load->view('Company/companyDashboard');
             $this->footer();
         }else{
@@ -203,7 +227,11 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
                 extract($_POST);
+                $this->header();
+                $this->navbar();
+                $this->sidebar();
                 $this->load->view('Designation/formDesignation');
+                $this->footer();
                 $this->load->view('Designation/designation-script');
             }else{
                 redirect('welcome/');
@@ -212,13 +240,16 @@ class Forms extends CI_Controller {
             echo "Message:" .$e->getMessage();
         }
     }
-    public function loadDepartment(){
+    public function formDepartment(){
         try{
             if($this->session->login['userid']) {
-            extract($_POST);
+//            extract($_POST);
+            $this->header();
+            $this->navbar();
+            $this->sidebar();
             $this->load->view('Department/formDepartment');
+            $this->footer();
             $this->load->view('Department/department-script');
-
             }else{
                 redirect('welcome/');
             }
@@ -297,8 +328,9 @@ class Forms extends CI_Controller {
             if($this->session->login['userid']) {
             $this->header();
             $this->navbar();
-            $this->employeeDashboardMenu();
+            $this->employeeSidebar();
             $this->load->view('dashboard/employeeDashboard');
+//            $this->load->view('dashboard/frmEmployeeDashboard');
             $this->footer();
             $this->load->view('Employee/employeedashboard-script');
             }else{
@@ -326,8 +358,8 @@ class Forms extends CI_Controller {
         try{
             if($this->session->login['userid']) {
             extract($_POST);
-            $this->load->view('Employee/formNewEmployee');
-            $this->load->view('Employee/newemployee-script');
+            $this->load->view('Employee/employee');
+            $this->load->view('Employee/employee-script');
             }else{
                 redirect('welcome/');
             }
@@ -539,7 +571,6 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
-
     public function loadAttendanceDashboard(){
         try{
             if($this->session->login['userid']) {
@@ -850,22 +881,6 @@ class Forms extends CI_Controller {
                 $this->load->view('Datemanagement/formDatemanagement');
                 $this->footer();
                 $this->load->view('Datemanagement/datemanagement-script');
-            }else{
-                redirect('welcome/');
-            }
-        }catch (Exception $e){
-            echo "Message:".$e->getMessage();
-        }
-    }
-    public function formOfferLetter(){
-        try{
-            if($this->session->login['userid']) {
-                $this->header();
-                $this->navbar();
-                $this->offerletterSidebar();
-                $this->load->view('Offerletter/offerLetterDashboard');
-                $this->footer();
-                $this->load->view('Offerletter/offerletter-script');
             }else{
                 redirect('welcome/');
             }

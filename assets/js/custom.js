@@ -100,7 +100,7 @@ function mytoast(res) {
     }
 
 }
-function custome_datepicker(fromdate, todate){
+function custome_range_datepicker(fromdate, todate){
     var dateFormat = "dd-mm-yy",
         from = $( "#"+fromdate ).datepicker({
             //defaultDate: "+1w",

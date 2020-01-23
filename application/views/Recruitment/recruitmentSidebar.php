@@ -4,7 +4,7 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <div class="ch-container">
 <div class="row" style="margin-top: 5%;">
 <div class="box col-sm-2" style="">
-    <div class="box-inner">
+    <div class="box-inner" style="height: 700px;">
         <div class="box-header well">
             <h2><i class="fa fa-angle-double-right "></i> Quick Links</h2>
         </div>

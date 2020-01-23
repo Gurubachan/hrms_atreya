@@ -4,7 +4,7 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <div class="ch-container">
 <div class="row" style="margin-top: 5%;">
 <div class="box col-sm-2">
-    <div class="box-inner">
+    <div class="box-inner" style="min-height: 700px;">
         <div class="box-header well">
             <h2><i class="fa fa-angle-double-right "></i> Quick Links</h2>
         </div>
@@ -48,7 +48,7 @@ defined("BASEPATH") or exit("No direct script access allowed.");
         <div class="box-content">
             <ul class="main-menu">
                 <li><i class="fa fa-feed "></i> &nbsp; Feedback</li>
-                <li><i class="zmdi zmdi-sign-in"></i> &nbsp; Logout</li>
+                <li onclick="hrmsLogout()"><i class="zmdi zmdi-sign-in"></i> &nbsp; Logout</li>
             </ul>
         </div>
     </div>

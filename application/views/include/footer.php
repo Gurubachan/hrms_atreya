@@ -118,6 +118,12 @@ defined("BASEPATH") or exit("No direct script access allowed.");
     function loadAttendanceSheet() {
         window.location.href="<?= base_url('Forms/formAttendanceSheet')?>";
     }
+    function loadDepartment() {
+        window.location.href="<?= base_url('Forms/formDepartment')?>";
+    }
+    function loadDesignation() {
+        window.location.href="<?= base_url('Forms/loadDesignation')?>";
+    }
     /*
       view form - Shift type and Shift
        14/01/2020
@@ -168,6 +174,9 @@ defined("BASEPATH") or exit("No direct script access allowed.");
    function offerLetter(){
         window.location.href="<?= base_url('Forms/formOfferLetter')?>";
    }
+       function offerLetter(){
+           window.location.href="<?= base_url('Forms/formOfferLetter')?>";
+       }
    function visitorsDashboard(){
         window.location.href="<?= base_url('Forms/formVisitorDashboard')?>";
    }

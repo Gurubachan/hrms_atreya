@@ -2,18 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
 ?>
-<div class="row">
-    <div class="box col-md-12">
+    <div class="box col-md-10">
         <div class="box-inner">
             <div class="box-header well">
                 <h2><i class="fa fa-angle-double-right "></i>&nbsp;Create Designation</h2>
                 <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i
-                                class="fa fa-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                class="fa fa-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i
-                                class="fa fa-remove"></i></a>
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="fa fa-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default"><i class="fa fa-chevron-up"></i></a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="fa fa-remove"></i></a>
                 </div>
             </div>
             <div class="box-content">
@@ -49,20 +45,15 @@ $cname = $this->uri->segment(2);
                 </form>
             </div>
         </div>
-    </div>
-</div>
 <div class="row">
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well">
                 <h2><i class="fa fa-angle-double-right "></i> Report</h2>
                 <div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i
-                                class="fa fa-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default"><i
-                                class="fa fa-chevron-up"></i></a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i
-                                class="fa fa-remove"></i></a>
+                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="fa fa-cog"></i></a>
+                    <a href="#" class="btn btn-minimize btn-round btn-default"><i class="fa fa-chevron-up"></i></a>
+                    <a href="#" class="btn btn-close btn-round btn-default"><i class="fa fa-remove"></i></a>
                 </div>
             </div>
             <div class="box-content">
@@ -84,6 +75,8 @@ $cname = $this->uri->segment(2);
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 
 

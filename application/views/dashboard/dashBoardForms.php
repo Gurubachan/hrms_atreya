@@ -2,12 +2,25 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="row">
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadUser()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-user fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">User </span>
+                        </div>
+                        <!--						<hr>-->
+                        <!--						<div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-3 stylingFunction d-icon" onclick="loadState()">
-               <div class="card">
+               <div class="card" >
 				   <div class="card-body">
 					   <div class="form-group text-center baseDiv">
-						   <i class="fa fa-cube fa-2x move"></i>
-						   <hr style="margin: 5px;">
+						   <i class="fa fa-cube fa-3x move designOne" ></i>
+						   <hr class="margin_5 hr_1">
 						   <span>State</span>
 					   </div>
 				   </div>
@@ -17,8 +30,8 @@
                <div class="card">
 				   <div class="card-body">
 					   <div class="form-group text-center">
-						   <i class="fa fa-cubes  fa-2x move"></i>
-						   <hr style="margin: 5px;">
+						   <i class="fa fa-cubes  fa-3x move designOne"  ></i>
+						   <hr class="margin_5 hr_1">
 						   <span>District</span>
 					   </div>
 <!--					   <hr>-->
@@ -30,8 +43,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-graduation-cap fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-graduation-cap fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span >Education </span>
 						</div>
 <!--						<hr>-->
@@ -43,8 +56,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center ">
-							<i class="fa fa-calendar-o  fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-calendar-o  fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Year</span>
 						</div>
 <!--						<hr>-->
@@ -56,8 +69,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-bank fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-bank fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class=""> Bank</span>
 						</div>
 <!--						<hr>-->
@@ -65,25 +78,130 @@
 					</div>
 				</div>
             </div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadGender()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-venus-mars fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Gender</span>
+                        </div>
+                        <!--						<hr>-->
+                        <!--						<div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadMaritalStatus()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-gem fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Marital Status</span>
+                        </div>
+                        <!--						<hr>-->
+                        <!--						<div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadReligion()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-snowflake-o fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Religion </span>
+                        </div>
+                        <!--						<hr>-->
+                        <!--						<div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadSkill()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-window-restore fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Skill</span>
+                        </div>
+                        <!--					   <hr>-->
+                        <!--					   <div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadExperienceType()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-anchor fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Experience Type</span>
+                        </div>
+                        <!--					   <hr>-->
+                        <!--					   <div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadCommunicationType()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-random fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Communication Type</span>
+                        </div>
+                        <!--						<hr>-->
+                        <!--						<div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadDepartment()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-anchor fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Department</span>
+                        </div>
+                        <!--					   <hr>-->
+                        <!--					   <div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadDesignation()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-anchor fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Designation</span>
+                        </div>
+                        <!--					   <hr>-->
+                        <!--					   <div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
             <div class="col-sm-3 stylingFunction  d-icon" onclick="loadCompany()">
                 <div class="card">
-					<div class="card-body">
-						<div class="form-group text-center">
-							<i class="fa fa-building fa-2x move"></i>
-							<hr style="margin: 5px;">
-							<span class="">Company</span>
-						</div>
-<!--						<hr>-->
-<!--						<div class="fa fa-trash"> </div>-->
-					</div>
-				</div>
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="fa fa-building fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Company</span>
+                        </div>
+                        <!--						<hr>-->
+                        <!--						<div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
             </div>
             <div class="col-sm-3 stylingFunction  d-icon" onclick="loadEmployee()">
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-users fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-users fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class=""> Employee</span>
 						</div>
 <!--						<hr>-->
@@ -95,8 +213,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-clipboard-list fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-clipboard-list fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Attendance </span>
 						</div>
 <!--						<hr>-->
@@ -108,8 +226,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-user-times fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-user-times fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Leave</span>
 						</div>
 <!--						<hr>-->
@@ -121,8 +239,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-id-card fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-id-card fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class=""> ID Card</span>
 						</div>
 <!--						<hr>-->
@@ -134,8 +252,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-link fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-link fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Resources </span>
 						</div>
 <!--						<hr>-->
@@ -147,8 +265,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-thermometer-2 fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-wrench fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Maintenenace</span>
 						</div>
 <!--						<hr>-->
@@ -156,51 +274,14 @@
 					</div>
 				</div>
             </div>
-            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadGender()">
-                <div class="card">
-					<div class="card-body">
-						<div class="form-group text-center">
-							<i class="fa fa-venus-mars fa-2x move"></i>
-							<hr style="margin: 5px;">
-							<span class="">Gender</span>
-						</div>
-<!--						<hr>-->
-<!--						<div class="fa fa-trash"> </div>-->
-					</div>
-				</div>
-            </div>
-            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadMaritalStatus()">
-                <div class="card">
-					<div class="card-body">
-						<div class="form-group text-center">
-							<i class="fa fa-gem fa-2x move"></i>
-							<hr style="margin: 5px;">
-							<span class="">Marital Status</span>
-						</div>
-<!--						<hr>-->
-<!--						<div class="fa fa-trash"> </div>-->
-					</div>
-				</div>
-            </div>
-            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadUser()">
-                <div class="card">
-					<div class="card-body">
-						<div class="form-group text-center">
-							<i class="fa fa-user fa-2x move"></i>
-							<hr style="margin: 5px;">
-							<span class="">User </span>
-						</div>
-<!--						<hr>-->
-<!--						<div class="fa fa-trash"> </div>-->
-					</div>
-				</div>
-            </div>
+
+
             <div class="col-sm-3 stylingFunction  d-icon" onclick="loadRecruitmentDashboard()">
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-users fa-2x move"></i>
-							<hr style="margin: 5px;">
+                            <i class="zmdi zmdi zmdi-accounts-add move zmdi-hc-3x designOne"></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Recruitment</span>
 						</div>
 <!--						<hr>-->
@@ -208,64 +289,13 @@
 					</div>
 				</div>
             </div>
-            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadReligion()">
-                <div class="card">
-					<div class="card-body">
-						<div class="form-group text-center">
-							<i class="fa fa-snowflake-o fa-2x move"></i>
-							<hr style="margin: 5px;">
-							<span class="">Religion </span>
-						</div>
-<!--						<hr>-->
-<!--						<div class="fa fa-trash"> </div>-->
-					</div>
-				</div>
-            </div>
-            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadSkill()">
-               <div class="card">
-				   <div class="card-body">
-					   <div class="form-group text-center">
-						   <i class="fa fa-window-restore fa-2x move"></i>
-						   <hr style="margin: 5px;">
-						   <span class="">Skill</span>
-					   </div>
-<!--					   <hr>-->
-<!--					   <div class="fa fa-trash"> </div>-->
-				   </div>
-			   </div>
-            </div>
-            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadExperienceType()">
-               <div class="card">
-				   <div class="card-body">
-					   <div class="form-group text-center">
-						   <i class="fa fa-anchor fa-2x move"></i>
-						   <hr style="margin: 5px;">
-						   <span class="">Experience Type</span>
-					   </div>
-<!--					   <hr>-->
-<!--					   <div class="fa fa-trash"> </div>-->
-				   </div>
-			   </div>
-            </div>
-            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadCommunicationType()">
-                <div class="card">
-					<div class="card-body">
-						<div class="form-group text-center">
-							<i class="fa fa-random fa-2x move"></i>
-							<hr style="margin: 5px;">
-							<span class="">Communication Type</span>
-						</div>
-<!--						<hr>-->
-<!--						<div class="fa fa-trash"> </div>-->
-					</div>
-				</div>
-            </div>
+
             <div class="col-sm-3 stylingFunction  d-icon" onclick="loadJobPosting()">
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-hourglass-1 fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-hourglass-1 fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Job Posting</span>
 						</div>
 <!--						<hr>-->
@@ -277,8 +307,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-inr fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-inr fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Salary</span>
 						</div>
 <!--						<hr>-->
@@ -290,8 +320,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-money-bill-alt fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-money-bill-alt fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Expenditure</span>
 						</div>
 <!--						<hr>-->
@@ -303,8 +333,8 @@
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-line-chart fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-line-chart fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Task Manager</span>
 						</div>
 <!--						<hr>-->
@@ -316,8 +346,8 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-registered fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-registered fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Letter Generate</span>
 						</div>
 <!--						<hr>-->
@@ -329,8 +359,8 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-calendar-check-o fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-calendar-check-o fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Calender</span>
 						</div>
 						<!--						<hr>-->
@@ -342,8 +372,8 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
-							<i class="fa fa-history fa-2x move"></i>
-							<hr style="margin: 5px;">
+							<i class="fa fa-history fa-3x move designOne" ></i>
+							<hr class="margin_5 hr_1">
 							<span class="">Consultant Details</span>
 						</div>
 						<!--						<hr>-->
@@ -355,9 +385,22 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group text-center">
-                            <i class="fa fa-user-secret fa-2x move"></i>
-                            <hr style="margin: 5px;">
+                            <i class="fa fa-user-secret fa-3x move designOne" ></i>
+                            <hr class="margin_5 hr_1">
                             <span class="">Visitor Details</span>
+                        </div>
+                        <!--						<hr>-->
+                        <!--						<div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="visitorsDashboard()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="zmdi zmdi-accounts-list zmdi-hc-3x designOne"></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Interview</span>
                         </div>
                         <!--						<hr>-->
                         <!--						<div class="fa fa-trash"> </div>-->

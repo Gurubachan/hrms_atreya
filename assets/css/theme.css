@@ -15329,10 +15329,11 @@ input[type="file"]{
    border-bottom: 1px solid red;
 }
 .cardhover{
-	border-radius: 15px 0 5px 0;
+	/*border-radius: 15px 0 5px 0;*/
 	height: 45px;
 	color:red;
 	font-weight: 200;
+    width:300px;
 }
 .cardhover .card-body{
 	padding: 10px 20px;
@@ -15376,7 +15377,8 @@ legend{
     box-shadow: 0 0 0 0 rgba(0,0,0,0);
 }
 .stylingFunction .card{
-	height:8em;
+	height:5em;
+    margin-top: 25px;
 	padding-top: 15px;
 	background-color: #f8f9f9;
 	border-radius: 10px;
@@ -15409,7 +15411,7 @@ legend{
 .menu_name_red{
     color:red;
     font-weight: bold;
-	font-size: 25px;
+	font-size: 55px;
 	/*text-decoration: underline;*/
 }
 .menu_name_green{
@@ -15449,4 +15451,16 @@ legend{
 	border-width: 5px;
 	border-radius: 5px;
 	background-color: #f8f8f8;
+}
+.designOne{
+   position: absolute;
+    margin-top: -58px;
+    right: 85px;
+    opacity: 0.8;
+}
+.margin_5{
+    margin: 5px;
+}
+.hr_1{
+    /*background-color:green;*/
 }

@@ -242,6 +242,21 @@ function load_state(){
         }
     });
 }
+function state(id){
+
+    $.ajax({
+        type:'post',
+        url: "../State/load_state",
+        crossDomain:true,
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+
 function load_district(id=null){
     var stateid = id;
     $.ajax({
@@ -253,8 +268,12 @@ function load_district(id=null){
             var data = JSON.parse(data);
             if(data!=false){
                 $("#distid").html(data);
+                $("#cboPermanentdistid").html(data);
+                $("#cboDistid").html(data);
                 if(dist!=null){
                     $("#distid").val(dist);
+                    $("#cboPermanentdistid").val(dist);
+                    $("#cboDistid").val(dist);
                 }
             }
         }
@@ -287,6 +306,19 @@ function load_education(){
         }
     });
 }
+function education(id){
+    $.ajax({
+        type:'post',
+        url: "../Education/load_education",
+        crossDomain:true,
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
 function load_department() {
     $.ajax({
         type: 'post',
@@ -296,6 +328,19 @@ function load_department() {
             var data = JSON.parse(data);
             if (data != false) {
                 $("#departmentmappingid").html(data);
+            }
+        }
+    });
+}
+function load_mapping_department(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Department/load_department_mapping",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
             }
         }
     });
@@ -313,6 +358,19 @@ function load_designation() {
         }
     });
 }
+function designation(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Designation/load_designation",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
 function load_gender() {
     $.ajax({
         type: 'post',
@@ -323,6 +381,19 @@ function load_gender() {
             if (data != false) {
                 $("#genderid").html(data);
                 $("#cboGender").html(data);
+            }
+        }
+    });
+}
+function gender(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Gender/load_gender",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
             }
         }
     });
@@ -349,6 +420,19 @@ function load_marital_status() {
             var data = JSON.parse(data);
             if (data != false) {
                 $("#maritalstatusid").html(data);
+            }
+        }
+    });
+}
+function marital_status(id) {
+    $.ajax({
+        type: 'post',
+        url: "../MaritalStatus/load_marital_status",
+        crossDomain: true,
+        success: function (data) {
+            var data = JSON.parse(data);
+            if (data != false) {
+                $("#"+id).html(data);
             }
         }
     });
