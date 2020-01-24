@@ -4,6 +4,7 @@ date_default_timezone_set('Asia/Kolkata');
 class Employee extends CI_Controller {
     public function __construct()
     {
+        parent::__construct();
     }
     public function create_employee_type(){
         try{
