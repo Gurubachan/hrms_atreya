@@ -199,7 +199,6 @@ class Employee extends CI_Controller
             exit();
         }
     }
-
     public function create_employee_experience()
     {
         try {

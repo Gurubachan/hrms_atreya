@@ -2,8 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 $cname = $this->uri->segment(2);
 ?>
-
-
      <div class="box col-md-12">
          <div class="box-inner">
              <div class="box-header well">

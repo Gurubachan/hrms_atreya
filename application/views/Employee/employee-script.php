@@ -594,23 +594,6 @@
         });
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //$("#newEmployeeForm").submit(function(e){
     //    $('#toggle_new_employee').show();
     //    e.preventDefault();
