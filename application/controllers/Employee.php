@@ -101,24 +101,49 @@ class Employee extends CI_Controller
                 $data['data'] = "Designation error";
             }
             if ($status) {
-                $insert[0]['entryby'] = $this->session->login['userid'];
-                $insert[0]['createdat'] = date("Y-m-d H:i:s");
-                $res = $this->Model_Db->insert(93, $insert);
-                if ($res != false) {
-                    $data['message'] = "successful";
-                    $data['data'] = "Data insert successful";
-                    $data['status'] = true;
-                    $data['empid'] = $res;
-                } else {
-                    $data['message'] = "Insert failed.";
-                    $data['data'] = "Data Insert failed.";
+                if (isset($txtid) && is_numeric($txtid)) {
+                    if ($txtid > 0) {
+                        $insert[0]['updatedby'] = $this->session->login['userid'];
+                        $insert[0]['updatedat'] = date("Y-m-d H:i:s");
+                        $res = $this->Model_Db->update(93, $insert, "id", $txtid);
+                        if ($res != false) {
+                            $data['message'] = "successful";
+                            $data['data'] = "Update successful.";
+                            $data['status'] = true;
+                            $data['empid'] = $txtid;
+                        } else {
+                            $data['message'] = "Update failed.";
+                            $data['status'] = false;
+                        }
+                    } else if ($txtid == 0) {
+                        $insert[0]['entryby'] = $this->session->login['userid'];
+                        $insert[0]['createdat'] = date("Y-m-d H:i:s");
+                        $res = $this->Model_Db->insert(93, $insert);
+                        if ($res != false) {
+                            $data['message'] = "successful";
+                            $data['data'] = "Data insert successful";
+                            $data['status'] = true;
+                            $data['empid'] = $res;
+                        } else {
+                            $data['message'] = "Insert failed.";
+                            $data['data'] = "Data Insert failed.";
+                            $data['status'] = false;
+                        }
+                    }else{
+                        $data['message'] = "Error!";
+                        $data['data'] = "Insufficient1/Invalid data.";
+                        $data['status'] = false;
+                    }
+                }else{
+                    $data['message'] = "Error!";
+                    $data['data'] = "Insufficient2/Invalid data.";
                     $data['status'] = false;
                 }
-            } else {
-                $data['message'] = "Error!";
-                $data['data'] = "Insufficient/Invalid data.";
-                $data['status'] = false;
-            }
+                } else {
+                    $data['message'] = "Error!";
+                    $data['data'] = "Insufficient3/Invalid data.";
+                    $data['status'] = false;
+                }
             echo json_encode($data);
             exit();
         } catch (Exception $e) {
@@ -211,7 +236,12 @@ class Employee extends CI_Controller
                     $i = 0;
                     foreach ($cboCompanyname as $cmpname) {
                         $frmDate = date("Y-m-d",strtotime($txtFromdate[$i]));
-                        $toDate = date("Y-m-d",strtotime($txtTodate[$i]));
+                        if(isset($txtTodate[$i]) && $txtTodate[$i]!=null){
+                            $toDate = date("Y-m-d",strtotime($txtTodate[$i]));
+//                            $toDate = date("Y-m-d");
+                        }else{
+                            $toDate = date("Y-m-d");
+                        }
                         $insert [] = array(
                             'empid' => $txtidExperience,
                             'companyname' => $cmpname,
@@ -227,18 +257,8 @@ class Employee extends CI_Controller
                         $i++;
                     }
                 } else {
-                    $insert [] = array(
-                        'empid' => $txtidExperience,
-                        'companyname' => 'asdfas',
-                        'jobdesid' => $cboJobdesignation,
-                        'fromdate' => '2020-03-02',
-                        'todate' => '2020-03-04',
-                        'jobrole' =>'sfsdfg',
-                        'entryby' => $this->session->login['userid'],
-                        'createdat' => date("Y-m-d H:i:s")
-                    );
-//                    $status = false;
-//                    $data['data'] = "Employee education id error";
+                    $status = false;
+                    $data['data'] = "Employee education id error";
                 }
             } else {
                 $status = false;
@@ -676,6 +696,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
+//                $where = "empid=checkparams";
                 switch ($request->checkparams) {
                     case 1:
                         $where = "DATE(createdat)=DATE('$current_date')";
@@ -733,6 +754,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
+//                $where = "empid=checkparams";
                 switch ($request->checkparams) {
                     case 1:
                         $where = "DATE(createdat)=DATE('$current_date')";
@@ -880,6 +902,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
+//                $where = "empid=checkparams";
                 switch ($request->checkparams) {
                     case 1:
                         $where = "DATE(createdat)=DATE('$current_date')";
@@ -947,6 +970,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
+//                $where = "empid=checkparams";
                 switch ($request->checkparams) {
                     case 1:
                         $where = "DATE(createdat)=DATE('$current_date')";
@@ -1011,6 +1035,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
+//                $where = "empid=checkparams";
                 switch ($request->checkparams) {
                     case 1:
                         $where = "DATE(createdat)=DATE('$current_date')";

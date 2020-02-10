@@ -16,7 +16,7 @@ $cname = $this->uri->segment(2);
                  <div class="col-xs-12 ">
                      <nav>
                          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                             <a class="nav-item nav-link tab-contents active" id="basictabbar" data-toggle="tab" href="#basictab" role="tab" aria-controls="nav-home" aria-selected="true">Basic Information</a>
+                             <a class="nav-item nav-link tab-contents active" id="basictabbar" data-toggle="tab" href="#basictab" role="tab" aria-controls="nav-home" aria-selected="true" style="color: #00b5e9;font-weight: bold">Basic Information</a>
                              <a class="nav-item nav-link  tab-contents disabled" id="communicationtabbar" data-toggle="tab" href="#communicationtab" role="tab" aria-controls="nav-profile" aria-selected="false">Communication Details</a>
                              <a class="nav-item nav-link  tab-contents disabled" id="experiencetabbar" data-toggle="tab" href="#experiencetab" role="tab" aria-controls="nav-contact" aria-selected="false">Experience</a>
                              <a class="nav-item nav-link  tab-contents disabled" id="qualificationtabbar" data-toggle="tab" href="#qualificationtab" role="tab" aria-controls="nav-about" aria-selected="false">Qualification</a>
@@ -191,7 +191,7 @@ $cname = $this->uri->segment(2);
                                                          <th>Company</th>
                                                          <th>Department</th>
                                                          <th>Designation</th>
-                                                         <th>Action</th>
+<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_basic_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
@@ -222,7 +222,7 @@ $cname = $this->uri->segment(2);
                                              <div class="form-group">
                                                  <label for="permenentstateid" class="control-label mb-1"><span
                                                              style="color:red;">*</span>State</label>
-                                                 <select id="cboPermanentStateid" name="cboPermanentStateid" class="select" title="Select State">
+                                                 <select id="cboPermanentStateid" name="cboPermanentStateid" class="select" title="Select State" required>
                                                  </select>
                                              </div>
                                          </div>
@@ -230,7 +230,7 @@ $cname = $this->uri->segment(2);
                                              <div class="form-group">
                                                  <label for="permenentdistid" class="control-label mb-1">District<span
                                                              style="color:red;">*</span></label>
-                                                 <select id="cboPermanentDistid" name="cboPermanentDistid" class="select" title="Select district only after select state">
+                                                 <select id="cboPermanentDistid" name="cboPermanentDistid" class="select" title="Select district only after select state" required>
                                                      <option value="">Select</option>
                                                  </select>
                                              </div>
@@ -240,7 +240,7 @@ $cname = $this->uri->segment(2);
                                                  <label for="permenentpincode" class="control-label mb-1">Pincode<span
                                                              style="color:red;">*</span></label>
                                                  <input type="text" class="form-control" id="txtPermanentPincode" name="txtPermanentPincode"
-                                                        minlength="6" maxlength="6" pattern="[0-9]{6}" placeholder="enter pincode" title="Only numbers are allowed where length is 6">
+                                                        minlength="6" maxlength="6" pattern="[0-9]{6}" placeholder="enter pincode" title="Only numbers are allowed where length is 6" required onclick="number_validate('txtPermanentPincode')">
                                              </div>
                                          </div>
                                      </div>
@@ -277,7 +277,7 @@ $cname = $this->uri->segment(2);
                                                  <label for="pincode" class="control-label mb-1">Pincode<span
                                                              style="color:red;">*</span></label>
                                                  <input type="text" class="form-control" id="txtPresentPincode" name="txtPresentPincode"
-                                                        minlength="6" maxlength="6" pattern="[0-9]{6}" placeholder="enter pincode" title="Only numbers are allowed where length is 6">
+                                                      onclick="number_validate('txtPresentPincode')"  minlength="6" maxlength="6" pattern="[0-9]{6}" placeholder="enter pincode" title="Only numbers are allowed where length is 6">
                                              </div>
                                          </div>
                                      </div><br>
@@ -286,20 +286,20 @@ $cname = $this->uri->segment(2);
                                          <div class="col-sm-3">
                                              <div class="form-group">
                                                  <label for="employeeemail" class="control-label mb-1">Email</label>
-                                                 <input type="email" id="txtEmailid" name="txtEmailid" class="form-control" onclick="email_validate('txtEmailid')" placeholder="Enter email id." >
+                                                 <input type="email" id="txtEmailid" name="txtEmailid" class="form-control" onclick="email_validate('txtEmailid')" placeholder="Enter email id." required>
                                              </div>
                                          </div>
                                          <div class="col-sm-3">
                                              <div class="form-group">
                                                  <label for="employeemobile" class="control-label mb-1">Mobile<span style="color:red;">*</span></label>
-                                                 <input type="text" id="txtMobile" name="txtMobile" class="form-control" onclick="number_validate('txtMobile')" minlength="10" maxlength="10" placeholder="Enter mobile number" pattern="[6-9]{1}[0-9]{9}">
+                                                 <input type="text" id="txtMobile" name="txtMobile" class="form-control" onclick="number_validate('txtMobile')" minlength="10" maxlength="10" placeholder="Enter mobile number" pattern="[6-9]{1}[0-9]{9}" required>
                                              </div>
                                          </div>
                                          <div class="col-sm-3">
                                              <div class="form-group">
                                                  <label for="employeealternatemobile" class="control-label mb-1">Alternate Mobile</label>
                                                  <input type="text" id="txtAltermobile" name="txtAltermobile" class="form-control" minlength="10" maxlength="10" placeholder="Enter alter mobile number" onclick="number_validate('txtAltermobile')"
-                                                        pattern="[6-9]{1}[0-9]{9}" >
+                                                        pattern="[6-9]{1}[0-9]{9}">
                                              </div>
                                          </div>
                                      </div>
@@ -348,7 +348,7 @@ $cname = $this->uri->segment(2);
                                                          <th>phone no.</th>
                                                          <th>Alternate no.</th>
                                                          <th>Email Id</th>
-                                                         <th>Action</th>
+<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_communication_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
@@ -369,27 +369,27 @@ $cname = $this->uri->segment(2);
                                          <div class="col-sm-3">
                                              <div class="form-group">
                                                  <label for="" class="control-label mb-1">Company Name<span style="color:red;">*</span></label>
-                                                 <input type="text" id="cboCompanyname0" name="cboCompanyname[]" class="form-control" onclick="only_characters_numbers_dot_highfen_slash('cboCompanyname0')" placeholder="enter previous company name" title="Only characters and numbers are allowed">
+                                                 <input type="text" id="cboCompanyname0" name="cboCompanyname[]" class="form-control" onclick="only_characters_numbers_dot_highfen_slash('cboCompanyname0')" placeholder="enter previous company name" title="Only characters and numbers are allowed" required>
                                                  <input type="hidden" id="txtidExperience" name="txtidExperience" value="0">
                                              </div>
                                          </div>
                                          <div class="col-sm-2">
                                              <div class="form-group">
                                                  <label for="" class="control-label mb-1">Designation<span style="color:red;">*</span></label>
-                                                 <select id="cboJobdesignation0" name="cboJobdesignation[]" class="select" title="Select a designation">
+                                                 <select id="cboJobdesignation0" name="cboJobdesignation[]" class="select" title="Select a designation" required>
                                                  </select>
                                              </div>
                                          </div>
                                          <div class="col-sm-3">
                                              <div class="form-group">
                                                  <label for="employeejobrole" class="control-label mb-1">Role<span style="color:red;">*</span></label>
-                                                 <input type="text" id="txtJobrole0" name="txtJobrole[]" class="form-control" onclick=" only_characters_numbers_dot_highfen_slash('txtJobrole0')" placeholder="enter job role" title="Only characters and numbers allowed">
+                                                 <input type="text" id="txtJobrole0" name="txtJobrole[]" class="form-control" onclick=" only_characters_numbers_dot_highfen_slash('txtJobrole0')" placeholder="enter job role" title="Only characters and numbers allowed" required>
                                              </div>
                                          </div>
                                          <div class="col-sm-2">
                                              <div class="form-group">
                                                  <label for="employeeeducation" class="control-label mb-1">From Date<span style="color:red;">*</span></label>
-                                                 <input type="text" id="txtFromdate0" name="txtFromdate[]" class="form-control" placeholder="dd-mm-yyyy" title="Select joining date">
+                                                 <input type="text" id="txtFromdate0" name="txtFromdate[]" class="form-control" placeholder="dd-mm-yyyy" title="Select joining date" required>
                                              </div>
                                          </div>
                                          <div class="col-sm-2">
@@ -474,7 +474,7 @@ $cname = $this->uri->segment(2);
                                                      <label for="employeeeducation"
                                                             class="control-label mb-1">Education<span style="color:red;">*</span></label>
                                                      <input type="hidden" id="txtidQualification" name="txtidQualification" value="0">
-                                                     <select id="cboEducationid0" name="cboEducationid[]" class="select" title="Select education">
+                                                     <select id="cboEducationid0" name="cboEducationid[]" class="select" title="Select education" required>
                                                      </select>
                                                  </div>
                                              </div>
@@ -483,35 +483,35 @@ $cname = $this->uri->segment(2);
                                                      <label for="employeeeducationstream"
                                                             class="control-label">Stream<span style="color:red;">*</span></label>
                                                      <input type="text" id="txtEducationstream0" name="txtEducationstream[]" class="form-control"
-                                                            onclick="charachters_validate('txtEducationstream0')" placeholder="Enter education stream" title="only charachters are allowed" >
+                                                            onclick="charachters_validate('txtEducationstream0')" placeholder="Enter education stream" title="only charachters are allowed" required>
                                                  </div>
                                              </div>
                                              <div class="col-lg-2 col-md-2 col-sm-12">
                                                  <div class="form-group">
                                                      <label for="employeeboard" class="control-label mb-1">Board</label>
                                                      <input type="text" id="txtBoard0" name="txtBoard[]" class="form-control"
-                                                            onclick=" charachters_validate('txtBoard0')" placeholder="enter Board" title="only characters are allowed" >
+                                                            onclick=" charachters_validate('txtBoard0')" placeholder="enter Board" title="only characters are allowed" required>
                                                  </div>
                                              </div>
                                              <div class="col-lg-2 col-md-2 col-sm-12">
                                                  <div class="form-group">
                                                      <label for="employeeregdno" class="control-label mb-1">Regd.No</label>
                                                      <input type="text" id="txtRegdno0" name="txtRegdno[]" class="form-control"
-                                                            onclick=" alfa_numeric('txtRegdno0')" placeholder="enter Regd.No" title="only characters and numbers are allowed">
+                                                            onclick=" alfa_numeric('txtRegdno0')" placeholder="enter Regd.No" title="only characters and numbers are allowed" required>
                                                  </div>
                                              </div>
                                              <div class="col-lg-2 col-md-2 col-sm-12">
                                                  <div class="form-group">
                                                      <label for="employeepercentage" class="control-label mb-1">Percentage/CGPA</label>
                                                      <input type="text" id="txtPercentage0" name="txtPercentage[]" class="form-control"
-                                                            placeholder="enter percentage" onclick="number_validate('txtPercentage0')" title="only numbers are allowed">
+                                                            placeholder="enter percentage" onclick="number_validate('txtPercentage0')" title="only numbers are allowed" required>
                                                  </div>
                                              </div>
                                              <div class="col-lg-2 col-md-2 col-sm-12">
                                                  <div class="form-group">
                                                      <label for="employeeeducationstream"
                                                             class="control-label mb-1">Upload Doc's<span style="color:red;">*</span></label>
-                                                     <input type="file" id="fileCertificate0" name="fileCertificate0" class="form-control" placeholder="Enter education stream" title="only pdf format allowed and  max size 1mb">
+                                                     <input type="file" id="fileCertificate0" name="fileCertificate0" class="form-control" placeholder="Enter education stream" title="only pdf format allowed and  max size 1mb" required>
                                                  </div>
                                              </div>
                                          </div>
@@ -586,11 +586,11 @@ $cname = $this->uri->segment(2);
                                      <br>
                                      <div class="col-sm-12">
                                         <div class="row p-5" id="addMoreDocuments">
-                                                <div class="col-sm-2">
+                                                <div class="offset-1 col-sm-3">
                                                     <div class="form-group">
                                                         <label for="emploayee_identification_details" class="control-label mb-1">Document Type</label>
                                                         <input type="hidden" id="txtidUploadDocument" name="txtidUploadDocument" value="0">
-                                                        <select id="cboDocumentTypes0" name="cboDocumentType[]" class="select" title="select document type">
+                                                        <select id="cboDocumentTypes0" name="cboDocumentType[]" class="select" title="select document type" required>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -598,7 +598,7 @@ $cname = $this->uri->segment(2);
                                                     <div class="form-group">
                                                         <label for="cirtificate_number" class="control-label mb-1">Document Number</label>
                                                         <input type="text" id="txtDocIdentificationNumber0" name="txtDocIdentificationNumber[]" class="form-control"
-                                                               onclick=" alfa_numeric('txtDocNumber0')"   placeholder="Enter Number"  title="only numbers are allowed">
+                                                               onclick=" alfa_numeric('txtDocNumber0')"   placeholder="Enter Number"  title="only numbers are allowed" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3">
@@ -607,7 +607,7 @@ $cname = $this->uri->segment(2);
                                                                class="control-label mb-1">Upload Documents<span style="color:red;">*</span></label>
 <!--                                                        <input type="file" id="fileUploadIdentification0" name="fileUploadIdentification0" class="form-control"-->
 <!--                                                               accept="image/*"  onchange="showMyImage(this)" placeholder="Enter Benificiary name"  >-->
-                                                        <input type="file" id="fileUploadIdentification0" name="fileUploadIdentification0" class="form-control"
+                                                        <input type="file" id="fileUploadIdentification0" name="fileUploadIdentification0" class="form-control" required
                                                                placeholder="Enter Benificiary name"  title="only pdf format is allowed">
                                                     </div>
                                                 </div>
@@ -692,23 +692,23 @@ $cname = $this->uri->segment(2);
                                                      <label for="emploayee_bank_details"
                                                             class="control-label mb-1">Bank</label>
                                                      <input type="hidden" id="txtidUploadBankDetails" name="txtidUploadBankDetails"  value="0">
-                                                     <select id="cboUploadBankid" name="cboUploadBankid" class="select" title="Select a bank">
+                                                     <select id="cboUploadBankid" name="cboUploadBankid" class="select" title="Select a bank" required>
                                                      </select>
                                                  </div>
                                              </div>
-                                             <div class="col-sm-2">
+                                             <div class="col-sm-3">
                                                  <div class="form-group">
                                                      <label for="employeee_ac_number"
                                                             class="control-label mb-1">A/c Number</label>
                                                      <input type="text" id="txtAcNumber" name="txtAcNumber" class="form-control" title="Only numbers are allowed."
-                                                            onclick=" number_validate('txtAcNumber')" placeholder="Enter Bank Account Number"  >
+                                                            onclick=" number_validate('txtAcNumber')" placeholder="Enter Bank Account Number"  required>
                                                  </div>
                                              </div>
-                                             <div class="col-sm-2">
+                                             <div class="col-sm-3">
                                                  <div class="form-group">
                                                      <label for="cirtificate_number" class="control-label mb-1">IFSC Code</label>
                                                      <input type="text" id="txtIFSCCode" name="txtIFSCCode" class="form-control"
-                                                            onclick=" alfa_numeric_capital('txtIFSCCode')"  maxlength="11" minlength="11"  placeholder="Enter IFSC Code" title="Only Capital letter and numbers are allowed">
+                                                            onclick=" alfa_numeric_capital('txtIFSCCode')"  maxlength="11" minlength="11"  placeholder="Enter IFSC Code" title="Only Capital letter and numbers are allowed" required>
                                                  </div>
                                              </div>
 
@@ -716,7 +716,7 @@ $cname = $this->uri->segment(2);
                                              <div class="col-sm-3">
                                                  <div class="form-group">
                                                      <label for="employeeeBeneficiaryName" class="control-label mb-1">Upload Documents<span style="color:red;">*</span></label>
-                                                     <input type="file" id="fileUploadBank" name="fileUploadBank" class="form-control" accept="image/*"  onchange="showMyImage(this)" placeholder="Enter Benificiary name" title="file size should be less than 2mb"  >
+                                                     <input type="file" id="fileUploadBank" name="fileUploadBank" class="form-control" accept="image/*"  onchange="showMyImage(this)" placeholder="Enter Benificiary name" title="file size should be less than 2mb"  required>
                                                  </div>
                                              </div>
 <!--                                             <div class="col-sm-3 text-center" style="left: 8%;">-->
@@ -776,7 +776,7 @@ $cname = $this->uri->segment(2);
                                                          <th>Account Number</th>
                                                          <th>IFSC Code</th>
                                                          <th>Upload Doc</th>
-                                                         <th>Action</th>
+<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_bank_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
