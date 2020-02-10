@@ -19,11 +19,11 @@ $cname = $this->uri->segment(2);
                      <nav>
                          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                              <a class="nav-item nav-link tab-contents active" id="basictabbar" data-toggle="tab" href="#basictab" role="tab" aria-controls="nav-home" aria-selected="true">Basic Information</a>
-                             <a class="nav-item nav-link  tab-contents" id="communicationtabbar" data-toggle="tab" href="#communicationtab" role="tab" aria-controls="nav-profile" aria-selected="false">Communication Details</a>
-                             <a class="nav-item nav-link  tab-contents" id="experiencetabbar" data-toggle="tab" href="#experiencetab" role="tab" aria-controls="nav-contact" aria-selected="false">Experience</a>
-                             <a class="nav-item nav-link  tab-contents" id="qualificationtabbar" data-toggle="tab" href="#qualificationtab" role="tab" aria-controls="nav-about" aria-selected="false">Qualification</a>
-                             <a class="nav-item nav-link  tab-contents" id="documentationtabbar" data-toggle="tab" href="#documentationtab" role="tab" aria-controls="nav-about" aria-selected="false">Documents Upload</a>
-                             <a class="nav-item nav-link  tab-contents" id="bankdetailstabbar" data-toggle="tab" href="#bankdetailstab" role="tab" aria-controls="nav-about" aria-selected="false">Bank Details</a>
+                             <a class="nav-item nav-link  tab-contents disabled" id="communicationtabbar" data-toggle="tab" href="#communicationtab" role="tab" aria-controls="nav-profile" aria-selected="false">Communication Details</a>
+                             <a class="nav-item nav-link  tab-contents disabled" id="experiencetabbar" data-toggle="tab" href="#experiencetab" role="tab" aria-controls="nav-contact" aria-selected="false">Experience</a>
+                             <a class="nav-item nav-link  tab-contents disabled" id="qualificationtabbar" data-toggle="tab" href="#qualificationtab" role="tab" aria-controls="nav-about" aria-selected="false">Qualification</a>
+                             <a class="nav-item nav-link  tab-contents disabled" id="documentationtabbar" data-toggle="tab" href="#documentationtab" role="tab" aria-controls="nav-about" aria-selected="false">Documents Upload</a>
+                             <a class="nav-item nav-link  tab-contents disabled" id="bankdetailstabbar" data-toggle="tab" href="#bankdetailstab" role="tab" aria-controls="nav-about" aria-selected="false">Bank Details</a>
                          </div>
                      </nav>
                      <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">

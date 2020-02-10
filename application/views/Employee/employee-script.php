@@ -270,6 +270,7 @@
                   if(jsondata.status==true){
                       var txt_communication_id_val = $('#txtidCommunication').val(jsondata.empid);
                       mytoast(jsondata);
+                      $('#communicationtabbar').removeClass('disabled');
                       if(txt_communication_id_val!=null){
                           $('#basic').trigger('reset');
                           $('.nav-tabs > .active').next().trigger('click');
@@ -312,6 +313,7 @@
                     var jsondata = JSON.parse(res);
                     if(jsondata.status==true){
                         mytoast(jsondata);
+                        $('#experiencetabbar').removeClass('disabled');
                         let txt_experience_id_val = $("#txtidExperience").val(jsondata.empid);
                         if(txt_experience_id_val!=null){
                             $('.nav-tabs > .active').next().trigger('click');
@@ -338,6 +340,7 @@
                 var jsondata = JSON.parse(res);
                 if(jsondata.status==true){
                     mytoast(jsondata);
+                    $('#qualificationtabbar').removeClass('disabled');
                     let txt_experience_id_val = $("#txtidQualification").val(jsondata.empid);
                     if(txt_experience_id_val!=null) {
                         $('.nav-tabs > .active').next().trigger('click');
@@ -368,6 +371,7 @@
             success:function(res){
                 if(res.status==true){
                     mytoast(res);
+                    $('#documentationtabbar').removeClass('disabled');
                     let txt_qualification_id_val = $("#txtidUploadDocument").val(res.empid);
                     if(txt_qualification_id_val!=null) {
                         $('.nav-tabs > .active').next().trigger('click');
@@ -398,6 +402,7 @@
             success:function(jsondata){
                 if(jsondata.status==true){
                     mytoast(jsondata);
+                    $('#bankdetailstabbar').removeClass('disabled');
                     let txt_documentsid_val = $("#txtidUploadBankDetails").val(jsondata.empid);
                     if(txt_documentsid_val!=null) {
                         $('.nav-tabs > .active').next().trigger('click');
@@ -434,6 +439,13 @@
                         // $("#qualificationtabbar").removeClass('active');
                         // $("#documentationtabbar").addClass('active');
                         alert('Successfully inserted');
+                        $('#communication').trigger('reset');
+                        $('#basic').trigger('reset');
+                        $('#experience').trigger('reset');
+                        $('#qualification').trigger('reset');
+                        $('#upload_document_details').trigger('reset');
+                        $('#upload_bank_details').trigger('reset');
+                        loadFormNewEmployee();
                     }else{
                         alert("unable to lo Qualification Tab");
                     }
@@ -444,7 +456,7 @@
         });
     });
 
-     function report_emp_basic(id){
+    function report_emp_basic(id){
          $.ajax({
              type:'post',
              url:"<?= base_url('Employee/report_employee_basic_details')?>",

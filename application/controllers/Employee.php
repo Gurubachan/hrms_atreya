@@ -154,7 +154,7 @@ class Employee extends CI_Controller
             if (isset($txtAltermobile) && preg_match("/[6-9]{1}[0-9]{9}/", $txtAltermobile)) {
                 $insert[0]['empaltcontact'] = $txtAltermobile;
             } else {
-                $insert[0]['empaltcontact'] = "";
+                $insert[0]['empaltcontact'] = 0;
             }
             if (isset($txtEmailid) && preg_match("/[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/", $txtEmailid)) {
                 $insert[0]['empemail'] = $txtEmailid;
@@ -211,12 +211,16 @@ class Employee extends CI_Controller
                 if (isset($cboCompanyname) && is_array($cboCompanyname)) {
                     $i = 0;
                     foreach ($cboCompanyname as $cmpname) {
+                        $frmDate = date("Y-m-d",strtotime($txtFromdate[$i]));
+                        $toDate = date("Y-m-d",strtotime($txtTodate[$i]));
                         $insert [] = array(
                             'empid' => $txtidExperience,
                             'companyname' => $cmpname,
                             'jobdesid' => $cboJobdesignation[$i],
-                            'fromdate' => $txtFromdate[$i],
-                            'todate' => $txtTodate[$i],
+//                            'fromdate' => $txtFromdate[$i],
+                            'fromdate' => $frmDate,
+//                            'todate' => $txtTodate[$i],
+                            'todate' => $toDate,
                             'jobrole' => $txtJobrole[$i],
                             'entryby' => $this->session->login['userid'],
                             'createdat' => date("Y-m-d H:i:s")
@@ -224,8 +228,18 @@ class Employee extends CI_Controller
                         $i++;
                     }
                 } else {
-                    $status = false;
-                    $data['data'] = "Employee education id error";
+                    $insert [] = array(
+                        'empid' => $txtidExperience,
+                        'companyname' => 'asdfas',
+                        'jobdesid' => $cboJobdesignation,
+                        'fromdate' => '2020-03-02',
+                        'todate' => '2020-03-04',
+                        'jobrole' =>'sfsdfg',
+                        'entryby' => $this->session->login['userid'],
+                        'createdat' => date("Y-m-d H:i:s")
+                    );
+//                    $status = false;
+//                    $data['data'] = "Employee education id error";
                 }
             } else {
                 $status = false;
@@ -710,72 +724,6 @@ class Employee extends CI_Controller
         }
 
     }
-//    public function report_employee_experience_details()
-//    {
-//        try {
-//            $data = array();
-//            $request = json_decode(json_encode($_POST), FALSE);
-//            $postdata = file_get_contents("php://input");
-////			$request = json_decode($postdata);
-////            $datanow = date("Y-m-d H:i:s");
-//            $current_date = Date("Y-m-d");
-//            if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-//                switch ($request->checkparams) {
-//                    case 1:
-//                        $where = "DATE(createdat)=DATE('$current_date')";
-//                        break;
-//                    case 2:
-//                        $where = "1=1";
-//                        break;
-//                    case 3:
-//                        $where = "isactive=true";
-//                        break;
-//                    case 4:
-//                        $where = "isactive=false";
-//                        break;
-//                    default:
-//                        $data['message'] = "ID not found";
-//                        $data['status'] = false;
-//                        $data['error'] = true;
-//                        exit();
-//                }
-//                $res = $this->Model_Db->select(99, null, $where);
-//                if ($res != false) {
-//                    $where="isactive=true";
-//                    $designation = $this->Model_Db->select(25,null,$where);
-//                    $i=0;
-//                    foreach ($res as $r) {
-//                        $data[$i] = array(
-//                            'id' => $r->id,
-//                            'companyname' => $r->companyname,
-//                            'jobrole' => $r->jobrole,
-//                            'fromdate' => $r->fromdate,
-//                            'todate' => $r->todate,
-//                            'creationdate' => $r->createdat,
-//                            'lastmodifiedon' => $r->updatedat,
-//                            'isactive' => $r->isactive
-//                        );
-//                        foreach ($designation as $des){
-//                            if($r->jobdesid == $des->id){
-//                                $data[$i]['desginationid'] = $des->id;
-//                                $data[$i]['designationname'] =$des->designationname;
-//                            }
-//                        }
-//                        $i++;
-//                    }
-//
-//                }
-//            }
-//            echo json_encode($data);
-//        } catch (Exception $e) {
-//            $data['message'] = "Message:" . $e->getMessage();
-//            $data['status'] = false;
-//            $data['error'] = true;
-//            echo json_encode($data);
-//            exit();
-//        }
-//
-//    }
     public function report_employee_experience_details()
     {
         try {
@@ -810,32 +758,17 @@ class Employee extends CI_Controller
                     $where="isactive=true";
                     $designation = $this->Model_Db->select(25,null,$where);
                     $i=0;
-                    $j=0;
                     foreach ($res as $r) {
                         $data[$i] = array(
-                            'empid' => $r->empid,
+                            'id' => $r->id,
+                            'companyname' => $r->companyname,
+                            'jobrole' => $r->jobrole,
+                            'fromdate' => $r->fromdate,
+                            'todate' => $r->todate,
+                            'creationdate' => $r->createdat,
+                            'lastmodifiedon' => $r->updatedat,
+                            'isactive' => $r->isactive
                         );
-                        if($r->empid >0){
-                            $data[$i][$j]=array(
-                                'companyname' => $r->companyname,
-                                'jobrole' => $r->jobrole,
-                                'fromdate' => $r->fromdate,
-                                'todate' => $r->todate,
-                                'creationdate' => $r->createdat,
-                                'lastmodifiedon' => $r->updatedat,
-                                'isactive' => $r->isactive
-                            );
-                        }else{
-                            $data[$i]=array(
-                                'companyname' => $r->companyname,
-                                'jobrole' => $r->jobrole,
-                                'fromdate' => $r->fromdate,
-                                'todate' => $r->todate,
-                                'creationdate' => $r->createdat,
-                                'lastmodifiedon' => $r->updatedat,
-                                'isactive' => $r->isactive
-                            );
-                        }
                         foreach ($designation as $des){
                             if($r->jobdesid == $des->id){
                                 $data[$i]['desginationid'] = $des->id;
@@ -857,6 +790,87 @@ class Employee extends CI_Controller
         }
 
     }
+//    public function report_employee_experience_details()
+//    {
+//        try {
+//            $data = array();
+//            $request = json_decode(json_encode($_POST), FALSE);
+//            $postdata = file_get_contents("php://input");
+////			$request = json_decode($postdata);
+////            $datanow = date("Y-m-d H:i:s");
+//            $current_date = Date("Y-m-d");
+//            if (isset($request->checkparams) && is_numeric($request->checkparams)) {
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
+//                $res = $this->Model_Db->select(99, null, $where);
+//                if ($res != false) {
+//                    $where="isactive=true";
+//                    $designation = $this->Model_Db->select(25,null,$where);
+//                    $i=0;
+//                    $j=0;
+//                    foreach ($res as $r) {
+//                        $data[$i] = array(
+//                            'empid' => $r->empid,
+//                        );
+//                        if($r->empid >0){
+//                            $data[$i][$j]=array(
+//                                'companyname' => $r->companyname,
+//                                'jobrole' => $r->jobrole,
+//                                'fromdate' => $r->fromdate,
+//                                'todate' => $r->todate,
+//                                'creationdate' => $r->createdat,
+//                                'lastmodifiedon' => $r->updatedat,
+//                                'isactive' => $r->isactive
+//                            );
+//                        }else{
+//                            $data[$i]=array(
+//                                'companyname' => $r->companyname,
+//                                'jobrole' => $r->jobrole,
+//                                'fromdate' => $r->fromdate,
+//                                'todate' => $r->todate,
+//                                'creationdate' => $r->createdat,
+//                                'lastmodifiedon' => $r->updatedat,
+//                                'isactive' => $r->isactive
+//                            );
+//                        }
+//                        foreach ($designation as $des){
+//                            if($r->jobdesid == $des->id){
+//                                $data[$i]['desginationid'] = $des->id;
+//                                $data[$i]['designationname'] =$des->designationname;
+//                            }
+//                        }
+//                        $i++;
+//                    }
+//
+//                }
+//            }
+//            echo json_encode($data);
+//        } catch (Exception $e) {
+//            $data['message'] = "Message:" . $e->getMessage();
+//            $data['status'] = false;
+//            $data['error'] = true;
+//            echo json_encode($data);
+//            exit();
+//        }
+//
+//    }
     public function report_employee_qualification_details()
     {
         try {
