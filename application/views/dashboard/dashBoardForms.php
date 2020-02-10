@@ -15,7 +15,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 stylingFunction d-icon" onclick="loadState()">
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadState()">
                <div class="card" >
 				   <div class="card-body">
 					   <div class="form-group text-center baseDiv">
@@ -26,7 +26,7 @@
 				   </div>
 			   </div>
             </div>
-            <div class="col-sm-3 stylingFunction d-icon" onclick="loadDistict()">
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadDistict()">
                <div class="card">
 				   <div class="card-body">
 					   <div class="form-group text-center">
@@ -39,7 +39,7 @@
 				   </div>
 			   </div>
             </div>
-            <div class="col-sm-3 stylingFunction d-icon" onclick="loadEducation()">
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadEducation()">
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
@@ -52,7 +52,7 @@
 					</div>
 				</div>
             </div>
-            <div class="col-sm-3 stylingFunction d-icon" onclick="loadYear()">
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="loadYear()">
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center ">
@@ -104,7 +104,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-sm-3 stylingFunction  d-icon" onclick="loadReligion()">
                 <div class="card">
                     <div class="card-body">
@@ -161,7 +160,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group text-center">
-                            <i class="fa fa-anchor fa-3x move designOne" ></i>
+                            <i class="fa fa-futbol fa-3x move designOne" ></i>
                             <hr class="margin_5 hr_1">
                             <span class="">Department</span>
                         </div>
@@ -274,8 +273,6 @@
 					</div>
 				</div>
             </div>
-
-
             <div class="col-sm-3 stylingFunction  d-icon" onclick="loadRecruitmentDashboard()">
                 <div class="card">
 					<div class="card-body">
@@ -289,7 +286,6 @@
 					</div>
 				</div>
             </div>
-
             <div class="col-sm-3 stylingFunction  d-icon" onclick="loadJobPosting()">
                 <div class="card">
 					<div class="card-body">
@@ -303,7 +299,7 @@
 					</div>
 				</div>
             </div>
-            <div class="col-sm-3 stylingFunction   d-icon" onclick="salaryInvoice()">
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="salaryInvoice()">
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
@@ -316,7 +312,7 @@
 					</div>
 				</div>
             </div>
-            <div class="col-sm-3 stylingFunction   d-icon" onclick="expencesDetails()">
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="expencesDetails()">
                 <div class="card">
 					<div class="card-body">
 						<div class="form-group text-center">
@@ -394,13 +390,26 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 stylingFunction  d-icon" onclick="visitorsDashboard()">
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="interviewDashboard()">
                 <div class="card">
                     <div class="card-body">
                         <div class="form-group text-center">
                             <i class="zmdi zmdi-accounts-list zmdi-hc-3x designOne"></i>
                             <hr class="margin_5 hr_1">
                             <span class="">Interview</span>
+                        </div>
+                        <!--						<hr>-->
+                        <!--						<div class="fa fa-trash"> </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 stylingFunction  d-icon" onclick="documentDashboard()">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group text-center">
+                            <i class="zmdi zmdi-upload zmdi-hc-3x designOne"></i>
+                            <hr class="margin_5 hr_1">
+                            <span class="">Documents</span>
                         </div>
                         <!--						<hr>-->
                         <!--						<div class="fa fa-trash"> </div>-->

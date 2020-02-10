@@ -1,0 +1,47 @@
+2020-01-24 12:56:33: == Sync Started by User Command
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.github'
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.github/workflows'
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea'
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/codeStyles'
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources'
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91'
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2'
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_'
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database'
+2020-01-24 12:56:33: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg'
+2020-01-24 12:56:34: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg/schema'
+2020-01-24 12:56:34: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663'
+2020-01-24 12:56:34: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2'
+2020-01-24 12:56:34: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_'
+2020-01-24 12:56:34: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database'
+2020-01-24 12:56:34: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg'
+2020-01-24 12:56:34: Create Folder 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg/schema'
+2020-01-24 12:56:34: Copy New 'F:/websites/hrms_atreya/.github/workflows/php.yml' -> 'sftp://61.12.81.38/var/www/html/hrms/.github/workflows/php.yml' (542)
+2020-01-24 12:56:35: Copy New 'F:/websites/hrms_atreya/.idea/codeStyles/Project.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/codeStyles/Project.xml' (1,213)
+2020-01-24 12:56:35: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg/schema/information_schema.FNRwLQ.meta' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg/schema/information_schema.FNRwLQ.meta' (76)
+2020-01-24 12:56:35: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg/schema/pg_catalog.0S1ZNQ.meta' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg/schema/pg_catalog.0S1ZNQ.meta' (68)
+2020-01-24 12:56:35: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg/schema/public.abK9xQ.meta' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg/schema/public.abK9xQ.meta' (63)
+2020-01-24 12:56:35: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg/schema/public.abK9xQ.zip' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg/schema/public.abK9xQ.zip' (13,093)
+2020-01-24 12:56:35: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg.meta' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91/storage_v2/_src_/database/db_hrms.UcuVVg.meta' (10)
+2020-01-24 12:56:35: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c33d9e0-7038-4758-9b4d-fc835ffd6b91.xml' (284,928)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg/schema/information_schema.FNRwLQ.meta' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg/schema/information_schema.FNRwLQ.meta' (76)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg/schema/pg_catalog.0S1ZNQ.meta' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg/schema/pg_catalog.0S1ZNQ.meta' (68)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg/schema/public.abK9xQ.meta' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg/schema/public.abK9xQ.meta' (64)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg/schema/public.abK9xQ.zip' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg/schema/public.abK9xQ.zip' (13,162)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg.meta' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663/storage_v2/_src_/database/db_hrms.UcuVVg.meta' (10)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources/0c3a11ea-1d38-4fb4-b357-06680e001663.xml' (246,631)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/dataSources.local.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources.local.xml' (1,728)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/dataSources.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dataSources.xml' (833)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/dbnavigator.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/dbnavigator.xml' (23,261)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/encodings.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/encodings.xml' (138)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/hrms_atreya.iml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/hrms_atreya.iml' (288)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/misc.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/misc.xml' (179)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/modules.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/modules.xml' (281)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/php.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/php.xml' (154)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/sqldialects.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/sqldialects.xml' (430)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/vcs.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/vcs.xml' (185)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/.idea/workspace.xml' -> 'sftp://61.12.81.38/var/www/html/hrms/.idea/workspace.xml' (15,539)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/application/config/config.php' -> 'sftp://61.12.81.38/var/www/html/hrms/application/config/config.php' (18,559)
+2020-01-24 12:56:36: Copy New 'F:/websites/hrms_atreya/application/config/database.php' -> 'sftp://61.12.81.38/var/www/html/hrms/application/config/database.php' (6,872)
+2020-01-24 12:56:36: == Sync Complete. Time: 00:00:03, Speed: 352.07 KB/s, OK: 44, Errors: 0
+2020-01-24 12:56:36: 

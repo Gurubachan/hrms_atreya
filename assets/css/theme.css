@@ -15464,3 +15464,15 @@ legend{
 .hr_1{
     /*background-color:green;*/
 }
+label{
+    display: inline-block;
+    /*width: 5em;*/
+}
+.ui-tooltip {
+    padding: 10px 20px;
+    color: red;
+    border-radius: 2px;
+    font: normal 10px "Helvetica Neue", Sans-Serif;
+    /*text-transform: uppercase;*/
+    /*box-shadow: 0 0 7px black;*/
+}

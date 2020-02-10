@@ -228,7 +228,6 @@ class User extends CI_Controller {
     }
     public function create_user(){
         try{
-
             $data=array();
             $insert=array();
             $password=array();
@@ -260,7 +259,8 @@ class User extends CI_Controller {
             if(isset($request->lname) && preg_match("/[a-zA-Z]{2,60}/",$request->lname)){
                 $insert[0]['lname']=$request->lname;
             }else{
-                $insert[0]['lname']="";
+                $status=false;
+                echo $request->fname;
             }
 
             if(isset($request->emailid) && preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/",$request->emailid)){
@@ -285,9 +285,9 @@ class User extends CI_Controller {
             // file upload
             $config['upload_path']          = './assets/images/';
             $config['allowed_types']        = 'jpg|jpeg';
-            $config['max_size']             = 1024;
-            $config['max_width']            = 1024;
-            $config['max_height']           = 1024;
+            $config['max_size']             = 5096;
+            $config['max_width']            = 2024;
+            $config['max_height']           = 2024;
             $config['file_name']           ='img'.date("Y-m-d@H-i-s");
             $this->load->library('upload', $config);
             if ( ! $this->upload->do_upload('uploadFile'))
@@ -317,7 +317,7 @@ class User extends CI_Controller {
             if(isset($upload_photo)){
                 $insert[0]['logo']=$upload_photo['file_name'];
             }else{
-                $status=false;
+//                $status=false;
 //                $error_msg =  $this->upload->display_errors();
                 $data['message']="Faild";
 //                $data['data']=$error_msg;

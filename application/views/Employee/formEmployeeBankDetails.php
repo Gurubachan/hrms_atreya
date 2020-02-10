@@ -150,6 +150,7 @@ $cname = $this->uri->segment(2);
             }
         });
     }
+
     $("#stateid").change(function () {
         load_district();
     });
