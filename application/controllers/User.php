@@ -228,7 +228,6 @@ class User extends CI_Controller {
     }
     public function create_user(){
         try{
-
             $data=array();
             $insert=array();
             $password=array();
@@ -260,7 +259,8 @@ class User extends CI_Controller {
             if(isset($request->lname) && preg_match("/[a-zA-Z]{2,60}/",$request->lname)){
                 $insert[0]['lname']=$request->lname;
             }else{
-                $insert[0]['lname']="";
+                $status=false;
+                echo $request->fname;
             }
 
             if(isset($request->emailid) && preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/",$request->emailid)){

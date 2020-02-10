@@ -127,6 +127,44 @@ function loadOnlyCompany(id) {
         }
     });
 }
+function loadOnlyCompany(){
+    $.ajax({
+        type:'post',
+        url: "../Company/load_company/1",
+        crossDomain:true,
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#companyid").html(data);
+                $("#cboCompany").html(data);
+            }
+        }
+    });
+}
+function load_banklist(id){
+    $.ajax({
+        type:'post',
+        url:"../Bank/load_bank",
+        success:function(data){
+            var data = JSON.parse(data);
+            if(data!=false){
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
+function documenttype(id) {
+    $.ajax({
+        type: 'post',
+        url: "../Document/load_documenttype",
+        success: function (data) {
+           var data = JSON.parse(data);
+            if(data!=false){
+                $("#"+id).html(data);
+            }
+        }
+    });
+}
 function loadDepartment() {
     //window.location.href="<?//= base_url('Forms/loadDepartment')?>//";
     $.ajax({
@@ -163,7 +201,7 @@ function loadDepartmentMapping() {
     });
 }
 
-function loadEmployeeType() {
+function loadFormEmployeeType() {
     $.ajax({
         url:"../Forms/formEmployeeType",
         type:"post",
@@ -172,9 +210,18 @@ function loadEmployeeType() {
         }
     });
 }
-function loadNewEmployee() {
+function loadFormNewEmployee() {
     $.ajax({
         url:"../Forms/formNewEmployee",
+        type:"post",
+        success:function (d) {
+            $("#load_employee_pages").html(d);
+        }
+    });
+}
+function loadFormDocumentType() {
+    $.ajax({
+        url:"../Forms/formDocumentType",
         type:"post",
         success:function (d) {
             $("#load_employee_pages").html(d);
@@ -242,6 +289,7 @@ function load_state(){
         }
     });
 }
+
 function state(id){
 
     $.ajax({
@@ -256,8 +304,7 @@ function state(id){
         }
     });
 }
-
-function load_district(id=null){
+function load_district(id=null,id_name){
     var stateid = id;
     $.ajax({
         type:'post',
@@ -268,17 +315,39 @@ function load_district(id=null){
             var data = JSON.parse(data);
             if(data!=false){
                 $("#distid").html(data);
-                $("#cboPermanentdistid").html(data);
-                $("#cboDistid").html(data);
+                // $("#cboPermanentDistid").html(data);
+                $("#"+id_name).html(data);
                 if(dist!=null){
                     $("#distid").val(dist);
-                    $("#cboPermanentdistid").val(dist);
-                    $("#cboDistid").val(dist);
+                    $("#"+id_name).val(dist);
+                    // $("#cboPresentDistid").val(dist);
                 }
             }
         }
     });
 }
+// function load_district(id=null){
+//     var stateid = id;
+//     $.ajax({
+//         type:'post',
+//         url: "../District/load_district",
+//         data:{stateid:stateid},
+//         crossDomain:true,
+//         success:function(data){
+//             var data = JSON.parse(data);
+//             if(data!=false){
+//                 $("#distid").html(data);
+//                 $("#cboPermanentDistid").html(data);
+//                 $("#cboPresentDistid").html(data);
+//                 if(dist!=null){
+//                     $("#distid").val(dist);
+//                     $("#cboPermanentDistid").val(dist);
+//                     $("#cboPresentDistid").val(dist);
+//                 }
+//             }
+//         }
+//     });
+// }
 function load_employee_type(){
     $.ajax({
         type:'post',
@@ -504,20 +573,7 @@ function load_experiencetype(){
         }
     });
 }
-function loadOnlyCompany(){
-    $.ajax({
-        type:'post',
-        url: "../Company/load_company/1",
-        crossDomain:true,
-        success:function(data){
-            var data = JSON.parse(data);
-            if(data!=false){
-                $("#companyid").html(data);
-                $("#cboCompany").html(data);
-            }
-        }
-    });
-}
+
 function load_religion() {
     $.ajax({
         type: 'post',

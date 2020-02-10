@@ -245,7 +245,7 @@ class Visitors extends CI_Controller
                             $data['status']=false;
                         }
                     }else if($txtid==0){
-                        print_r($insert);
+//                        print_r($insert);
 //                        exit();
 //                        $where="visitorname='$cboName'";
 //                        $duplicate_check=$this->Model_Db->select(87,null,$where);

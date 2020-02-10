@@ -59,6 +59,8 @@ class Model_Db extends CI_Model
 				'95'=>'tbl_employee_communication','96'=>'view_employee_communication',
 				'97'=>'tbl_employee_qualification','98'=>'view_employee_qualification',
 				'99'=>'tbl_employee_experience','100'=>'view_employee_experience',
+				'101'=>'tbl_document_type','102'=>'view_document_type',
+				'103'=>'tbl_identification_document','104'=>'view_identification_document'
             );
             if($table[$tblno]){
                 return $table[$tblno];

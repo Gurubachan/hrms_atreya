@@ -47,7 +47,7 @@ $cname = $this->uri->segment(2);
         var frm=$('#frmVisitorsrecord').serialize();
         $.ajax({
             type:"post",
-            crossDomain:true,
+            // crossDomain:true,
             // url:'http://192.168.0.14/hrms_atreya/Visitors/create_visitorsrecord',
             url:'<?=base_url("Visitors/create_visitorsrecord")?>',
             data:frm,
@@ -68,7 +68,7 @@ $cname = $this->uri->segment(2);
         var id = $(this).val();
         $.ajax({
             type:"post",
-            crossDomain:true,
+            // crossDomain:true,
             // url:'http://192.168.0.14/hrms_atreya/Visitorsrecord/visitors_details',
             url:'<?=base_url("Visitors/visitors_details")?>',
             data:{id:id},
@@ -91,7 +91,7 @@ $cname = $this->uri->segment(2);
     function loadName() {
         $.ajax({
             type: "post",
-            crossDomain: true,
+            // crossDomain: true,
             // url:"http://192.168.0.14/hrms_atreya/Visitorsrecord/load_visitorsname",
             url:'<?=base_url("Visitors/load_visitorsname")?>',
             success:function (res){
@@ -121,7 +121,7 @@ $cname = $this->uri->segment(2);
     function loadPurpose() {
         $.ajax({
             type: "post",
-            crossDomain: true,
+            // crossDomain: true,
             // url:"http://192.168.0.14/hrms_atreya/Purpose/load_purpose",
             url:'<?=base_url("Visitors/load_purpose")?>',
             success:function (res){
@@ -151,7 +151,7 @@ $cname = $this->uri->segment(2);
     function loadContactperson() {
         $.ajax({
             type: "post",
-            crossDomain: true,
+            // crossDomain: true,
             // url:"http://192.168.0.14/hrms_atreya/Visitorsrecord/load_contactperson",
             url:'<?=base_url("Visitors/load_contactperson")?>',
             success:function (res){
@@ -166,7 +166,7 @@ $cname = $this->uri->segment(2);
         $.ajax({
             type: 'post',
             url: "<?= base_url('Visitors/report_purpose_details')?>",
-            crossDomain: true,
+            // crossDomain: true,
             data: {checkparams: data},
             success: function (data) {
                 var jsondata = JSON.parse(data);

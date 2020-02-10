@@ -84,10 +84,9 @@ $cname = $this->uri->segment(2);
 									<div class="imgUp">
 										<div class="imagePreview"></div>
 <!--										<label class="btn btn-primary">Upload Photo<input type="file" id="images" name="images" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;"></label>-->
-
-									<input id="uploadFile" name="uploadFile" type="file" class="uploadFile form-control">
-<!--									<small class="errormsg_photo"></small>-->
-								</div></div>
+                                        <input id="uploadFile" name="uploadFile" type="file" class="uploadFile form-control">
+    <!--									<small class="errormsg_photo"></small>-->
+                                    </div></div>
 							</div>
 							<div class="offset-6 col-sm-3" >
                                 <div class="" style="border: 1px solid red; height: 150px; width: 150px;" >

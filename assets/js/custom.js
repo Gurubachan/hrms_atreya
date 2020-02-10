@@ -1,3 +1,9 @@
+$( function() {
+    $( document ).tooltip({
+        track: true
+    });
+
+} );
 function number_validate(id) {
     $("#"+id).keypress(function (e) {
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) || e.which.length >6) {
@@ -9,6 +15,22 @@ function number_validate(id) {
 function alfa_numeric(id) {
     $("#"+id).keypress(function (e) {
         if (e.which != 8 && e.which != 0 && (e.which < 65 || e.which > 90) && (e.which < 97 || e.which > 122)&& (e.which < 48 || e.which > 57) && e.which != 32 && e.which != 38 && e.which != 40 && e.which != 41 && e.which != 45 && e.which != 47 && e.which != 46 ) {
+            $(".errormsg_"+id).html("Alphanumeric Only").css({'color':'red'}).show().fadeOut(2000);
+            return false;
+        }
+    });
+}
+function only_characters_numbers_dot_highfen_slash(id) {
+    $("#"+id).keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 65 || e.which > 90) && (e.which < 97 || e.which > 122)&& (e.which < 48 || e.which > 57) && e.which != 32 && e.which != 45 && e.which != 47 ) {
+            $(".errormsg_"+id).html("Alphanumeric Only").css({'color':'red'}).show().fadeOut(2000);
+            return false;
+        }
+    });
+}
+function alfa_numeric_capital(id) {
+    $("#"+id).keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 65 || e.which > 90)&& (e.which < 48 || e.which > 57) && e.which != 32 && e.which != 38 && e.which != 40 && e.which != 41 && e.which != 45 && e.which != 47 && e.which != 46 ) {
             $(".errormsg_"+id).html("Alphanumeric Only").css({'color':'red'}).show().fadeOut(2000);
             return false;
         }
@@ -84,26 +106,25 @@ function successfully_updates() {
     toastr.options.showMethod = 'slideDown';
 }
 function mytoast(res) {
-    var title = res.message;
-    var msg = res.data;
+    var msg = res.message;
+    var title = res.data;
     if(res.status== true){
         toastr.options.rtl = true;
         toastr.options.positionClass = 'toast-bottom-right';
-        toastr.success(msg,title);
+        toastr.success(title,msg);
         toastr.options.showMethod = 'slideDown';
-
     }else {
         toastr.options.rtl = true;
         toastr.options.positionClass = 'toast-bottom-right';
-        toastr.error(msg,title);
+        toastr.error(title,msg);
         toastr.options.showMethod = 'slideDown';
     }
-
 }
 function custome_range_datepicker(fromdate, todate){
-    var dateFormat = "dd-mm-yy",
+    var dateFormat = "yy-mm-dd",
         from = $( "#"+fromdate ).datepicker({
             //defaultDate: "+1w",
+            // dateFormat:'dd-mm-yy',
             dateFormat:'dd-mm-yy',
             changeMonth: true,
             changeYear:true,

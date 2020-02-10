@@ -8,7 +8,6 @@ defined("BASEPATH") or exit("No direct script access allowed.");
         </div>
     </div>
 </div>
-
 <!--<footer class="text-center"> copyright &copy: 2019</footer>-->
 <!-- Jquery JS-->
 <script type="text/javascript" src="<?= base_url('assets/vendor/jquery-3.2.1.min.js')?>"></script>
@@ -16,7 +15,6 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <script type="text/javascript" src="<?= base_url('assets/vendor/bootstrap-4.1/popper.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/vendor/bootstrap-4.1/bootstrap.min.js')?>"></script>
 <script src="<?= base_url('assets/vendor/js-toast-master/toast.js')?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/function.js')?>"></script>
 <!-- Vendor JS       -->
 <script type="text/javascript" src="<?= base_url('assets/vendor/slick/slick.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/vendor/wow/wow.min.js')?>"></script>
@@ -37,7 +35,6 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <script type="text/javascript" src="<?= base_url('assets/vendor/vector-map/jquery.vmap.world.js')?>"></script>
 <link href="https://fonts.googleapis.com/css?family=Abel|Arima+Madurai|Caudex|Roboto+Condensed|Squada+One|Turret+Road|Varela+Round&display=swap" rel="stylesheet"> <!-- Main JS-->
 <script type="text/javascript" src="<?= base_url('assets/js/main.js')?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/custom.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/toastr.js')?>"></script>
 <!--<link href="--><?//= base_url('assets/pg-calendar-master/dist/css/pignose.calendar.css')?><!--" rel="stylesheet" media="all">-->
 <!--<script type="text/javascript" src="--><?//= base_url('assets/pg-calendar-master/dist/js/pignose.calendar.full.js')?><!--"></script>-->
@@ -47,7 +44,8 @@ defined("BASEPATH") or exit("No direct script access allowed.");
 <!--<script type="text/javascript" src="--><?//= base_url('assets/js/dataTables.bootstrap4.min.js')?><!--"></script>-->
 <script type="text/javascript" src="<?= base_url('assets/js/jquery-ui.min.js')?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/Chart.min.js')?>"></script>
-
+<script type="text/javascript" src="<?= base_url('assets/js/custom.js')?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/function.js')?>"></script>
    <script>
        function loadCompany() {
         window.location.href="<?= base_url('Forms/companyDashboard')?>";
@@ -174,8 +172,8 @@ defined("BASEPATH") or exit("No direct script access allowed.");
    function offerLetter(){
         window.location.href="<?= base_url('Forms/formOfferLetter')?>";
    }
-       function offerLetter(){
-           window.location.href="<?= base_url('Forms/formOfferLetter')?>";
+       function documentDashboard(){
+           window.location.href="<?= base_url('Forms/formDocuments')?>";
        }
    function visitorsDashboard(){
         window.location.href="<?= base_url('Forms/formVisitorDashboard')?>";

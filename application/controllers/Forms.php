@@ -95,6 +95,13 @@ class Forms extends CI_Controller {
             echo "Message:" . $e->getMessage();
         }
     }
+    public function documentSidebar(){
+        try{
+            $this->load->view('Documents/documentsSidebar');
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
     public function employeeSidebar(){
         try{
             $this->load->view('Employee/employeeDashboardSidebar');
@@ -360,6 +367,19 @@ class Forms extends CI_Controller {
             extract($_POST);
             $this->load->view('Employee/employee');
             $this->load->view('Employee/employee-script');
+            }else{
+                redirect('welcome/');
+            }
+        }catch (Exception $e){
+            echo "Message:" . $e->getMessage();
+        }
+    }
+    public function formDocumentType(){
+        try{
+            if($this->session->login['userid']) {
+            extract($_POST);
+            $this->load->view('Document/document_type');
+            $this->load->view('Document/documenttype-script');
             }else{
                 redirect('welcome/');
             }
@@ -936,4 +956,20 @@ class Forms extends CI_Controller {
             echo "Message:".$e->getMessage();
         }
     }
+//    public function formDocuments(){
+//        try{
+//            if($this->session->login['userid']) {
+//                $this->header();
+//                $this->navbar();
+//                $this->visitorsSidebar();
+//                $this->load->view('Visitors/visitpurpose/visitorpurpose');
+//                $this->footer();
+//                $this->load->view('Visitors/visitpurpose/visitpurpose-script');
+//            }else{
+//                redirect('welcome/');
+//            }
+//        }catch (Exception $e){
+//            echo "Message:".$e->getMessage();
+//        }
+//    }
 }
