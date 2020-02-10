@@ -37,7 +37,7 @@ $cname = $this->uri->segment(2);
                                                      <input type="hidden" id="isactive" name="isactive" value="1">
                                                      <input type="hidden" id="isattendance" name="isattendance" value="0">
                                                      <label for="slno" class="control-label mb-1">#Slno<span style="color:red;">*</span>.</label>
-                                                     <input type="text" id="txtSlno" name="txtSlno" class="form-control" onclick="number_validate('txtSlno')"  maxlength="11" minlength="2" placeholder="Enter serial number" title="Only numbers are allowed between(2 to 11)">
+                                                     <input type="text" id="txtSlno" name="txtSlno" class="form-control" onclick="number_validate('txtSlno')"  maxlength="8" minlength="2" placeholder="Enter serial number" title="Only numbers are allowed between(2 to 8)">
                                                      <small class="errormsg_slno"></small>
                                                  </div>
                                              </div>
@@ -177,7 +177,7 @@ $cname = $this->uri->segment(2);
                                                  <a href="#" class="btn btn-close btn-round btn-default"><i class="fa fa-remove"></i></a>
                                              </div>
                                          </div>
-                                         <div class="box-content">
+                                         <div class="box-content" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
                                              <div class="table-responsive">
                                                  <table class="table  table-striped table-bordered bootstrap-datatable datatable  table-earning">
                                                      <thead>
@@ -194,7 +194,7 @@ $cname = $this->uri->segment(2);
 <!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
-                                                     <tbody id="load_emp_basic_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
+                                                     <tbody id="load_emp_basic_details">
                                                      </tbody>
                                                  </table>
                                              </div>
@@ -315,15 +315,15 @@ $cname = $this->uri->segment(2);
 
                              <br>
                              <hr>
-                             <form action="" class="reportBtn">
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,2)">Recent Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,2)">All Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,2)">Active Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,2)">Inactive Entries</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,2)">Allow Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,2)">Not Allowed Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,2)">Details View</button>
-                             </form>
+<!--                             <form action="" class="reportBtn">-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,2)">Recent Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,2)">All Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,2)">Active Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,2)">Inactive Entries</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,2)">Allow Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,2)">Not Allowed Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,2)">Details View</button>-->
+<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">
@@ -417,15 +417,15 @@ $cname = $this->uri->segment(2);
 
                              <br>
                              <hr>
-                             <form action="" class="reportBtn">
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,3)">Recent Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,3)">All Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,3)">Active Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,3)">Inactive Entries</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,3)">Allow Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,3)">Not Allowed Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,3)">Details View</button>
-                             </form>
+<!--                             <form action="" class="reportBtn">-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,3)">Recent Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,3)">All Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,3)">Active Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,3)">Inactive Entries</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,3)">Allow Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,3)">Not Allowed Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,3)">Details View</button>-->
+<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">
@@ -533,15 +533,15 @@ $cname = $this->uri->segment(2);
 
                              <br>
                              <hr>
-                             <form action="" class="reportBtn">
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,4)">Recent Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,4)">All Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,4)">Active Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,4)">Inactive Entries</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,4)">Allow Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,4)">Not Allowed Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,4)">Details View</button>
-                             </form>
+<!--                             <form action="" class="reportBtn">-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,4)">Recent Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,4)">All Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,4)">Active Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,4)">Inactive Entries</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,4)">Allow Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,4)">Not Allowed Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,4)">Details View</button>-->
+<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">
@@ -637,15 +637,15 @@ $cname = $this->uri->segment(2);
 
                              <br>
                              <hr>
-                             <form action="" class="reportBtn">
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,5)">Recent Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,5)">All Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,5)">Active Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,5)">Inactive Entries</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,5)">Allow Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,5)">Not Allowed Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,5)">Details View</button>
-                             </form>
+<!--                             <form action="" class="reportBtn">-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,5)">Recent Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,5)">All Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,5)">Active Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,5)">Inactive Entries</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,5)">Allow Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,5)">Not Allowed Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,5)">Details View</button>-->
+<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">
@@ -744,15 +744,15 @@ $cname = $this->uri->segment(2);
 
                              <br>
                              <hr>
-                             <form action="" class="reportBtn">
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,6)">Recent Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,6)">All Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,6)">Active Entries</button>
-                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,6)">Inactive Entries</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,6)">Allow Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,6)">Not Allowed Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,6)">Details View</button>
-                             </form>
+<!--                             <form action="" class="reportBtn">-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,6)">Recent Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,6)">All Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,6)">Active Entries</button>-->
+<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,6)">Inactive Entries</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,6)">Allow Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,6)">Not Allowed Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,6)">Details View</button>-->
+<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">

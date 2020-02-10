@@ -15,6 +15,7 @@
         load_banklist('cboUploadBankid');
         documenttype('cboDocumentTypes0');
         // report_basic();
+        lowerToUpper('txtIFSCCode');
     });
 
 
@@ -502,120 +503,120 @@
              }
          });
      }
-    function report_emp_communication(id){
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('Employee/report_employee_communication_details')?>",
-            data:{checkparams:id},
-            success:function(data){
-                if(data!=false) {
-                    var jsondata = JSON.parse(data);
-                    var j = 0;
-                    var z = jsondata.length;
-                    var html = "";
-                    var isactive = '';
-                    var isattendance = '';
-                    for (var i = 0; i < z; i++) {
-                        j++;
-                        html += "<tr><td>" + j + "</td><td>"+jsondata[i].empaddress+"</td><td>"+jsondata[i].emppresentaddress+"</td><td>"+jsondata[i].empcontact+"</td><td>"+jsondata[i].empaltcontact+"</td><td>"+jsondata[i].empemail+"</td></tr>";
-
-                    }
-                    $('#load_emp_communication_details').html(html);
-                }
-            }
-        });
-    }
-    function report_emp_experience(id){
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('Employee/report_employee_experience_details')?>",
-            data:{checkparams:id},
-            success:function(data){
-                if(data!=false) {
-                    var jsondata = JSON.parse(data);
-                    var j = 0;
-                    var z = jsondata.length;
-                    var html = "";
-                    var isactive = '';
-                    var isattendance = '';
-                    for (var i = 0; i < z; i++) {
-                        j++;
-                        html += "<tr><td>" + j + "</td><td>"+jsondata[i].companyname+"</td><td>"+jsondata[i].designationname+"</td><td>"+jsondata[i].jobrole+"</td><td>"+jsondata[i].fromdate+"</td><td>"+jsondata[i].todate+"</td></tr>";
-
-                    }
-                    $('#load_emp_experience_details').html(html);
-                }
-            }
-        });
-    }
-    function report_emp_qualification(id){
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('Employee/report_employee_qualification_details')?>",
-            data:{checkparams:id},
-            success:function(data){
-                if(data!=false) {
-                    var jsondata = JSON.parse(data);
-                    var j = 0;
-                    var z = jsondata.length;
-                    var html = "";
-                    var isactive = '';
-                    var isattendance = '';
-                    for (var i = 0; i < z; i++) {
-                        j++;
-                        html += "<tr><td>" + j + "</td><td>"+jsondata[i].educationname+"</td><td>"+jsondata[i].empedustream+"</td><td>"+jsondata[i].empeduboard+"</td><td>"+jsondata[i].empregdno+"</td><td>"+jsondata[i].emppercentage+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
-
-                    }
-                    $('#load_emp_qualification_details').html(html);
-                }
-            }
-        });
-    }
-    function report_emp_document_uploads(id){
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('Employee/report_employee_documents_upload_details')?>",
-            data:{checkparams:id},
-            success:function(data){
-                if(data!=false) {
-                    var jsondata = JSON.parse(data);
-                    var j = 0;
-                    var z = jsondata.length;
-                    var html = "";
-                    var isactive = '';
-                    var isattendance = '';
-                    for (var i = 0; i < z; i++) {
-                        j++;
-                        html += "<tr><td>" + j + "</td><td>"+jsondata[i].documenttypename+"</td><td>"+jsondata[i].documentnumber+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
-
-                    }
-                    $('#load_emp_identification_details').html(html);
-                }
-            }
-        });
-    }
-    function report_emp_bankdetails(id){
-        $.ajax({
-            type:'post',
-            url:"<?= base_url('Employee/report_employee_bank_details')?>",
-            data:{checkparams:id},
-            success:function(data){
-                if(data!=false) {
-                    var jsondata = JSON.parse(data);
-                    var j = 0;
-                    var z = jsondata.length;
-                    var html = "";
-                    var isactive = '';
-                    var isattendance = '';
-                    for (var i = 0; i < z; i++) {
-                        j++;
-                        html += "<tr><td>" + j + "</td><td>"+jsondata[i].bankname+"</td><td>"+jsondata[i].acno+"</td><td>"+jsondata[i].ifsccode+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
-                    }
-                    $('#load_emp_bank_details').html(html);
-                }
-            }
-        });
-    }
+    //function report_emp_communication(id){
+    //    $.ajax({
+    //        type:'post',
+    //        url:"<?//= base_url('Employee/report_employee_communication_details')?>//",
+    //        data:{checkparams:id},
+    //        success:function(data){
+    //            if(data!=false) {
+    //                var jsondata = JSON.parse(data);
+    //                var j = 0;
+    //                var z = jsondata.length;
+    //                var html = "";
+    //                var isactive = '';
+    //                var isattendance = '';
+    //                for (var i = 0; i < z; i++) {
+    //                    j++;
+    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].empaddress+"</td><td>"+jsondata[i].emppresentaddress+"</td><td>"+jsondata[i].empcontact+"</td><td>"+jsondata[i].empaltcontact+"</td><td>"+jsondata[i].empemail+"</td></tr>";
+    //
+    //                }
+    //                $('#load_emp_communication_details').html(html);
+    //            }
+    //        }
+    //    });
+    //}
+    //function report_emp_experience(id){
+    //    $.ajax({
+    //        type:'post',
+    //        url:"<?//= base_url('Employee/report_employee_experience_details')?>//",
+    //        data:{checkparams:id},
+    //        success:function(data){
+    //            if(data!=false) {
+    //                var jsondata = JSON.parse(data);
+    //                var j = 0;
+    //                var z = jsondata.length;
+    //                var html = "";
+    //                var isactive = '';
+    //                var isattendance = '';
+    //                for (var i = 0; i < z; i++) {
+    //                    j++;
+    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].companyname+"</td><td>"+jsondata[i].designationname+"</td><td>"+jsondata[i].jobrole+"</td><td>"+jsondata[i].fromdate+"</td><td>"+jsondata[i].todate+"</td></tr>";
+    //
+    //                }
+    //                $('#load_emp_experience_details').html(html);
+    //            }
+    //        }
+    //    });
+    //}
+    //function report_emp_qualification(id){
+    //    $.ajax({
+    //        type:'post',
+    //        url:"<?//= base_url('Employee/report_employee_qualification_details')?>//",
+    //        data:{checkparams:id},
+    //        success:function(data){
+    //            if(data!=false) {
+    //                var jsondata = JSON.parse(data);
+    //                var j = 0;
+    //                var z = jsondata.length;
+    //                var html = "";
+    //                var isactive = '';
+    //                var isattendance = '';
+    //                for (var i = 0; i < z; i++) {
+    //                    j++;
+    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].educationname+"</td><td>"+jsondata[i].empedustream+"</td><td>"+jsondata[i].empeduboard+"</td><td>"+jsondata[i].empregdno+"</td><td>"+jsondata[i].emppercentage+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
+    //
+    //                }
+    //                $('#load_emp_qualification_details').html(html);
+    //            }
+    //        }
+    //    });
+    //}
+    //function report_emp_document_uploads(id){
+    //    $.ajax({
+    //        type:'post',
+    //        url:"<?//= base_url('Employee/report_employee_documents_upload_details')?>//",
+    //        data:{checkparams:id},
+    //        success:function(data){
+    //            if(data!=false) {
+    //                var jsondata = JSON.parse(data);
+    //                var j = 0;
+    //                var z = jsondata.length;
+    //                var html = "";
+    //                var isactive = '';
+    //                var isattendance = '';
+    //                for (var i = 0; i < z; i++) {
+    //                    j++;
+    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].documenttypename+"</td><td>"+jsondata[i].documentnumber+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
+    //
+    //                }
+    //                $('#load_emp_identification_details').html(html);
+    //            }
+    //        }
+    //    });
+    //}
+    //function report_emp_bankdetails(id){
+    //    $.ajax({
+    //        type:'post',
+    //        url:"<?//= base_url('Employee/report_employee_bank_details')?>//",
+    //        data:{checkparams:id},
+    //        success:function(data){
+    //            if(data!=false) {
+    //                var jsondata = JSON.parse(data);
+    //                var j = 0;
+    //                var z = jsondata.length;
+    //                var html = "";
+    //                var isactive = '';
+    //                var isattendance = '';
+    //                for (var i = 0; i < z; i++) {
+    //                    j++;
+    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].bankname+"</td><td>"+jsondata[i].acno+"</td><td>"+jsondata[i].ifsccode+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
+    //                }
+    //                $('#load_emp_bank_details').html(html);
+    //            }
+    //        }
+    //    });
+    //}
 
     function report_current_emp_communication(){
         var id = $('#txtid').val();

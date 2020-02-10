@@ -696,26 +696,26 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-//                $where = "empid=checkparams";
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
                 $res = $this->Model_Db->select(95, null, $where);
                 if ($res != false) {
                     foreach ($res as $r) {
@@ -754,26 +754,26 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-//                $where = "empid=checkparams";
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
                 $res = $this->Model_Db->select(99, null, $where);
                 if ($res != false) {
                     $where="isactive=true";
@@ -902,26 +902,26 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-//                $where = "empid=checkparams";
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
                 $res = $this->Model_Db->select(97, null, $where);
                 if ($res != false) {
                     $where = "isactive=true";
@@ -970,26 +970,26 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-//                $where = "empid=checkparams";
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
                 $res = $this->Model_Db->select(103, null, $where);
                 if ($res != false) {
                     $where = "isactive=true";
@@ -1035,26 +1035,26 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-//                $where = "empid=checkparams";
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
                 $res = $this->Model_Db->select(35, null, $where);
                 if ($res != false) {
                     $where ="isactive=true";

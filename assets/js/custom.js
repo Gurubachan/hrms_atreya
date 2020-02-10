@@ -1,6 +1,6 @@
 $( function() {
     $( document ).tooltip({
-        track: true
+        // track: true
     });
 
 } );
@@ -179,4 +179,10 @@ function getDate( element ) {
 
 	return date;
 }
+function lowerToUpper(id){
+    $('#'+id).keyup(function(){
+        $(this).val().toUpperCase();
+    });
+}
+
 
