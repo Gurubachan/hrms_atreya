@@ -181,7 +181,8 @@ function getDate( element ) {
 }
 function lowerToUpper(id){
     $('#'+id).keyup(function(){
-        $(this).val().toUpperCase();
+       var v =  $('#'+id).val().toUpperCase();
+        $('#'+id).val(v);
     });
 }
 

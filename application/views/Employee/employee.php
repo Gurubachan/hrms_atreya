@@ -708,7 +708,7 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="cirtificate_number" class="control-label mb-1">IFSC Code</label>
                                                      <input type="text" id="txtIFSCCode" name="txtIFSCCode" class="form-control"
-                                                            onclick=" alfa_numeric_capital('txtIFSCCode')"  maxlength="11" minlength="11"  placeholder="Enter IFSC Code" title="Only Capital letter and numbers are allowed" required>
+                                                            onclick=" alfa_numeric('txtIFSCCode')"  maxlength="11" minlength="11"  placeholder="Enter IFSC Code" title="Only Capital letter and numbers are allowed" required>
                                                  </div>
                                              </div>
 
