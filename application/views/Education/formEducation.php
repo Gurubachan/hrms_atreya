@@ -23,7 +23,7 @@ $cname = $this->uri->segment(2);
                         <div class="form-group">
                             <input type="hidden" id="txtid" name="txtid" value="0">
                             <label for="educationname" class="control-label mb-1">Education Name<span class="red">*</span></label>
-                            <input type="text" id="educationname" name="educationname" class="form-control" onclick="alfa_numeric('educationname')" minlength="3" maxlength="20" placeholder="Enter education name." required>
+                            <input type="text" id="educationname" name="educationname" class="form-control" onclick="alfa_numeric('educationname')" minlength="3" maxlength="60" placeholder="Enter education name." required>
                             <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
                             <small class="errormsg_educationname"></small>
                         </div>

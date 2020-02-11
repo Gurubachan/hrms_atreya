@@ -93,7 +93,8 @@ class Designation extends CI_Controller {
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(25,null,$where);
+            $orderby="designationname asc";
+            $res=$this->Model_Db->select(25,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -136,7 +137,8 @@ class Designation extends CI_Controller {
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(25, null, $where);
+                $orderby="designationname asc";
+                $res = $this->Model_Db->select(25, null, $where,$orderby);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(

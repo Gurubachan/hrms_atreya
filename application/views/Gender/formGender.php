@@ -30,7 +30,7 @@ $cname = $this->uri->segment(2);
                             </div>
                             <div class="form-group">
                                 <label for="statename" class="control-label mb-1">Shortname<span class="red">*</span></label>
-                                <input type="text" id="genderShortname" name="genderShortname" class="form-control" aria-required="true" aria-invalid="false" onclick="charachters_validate('genderShortname')" minlength="2" maxlength="5" required placeholder="Enter shortname">
+                                <input type="text" id="genderShortname" name="genderShortname" class="form-control" aria-required="true" aria-invalid="false" onclick="charachters_validate('genderShortname')" minlength="1" maxlength="5" required placeholder="Enter shortname">
                                 <small class="errormsg_genderShortname"></small>
                             </div>
 

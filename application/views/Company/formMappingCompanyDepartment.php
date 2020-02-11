@@ -117,11 +117,16 @@ $cname = $this->uri->segment(2);
             success:function(data){
                 if(data!=false){
                     var jsondata = JSON.parse(data);
-                    console.log(data);
+                    if(jsondata.flag==0){
+                        duplicate_entries();
+                    }else{
+                        reportFunction(1);
+                        $("#departmentMappingForm").trigger('reset');
+                        // $('#createDepartmentMapping').html('Create');
+                    }
                 }else{
                     console.log(data);
                 }
-                reportFunction(1);
             }
         });
     });

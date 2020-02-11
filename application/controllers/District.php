@@ -20,12 +20,12 @@ class District extends CI_Controller {
                 $status=false;
             }
             if(isset($request->distname) && preg_match("/[a-zA-Z ]{3,20}/",$request->distname)){
-                $insert[0]['distname']=$request->distname;
+                $insert[0]['distname']=strtoupper($request->distname);
             }else{
                 $status=false;
             }
             if(isset($request->districtShortname) && preg_match("/[a-zA-Z ]{2,5}/",$request->districtShortname)){
-                $insert[0]['distshortname']=$request->districtShortname;
+                $insert[0]['distshortname']=strtoupper($request->districtShortname);
             }else{
                 $status=false;
             }

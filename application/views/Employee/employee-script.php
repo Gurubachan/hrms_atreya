@@ -16,6 +16,8 @@
         documenttype('cboDocumentTypes0');
         // report_basic();
         lowerToUpper('txtIFSCCode');
+        lowerToUpper('txtSlno');
+        religion('cboreligionid');
     });
 
 
@@ -87,7 +89,7 @@
                     "                                                      <div class=\"form-group\">\n" +
                     "                                                          <label for=\"employeepercentage\" class=\"control-label mb-1\">Percentage/CGPA</label>\n" +
                     "                                                          <input type=\"text\" id=\"txtPercentage"+i+"\" name=\"txtPercentage[]\" class=\"form-control\"\n" +
-                    "                                                               onclick=\"number_validate('txtPercentage"+i+"')\" title=\"only numbers are allowed\"  placeholder=\"enter percentage\">\n" +
+                    "                                                               onclick=\"float_validate('txtPercentage"+i+"')\" title=\"only numbers are allowed\"  placeholder=\"enter percentage\">\n" +
                     "                                                      </div>\n" +
                     "                                                  </div>" +
                     "                                                 <div class=\"col-sm-2\">\n" +
@@ -495,7 +497,13 @@
                      var isattendance = '';
                      for (var i = 0; i < z; i++) {
                          j++;
-                         html += "<tr><td>" + j + "</td><td>"+jsondata[i].empslno+"</td><td>"+jsondata[i].empname+"</td><td>"+jsondata[i].gendername+"</td><td>"+jsondata[i].empdob+"</td><td>"+jsondata[i].empdoj+"</td><td>"+jsondata[i].deptcompanyname+"</td><td>"+jsondata[i].deptname+"</td><td>"+jsondata[i].designationname+"</td></tr>";
+                         html += "<tr><td>" + j + "</td><td>"+jsondata[i].empslno+"</td>" +
+                             "<td>"+jsondata[i].empfname+" "+jsondata[i].empmname+" "+jsondata[i].emplname+"</td><td>"+jsondata[i].gendername+"</td>" +
+                             "<td>"+jsondata[i].empdob+"</td><td>"+jsondata[i].empdoj+"</td>" +
+                             "<td>"+jsondata[i].deptcompanyname+"</td><td>"+jsondata[i].deptname+"</td>" +
+                             "<td>"+jsondata[i].designationname+"</td>" +
+                             "<td><button class='btn btn-sm'" +
+                             " onclick='editEmp("+jsondata[i].id+","+JSON.stringify(jsondata[i].empslno)+","+JSON.stringify(jsondata[i].empfname)+","+JSON.stringify(jsondata[i].empmname)+","+JSON.stringify(jsondata[i].emplname)+","+JSON.stringify(jsondata[i].empfathername)+","+JSON.stringify(jsondata[i].empmothername)+","+JSON.stringify(jsondata[i].empspousename)+","+JSON.stringify(jsondata[i].empdob)+","+JSON.stringify(jsondata[i].empdoj)+","+jsondata[i].maritalstatusid+","+jsondata[i].genderid+","+jsondata[i].designationid+","+jsondata[i].departmentid+","+jsondata[i].religionid+")' style='border: 1px solid red'>Edit</button></td></tr>";
 
                      }
                      $('#load_emp_basic_details').html(html);
@@ -503,6 +511,34 @@
              }
          });
      }
+
+    function editEmp(id,slno,fname,mname,lname,fathername,mothername,spouse,empdob,empdoj,maritalid,genderid,desginationid,department,religionid) {
+        if(maritalid==2){
+            $('#txtSpousename').attr('disabled',true);
+        }else{
+            $('#txtSpousename').attr('disabled',false);
+        }
+        $('#txtid').val(id);
+        $('#txtSlno').val(slno);
+        $('#cboDepartmentmappingid').val(department);
+        $('#cboDesignationid').val(desginationid);
+        $('#txtDoj').val(empdoj);
+        $('#txtFname').val(fname);
+        $('#txtMname').val(mname);
+        $('#txtLname').val(lname);
+        $('#cboGenderid').val(genderid);
+        $('#txtDob').val(empdob);
+        $('#cboMaritalstatusid').val(maritalid);
+        $('#cboreligionid').val(religionid);
+        $('#txtFathername').val(fathername);
+        $('#txtMothername').val(mothername);
+        $('#txtSpousename').val(spouse);
+        $('#cboreligionid').val(religionid);
+        // $('#isactive').val(isactiveval);
+        $('#txtSlno').focus();
+        $("#createBasicDetails").html('Update');
+
+    }
     //function report_emp_communication(id){
     //    $.ajax({
     //        type:'post',

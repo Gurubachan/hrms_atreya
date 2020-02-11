@@ -17,27 +17,27 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
-            if (isset($txtSlno) && preg_match("/[0-9]{2,11}/", $txtSlno)) {
-                $insert[0]['empslno'] = $txtSlno;
+            if (isset($txtSlno) && preg_match("/[0-9a-zA-Z]{2,11}/", $txtSlno)) {
+                $insert[0]['empslno'] = strtoupper($txtSlno);
             } else {
                 $status = false;
                 $data['data'] = "Seriel no error";
             }
             if (isset($txtFname) && preg_match("/[a-zA-Z ]{2,80}/", $txtFname)) {
-                $insert[0]['empfirstname'] = $txtFname;
+                $insert[0]['empfirstname'] = strtoupper($txtFname);
             } else {
                 $status = false;
                 $data['data'] = "First name error";
             }
             if (isset($txtMname) && preg_match("/[a-zA-Z ]{2,80}/", $txtMname)) {
-                $insert[0]['empmiddlename'] = $txtMname;
+                $insert[0]['empmiddlename'] = strtoupper($txtMname);
             } else {
 //                $status = false;
 //                $data['data'] = "Middle name error";
                 $insert[0]['empmiddlename'] = "";
             }
             if (isset($txtLname) && preg_match("/[a-zA-Z ]{2,80}/", $txtLname)) {
-                $insert[0]['emplastname'] = $txtLname;
+                $insert[0]['emplastname'] = strtoupper($txtLname);
             } else {
                 $status = false;
                 $data['data'] = "Last name error";
@@ -58,9 +58,9 @@ class Employee extends CI_Controller
 //            if(isset($txtDoj) && preg_match("/[0-9-]{4}+\-[0-9-]{2}+\-[0-9]{2}/",$txtDoj)){
             if (isset($txtDoj) && preg_match("/[0-9]{2}+\-[0-9]{2}+\-[0-9]{4}/", $txtDoj)) {
                 $doj = date("Y-m-d", strtotime($txtDoj));
-                $insert_record[0]['empdoj'] = $doj;
+                $insert[0]['empdoj'] = $doj;
             } else {
-                echo $insert_record[0]['empdoj'] = $txtDoj;
+//                echo $insert_record[0]['empdoj'] = $txtDoj;
                 $status = false;
                 $data['data'] = "Employee date of joining error";
             }
@@ -70,25 +70,31 @@ class Employee extends CI_Controller
                 $status = false;
                 $data['data'] = "Marital status error";
             }
+            if (isset($cboreligionid) && is_numeric($cboreligionid)) {
+                $insert[0]['religionid'] = $cboreligionid;
+            } else {
+                $status = false;
+                $data['data'] = "Religion status error";
+            }
             if (isset($txtFathername) && preg_match("/[a-zA-Z ]{2,80}/", $txtFathername)) {
-                $insert[0]['empfathername'] = $txtFathername;
+                $insert[0]['empfathername'] = strtoupper($txtFathername);
             } else {
                 $status = false;
                 $data['data'] = "Father name error";
             }
             if (isset($txtMothername) && preg_match("/[a-zA-Z ]{2,80}/", $txtMothername)) {
-                $insert[0]['empmothername'] = $txtMothername;
+                $insert[0]['empmothername'] = strtoupper($txtMothername) ;
             } else {
                 $status = false;
                 $data['data'] = "Mother name error";
             }
             if (isset($txtSpousename) && preg_match("/[a-zA-Z ]{2,80}/", $txtSpousename)) {
-                $insert[0]['empspousename'] = $txtSpousename;
+                $insert[0]['empspousename'] = strtoupper($txtSpousename) ;
             } else {
                 $insert[0]['empspousename'] = '';
             }
             if (isset($cboDepartmentmappingid) && is_numeric($cboDepartmentmappingid)) {
-                $insert[0]['empdepmappingid'] = $cboDepartmentmappingid;
+                $insert[0]['empdepmappingid'] =  $cboDepartmentmappingid;
             } else {
                 $status = false;
                 $data['message'] = "Error!!";
@@ -131,17 +137,17 @@ class Employee extends CI_Controller
                         }
                     }else{
                         $data['message'] = "Error!";
-                        $data['data'] = "Insufficient1/Invalid data.";
+//                        $data['data'] = "Insufficient1/Invalid data.";
                         $data['status'] = false;
                     }
                 }else{
                     $data['message'] = "Error!";
-                    $data['data'] = "Insufficient2/Invalid data.";
+//                    $data['data'] = "Insufficient2/Invalid data.";
                     $data['status'] = false;
                 }
                 } else {
                     $data['message'] = "Error!";
-                    $data['data'] = "Insufficient3/Invalid data.";
+//                    $data['data'] = "Insufficient3/Invalid data.";
                     $data['status'] = false;
                 }
             echo json_encode($data);
@@ -185,13 +191,13 @@ class Employee extends CI_Controller
                 $insert[0]['empemail'] = $txtEmailid;
             }
             if (isset($permanent_address)) { //permanent address
-                $insert[0]['empaddress'] = $permanent_address;
+                $insert[0]['empaddress'] = strtoupper($permanent_address) ;
             } else {
                 $status = false;
                 $data['data'] = "Employee address error";
             }
             if (isset($present_address)) {
-                $insert[0]['emppresentaddress'] = $present_address;
+                $insert[0]['emppresentaddress'] = strtoupper($present_address) ;
             } else {
                 $status = false;
                 $data['data'] = "Employee address error";
@@ -244,13 +250,13 @@ class Employee extends CI_Controller
                         }
                         $insert [] = array(
                             'empid' => $txtidExperience,
-                            'companyname' => $cmpname,
+                            'companyname' => strtoupper($cmpname),
                             'jobdesid' => $cboJobdesignation[$i],
 //                            'fromdate' => $txtFromdate[$i],
                             'fromdate' => $frmDate,
 //                            'todate' => $txtTodate[$i],
                             'todate' => $toDate,
-                            'jobrole' => $txtJobrole[$i],
+                            'jobrole' => strtoupper($txtJobrole[$i]) ,
                             'entryby' => $this->session->login['userid'],
                             'createdat' => date("Y-m-d H:i:s")
                         );
@@ -323,9 +329,9 @@ class Employee extends CI_Controller
                         $insert [] = array(
                             'empid' => $txtidQualification,
                             'empeduid' => $cboedu,
-                            'empedustream' => $txtEducationstream[$i],
-                            'empeduboard' => $txtBoard[$i],
-                            'empregdno' => $txtRegdno[$i],
+                            'empedustream' => strtoupper($txtEducationstream[$i]),
+                            'empeduboard' => strtoupper($txtBoard[$i]),
+                            'empregdno' => strtoupper($txtRegdno[$i]),
                             'emppercentage' => $txtPercentage[$i],
                             'documentupload' => $upload_doc['file_name'],
                             'entryby' => $this->session->login['userid'],
@@ -397,7 +403,7 @@ class Employee extends CI_Controller
                         $insert [] = array(
                             'empid' => $txtidUploadDocument,
                             'documenttypeid' => $cbodt,
-                            'documentnumber' => $txtDocIdentificationNumber[$i],
+                            'documentnumber' => strtoupper($txtDocIdentificationNumber[$i]),
                             'documentupload' => $upload_docs['file_name'],
                             'entryby' => $this->session->login['userid'],
                             'createdat' => date("Y-m-d H:i:s")
@@ -467,7 +473,7 @@ class Employee extends CI_Controller
                         'empid' => $txtidUploadBankDetails,
                         'bankid' => $cboUploadBankid,
                         'acno' => $txtAcNumber,
-                        'ifsccode' => $txtIFSCCode,
+                        'ifsccode' => strtoupper($txtIFSCCode),
                         'documentupload' => $upload_doc['file_name'],
                         'entryby' => $this->session->login['userid'],
                         'createdat' => date("Y-m-d H:i:s")
@@ -624,7 +630,8 @@ class Employee extends CI_Controller
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(93, null, $where);
+                $orderby = "empfirstname asc";
+                $res = $this->Model_Db->select(93, null, $where,$orderby);
                 if ($res != false) {
                     $where = "isactive=true";
                     $maritalstatus=$this->Model_Db->select(19, null, $where);
@@ -635,17 +642,26 @@ class Employee extends CI_Controller
                     foreach ($res as $r) {
                         $data[$i] = array(
                             'id' => $r->id,
-                            'empname' => $r->empfirstname." ".$r->empmiddlename." ".$r->emplastname,
+                            'empfname' => $r->empfirstname,
+                            'empmname' => $r->empmiddlename,
+                            'emplname' => $r->emplastname,
                             'empfathername' => $r->empfathername,
                             'empmothername' => $r->empmothername,
                             'empspousename' => $r->empspousename,
-                            'empdob' => $r->empdob,
-                            'empdoj' => $r->empdoj,
+                            'empdob' => "",
+                            'empdoj' => "",
                             'empslno' => $r->empslno,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
+                            'religionid'=> $r->religionid,
                             'isactive' => $r->isactive
                         );
+                        if($r->empdob!=null){
+                            $data[$i]['empdob']= date("d-m-Y",strtotime($r->empdob));
+                        }
+                        if($r->empdoj!=null){
+                            $data[$i]['empdoj']= date("d-m-Y",strtotime($r->empdoj));
+                        }
                         foreach ($maritalstatus as $mrs) {
                             if($r->empmaritalstatusid == $mrs->id){
                                 $data[$i]['maritalstatusid'] = $mrs->id;

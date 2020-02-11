@@ -19,7 +19,7 @@ $cname = $this->uri->segment(2);
                              <a class="nav-item nav-link tab-contents active" id="basictabbar" data-toggle="tab" href="#basictab" role="tab" aria-controls="nav-home" aria-selected="true" style="color: #00b5e9;font-weight: bold">Basic Information</a>
                              <a class="nav-item nav-link  tab-contents disabled" id="communicationtabbar" data-toggle="tab" href="#communicationtab" role="tab" aria-controls="nav-profile" aria-selected="false">Communication Details</a>
                              <a class="nav-item nav-link  tab-contents disabled" id="experiencetabbar" data-toggle="tab" href="#experiencetab" role="tab" aria-controls="nav-contact" aria-selected="false">Experience</a>
-                             <a class="nav-item nav-link  tab-contents disabled" id="qualificationtabbar" data-toggle="tab" href="#qualificationtab" role="tab" aria-controls="nav-about" aria-selected="false">Qualification</a>
+                             <a class="nav-item nav-link  tab-contents" id="qualificationtabbar" data-toggle="tab" href="#qualificationtab" role="tab" aria-controls="nav-about" aria-selected="false">Qualification</a>
                              <a class="nav-item nav-link  tab-contents disabled" id="documentationtabbar" data-toggle="tab" href="#documentationtab" role="tab" aria-controls="nav-about" aria-selected="false">Documents Upload</a>
                              <a class="nav-item nav-link  tab-contents disabled" id="bankdetailstabbar" data-toggle="tab" href="#bankdetailstab" role="tab" aria-controls="nav-about" aria-selected="false">Bank Details</a>
                          </div>
@@ -37,7 +37,7 @@ $cname = $this->uri->segment(2);
                                                      <input type="hidden" id="isactive" name="isactive" value="1">
                                                      <input type="hidden" id="isattendance" name="isattendance" value="0">
                                                      <label for="slno" class="control-label mb-1">#Slno<span style="color:red;">*</span>.</label>
-                                                     <input type="text" id="txtSlno" name="txtSlno" class="form-control" onclick="number_validate('txtSlno')"  maxlength="8" minlength="2" placeholder="Enter serial number" title="Only numbers are allowed between(2 to 8)">
+                                                     <input type="text" id="txtSlno" name="txtSlno" class="form-control" onclick="alfa_numeric('txtSlno')"  maxlength="20" minlength="2" placeholder="Enter serial number" title="Only numbers and characters are allowed">
                                                      <small class="errormsg_slno"></small>
                                                  </div>
                                              </div>
@@ -113,25 +113,32 @@ $cname = $this->uri->segment(2);
                                              <div class="col-sm-2">
                                                  <div class="form-group">
                                                      <label for="employeegender" class="control-label mb-1">Marital
-                                                         Status</label>
-                                                     <select id="cboMaritalstatusid" name="cboMaritalstatusid" class="select" title="Select marital status">
+                                                         Status<span style="color:red;">*</span></label>
+                                                     <select id="cboMaritalstatusid" name="cboMaritalstatusid" class="select" title="Select marital status" required>
                                                      </select>
                                                  </div>
                                              </div>
+
                                              <div class="col-sm-2">
                                                  <div class="form-group">
-                                                     <label for="employeefathername" class="control-label mb-1">Father
-                                                         Name</label>
+                                                     <label for="employeegender" class="control-label mb-1">Religion <span style="color:red;">*</span></label>
+                                                     <select id="cboreligionid" name="cboreligionid" class="select" title="Select marital status" required>
+                                                     </select>
+                                                 </div>
+                                             </div>
+
+                                             <div class="col-sm-2">
+                                                 <div class="form-group">
+                                                     <label for="employeefathername" class="control-label mb-1">Father Name <span style="color:red;">*</span></label>
                                                      <input type="text" id="txtFathername" name="txtFathername" class="form-control"
-                                                            onclick=" charachters_validate('txtFathername')" maxlength="20" placeholder="Enter father name" title="Only characters and space are allowed">
+                                                            onclick=" charachters_validate('txtFathername')" maxlength="20" placeholder="Enter father name" title="Only characters and space are allowed" required>
                                                  </div>
                                              </div>
                                              <div class="col-sm-2">
                                                  <div class="form-group">
-                                                     <label for="employeemothername" class="control-label mb-1">Mother
-                                                         Name</label>
+                                                     <label for="employeemothername" class="control-label mb-1">Mother Name <span style="color:red;">*</span></label>
                                                      <input type="text" id="txtMothername" name="txtMothername" class="form-control" maxlength="20"
-                                                            onclick=" charachters_validate('txtMothername')" placeholder="Enter mother name" title="Only characters and space are allowed">
+                                                            onclick=" charachters_validate('txtMothername')" placeholder="Enter mother name" title="Only characters and space are allowed" required>
                                                  </div>
                                              </div>
                                              <div class="col-sm-2">
@@ -147,7 +154,7 @@ $cname = $this->uri->segment(2);
                                      <br>
                                      <div class=" text-right" style="margin-right: 20%;">
                                          <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                                         <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">
+                                         <button type="submit" class="btn btn-primary btn-sm" id="createBasicDetails">
                                              Save and Next
                                          </button>
                                      </div>
@@ -161,8 +168,8 @@ $cname = $this->uri->segment(2);
                                  <button type="button" class="btn  btn-sm" onclick="employee_report(3,1)">Active Entries</button>
                                  <button type="button" class="btn  btn-sm" onclick="employee_report(4,1)">Inactive Entries</button>
                                  <button type="button" class="btn btn-sm" onclick="employee_report(5,1)">Allow Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,1)">Not Allowed Attendance</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,1)">Details View</button>
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,1)">Not Allowed Attendance</button>-->
+<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,1)">Details View</button>-->
                              </form>
                              <br>
                              <div class="row">
@@ -191,7 +198,7 @@ $cname = $this->uri->segment(2);
                                                          <th>Company</th>
                                                          <th>Department</th>
                                                          <th>Designation</th>
-<!--                                                         <th>Action</th>-->
+                                                         <th>Action</th>
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_basic_details">
@@ -205,6 +212,21 @@ $cname = $this->uri->segment(2);
                          </div>
                          <div class="tab-pane" id="communicationtab" role="tabpanel" aria-labelledby="communicationtab">
                              <form class="" id="communication" name="communication" autocomplete="off">
+<!--                                 <fieldset class="the-fieldset">-->
+<!--                                     <legend class="the-legend">User Details</legend>-->
+<!--                                    <div class="table-responsive">-->
+<!--                                        <table class="table-active">-->
+<!--                                            <tbody>-->
+<!--                                            <tr>-->
+<!--                                                <td>User ID:</td><td id="userid"></td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>User Name:</td><td id="username"></td>-->
+<!--                                            </tr>-->
+<!--                                            </tbody>-->
+<!--                                        </table>-->
+<!--                                    </div>-->
+<!--                                 </fieldset>-->
                                  <fieldset class="the-fieldset">
                                      <legend class="the-legend">Communication Details</legend>
                                      <h5><b>Permanent Address:</b></h5>
@@ -307,7 +329,7 @@ $cname = $this->uri->segment(2);
                                  <br>
                                  <div class=" text-right" style="margin-right: 20%;">
                                      <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                                     <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">
+                                     <button type="submit" class="btn btn-primary btn-sm" id="createCommunicationDetails">
                                          Save and Next
                                      </button>
                                  </div>
@@ -409,7 +431,7 @@ $cname = $this->uri->segment(2);
                                  <br>
                                  <div class=" text-right" style="margin-right: 20%;">
                                      <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                                     <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">
+                                     <button type="submit" class="btn btn-primary btn-sm" id="createExperienceDetails">
                                          Save and Next
                                      </button>
                                  </div>
@@ -504,7 +526,7 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="employeepercentage" class="control-label mb-1">Percentage/CGPA</label>
                                                      <input type="text" id="txtPercentage0" name="txtPercentage[]" class="form-control"
-                                                            placeholder="enter percentage" onclick="number_validate('txtPercentage0')" title="only numbers are allowed" required>
+                                                            placeholder="enter percentage" onclick="float_validate('txtPercentage0')" title="only numbers are allowed" required>
                                                  </div>
                                              </div>
                                              <div class="col-lg-2 col-md-2 col-sm-12">
@@ -525,7 +547,7 @@ $cname = $this->uri->segment(2);
                                  <br>
                                  <div class=" text-right" style="margin-right: 20%;">
                                      <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                                     <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">
+                                     <button type="submit" class="btn btn-primary btn-sm" id="createQualificationDetails">
                                          Save and Next
                                      </button>
                                  </div>
@@ -631,7 +653,7 @@ $cname = $this->uri->segment(2);
                                  <br>
                                  <div class=" text-right" style="margin-right: 20%;">
                                      <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                                     <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">Save and Next</button>
+                                     <button type="submit" class="btn btn-primary btn-sm" id="createDocumentDetails">Save and Next</button>
                                  </div>
                              </form>
 
@@ -736,7 +758,7 @@ $cname = $this->uri->segment(2);
                                  <br>
                                  <div class=" text-right" style="margin-right: 20%;">
                                      <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                                     <button type="submit" class="btn btn-primary btn-sm" id="createNewEmployee">
+                                     <button type="submit" class="btn btn-primary btn-sm" id="creatBankDetails">
                                          Submit
                                      </button>
                                  </div>

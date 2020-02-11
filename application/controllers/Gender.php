@@ -15,13 +15,13 @@ class Gender extends CI_Controller {
 //			$request = json_decode($postdata);
             $status=true;
             if(isset($request->gendername) && preg_match("/^[a-zA-Z]{3,20}$/",$request->gendername)){
-                $insert[0]['gendername']=$request->gendername;
+                $insert[0]['gendername']=strtoupper($request->gendername);
             }else{
                 $status=false;
                 echo $request->gendername;;
             }
-            if(isset($request->genderShortname) && preg_match("/^[a-zA-Z]{2,5}$/",$request->genderShortname)){
-                $insert[0]['gendernshortame']=$request->genderShortname;
+            if(isset($request->genderShortname) && preg_match("/^[a-zA-Z]{1,5}$/",$request->genderShortname)){
+                $insert[0]['gendernshortame']=strtoupper($request->genderShortname);
             }else{
                 $status=false;
                 echo $request->genderShortname;

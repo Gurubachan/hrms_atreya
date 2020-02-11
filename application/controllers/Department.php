@@ -191,27 +191,44 @@ class Department extends CI_Controller {
             if($status){
                 if(isset($request->txtid) && is_numeric($request->txtid)){
                     if($request->txtid>0){
-                        $insert[0]['updatedby']=$this->session->login['userid'];
-                        $insert[0]['updatedat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->update(27,$insert,"id",$request->txtid);
-                        if($res!=false){
-                            $data['message']="Update successful.";
-                            $data['status']=true;
-                        }else{
-                            $data['message']="Update failed.";
+                        $where="departmentid=$request->departmentid and companyid=$request->companyid";
+                        $duplicate_entry=$this->Model_Db->select(27,null,$where);
+                        if($duplicate_entry!=false){
+                            $data['message']="Duplicate entry.";
                             $data['status']=false;
+                            $data['flag']=0;
+                        }else {
+                            $insert[0]['updatedby'] = $this->session->login['userid'];
+                            $insert[0]['updatedat'] = date("Y-m-d H:i:s");
+                            $res = $this->Model_Db->update(27, $insert, "id", $request->txtid);
+                            if ($res != false) {
+                                $data['message'] = "Update successful.";
+                                $data['status'] = true;
+                            } else {
+                                $data['message'] = "Update failed.";
+                                $data['status'] = false;
+                            }
                         }
                     }else if($request->txtid==0){
-                        $insert[0]['entryby']=$this->session->login['userid'];
-                        $insert[0]['createdat']=date("Y-m-d H:i:s");
-                        $res=$this->Model_Db->insert(27,$insert);
-                        if($res!=false){
-                            $data['message']="Insert successful.";
-                            $data['status']=true;
-                        }else{
-                            $data['message']="Insert failed.";
+                        $where="departmentid=$request->departmentid and companyid=$request->companyid";
+                        $duplicate_entry=$this->Model_Db->select(27,null,$where);
+                        if($duplicate_entry!=false){
+                            $data['message']="Duplicate entry.";
                             $data['status']=false;
+                            $data['flag']=0;
+                        }else{
+                            $insert[0]['entryby']=$this->session->login['userid'];
+                            $insert[0]['createdat']=date("Y-m-d H:i:s");
+                            $res=$this->Model_Db->insert(27,$insert);
+                            if($res!=false){
+                                $data['message']="Insert successful.";
+                                $data['status']=true;
+                            }else{
+                                $data['message']="Insert failed.";
+                                $data['status']=false;
+                            }
                         }
+
                     }else{
                         $data['message']="Insufficient//Invalid data.";
                         $data['status']=false;
@@ -261,7 +278,8 @@ class Department extends CI_Controller {
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(28, null, $where);
+                $orderby="departmentname asc";
+                $res = $this->Model_Db->select(28, null, $where,$orderby);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(
@@ -290,7 +308,8 @@ class Department extends CI_Controller {
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(28,null,$where);
+            $orderby="departmentname asc";
+            $res=$this->Model_Db->select(28,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){

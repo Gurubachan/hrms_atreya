@@ -422,7 +422,8 @@ class User extends CI_Controller {
                 echo json_encode($data);
                 exit();
             }
-            $res=$this->Model_Db->select(3,null,$where);
+            $orderby="fname asc";
+            $res=$this->Model_Db->select(3,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -463,7 +464,8 @@ class User extends CI_Controller {
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(4, null, $where);
+                $orderby="typename asc";
+                $res = $this->Model_Db->select(4, null, $where,$orderby);
 //                $result = $this->Model_Db->select(5,null,$where);
 
                 if ($res != false) {
@@ -586,7 +588,8 @@ class User extends CI_Controller {
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(1,null,$where);
+            $orderby="typename asc";
+            $res=$this->Model_Db->select(1,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -629,7 +632,8 @@ class User extends CI_Controller {
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(1, null, $where);
+                $orderby="typename asc";
+                $res = $this->Model_Db->select(1, null, $where,$orderby);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(
