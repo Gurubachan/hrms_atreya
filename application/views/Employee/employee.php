@@ -450,7 +450,7 @@ $cname = $this->uri->segment(2);
                                                          <th>Job Role</th>
                                                          <th>From date</th>
                                                          <th>To date</th>
-                                                         <th>Action</th>
+<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_experience_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
@@ -567,7 +567,7 @@ $cname = $this->uri->segment(2);
                                                          <th>Resigtration no.</th>
                                                          <th>Percentage</th>
                                                          <th>Document Upload</th>
-                                                         <th>Action</th>
+<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_qualification_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
@@ -668,7 +668,7 @@ $cname = $this->uri->segment(2);
                                                          <th>Document Name</th>
                                                          <th>Number</th>
                                                          <th>Upload</th>
-                                                         <th>Action</th>
+<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_identification_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
