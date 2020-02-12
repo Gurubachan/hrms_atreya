@@ -45,7 +45,7 @@ $cname = $this->uri->segment(2);
             type:'post',
             url:"<?= base_url('Department/report_department')?>",
             data:{checkparams:data},
-            crossDomain:true,
+            // crossDomain:true,
             success:function(data){
                 var jsondata = JSON.parse(data);
                 if(data!=false){

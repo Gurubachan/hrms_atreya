@@ -83,6 +83,8 @@ class Common extends CI_Controller
                     $tableid=79;
                 }else if($request->tableid == 'visitorpurpose'){
                     $tableid=87;
+                }else if($request->tableid == 'formDocumentType'){
+                    $tableid=101;
                 };
             }
             if(isset($request->isactive) && is_numeric($request->isactive)){

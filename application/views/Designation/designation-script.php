@@ -38,7 +38,7 @@ $cname = $this->uri->segment(1);
         $.ajax({
             type: 'post',
             url: "<?= base_url('Designation/report_designation')?>",
-            crossDomain: true,
+            // crossDomain: true,
             data: {checkparams:data},
             success: function (data) {
                 var jsondata = JSON.parse(data);

@@ -19,24 +19,20 @@
                         <hr>
                         <ul class="nav nav-pills nav-stacked main-menu">
                             <li onclick="loadFormDocumentType()"><i class="fa fa-check-square "></i> &nbsp; Document Type</li>
-                            <li onclick="loadFormEmployeeType()"><i class="fa fa-check-square "></i> &nbsp; Employee Type</li>
+<!--                            <li onclick="loadFormEmployeeType()"><i class="fa fa-check-square "></i> &nbsp; Employee Type</li>-->
                             <li onclick="loadFormNewEmployee()"><i class="fa fa-check-square "></i> &nbsp; New Employee</li>
 <!--                            <li onclick="loadEmployeeBankDetails()"><i class="fa fa-check-square "></i> &nbsp; Bank Details</li>-->
 <!--                            <li onclick="loadAttendance()"><i class="fa fa-check-square "></i> &nbsp; Attendance</li>-->
                         </ul>
-                        <hr>
-                        <ul class="nav nav-pills nav-stacked main-menu">
-                            <li onclick="employeeVerification()"><i class="fa fa-check-square "></i> &nbsp; Employee Verification</li>
-                        </ul>
-                        <hr>
-                        <ul class="nav nav-pills nav-stacked main-menu">
+<!--                        <hr>-->
+<!--                        <ul class="nav nav-pills nav-stacked main-menu">-->
+<!--                            <li onclick="employeeVerification()"><i class="fa fa-check-square "></i> &nbsp; Employee Verification</li>-->
+<!--                        </ul>-->
+<!--                        <hr>-->
+<!--                        <ul class="nav nav-pills nav-stacked main-menu">-->
 <!--                            <li onclick="loadDepartmentMapping()"><i class="fa fa-check-square "></i> &nbsp; Department Mapping</li>-->
-                        </ul>
+<!--                        </ul>-->
                     </div>
                 </div>
             </div>
-            <script>
-               function employeeVerification(){
 
-                }
-            </script>

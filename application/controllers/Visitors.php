@@ -91,8 +91,7 @@ class Visitors extends CI_Controller
                                 $data['data']="visitor contact person error";
                             }
                             if($status) {
-//                        $insert[0]['entryby']=$this->session->login['userid'];
-                                $insert_record[0]['entryby'] = 2;
+                                $insert[0]['entryby']=$this->session->login['userid'];
                                 $insert_record[0]['createdat'] = date("Y-m-d H:i:s");
                                 $res = $this->Model_Db->insert(91, $insert_record);
                                 if($res!=false){
@@ -164,8 +163,7 @@ class Visitors extends CI_Controller
                         $data['data']="visitor contact person error";
                     }
                     if($status) {
-//                        $insert[0]['entryby']=$this->session->login['userid'];
-                        $insert_record[0]['entryby'] = 2;
+                        $insert[0]['entryby']=$this->session->login['userid'];
                         $insert_record[0]['createdat'] = date("Y-m-d H:i:s");
                         $res = $this->Model_Db->insert(91, $insert_record);
                         if($res!=false){
@@ -232,8 +230,6 @@ class Visitors extends CI_Controller
                     if($txtid>0){
                         $insert[0]['updatedby']=$this->session->login['userid'];
                         $insert[0]['updatedat']=date("Y-m-d H:i:s");
-//                        print_r($insert);
-//                        echo "update";
                         $res=$this->Model_Db->update(87,$insert,"id",$txtid);
                         if($res!=false){
                             $data['message']="Update successful";
@@ -245,8 +241,6 @@ class Visitors extends CI_Controller
                             $data['status']=false;
                         }
                     }else if($txtid==0){
-//                        print_r($insert);
-//                        exit();
 //                        $where="visitorname='$cboName'";
 //                        $duplicate_check=$this->Model_Db->select(87,null,$where);
 //                        if($duplicate_check!=false){
@@ -254,8 +248,7 @@ class Visitors extends CI_Controller
 //                            $data['status']=false;
 //                            $data['flag']=0;
 //                        }else{
-//                            $insert[0]['entryby']=$this->session->login['userid'];
-                            $insert[0]['entryby']=2;
+                            $insert[0]['entryby']=$this->session->login['userid'];
                             $insert[0]['createdat']=date("Y-m-d H:i:s");
                             $res=$this->Model_Db->insert(87,$insert);
 //                            echo "insert";
