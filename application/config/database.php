@@ -151,7 +151,7 @@ $db['default'] = array(
     'username' => 'gurubachan',
     'password' => 'n)th!ngt)5h@re',
     'database' => 'db_hrms',
-    'dbdriver' => 'postgre',
+    'dbdriver' => 'pgsql',
     'dbprefix' => '',
     'pconnect' => FALSE,
     'db_debug' => (ENVIRONMENT !== 'production'),
