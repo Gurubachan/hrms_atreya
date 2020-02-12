@@ -15,12 +15,12 @@ class Designation extends CI_Controller {
 //			$request = json_decode($postdata);
             $status=true;
             if(isset($request->designationname) && preg_match("/^[a-zA-Z ]{3,50}$/",$request->designationname)){
-                $insert[0]['designationname']=$request->designationname;
+                $insert[0]['designationname']=strtoupper($request->designationname);
             }else{
                 $status=false;
             }
 			if(isset($request->designationShortname) && preg_match("/^[a-zA-Z ]{2,5}$/",$request->designationShortname)){
-				$insert[0]['designationshortname']=$request->designationShortname;
+				$insert[0]['designationshortname']=strtoupper($request->designationShortname);
 			}else{
 				$status=false;
 			}
@@ -93,7 +93,8 @@ class Designation extends CI_Controller {
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(25,null,$where);
+            $orderby="designationname asc";
+            $res=$this->Model_Db->select(25,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -136,11 +137,13 @@ class Designation extends CI_Controller {
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(25, null, $where);
+                $orderby="designationname asc";
+                $res = $this->Model_Db->select(25, null, $where,$orderby);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(
                             'id' => $r->id,
+                            'companytypename'=>$r-companytypename,
                             'designationname' => $r->designationname,
                             'designationshortname' => $r->designationshortname,
                             'creationdate' => $r->createdat,

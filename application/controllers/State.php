@@ -17,12 +17,12 @@ class State extends CI_Controller {
 //			$request = json_decode($postdata);
             $status=true;
             if(isset($request->statename) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->statename)){
-                $insert[0]['statename']=$request->statename;
+                $insert[0]['statename']=strtoupper($request->statename);
             }else{
                 $status=false;
             }
             if(isset($request->stateShortname) && preg_match("/^[a-zA-Z]{2,5}$/",$request->stateShortname)){
-                $insert[0]['stateshortname']=$request->stateShortname;
+                $insert[0]['stateshortname']=strtoupper($request->stateShortname);
             }else{
                 $status=false;
             }
@@ -95,7 +95,8 @@ class State extends CI_Controller {
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(7,null,$where);
+            $orderby="statename asc";
+            $res=$this->Model_Db->select(7,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -139,7 +140,8 @@ class State extends CI_Controller {
                         exit();
                 }
             }
-            $res=$this->Model_Db->select(7,null,$where);
+            $orderby="statename asc";
+            $res=$this->Model_Db->select(7,null,$where,$orderby);
             if($res!=false){
                 foreach ($res as $r){
                     $data[]=array(

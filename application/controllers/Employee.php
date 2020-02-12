@@ -17,27 +17,27 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
-            if (isset($txtSlno) && preg_match("/[0-9]{2,11}/", $txtSlno)) {
-                $insert[0]['empslno'] = $txtSlno;
+            if (isset($txtSlno) && preg_match("/[0-9a-zA-Z]{2,11}/", $txtSlno)) {
+                $insert[0]['empslno'] = strtoupper($txtSlno);
             } else {
                 $status = false;
                 $data['data'] = "Seriel no error";
             }
             if (isset($txtFname) && preg_match("/[a-zA-Z ]{2,80}/", $txtFname)) {
-                $insert[0]['empfirstname'] = $txtFname;
+                $insert[0]['empfirstname'] = strtoupper($txtFname);
             } else {
                 $status = false;
                 $data['data'] = "First name error";
             }
             if (isset($txtMname) && preg_match("/[a-zA-Z ]{2,80}/", $txtMname)) {
-                $insert[0]['empmiddlename'] = $txtMname;
+                $insert[0]['empmiddlename'] = strtoupper($txtMname);
             } else {
 //                $status = false;
 //                $data['data'] = "Middle name error";
                 $insert[0]['empmiddlename'] = "";
             }
             if (isset($txtLname) && preg_match("/[a-zA-Z ]{2,80}/", $txtLname)) {
-                $insert[0]['emplastname'] = $txtLname;
+                $insert[0]['emplastname'] = strtoupper($txtLname);
             } else {
                 $status = false;
                 $data['data'] = "Last name error";
@@ -58,9 +58,9 @@ class Employee extends CI_Controller
 //            if(isset($txtDoj) && preg_match("/[0-9-]{4}+\-[0-9-]{2}+\-[0-9]{2}/",$txtDoj)){
             if (isset($txtDoj) && preg_match("/[0-9]{2}+\-[0-9]{2}+\-[0-9]{4}/", $txtDoj)) {
                 $doj = date("Y-m-d", strtotime($txtDoj));
-                $insert_record[0]['empdoj'] = $doj;
+                $insert[0]['empdoj'] = $doj;
             } else {
-                echo $insert_record[0]['empdoj'] = $txtDoj;
+//                echo $insert_record[0]['empdoj'] = $txtDoj;
                 $status = false;
                 $data['data'] = "Employee date of joining error";
             }
@@ -70,25 +70,31 @@ class Employee extends CI_Controller
                 $status = false;
                 $data['data'] = "Marital status error";
             }
+            if (isset($cboreligionid) && is_numeric($cboreligionid)) {
+                $insert[0]['religionid'] = $cboreligionid;
+            } else {
+                $status = false;
+                $data['data'] = "Religion status error";
+            }
             if (isset($txtFathername) && preg_match("/[a-zA-Z ]{2,80}/", $txtFathername)) {
-                $insert[0]['empfathername'] = $txtFathername;
+                $insert[0]['empfathername'] = strtoupper($txtFathername);
             } else {
                 $status = false;
                 $data['data'] = "Father name error";
             }
             if (isset($txtMothername) && preg_match("/[a-zA-Z ]{2,80}/", $txtMothername)) {
-                $insert[0]['empmothername'] = $txtMothername;
+                $insert[0]['empmothername'] = strtoupper($txtMothername) ;
             } else {
                 $status = false;
                 $data['data'] = "Mother name error";
             }
             if (isset($txtSpousename) && preg_match("/[a-zA-Z ]{2,80}/", $txtSpousename)) {
-                $insert[0]['empspousename'] = $txtSpousename;
+                $insert[0]['empspousename'] = strtoupper($txtSpousename) ;
             } else {
                 $insert[0]['empspousename'] = '';
             }
             if (isset($cboDepartmentmappingid) && is_numeric($cboDepartmentmappingid)) {
-                $insert[0]['empdepmappingid'] = $cboDepartmentmappingid;
+                $insert[0]['empdepmappingid'] =  $cboDepartmentmappingid;
             } else {
                 $status = false;
                 $data['message'] = "Error!!";
@@ -101,24 +107,49 @@ class Employee extends CI_Controller
                 $data['data'] = "Designation error";
             }
             if ($status) {
-                $insert[0]['entryby'] = $this->session->login['userid'];
-                $insert[0]['createdat'] = date("Y-m-d H:i:s");
-                $res = $this->Model_Db->insert(93, $insert);
-                if ($res != false) {
-                    $data['message'] = "successful";
-                    $data['data'] = "Data insert successful";
-                    $data['status'] = true;
-                    $data['empid'] = $res;
-                } else {
-                    $data['message'] = "Insert failed.";
-                    $data['data'] = "Data Insert failed.";
+                if (isset($txtid) && is_numeric($txtid)) {
+                    if ($txtid > 0) {
+                        $insert[0]['updatedby'] = $this->session->login['userid'];
+                        $insert[0]['updatedat'] = date("Y-m-d H:i:s");
+                        $res = $this->Model_Db->update(93, $insert, "id", $txtid);
+                        if ($res != false) {
+                            $data['message'] = "successful";
+                            $data['data'] = "Update successful.";
+                            $data['status'] = true;
+                            $data['empid'] = $txtid;
+                        } else {
+                            $data['message'] = "Update failed.";
+                            $data['status'] = false;
+                        }
+                    } else if ($txtid == 0) {
+                        $insert[0]['entryby'] = $this->session->login['userid'];
+                        $insert[0]['createdat'] = date("Y-m-d H:i:s");
+                        $res = $this->Model_Db->insert(93, $insert);
+                        if ($res != false) {
+                            $data['message'] = "successful";
+                            $data['data'] = "Data insert successful";
+                            $data['status'] = true;
+                            $data['empid'] = $res;
+                        } else {
+                            $data['message'] = "Insert failed.";
+                            $data['data'] = "Data Insert failed.";
+                            $data['status'] = false;
+                        }
+                    }else{
+                        $data['message'] = "Error!";
+//                        $data['data'] = "Insufficient1/Invalid data.";
+                        $data['status'] = false;
+                    }
+                }else{
+                    $data['message'] = "Error!";
+//                    $data['data'] = "Insufficient2/Invalid data.";
                     $data['status'] = false;
                 }
-            } else {
-                $data['message'] = "Error!";
-                $data['data'] = "Insufficient/Invalid data.";
-                $data['status'] = false;
-            }
+                } else {
+                    $data['message'] = "Error!";
+//                    $data['data'] = "Insufficient3/Invalid data.";
+                    $data['status'] = false;
+                }
             echo json_encode($data);
             exit();
         } catch (Exception $e) {
@@ -154,19 +185,19 @@ class Employee extends CI_Controller
             if (isset($txtAltermobile) && preg_match("/[6-9]{1}[0-9]{9}/", $txtAltermobile)) {
                 $insert[0]['empaltcontact'] = $txtAltermobile;
             } else {
-                $insert[0]['empaltcontact'] = "";
+                $insert[0]['empaltcontact'] = 0;
             }
             if (isset($txtEmailid) && preg_match("/[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/", $txtEmailid)) {
                 $insert[0]['empemail'] = $txtEmailid;
             }
             if (isset($permanent_address)) { //permanent address
-                $insert[0]['empaddress'] = $permanent_address;
+                $insert[0]['empaddress'] = strtoupper($permanent_address) ;
             } else {
                 $status = false;
                 $data['data'] = "Employee address error";
             }
             if (isset($present_address)) {
-                $insert[0]['emppresentaddress'] = $present_address;
+                $insert[0]['emppresentaddress'] = strtoupper($present_address) ;
             } else {
                 $status = false;
                 $data['data'] = "Employee address error";
@@ -199,7 +230,6 @@ class Employee extends CI_Controller
             exit();
         }
     }
-
     public function create_employee_experience()
     {
         try {
@@ -211,13 +241,22 @@ class Employee extends CI_Controller
                 if (isset($cboCompanyname) && is_array($cboCompanyname)) {
                     $i = 0;
                     foreach ($cboCompanyname as $cmpname) {
+                        $frmDate = date("Y-m-d",strtotime($txtFromdate[$i]));
+                        if(isset($txtTodate[$i]) && $txtTodate[$i]!=null){
+                            $toDate = date("Y-m-d",strtotime($txtTodate[$i]));
+//                            $toDate = date("Y-m-d");
+                        }else{
+                            $toDate = date("Y-m-d");
+                        }
                         $insert [] = array(
                             'empid' => $txtidExperience,
-                            'companyname' => $cmpname,
+                            'companyname' => strtoupper($cmpname),
                             'jobdesid' => $cboJobdesignation[$i],
-                            'fromdate' => $txtFromdate[$i],
-                            'todate' => $txtTodate[$i],
-                            'jobrole' => $txtJobrole[$i],
+//                            'fromdate' => $txtFromdate[$i],
+                            'fromdate' => $frmDate,
+//                            'todate' => $txtTodate[$i],
+                            'todate' => $toDate,
+                            'jobrole' => strtoupper($txtJobrole[$i]) ,
                             'entryby' => $this->session->login['userid'],
                             'createdat' => date("Y-m-d H:i:s")
                         );
@@ -290,9 +329,9 @@ class Employee extends CI_Controller
                         $insert [] = array(
                             'empid' => $txtidQualification,
                             'empeduid' => $cboedu,
-                            'empedustream' => $txtEducationstream[$i],
-                            'empeduboard' => $txtBoard[$i],
-                            'empregdno' => $txtRegdno[$i],
+                            'empedustream' => strtoupper($txtEducationstream[$i]),
+                            'empeduboard' => strtoupper($txtBoard[$i]),
+                            'empregdno' => strtoupper($txtRegdno[$i]),
                             'emppercentage' => $txtPercentage[$i],
                             'documentupload' => $upload_doc['file_name'],
                             'entryby' => $this->session->login['userid'],
@@ -364,7 +403,7 @@ class Employee extends CI_Controller
                         $insert [] = array(
                             'empid' => $txtidUploadDocument,
                             'documenttypeid' => $cbodt,
-                            'documentnumber' => $txtDocIdentificationNumber[$i],
+                            'documentnumber' => strtoupper($txtDocIdentificationNumber[$i]),
                             'documentupload' => $upload_docs['file_name'],
                             'entryby' => $this->session->login['userid'],
                             'createdat' => date("Y-m-d H:i:s")
@@ -434,7 +473,7 @@ class Employee extends CI_Controller
                         'empid' => $txtidUploadBankDetails,
                         'bankid' => $cboUploadBankid,
                         'acno' => $txtAcNumber,
-                        'ifsccode' => $txtIFSCCode,
+                        'ifsccode' => strtoupper($txtIFSCCode),
                         'documentupload' => $upload_doc['file_name'],
                         'entryby' => $this->session->login['userid'],
                         'createdat' => date("Y-m-d H:i:s")
@@ -591,7 +630,8 @@ class Employee extends CI_Controller
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(93, null, $where);
+                $orderby = "empfirstname asc";
+                $res = $this->Model_Db->select(93, null, $where,$orderby);
                 if ($res != false) {
                     $where = "isactive=true";
                     $maritalstatus=$this->Model_Db->select(19, null, $where);
@@ -602,17 +642,26 @@ class Employee extends CI_Controller
                     foreach ($res as $r) {
                         $data[$i] = array(
                             'id' => $r->id,
-                            'empname' => $r->empfirstname." ".$r->empmiddlename." ".$r->emplastname,
+                            'empfname' => $r->empfirstname,
+                            'empmname' => $r->empmiddlename,
+                            'emplname' => $r->emplastname,
                             'empfathername' => $r->empfathername,
                             'empmothername' => $r->empmothername,
                             'empspousename' => $r->empspousename,
-                            'empdob' => $r->empdob,
-                            'empdoj' => $r->empdoj,
+                            'empdob' => "",
+                            'empdoj' => "",
                             'empslno' => $r->empslno,
                             'creationdate' => $r->createdat,
                             'lastmodifiedon' => $r->updatedat,
+                            'religionid'=> $r->religionid,
                             'isactive' => $r->isactive
                         );
+                        if($r->empdob!=null){
+                            $data[$i]['empdob']= date("d-m-Y",strtotime($r->empdob));
+                        }
+                        if($r->empdoj!=null){
+                            $data[$i]['empdoj']= date("d-m-Y",strtotime($r->empdoj));
+                        }
                         foreach ($maritalstatus as $mrs) {
                             if($r->empmaritalstatusid == $mrs->id){
                                 $data[$i]['maritalstatusid'] = $mrs->id;
@@ -663,25 +712,26 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
                 $res = $this->Model_Db->select(95, null, $where);
                 if ($res != false) {
                     foreach ($res as $r) {
@@ -696,6 +746,73 @@ class Employee extends CI_Controller
                             'lastmodifiedon' => $r->updatedat,
                             'isactive' => $r->isactive
                         );
+                    }
+
+                }
+            }
+            echo json_encode($data);
+        } catch (Exception $e) {
+            $data['message'] = "Message:" . $e->getMessage();
+            $data['status'] = false;
+            $data['error'] = true;
+            echo json_encode($data);
+            exit();
+        }
+
+    }
+    public function report_employee_experience_details()
+    {
+        try {
+            $data = array();
+            $request = json_decode(json_encode($_POST), FALSE);
+            $postdata = file_get_contents("php://input");
+//			$request = json_decode($postdata);
+//            $datanow = date("Y-m-d H:i:s");
+            $current_date = Date("Y-m-d");
+            if (isset($request->checkparams) && is_numeric($request->checkparams)) {
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
+                $res = $this->Model_Db->select(99, null, $where);
+                if ($res != false) {
+                    $where="isactive=true";
+                    $designation = $this->Model_Db->select(25,null,$where);
+                    $i=0;
+                    foreach ($res as $r) {
+                        $data[$i] = array(
+                            'id' => $r->id,
+                            'companyname' => $r->companyname,
+                            'jobrole' => $r->jobrole,
+                            'fromdate' => $r->fromdate,
+                            'todate' => $r->todate,
+                            'creationdate' => $r->createdat,
+                            'lastmodifiedon' => $r->updatedat,
+                            'isactive' => $r->isactive
+                        );
+                        foreach ($designation as $des){
+                            if($r->jobdesid == $des->id){
+                                $data[$i]['desginationid'] = $des->id;
+                                $data[$i]['designationname'] =$des->designationname;
+                            }
+                        }
+                        $i++;
                     }
 
                 }
@@ -744,17 +861,32 @@ class Employee extends CI_Controller
 //                    $where="isactive=true";
 //                    $designation = $this->Model_Db->select(25,null,$where);
 //                    $i=0;
+//                    $j=0;
 //                    foreach ($res as $r) {
 //                        $data[$i] = array(
-//                            'id' => $r->id,
-//                            'companyname' => $r->companyname,
-//                            'jobrole' => $r->jobrole,
-//                            'fromdate' => $r->fromdate,
-//                            'todate' => $r->todate,
-//                            'creationdate' => $r->createdat,
-//                            'lastmodifiedon' => $r->updatedat,
-//                            'isactive' => $r->isactive
+//                            'empid' => $r->empid,
 //                        );
+//                        if($r->empid >0){
+//                            $data[$i][$j]=array(
+//                                'companyname' => $r->companyname,
+//                                'jobrole' => $r->jobrole,
+//                                'fromdate' => $r->fromdate,
+//                                'todate' => $r->todate,
+//                                'creationdate' => $r->createdat,
+//                                'lastmodifiedon' => $r->updatedat,
+//                                'isactive' => $r->isactive
+//                            );
+//                        }else{
+//                            $data[$i]=array(
+//                                'companyname' => $r->companyname,
+//                                'jobrole' => $r->jobrole,
+//                                'fromdate' => $r->fromdate,
+//                                'todate' => $r->todate,
+//                                'creationdate' => $r->createdat,
+//                                'lastmodifiedon' => $r->updatedat,
+//                                'isactive' => $r->isactive
+//                            );
+//                        }
 //                        foreach ($designation as $des){
 //                            if($r->jobdesid == $des->id){
 //                                $data[$i]['desginationid'] = $des->id;
@@ -776,87 +908,6 @@ class Employee extends CI_Controller
 //        }
 //
 //    }
-    public function report_employee_experience_details()
-    {
-        try {
-            $data = array();
-            $request = json_decode(json_encode($_POST), FALSE);
-            $postdata = file_get_contents("php://input");
-//			$request = json_decode($postdata);
-//            $datanow = date("Y-m-d H:i:s");
-            $current_date = Date("Y-m-d");
-            if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
-                $res = $this->Model_Db->select(99, null, $where);
-                if ($res != false) {
-                    $where="isactive=true";
-                    $designation = $this->Model_Db->select(25,null,$where);
-                    $i=0;
-                    $j=0;
-                    foreach ($res as $r) {
-                        $data[$i] = array(
-                            'empid' => $r->empid,
-                        );
-                        if($r->empid >0){
-                            $data[$i][$j]=array(
-                                'companyname' => $r->companyname,
-                                'jobrole' => $r->jobrole,
-                                'fromdate' => $r->fromdate,
-                                'todate' => $r->todate,
-                                'creationdate' => $r->createdat,
-                                'lastmodifiedon' => $r->updatedat,
-                                'isactive' => $r->isactive
-                            );
-                        }else{
-                            $data[$i]=array(
-                                'companyname' => $r->companyname,
-                                'jobrole' => $r->jobrole,
-                                'fromdate' => $r->fromdate,
-                                'todate' => $r->todate,
-                                'creationdate' => $r->createdat,
-                                'lastmodifiedon' => $r->updatedat,
-                                'isactive' => $r->isactive
-                            );
-                        }
-                        foreach ($designation as $des){
-                            if($r->jobdesid == $des->id){
-                                $data[$i]['desginationid'] = $des->id;
-                                $data[$i]['designationname'] =$des->designationname;
-                            }
-                        }
-                        $i++;
-                    }
-
-                }
-            }
-            echo json_encode($data);
-        } catch (Exception $e) {
-            $data['message'] = "Message:" . $e->getMessage();
-            $data['status'] = false;
-            $data['error'] = true;
-            echo json_encode($data);
-            exit();
-        }
-
-    }
     public function report_employee_qualification_details()
     {
         try {
@@ -867,25 +918,26 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
                 $res = $this->Model_Db->select(97, null, $where);
                 if ($res != false) {
                     $where = "isactive=true";
@@ -934,25 +986,26 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
                 $res = $this->Model_Db->select(103, null, $where);
                 if ($res != false) {
                     $where = "isactive=true";
@@ -998,25 +1051,26 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                switch ($request->checkparams) {
-                    case 1:
-                        $where = "DATE(createdat)=DATE('$current_date')";
-                        break;
-                    case 2:
-                        $where = "1=1";
-                        break;
-                    case 3:
-                        $where = "isactive=true";
-                        break;
-                    case 4:
-                        $where = "isactive=false";
-                        break;
-                    default:
-                        $data['message'] = "ID not found";
-                        $data['status'] = false;
-                        $data['error'] = true;
-                        exit();
-                }
+                $where = "empid=$request->checkparams";
+//                switch ($request->checkparams) {
+//                    case 1:
+//                        $where = "DATE(createdat)=DATE('$current_date')";
+//                        break;
+//                    case 2:
+//                        $where = "1=1";
+//                        break;
+//                    case 3:
+//                        $where = "isactive=true";
+//                        break;
+//                    case 4:
+//                        $where = "isactive=false";
+//                        break;
+//                    default:
+//                        $data['message'] = "ID not found";
+//                        $data['status'] = false;
+//                        $data['error'] = true;
+//                        exit();
+//                }
                 $res = $this->Model_Db->select(35, null, $where);
                 if ($res != false) {
                     $where ="isactive=true";

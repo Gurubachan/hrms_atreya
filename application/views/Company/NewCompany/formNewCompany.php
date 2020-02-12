@@ -32,7 +32,7 @@ $cname = $this->uri->segment(2);
                                         <small class="errormsg_companyname"></small>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <label for="companytype" class="control-label mb-1">Company Type</label>
                                         <select id="companytype" name="companytype" class="select" required>
@@ -40,18 +40,18 @@ $cname = $this->uri->segment(2);
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <label for="companyshortname" class="control-label mb-1">Company Short
                                             Name</label>
                                         <input id="companyshortname" name="companyshortname" type="text"
                                                onclick="alfa_numeric('companyshortname')" class="form-control"
-                                               minlength="2" maxlength="5" placeholder="Enter company short name"
+                                               minlength="1" maxlength="5" placeholder="Enter company short name"
                                                required>
                                         <small class="errormsg_companyshortname"></small>
                                     </div>
                                 </div>
-                                <div class="col-sm-3">
+                                <div class="col-sm-2">
                                     <div class="form-group">
                                         <label for="establishedon" class="control-label mb-1">Established On</label>
                                         <input id="establishedon" name="establishedon" type="text" class="form-control"

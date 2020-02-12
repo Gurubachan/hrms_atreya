@@ -15,12 +15,12 @@ class MaritalStatus extends CI_Controller {
             $request= json_decode(json_encode($_POST), false);
             $status=true;
             if(isset($request->statusname) && preg_match("/^[a-zA-Z]{3,20}$/",$request->statusname)){
-                $insert[0]['statusname']=$request->statusname;
+                $insert[0]['statusname']=strtoupper($request->statusname);
             }else{
                 $status=false;
             }
-            if(isset($request->maritalStatusShortname) && preg_match("/^[a-zA-Z]{2,5}$/",$request->maritalStatusShortname)){
-                $insert[0]['statusnshortame']=$request->maritalStatusShortname;
+            if(isset($request->maritalStatusShortname) && preg_match("/^[a-zA-Z]{1,5}$/",$request->maritalStatusShortname)){
+                $insert[0]['statusnshortame']=strtoupper($request->maritalStatusShortname);
             }else{
                 $status=false;
             }
@@ -94,7 +94,8 @@ class MaritalStatus extends CI_Controller {
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(19,null,$where);
+            $orderby ="statusname asc";
+            $res=$this->Model_Db->select(19,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -142,7 +143,8 @@ class MaritalStatus extends CI_Controller {
                         break;
                 }
             }
-            $res=$this->Model_Db->select(19,null,$where);
+            $orderby ="statusname asc";
+            $res=$this->Model_Db->select(19,null,$where,$orderby);
             if($res!=false){
                 foreach ($res as $r){
                     $data[]=array(

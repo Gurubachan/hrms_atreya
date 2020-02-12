@@ -14,13 +14,13 @@ class Education extends CI_Controller {
 			$postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $status=true;
-            if(isset($request->educationname) && preg_match("/^[a-zA-Z0-9 ]{3,20}$/",$request->educationname)){
-                $insert[0]['educationname']=$request->educationname;
+            if(isset($request->educationname) && preg_match("/^[a-zA-Z0-9 ]{3,60}$/",$request->educationname)){
+                $insert[0]['educationname']=strtoupper($request->educationname);
             }else{
                 $status=false;
             }
             if(isset($request->educationShortname) && preg_match("/^[a-zA-Z0-9]{2,5}$/",$request->educationShortname)){
-                $insert[0]['educationshortname']=$request->educationShortname;
+                $insert[0]['educationshortname']=strtoupper($request->educationShortname);
             }else{
                 $status=false;
             }
@@ -93,7 +93,8 @@ class Education extends CI_Controller {
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(21,null,$where);
+            $orderby="educationname asc";
+            $res=$this->Model_Db->select(21,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -136,7 +137,8 @@ class Education extends CI_Controller {
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(21, null, $where);
+                $orderby="educationname asc";
+                $res = $this->Model_Db->select(21, null, $where,$orderby);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(

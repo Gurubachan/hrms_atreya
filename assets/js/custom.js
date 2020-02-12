@@ -1,12 +1,20 @@
 $( function() {
     $( document ).tooltip({
-        track: true
+        // track: true
     });
 
 } );
 function number_validate(id) {
     $("#"+id).keypress(function (e) {
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57) || e.which.length >6) {
+            $(".errormsg_"+id).html("Digits Only").css({'color':'red'}).show().fadeOut(2000);
+            return false;
+        }
+    })
+}
+function float_validate(id) {
+    $("#"+id).keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && e.which != 46 && (e.which < 48 || e.which > 57) || e.which.length >6) {
             $(".errormsg_"+id).html("Digits Only").css({'color':'red'}).show().fadeOut(2000);
             return false;
         }
@@ -179,4 +187,11 @@ function getDate( element ) {
 
 	return date;
 }
+function lowerToUpper(id){
+    $('#'+id).keyup(function(){
+       var v =  $('#'+id).val().toUpperCase();
+        $('#'+id).val(v);
+    });
+}
+
 

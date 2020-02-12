@@ -20,13 +20,13 @@ Bank extends CI_Controller
             $status=true;
             if(isset($request->bankname) && preg_match("/[a-zA-Z ]{3,60}/",$request->bankname)){
                 //echo json_encode($companytypename);
-                $insert[0]['bankname']=$request->bankname;
+                $insert[0]['bankname']=strtoupper($request->bankname);
             }else{
                 $status=false;
             }
             if(isset($request->bankShortname) && preg_match("/[a-zA-Z]{2,5}/",$request->bankShortname)){
                 //echo json_encode($companytypename);
-                $insert[0]['bankshortname']=$request->bankShortname;
+                $insert[0]['bankshortname']=strtoupper($request->bankShortname);
             }else{
                 $status=false;
             }
@@ -99,7 +99,8 @@ Bank extends CI_Controller
         try{
             $data=array();
             $where="isactive=true";
-            $res=$this->Model_Db->select(33,null,$where);
+            $orderby ="bankname asc";
+            $res=$this->Model_Db->select(33,null,$where,$orderby);
             $data[]="<option value=''>Select</option>";
             if($res!=false){
                 foreach ($res as $r){
@@ -143,7 +144,8 @@ Bank extends CI_Controller
                         $data['error'] = true;
                         exit();
                 }
-                $res = $this->Model_Db->select(33, null, $where);
+                $orderby ="bankname asc";
+                $res = $this->Model_Db->select(33, null, $where,$orderby);
                 if ($res != false) {
                     foreach ($res as $r) {
                         $data[] = array(

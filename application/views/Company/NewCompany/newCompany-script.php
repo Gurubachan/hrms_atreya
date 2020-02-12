@@ -13,7 +13,6 @@ $cname = $this->uri->segment(2);
         //alert($(this).val());
     });
     $("#newCompanyForm").submit(function(e){
-        $("#reportCompany").show();
         e.preventDefault();
         var frm = $("#newCompanyForm").serialize();
         $.ajax({
@@ -26,6 +25,7 @@ $cname = $this->uri->segment(2);
                     if($('#createCompany').html()=='Update'){
                         window.location.reload();
                     }else{
+                        $("#reportCompany").show();
                         reportFunction(1);
                         $("#newCompanyForm").trigger('reset');
                         $('#companyname').focus();

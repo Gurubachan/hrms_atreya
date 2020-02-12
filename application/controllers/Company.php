@@ -45,14 +45,14 @@ class Company extends CI_Controller {
             $status=true;
             if(isset($request->companytypename) && preg_match("/[a-zA-Z ]{5,60}/",$request->companytypename)){
                //echo json_encode($companytypename);
-                $insert[0]['typename']=$request->companytypename;
+                $insert[0]['typename']=strtoupper($request->companytypename);
             }else{
                 $status=false;
                 echo $request->companytypename;
             }
-            if(isset($request->companyShortname) && preg_match("/[a-zA-Z]{2,5}/",$request->companyShortname)){
+            if(isset($request->companyShortname) && preg_match("/[a-zA-Z]{1,5}/",$request->companyShortname)){
                 //echo json_encode($companytypename);
-                $insert[0]['typeshortname']=$request->companyShortname;
+                $insert[0]['typeshortname']=strtoupper($request->companyShortname);
             }else{
                 $status=false;
                 echo $request->companyShortname;
@@ -137,20 +137,20 @@ class Company extends CI_Controller {
                 echo $request->companytype;
             }
             if(isset($request->companyname) && preg_match("/[a-zA-Z ]{5,60}/",$request->companyname)){
-                $insert[0]['companyname']=$request->companyname;
+                $insert[0]['companyname']=strtoupper($request->companyname);
             }else{
                 $status=false;
                 echo $request->companyname;
             }
-            if(isset($request->companyshortname) && preg_match("/[a-zA-Z]{2,5}/",$request->companyshortname)){
-                $insert[0]['companyshortname']=$request->companyshortname;
+            if(isset($request->companyshortname) && preg_match("/[a-zA-Z]{1,5}/",$request->companyshortname)){
+                $insert[0]['companyshortname']=strtoupper($request->companyshortname);
             }else{
                 $status=false;
                 echo $request->companyshortname;
             }
             if(isset($request->establishedon) && preg_match("/^[0-9 -]{10}$/",$request->establishedon)){
-//                $doe=date("Y-m-d",strtotime($request->establishedon));
-                $insert[0]['establishedon']=$request->establishedon;
+                $doe=date("Y-m-d",strtotime($request->establishedon));
+                $insert[0]['establishedon']=$doe;
             }else{
                 $status=false;
                 echo $request->establishedon;
@@ -163,7 +163,7 @@ class Company extends CI_Controller {
                 echo $gst;
             }
             if(isset($request->address) && preg_match("/[a-zA-Z ()]{5,60}/",$request->address)){
-                $insert[0]['address']=$request->address;
+                $insert[0]['address']=strtoupper($request->address);
             }else{
                 $status=false;
                 echo $request->address;

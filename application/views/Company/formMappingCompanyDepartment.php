@@ -86,6 +86,7 @@ $cname = $this->uri->segment(2);
                     <thead>
                     <tr>
                         <th>Sl#</th>
+                        <th>Type</th>
                         <th>Company name</th>
                         <th>Department name</th>
                         <th>IsActive</th>
@@ -117,11 +118,16 @@ $cname = $this->uri->segment(2);
             success:function(data){
                 if(data!=false){
                     var jsondata = JSON.parse(data);
-                    console.log(data);
+                    if(jsondata.flag==0){
+                        duplicate_entries();
+                    }else{
+                        reportFunction(1);
+                        $("#departmentMappingForm").trigger('reset');
+                        // $('#createDepartmentMapping').html('Create');
+                    }
                 }else{
                     console.log(data);
                 }
-                reportFunction(1);
             }
         });
     });
@@ -182,7 +188,6 @@ $cname = $this->uri->segment(2);
                 if (data != false) {
                     var j = 0;
                     var z = jsondata.length;
-                    // alert(z);
                     var html = "";
                     var isactive = "";
                     for (var i = 0; i < z; i++) {
@@ -199,22 +204,24 @@ $cname = $this->uri->segment(2);
                         } else {
                             isactive = "<button id='action" + checkId + "' onclick='editIsactive(0," + checkId + "," + updatedid + "," + urlid + ")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html += ("<tr> <td>" + j + "</td><td>" + jsondata[i].companyname + "</td><td>" + jsondata[i].departmentname + "</td><td>" + isactive + "</td><td><button class='btn editBtn btn-sm' onclick='reportEditDepartmentMapping("+checkId+","+company+","+department+","+editisactive+")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
+                        // html += ("<tr> <td>" + j + "</td><td>" + jsondata[i].companytypename + "</td><td>" + jsondata[i].companyname + "</td><td>" + jsondata[i].departmentname + "</td><td>" + isactive + "</td><td><button class='btn editBtn btn-sm' onclick='reportEditDepartmentMapping("+checkId+","+jsondata[i].companyid+","+jsondata[i].companytypeid+","+jsondata[i].departmentid+","+editisactive+")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
+                        html += ("<tr> <td>" + j + "</td><td>" + jsondata[i].companytypename + "</td><td>" + jsondata[i].companyname + "</td><td>" + jsondata[i].departmentname + "</td><td>" + isactive + "</td><td><button class='btn editBtn btn-sm' disabled onclick='reportEditDepartmentMapping("+checkId+","+jsondata[i].companyid+","+jsondata[i].companytypeid+","+jsondata[i].departmentid+","+editisactive+")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_department_mapping").html(html);
                 }
             }
         });
     }
-    function reportEditDepartmentMapping(id,company,department,isactive) {
+    function reportEditDepartmentMapping(id,typeid,companyid,departmentid,isactive) {
             if(isactive=='t'){
                 var isactiveval=1;
             }else{
                 isactiveval=0;
             }
             $('#txtid').val(id);
-            $('#companyname option[value = 18]').attr('selected','selected');
-            $('#departmentname').val(department);
+            $('#companytype').val(typeid);
+            $('#companyid').val(companyid);
+            $('#departmentid').val(departmentid);
             $('#isactive').val(isactiveval);
             $('#createDepartmentMapping').html('Update');
         }
