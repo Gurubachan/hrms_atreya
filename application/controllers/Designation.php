@@ -15,12 +15,12 @@ class Designation extends CI_Controller {
 //			$request = json_decode($postdata);
             $status=true;
             if(isset($request->designationname) && preg_match("/^[a-zA-Z ]{3,50}$/",$request->designationname)){
-                $insert[0]['designationname']=$request->designationname;
+                $insert[0]['designationname']=strtoupper($request->designationname);
             }else{
                 $status=false;
             }
 			if(isset($request->designationShortname) && preg_match("/^[a-zA-Z ]{2,5}$/",$request->designationShortname)){
-				$insert[0]['designationshortname']=$request->designationShortname;
+				$insert[0]['designationshortname']=strtoupper($request->designationShortname);
 			}else{
 				$status=false;
 			}
@@ -143,6 +143,7 @@ class Designation extends CI_Controller {
                     foreach ($res as $r) {
                         $data[] = array(
                             'id' => $r->id,
+                            'companytypename'=>$r-companytypename,
                             'designationname' => $r->designationname,
                             'designationshortname' => $r->designationshortname,
                             'creationdate' => $r->createdat,

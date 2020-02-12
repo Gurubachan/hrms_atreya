@@ -15,12 +15,12 @@ class Department extends CI_Controller {
 //			$request = json_decode($postdata);
             $status=true;
             if(isset($request->departmentname) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->departmentname)){
-                $insert[0]['departmentname']=$request->departmentname;
+                $insert[0]['departmentname']=strtoupper($request->departmentname);
             }else{
                 $status=false;
             }
             if(isset($request->departmentShortname) && preg_match("/^[a-zA-Z ]{2,5}$/",$request->departmentShortname)){
-                $insert[0]['departmentshortname']=$request->departmentShortname;
+                $insert[0]['departmentshortname']=strtoupper($request->departmentShortname);
             }else{
                 $status=false;
             }
@@ -191,13 +191,13 @@ class Department extends CI_Controller {
             if($status){
                 if(isset($request->txtid) && is_numeric($request->txtid)){
                     if($request->txtid>0){
-                        $where="departmentid=$request->departmentid and companyid=$request->companyid";
-                        $duplicate_entry=$this->Model_Db->select(27,null,$where);
-                        if($duplicate_entry!=false){
-                            $data['message']="Duplicate entry.";
-                            $data['status']=false;
-                            $data['flag']=0;
-                        }else {
+//                        $where="departmentid=$request->departmentid and companyid=$request->companyid";
+//                        $duplicate_entry=$this->Model_Db->select(27,null,$where);
+//                        if($duplicate_entry!=false){
+//                            $data['message']="Duplicate entry.";
+//                            $data['status']=false;
+//                            $data['flag']=0;
+//                        }else {
                             $insert[0]['updatedby'] = $this->session->login['userid'];
                             $insert[0]['updatedat'] = date("Y-m-d H:i:s");
                             $res = $this->Model_Db->update(27, $insert, "id", $request->txtid);
@@ -208,7 +208,7 @@ class Department extends CI_Controller {
                                 $data['message'] = "Update failed.";
                                 $data['status'] = false;
                             }
-                        }
+//                        }
                     }else if($request->txtid==0){
                         $where="departmentid=$request->departmentid and companyid=$request->companyid";
                         $duplicate_entry=$this->Model_Db->select(27,null,$where);
@@ -284,6 +284,8 @@ class Department extends CI_Controller {
                     foreach ($res as $r) {
                         $data[] = array(
                             'id' => $r->id,
+                            'companytypeid'=>$r->companytypeid,
+                            'companytypename'=>$r->companytypename,
                             'companyid' => $r->companyid,
                             'companyname'=>$r->companyname,
                             'departmentid' => $r->departmentid,
