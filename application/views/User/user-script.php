@@ -44,6 +44,7 @@ $cname = $this->uri->segment(2);
             url: "<?= base_url('User/load_userid')?>",
             crossDomain:true,
             success:function(data){
+                reportFunction(1);
                 var data = JSON.parse(data);
                 if(data!=false){
                     $("#userid").html(data);
@@ -75,7 +76,6 @@ $cname = $this->uri->segment(2);
         $('#toggle_new_user').show();
         e.preventDefault();
         var frm = $("#newUserForm").serialize();
-        // alert(frm);
         $.ajax({
             type:'post',
             url:"<?= base_url('User/create_user')?>",
@@ -86,9 +86,10 @@ $cname = $this->uri->segment(2);
             processData:false,
             success:function(res){
                     if(res!=false){
-                        var jsondata = JSON.parse(res);
-                        mytoast(jsondata);
-                        if(jsondata.status==true){
+                        // var jsondata = JSON.parse(res);
+
+                        if(res.status==true){
+                            mytoast(res);
                             $("#newUserForm").trigger('reset');
                         }
                 }

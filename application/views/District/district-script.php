@@ -61,7 +61,7 @@ $cname = $this->uri->segment(2);
                 type:'post',
                 url:"<?= base_url('District/report_district')?>",
                 data:{stateid:stateid,checkparams:data},
-                crossDomain:true,
+                // crossDomain:true,
                 success:function(data){
                     var jsondata = JSON.parse(data);
                     if(data!=false){

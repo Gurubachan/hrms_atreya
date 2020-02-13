@@ -33,9 +33,6 @@ $cname = $this->uri->segment(2);
                                          <div class="row p-5">
                                              <div class="col-sm-3">
                                                  <div class="form-group">
-                                                     <input type="hidden" id="txtid" name="txtid" value="0">
-                                                     <input type="hidden" id="isactive" name="isactive" value="1">
-                                                     <input type="hidden" id="isattendance" name="isattendance" value="0">
                                                      <label for="slno" class="control-label mb-1">#Slno<span style="color:red;">*</span>.</label>
                                                      <input type="text" id="txtSlno" name="txtSlno" class="form-control" onclick="alfa_numeric('txtSlno')"  maxlength="20" minlength="2" placeholder="Enter serial number" title="Only numbers and characters are allowed">
                                                      <small class="errormsg_slno"></small>
@@ -159,7 +156,6 @@ $cname = $this->uri->segment(2);
                                          </button>
                                      </div>
                                  </form>
-
                              <br>
                              <hr>
                              <form action="" class="reportBtn">
@@ -167,9 +163,6 @@ $cname = $this->uri->segment(2);
                                  <button type="button" class="btn  btn-sm" onclick="employee_report(2,1)">All Entries</button>
                                  <button type="button" class="btn  btn-sm" onclick="employee_report(3,1)">Active Entries</button>
                                  <button type="button" class="btn  btn-sm" onclick="employee_report(4,1)">Inactive Entries</button>
-                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,1)">Allow Attendance</button>
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,1)">Not Allowed Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,1)">Details View</button>-->
                              </form>
                              <br>
                              <div class="row">
@@ -212,32 +205,16 @@ $cname = $this->uri->segment(2);
                          </div>
                          <div class="tab-pane" id="communicationtab" role="tabpanel" aria-labelledby="communicationtab">
                              <form class="" id="communication" name="communication" autocomplete="off">
-<!--                                 <fieldset class="the-fieldset">-->
-<!--                                     <legend class="the-legend">User Details</legend>-->
-<!--                                    <div class="table-responsive">-->
-<!--                                        <table class="table-active">-->
-<!--                                            <tbody>-->
-<!--                                            <tr>-->
-<!--                                                <td>User ID:</td><td id="userid"></td>-->
-<!--                                            </tr>-->
-<!--                                            <tr>-->
-<!--                                                <td>User Name:</td><td id="username"></td>-->
-<!--                                            </tr>-->
-<!--                                            </tbody>-->
-<!--                                        </table>-->
-<!--                                    </div>-->
-<!--                                 </fieldset>-->
                                  <fieldset class="the-fieldset">
                                      <legend class="the-legend">Communication Details</legend>
                                      <h5><b>Permanent Address:</b></h5>
                                      <div class="row p-5">
                                          <div class="col-sm-3">
                                              <div class="form-group">
-                                                 <label for="employeepermenentVillage/Street/PlotNo." class="control-label mb-1">Village/Street/PlotNo.<span
+                                                 <label for="employeepermenentVillage/Street/PlotNo." class="control-lapg_toastbel mb-1">Village/Street/PlotNo.<span
                                                              style="color:red;">*</span></label>
                                                  <textarea id="txtPermanentAddress" name="txtPermanentAddress" class="form-control textarea" minlength="3" maxlength="60"
-                                                          onclick="alfa_numeric('txtPermanentAddress')" placeholder="Enter Village/Street/PlotNo" title="Put address like at-/po-/ps- and only back slash(/),highfen(-)and dot(.) are allowed."></textarea>
-                                                 <input type="hidden" id="txtidCommunication" name="txtidCommunication" value="0">
+                                                          onclick="alfa_numeric('txtPermanentAddress')" placeholder="Enter Village/Street/PlotNo" title="Put address like at-/po-/ps- and only back slash(/),highfen(-)and dot(.) are allowed." required></textarea>
                                              </div>
                                          </div>
                                          <div class="col-sm-3">
@@ -334,18 +311,8 @@ $cname = $this->uri->segment(2);
                                      </button>
                                  </div>
                              </form>
-
                              <br>
                              <hr>
-<!--                             <form action="" class="reportBtn">-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,2)">Recent Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,2)">All Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,2)">Active Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,2)">Inactive Entries</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,2)">Allow Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,2)">Not Allowed Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,2)">Details View</button>-->
-<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">
@@ -370,7 +337,6 @@ $cname = $this->uri->segment(2);
                                                          <th>phone no.</th>
                                                          <th>Alternate no.</th>
                                                          <th>Email Id</th>
-<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_communication_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
@@ -383,7 +349,7 @@ $cname = $this->uri->segment(2);
                              </div>
                          </div>
                          <div class="tab-pane" id="experiencetab" role="tabpanel" aria-labelledby="experiencetab">
-                             <form class="" id="experience" name="experience" autocomplete="off">
+                             <form class="" id="experience" name="experience" autocomplete="off" >
                                  <fieldset class="the-fieldset">
                                      <legend class="the-legend">Experience</legend>
                                      <br>
@@ -392,7 +358,6 @@ $cname = $this->uri->segment(2);
                                              <div class="form-group">
                                                  <label for="" class="control-label mb-1">Company Name<span style="color:red;">*</span></label>
                                                  <input type="text" id="cboCompanyname0" name="cboCompanyname[]" class="form-control" onclick="only_characters_numbers_dot_highfen_slash('cboCompanyname0')" placeholder="enter previous company name" title="Only characters and numbers are allowed" required>
-                                                 <input type="hidden" id="txtidExperience" name="txtidExperience" value="0">
                                              </div>
                                          </div>
                                          <div class="col-sm-2">
@@ -424,7 +389,6 @@ $cname = $this->uri->segment(2);
                                      <div class="col-sm-2">
                                          <div class="form-group">
                                              <button type="button" id="btnAddExperience" name="btnAddExperience" class="btn btn-primary btn-sm" style="border-radius: 50%;background-color: #fff"><i class="fa fa-plus fa-2x"></i></button>
-<!--                                             <button type="button" id="btnRemoveExperience" name="btnRemoveExperience" class="btn btn-primary btn-sm" style="border-radius: 50%;background-color: #fff"><i class="fa fa-minus fa-2x"></i></button>-->
                                          </div>
                                      </div>
                                  </fieldset>
@@ -439,22 +403,12 @@ $cname = $this->uri->segment(2);
 
                              <br>
                              <hr>
-<!--                             <form action="" class="reportBtn">-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,3)">Recent Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,3)">All Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,3)">Active Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,3)">Inactive Entries</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,3)">Allow Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,3)">Not Allowed Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,3)">Details View</button>-->
-<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">
                                      <div class="box-inner">
                                          <div class="box-header well">
                                              <h2><i class="fa fa-angle-double-right "></i> Report</h2>
-
                                              <div class="box-icon">
                                                  <a href="#" class="btn btn-setting btn-round btn-default"><i class="fa fa-cog"></i></a>
                                                  <a href="#" class="btn btn-minimize btn-round btn-default"><i class="fa fa-chevron-up"></i></a>
@@ -472,7 +426,6 @@ $cname = $this->uri->segment(2);
                                                          <th>Job Role</th>
                                                          <th>From date</th>
                                                          <th>To date</th>
-<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_experience_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
@@ -495,7 +448,6 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="employeeeducation"
                                                             class="control-label mb-1">Education<span style="color:red;">*</span></label>
-                                                     <input type="hidden" id="txtidQualification" name="txtidQualification" value="0">
                                                      <select id="cboEducationid0" name="cboEducationid[]" class="select" title="Select education" required>
                                                      </select>
                                                  </div>
@@ -555,22 +507,12 @@ $cname = $this->uri->segment(2);
 
                              <br>
                              <hr>
-<!--                             <form action="" class="reportBtn">-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,4)">Recent Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,4)">All Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,4)">Active Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,4)">Inactive Entries</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,4)">Allow Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,4)">Not Allowed Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,4)">Details View</button>-->
-<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">
                                      <div class="box-inner">
                                          <div class="box-header well">
                                              <h2><i class="fa fa-angle-double-right "></i> Report</h2>
-
                                              <div class="box-icon">
                                                  <a href="#" class="btn btn-setting btn-round btn-default"><i class="fa fa-cog"></i></a>
                                                  <a href="#" class="btn btn-minimize btn-round btn-default"><i class="fa fa-chevron-up"></i></a>
@@ -589,7 +531,6 @@ $cname = $this->uri->segment(2);
                                                          <th>Resigtration no.</th>
                                                          <th>Percentage</th>
                                                          <th>Document Upload</th>
-<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_qualification_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
@@ -611,7 +552,6 @@ $cname = $this->uri->segment(2);
                                                 <div class="offset-1 col-sm-3">
                                                     <div class="form-group">
                                                         <label for="emploayee_identification_details" class="control-label mb-1">Document Type</label>
-                                                        <input type="hidden" id="txtidUploadDocument" name="txtidUploadDocument" value="0">
                                                         <select id="cboDocumentTypes0" name="cboDocumentType[]" class="select" title="select document type" required>
                                                         </select>
                                                     </div>
@@ -627,21 +567,10 @@ $cname = $this->uri->segment(2);
                                                     <div class="form-group">
                                                         <label for="employeeeBeneficiaryName"
                                                                class="control-label mb-1">Upload Documents<span style="color:red;">*</span></label>
-<!--                                                        <input type="file" id="fileUploadIdentification0" name="fileUploadIdentification0" class="form-control"-->
-<!--                                                               accept="image/*"  onchange="showMyImage(this)" placeholder="Enter Benificiary name"  >-->
                                                         <input type="file" id="fileUploadIdentification0" name="fileUploadIdentification0" class="form-control" required
                                                                placeholder="Enter Benificiary name"  title="only pdf format is allowed">
                                                     </div>
                                                 </div>
-<!--                                                <div class="offset-1 col-sm-3">-->
-<!--                                                    <div class="form-group">-->
-<!--                                                        <label for="employeeeBeneficiaryName"-->
-<!--                                                               class="control-label mb-1">Preview<span style="color:red;">*</span></label>-->
-<!--                                                        <div style="height: 150px; width: 150px; border: 1px solid red;">-->
-<!--                                                            <img id="thumbnil0" style="width:150px; height: 150px; margin: 0;padding: 0;"  src="" alt="Upload Image"/>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                 </div>-->
                                         </div>
                                          <div class="col-sm-1">
                                              <div class="form-group">
@@ -659,15 +588,6 @@ $cname = $this->uri->segment(2);
 
                              <br>
                              <hr>
-<!--                             <form action="" class="reportBtn">-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,5)">Recent Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,5)">All Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,5)">Active Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,5)">Inactive Entries</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,5)">Allow Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,5)">Not Allowed Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,5)">Details View</button>-->
-<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">
@@ -690,7 +610,6 @@ $cname = $this->uri->segment(2);
                                                          <th>Document Name</th>
                                                          <th>Number</th>
                                                          <th>Upload</th>
-<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_identification_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
@@ -713,7 +632,6 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="emploayee_bank_details"
                                                             class="control-label mb-1">Bank</label>
-                                                     <input type="hidden" id="txtidUploadBankDetails" name="txtidUploadBankDetails"  value="0">
                                                      <select id="cboUploadBankid" name="cboUploadBankid" class="select" title="Select a bank" required>
                                                      </select>
                                                  </div>
@@ -738,19 +656,9 @@ $cname = $this->uri->segment(2);
                                              <div class="col-sm-3">
                                                  <div class="form-group">
                                                      <label for="employeeeBeneficiaryName" class="control-label mb-1">Upload Documents<span style="color:red;">*</span></label>
-                                                     <input type="file" id="fileUploadBank" name="fileUploadBank" class="form-control" accept="image/*"  onchange="showMyImage(this)" placeholder="Enter Benificiary name" title="file size should be less than 2mb"  required>
+                                                     <input type="file" id="fileUploadBank" name="fileUploadBank" class="form-control"  onchange="showMyImage(this)" placeholder="Enter Benificiary name" title="file size should be less than 2mb"  required>
                                                  </div>
                                              </div>
-<!--                                             <div class="col-sm-3 text-center" style="left: 8%;">-->
-<!--                                                 <div class="form-group" style="text-align: center;">-->
-<!--                                                    <label for="employeeeBeneficiaryName" class="control-label mb-1">Preview<span style="color:red;">*</span></label>-->
-<!--                                                     <div class="text-center" style="border: 0 solid red; height: 150px; width: 150px;">-->
-<!--                                                         <img class="img-thumbnail" id="thumbnil" style="height: 150px; width:150px; margin-top:10px;"  src="--><?//=base_url('assets/images/upload_image.png')?><!--" height="250" width="250" alt="image"/>-->
-<!--                                                         <label for="employeeeBeneficiaryName" class="control-label mb-1">Preview<span style="color:red;">*</span></label>-->
-<!--                                                        <small>Image size should be less than 2mb</small>-->
-<!--                                                     </div>-->
-<!--                                                 </div>-->
-<!--                                             </div>-->
                                          </div>
                                      </div>
                                  </fieldset>
@@ -766,15 +674,6 @@ $cname = $this->uri->segment(2);
 
                              <br>
                              <hr>
-<!--                             <form action="" class="reportBtn">-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(1,6)">Recent Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(2,6)">All Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(3,6)">Active Entries</button>-->
-<!--                                 <button type="button" class="btn  btn-sm" onclick="employee_report(4,6)">Inactive Entries</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(5,6)">Allow Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(6,6)">Not Allowed Attendance</button>-->
-<!--                                 <button type="button" class="btn btn-sm" onclick="employee_report(7,6)">Details View</button>-->
-<!--                             </form>-->
                              <br>
                              <div class="row">
                                  <div class="box col-md-12">
@@ -798,7 +697,6 @@ $cname = $this->uri->segment(2);
                                                          <th>Account Number</th>
                                                          <th>IFSC Code</th>
                                                          <th>Upload Doc</th>
-<!--                                                         <th>Action</th>-->
                                                      </tr>
                                                      </thead>
                                                      <tbody id="load_emp_bank_details" style="width: 100%;min-height:0px; max-height: 500px;overflow-y: scroll;">
@@ -815,55 +713,3 @@ $cname = $this->uri->segment(2);
              </div>
          </div>
      </div>
-<!--<div class="row" id="toggle_new_employee" style="display: none;">-->
-<!--    <div class="box col-md-12">-->
-<!--        <div class="box-inner">-->
-<!--            <div class="box-header well">-->
-<!--                <h2><i class="fa fa-angle-double-right "></i> Report</h2>-->
-<!--                <div class="box-icon">-->
-<!--                                   <a href="#" class="btn btn-setting btn-round btn-default"><i class="fa fa-cog"></i></a>-->
-<!--                                     <a href="#" class="btn btn-minimize btn-round btn-default"><i class="fa fa-chevron-up"></i></a>-->
-<!--                                   <a href="#" class="btn btn-close btn-round btn-default"><i class="fa fa-remove"></i></a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="box-content">-->
-<!--                <div class="table-responsive">-->
-<!--                    <table class="table  table-striped table-bordered bootstrap-datatable datatable  table-earning">-->
-<!--                        <thead style="font-size: 10px;">-->
-<!--                        <tr>-->
-<!--                            <th>Sl#</th>-->
-<!--                            <th>Form Slno</th>-->
-<!--                            <th>ICard Number</th>-->
-<!--                            <th>Designation</th>-->
-<!--                            <th>Employee Name</th>-->
-<!--                            <th>Gender</th>-->
-<!--                            <th>Date of birth</th>-->
-<!--                            <th>Marital Status</th>-->
-<!--                            <th>Joining Date</th>-->
-<!--                            <th>leaving Date</th>-->
-<!--                            <th>Father Name</th>-->
-<!--                            <th>Mother Name</th>-->
-<!--                            <th>Spouse Name</th>-->
-<!--                            <th>Address</th>-->
-<!--                            <th>Email</th>-->
-<!--                            <th>Mobile</th>-->
-<!--                            <th>State</th>-->
-<!--                            <th>District</th>-->
-<!--                            <th>Education</th>-->
-<!--                            <th>Epf Number</th>-->
-<!--                            <th>Esi Number</th>-->
-<!--                            <th>Aadhar Number</th>-->
-<!--                            <th>Pan Number</th>-->
-<!--                            <th>IsActive</th>-->
-<!--                            <th>IsAttendance</th>-->
-<!--                            <th>Action</th>-->
-<!--                        </tr>-->
-<!--                        </thead>-->
-<!--                        <tbody id="load_employeess">-->
-<!--                        </tbody>-->
-<!--                    </table>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->

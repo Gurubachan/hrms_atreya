@@ -18,7 +18,7 @@ class Document extends CI_Controller
             $insert=array();
             $status=true;
             if(isset($txtDocumentname) && preg_match("/[a-zA-Z ]{3,60}/",$txtDocumentname)){
-                $insert[0]['documenttypename']=$txtDocumentname;
+                $insert[0]['documenttypename']=strtoupper($txtDocumentname);
             }else{
                 $status=false;
                 $data['data']="Document type name error";
@@ -28,6 +28,14 @@ class Document extends CI_Controller
                     if($txtid>0){
                         $insert[0]['updatedby']=$this->session->login['userid'];
                         $insert[0]['updatedat']=date("Y-m-d H:i:s");
+                        $res=$this->Model_Db->update(101,$insert,"id",$txtid);
+                        if($res!=false){
+                            $data['message']="Update successful";
+                            $data['status']=true;
+                        }else{
+                            $data['message']="Update failed.";
+                            $data['status']=false;
+                        }
                     }else if($txtid==0){
                         $where="documenttypename='$txtDocumentname'";
                         $duplicate_check=$this->Model_Db->select(101,null,$where);
@@ -114,53 +122,54 @@ class Document extends CI_Controller
             exit();
         }
     }
-//    public function report_purpose_details(){
-//        try{
-//            $data=array();
-//            $request = json_decode(json_encode($_POST), FALSE);
-//            $current_date=Date("Y-m-d");
-//            if(isset($request->checkparams) && is_numeric($request->checkparams)) {
-//                switch ($request->checkparams) {
-//                    case 1:
-//                        $where = "DATE(createdat)=DATE('$current_date')";
-//                        break;
-//                    case 2:
-//                        $where = "1=1";
-//                        break;
-//                    case 3:
-//                        $where = "isactive=true";
-//                        break;
-//                    case 4:
-//                        $where = "isactive=false";
-//                        break;
-//                    default:
-//                        $data['message'] = "ID not found";
-//                        $data['status'] = false;
-//                        $data['error'] = true;
-//                        exit();
-//                }
-//                $res = $this->Model_Db->select(79, null, $where);
-//                if ($res != false) {
-//                    foreach ($res as $r) {
-//                        $data[] = array(
-//                            'id' => $r->id,
-//                            'purpose' => $r->purpose,
-//                            'creationdate' => $r->createdat,
-//                            'lastmodifiedon' => $r->updatedat,
-//                            'isactive' => $r->isactive
-//                        );
-//                    }
-//                }
-//            }
-//            echo json_encode($data);
-//        }catch (Exception $e){
-//            $data['message']= "Message:".$e->getMessage();
-//            $data['status']=false;
-//            $data['error']=true;
-//            echo json_encode($data);
-//            exit();
-//        }
-//    }
+    public function report_documenttype_details(){
+        try{
+            $data=array();
+            $request = json_decode(json_encode($_POST), FALSE);
+            $current_date=Date("Y-m-d");
+            if(isset($request->checkparams) && is_numeric($request->checkparams)) {
+                switch ($request->checkparams) {
+                    case 1:
+                        $where = "DATE(createdat)=DATE('$current_date')";
+                        break;
+                    case 2:
+                        $where = "1=1";
+                        break;
+                    case 3:
+                        $where = "isactive=true";
+                        break;
+                    case 4:
+                        $where = "isactive=false";
+                        break;
+                    default:
+                        $data['message'] = "ID not found";
+                        $data['status'] = false;
+                        $data['error'] = true;
+                        exit();
+                }
+                $orderby = "documenttypename asc";
+                $res = $this->Model_Db->select(101, null, $where,$orderby);
+                if ($res != false) {
+                    foreach ($res as $r) {
+                        $data[] = array(
+                            'id' => $r->id,
+                            'documenttypename' => $r->documenttypename,
+                            'creationdate' => $r->createdat,
+                            'lastmodifiedon' => $r->updatedat,
+                            'isactive' => $r->isactive
+                        );
+                    }
+                }
+            }
+            echo json_encode($data);
+        }catch (Exception $e){
+            $data['message']= "Message:".$e->getMessage();
+            $data['status']=false;
+            $data['error']=true;
+            echo json_encode($data);
+            exit();
+        }
+    }
 //    public function intimeViewDetails(){
 //        extract($_POST);
 //        print_r($_POST);

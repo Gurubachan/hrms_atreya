@@ -13,7 +13,6 @@ class Employee extends CI_Controller
     {
         try {
             extract($_POST);
-//            print_r($_POST);
             $data = array();
             $insert = array();
             $status = true;
@@ -108,20 +107,21 @@ class Employee extends CI_Controller
             }
             if ($status) {
                 if (isset($txtid) && is_numeric($txtid)) {
-                    if ($txtid > 0) {
-                        $insert[0]['updatedby'] = $this->session->login['userid'];
-                        $insert[0]['updatedat'] = date("Y-m-d H:i:s");
-                        $res = $this->Model_Db->update(93, $insert, "id", $txtid);
-                        if ($res != false) {
-                            $data['message'] = "successful";
-                            $data['data'] = "Update successful.";
-                            $data['status'] = true;
-                            $data['empid'] = $txtid;
-                        } else {
-                            $data['message'] = "Update failed.";
-                            $data['status'] = false;
-                        }
-                    } else if ($txtid == 0) {
+//                    if ($txtid > 0) {
+                    $insert[0]['updatedby'] = $this->session->login['userid'];
+                    $insert[0]['updatedat'] = date("Y-m-d H:i:s");
+                    $res = $this->Model_Db->update(93, $insert, "id", $txtid);
+                    if ($res != false) {
+                        $data['message'] = "successful";
+                        $data['data'] = "Update successful.";
+                        $data['status'] = true;
+                        $data['empid'] = $txtid;
+                    } else {
+                        $data['message'] = "Update failed.";
+                        $data['status'] = false;
+                    }
+//                    } else if ($txtid == 0) {
+                }else{
                         $insert[0]['entryby'] = $this->session->login['userid'];
                         $insert[0]['createdat'] = date("Y-m-d H:i:s");
                         $res = $this->Model_Db->insert(93, $insert);
@@ -135,16 +135,17 @@ class Employee extends CI_Controller
                             $data['data'] = "Data Insert failed.";
                             $data['status'] = false;
                         }
-                    }else{
-                        $data['message'] = "Error!";
-//                        $data['data'] = "Insufficient1/Invalid data.";
-                        $data['status'] = false;
-                    }
-                }else{
-                    $data['message'] = "Error!";
-//                    $data['data'] = "Insufficient2/Invalid data.";
-                    $data['status'] = false;
                 }
+//                    }else{
+//                        $data['message'] = "Error!";
+////                        $data['data'] = "Insufficient1/Invalid data.";
+//                        $data['status'] = false;
+//                    }
+//                }else{
+//                    $data['message'] = "Error!";
+////                    $data['data'] = "Insufficient2/Invalid data.";
+//                    $data['status'] = false;
+//                }
                 } else {
                     $data['message'] = "Error!";
 //                    $data['data'] = "Insufficient3/Invalid data.";
@@ -168,11 +169,11 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
-            if (isset($txtidCommunication) && $txtidCommunication != null) {
-                $insert[0]['empid'] = $txtidCommunication;
+            if (isset($txtid) && $txtid != null) {
+                $insert[0]['empid'] = $txtid;
             } else {
                 $status = false;
-                $data['data'] = "Employee id not found";
+                $data['data']='id not found';
             }
 
             if (isset($txtMobile) && preg_match("/[6-9]{1}[0-9]{9}/", $txtMobile)) {
@@ -210,7 +211,6 @@ class Employee extends CI_Controller
                     $data['message'] = "Successful";
                     $data['data'] = "Data insert successful";
                     $data['status'] = true;
-                    $data['empid'] = $txtidCommunication;
                 } else {
                     $data['message'] = "Insert failed.";
                     $data['data'] = "Data Insert failed.";
@@ -237,7 +237,7 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
-            if (isset($txtidExperience) && is_numeric($txtidExperience)) {
+            if (isset($txtid) && is_numeric($txtid)) {
                 if (isset($cboCompanyname) && is_array($cboCompanyname)) {
                     $i = 0;
                     foreach ($cboCompanyname as $cmpname) {
@@ -249,7 +249,7 @@ class Employee extends CI_Controller
                             $toDate = date("Y-m-d");
                         }
                         $insert [] = array(
-                            'empid' => $txtidExperience,
+                            'empid' => $txtid,
                             'companyname' => strtoupper($cmpname),
                             'jobdesid' => $cboJobdesignation[$i],
 //                            'fromdate' => $txtFromdate[$i],
@@ -278,7 +278,7 @@ class Employee extends CI_Controller
                     $data['message'] = "Successful";
                     $data['data'] = "Data insert successful";
                     $data['status'] = true;
-                    $data['empid'] = $txtidExperience;
+//                    $data['empid'] = $txtid;
                 } else {
                     $data['message'] = "Insert failed.";
                     $data['data'] = "Data Insert failed.";
@@ -307,7 +307,7 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
-            if (isset($txtidQualification) && is_numeric($txtidQualification)) {
+            if (isset($txtid) && is_numeric($txtid)) {
                 if (isset($cboEducationid) && is_array($cboEducationid)) {
                     $i = 0;
                     // print_r($_POST);
@@ -327,7 +327,7 @@ class Employee extends CI_Controller
                             $upload_doc = $this->upload->data();
                         }
                         $insert [] = array(
-                            'empid' => $txtidQualification,
+                            'empid' => $txtid,
                             'empeduid' => $cboedu,
                             'empedustream' => strtoupper($txtEducationstream[$i]),
                             'empeduboard' => strtoupper($txtBoard[$i]),
@@ -353,7 +353,6 @@ class Employee extends CI_Controller
                     $data['message'] = "Successful";
                     $data['data'] = "Data insert successful";
                     $data['status'] = true;
-                    $data['empid'] = $txtidQualification;
                 } else {
                     $data['message'] = "Insert failed.";
                     $data['data'] = "Data Insert failed.";
@@ -382,7 +381,7 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
-            if (isset($txtidUploadDocument) && is_numeric($txtidUploadDocument)) {
+            if (isset($txtid) && is_numeric($txtid)) {
                 if (isset($cboDocumentType) && is_array($cboDocumentType)) {
                     $i = 0;
                     $this->load->library('upload');
@@ -401,7 +400,7 @@ class Employee extends CI_Controller
                             $upload_docs = $this->upload->data();
                         }
                         $insert [] = array(
-                            'empid' => $txtidUploadDocument,
+                            'empid' => $txtid,
                             'documenttypeid' => $cbodt,
                             'documentnumber' => strtoupper($txtDocIdentificationNumber[$i]),
                             'documentupload' => $upload_docs['file_name'],
@@ -424,7 +423,6 @@ class Employee extends CI_Controller
                     $data['message'] = "Successful";
                     $data['data'] = "Data insert successful";
                     $data['status'] = true;
-                    $data['empid'] = $txtidUploadDocument;
                 } else {
                     $data['message'] = "Insert failed.";
                     $data['data'] = "Data Insert failed.";
@@ -453,7 +451,7 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
-            if (isset($txtidUploadBankDetails) && is_numeric($txtidUploadBankDetails)) {
+            if (isset($txtid) && is_numeric($txtid)) {
                 if (isset($cboUploadBankid) && is_numeric($cboUploadBankid)) {
                     // print_r($_POST);
                     $config['upload_path'] = './assets/empbankupload_doc/';
@@ -470,7 +468,7 @@ class Employee extends CI_Controller
                         $upload_doc = $this->upload->data();
                     }
                     $insert [] = array(
-                        'empid' => $txtidUploadBankDetails,
+                        'empid' => $txtid,
                         'bankid' => $cboUploadBankid,
                         'acno' => $txtAcNumber,
                         'ifsccode' => strtoupper($txtIFSCCode),
@@ -488,13 +486,11 @@ class Employee extends CI_Controller
             }
 
             if ($status) {
-//                $insert[0]['createdat']=date("Y-m-d H:i:s");
                 $res = $this->Model_Db->insert(35, $insert);
                 if ($res != false) {
                     $data['message'] = "Successful";
                     $data['data'] = "Data insert successful";
                     $data['status'] = true;
-                    $data['empid'] = $txtidUploadBankDetails;
                 } else {
                     $data['message'] = "Insert failed.";
                     $data['data'] = "Data Insert failed.";

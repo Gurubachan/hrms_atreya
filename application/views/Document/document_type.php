@@ -25,7 +25,7 @@ $cname = $this->uri->segment(2);
                                 </div>
                                 <div class=" text-right">
                                     <button type="reset" class="btn btn-danger btn-sm">Reset</button>
-                                    <button type="submit" class="btn btn-primary btn-sm" id="createRecord">Create</button>
+                                    <button type="submit" class="btn btn-primary btn-sm" id="createRecordDtype">Create</button>
                                 </div>
                             </div>
                         </form>
@@ -43,41 +43,40 @@ $cname = $this->uri->segment(2);
                 </div>
             </div>
         </div>
-        <!--    <div class="row">-->
-        <!--        <div class="box col-md-12">-->
-        <!--            <div class="box-inner">-->
-        <!--                <div class="box-header well">-->
-        <!--                    <h2><i class="fa fa-angle-double-right "></i> Report</h2>-->
-        <!---->
-        <!--                    <div class="box-icon">-->
-        <!--                        <a href="#" class="btn btn-setting btn-round btn-default"><i-->
-        <!--                                    class="fa fa-cog"></i></a>-->
-        <!--                        <a href="#" class="btn btn-minimize btn-round btn-default"><i-->
-        <!--                                    class="fa fa-chevron-up"></i></a>-->
-        <!--                        <a href="#" class="btn btn-close btn-round btn-default"><i-->
-        <!--                                    class="fa fa-remove"></i></a>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--                <div class="box-content">-->
-        <!--                    <div class="table-responsive">-->
-        <!--                        <table class="table  table-striped table-bordered bootstrap-datatable datatable  table-earning">-->
-        <!--                            <thead>-->
-        <!--                            <tr>-->
-        <!--                                <th>Sl#</th>-->
-        <!--                                <th>Gender name</th>-->
-        <!--                                <th>Gender Shortname</th>-->
-        <!--                                <th>IsActive</th>-->
-        <!--                                <th>Action</th>-->
-        <!--                            </tr>-->
-        <!--                            </thead>-->
-        <!--                            <tbody id="load_gendername">-->
-        <!--                            </tbody>-->
-        <!--                        </table>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
+            <div class="row">
+                <div class="box col-md-12">
+                    <div class="box-inner">
+                        <div class="box-header well">
+                            <h2><i class="fa fa-angle-double-right "></i> Report</h2>
+
+                            <div class="box-icon">
+                                <a href="#" class="btn btn-setting btn-round btn-default"><i
+                                            class="fa fa-cog"></i></a>
+                                <a href="#" class="btn btn-minimize btn-round btn-default"><i
+                                            class="fa fa-chevron-up"></i></a>
+                                <a href="#" class="btn btn-close btn-round btn-default"><i
+                                            class="fa fa-remove"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-content">
+                            <div class="table-responsive">
+                                <table class="table  table-striped table-bordered bootstrap-datatable datatable  table-earning">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 10px;">Sl#</th>
+                                        <th>documenttypename</th>
+                                        <th>IsActive</th>
+                                        <th style="width: 15px;">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="load_documenttype_report">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 </div>
 </div>
