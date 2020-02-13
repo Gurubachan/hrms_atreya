@@ -33,9 +33,9 @@ $cname = $this->uri->segment(2);
                                          <div class="row p-5">
                                              <div class="col-sm-3">
                                                  <div class="form-group">
-                                                     <input type="hidden" id="txtid" name="txtid" value="0">
-                                                     <input type="hidden" id="isactive" name="isactive" value="1">
-                                                     <input type="hidden" id="isattendance" name="isattendance" value="0">
+<!--                                                     <input type="hidden" id="txtid" name="txtid" value="0">-->
+<!--                                                     <input type="hidden" id="isactive" name="isactive" value="1">-->
+<!--                                                     <input type="hidden" id="isattendance" name="isattendance" value="0">-->
                                                      <label for="slno" class="control-label mb-1">#Slno<span style="color:red;">*</span>.</label>
                                                      <input type="text" id="txtSlno" name="txtSlno" class="form-control" onclick="alfa_numeric('txtSlno')"  maxlength="20" minlength="2" placeholder="Enter serial number" title="Only numbers and characters are allowed">
                                                      <small class="errormsg_slno"></small>
@@ -233,11 +233,11 @@ $cname = $this->uri->segment(2);
                                      <div class="row p-5">
                                          <div class="col-sm-3">
                                              <div class="form-group">
-                                                 <label for="employeepermenentVillage/Street/PlotNo." class="control-label mb-1">Village/Street/PlotNo.<span
+                                                 <label for="employeepermenentVillage/Street/PlotNo." class="control-lapg_toastbel mb-1">Village/Street/PlotNo.<span
                                                              style="color:red;">*</span></label>
                                                  <textarea id="txtPermanentAddress" name="txtPermanentAddress" class="form-control textarea" minlength="3" maxlength="60"
                                                           onclick="alfa_numeric('txtPermanentAddress')" placeholder="Enter Village/Street/PlotNo" title="Put address like at-/po-/ps- and only back slash(/),highfen(-)and dot(.) are allowed."></textarea>
-                                                 <input type="hidden" id="txtidCommunication" name="txtidCommunication" value="0">
+<!--                                                 <input type="hidden" id="txtidCommunication" name="txtidCommunication" value="0">-->
                                              </div>
                                          </div>
                                          <div class="col-sm-3">
@@ -383,7 +383,7 @@ $cname = $this->uri->segment(2);
                              </div>
                          </div>
                          <div class="tab-pane" id="experiencetab" role="tabpanel" aria-labelledby="experiencetab">
-                             <form class="" id="experience" name="experience" autocomplete="off">
+                             <form class="" id="experience" name="experience" autocomplete="off" >
                                  <fieldset class="the-fieldset">
                                      <legend class="the-legend">Experience</legend>
                                      <br>
@@ -392,7 +392,7 @@ $cname = $this->uri->segment(2);
                                              <div class="form-group">
                                                  <label for="" class="control-label mb-1">Company Name<span style="color:red;">*</span></label>
                                                  <input type="text" id="cboCompanyname0" name="cboCompanyname[]" class="form-control" onclick="only_characters_numbers_dot_highfen_slash('cboCompanyname0')" placeholder="enter previous company name" title="Only characters and numbers are allowed" required>
-                                                 <input type="hidden" id="txtidExperience" name="txtidExperience" value="0">
+<!--                                                 <input type="hidden" id="txtidExperience" name="txtidExperience" value="0">-->
                                              </div>
                                          </div>
                                          <div class="col-sm-2">
@@ -495,7 +495,7 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="employeeeducation"
                                                             class="control-label mb-1">Education<span style="color:red;">*</span></label>
-                                                     <input type="hidden" id="txtidQualification" name="txtidQualification" value="0">
+<!--                                                     <input type="hidden" id="txtidQualification" name="txtidQualification" value="0">-->
                                                      <select id="cboEducationid0" name="cboEducationid[]" class="select" title="Select education" required>
                                                      </select>
                                                  </div>
@@ -611,7 +611,7 @@ $cname = $this->uri->segment(2);
                                                 <div class="offset-1 col-sm-3">
                                                     <div class="form-group">
                                                         <label for="emploayee_identification_details" class="control-label mb-1">Document Type</label>
-                                                        <input type="hidden" id="txtidUploadDocument" name="txtidUploadDocument" value="0">
+<!--                                                        <input type="hidden" id="txtidUploadDocument" name="txtidUploadDocument" value="0">-->
                                                         <select id="cboDocumentTypes0" name="cboDocumentType[]" class="select" title="select document type" required>
                                                         </select>
                                                     </div>
@@ -713,7 +713,7 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="emploayee_bank_details"
                                                             class="control-label mb-1">Bank</label>
-                                                     <input type="hidden" id="txtidUploadBankDetails" name="txtidUploadBankDetails"  value="0">
+<!--                                                     <input type="hidden" id="txtidUploadBankDetails" name="txtidUploadBankDetails"  value="0">-->
                                                      <select id="cboUploadBankid" name="cboUploadBankid" class="select" title="Select a bank" required>
                                                      </select>
                                                  </div>

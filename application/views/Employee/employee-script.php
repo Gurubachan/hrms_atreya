@@ -14,13 +14,11 @@
         custome_range_datepicker('txtFromdate0','txtTodate0');
         load_banklist('cboUploadBankid');
         documenttype('cboDocumentTypes0');
-        // report_basic();
         lowerToUpper('txtIFSCCode');
         lowerToUpper('txtSlno');
         religion('cboreligionid');
     });
-
-
+   var txtid = null;
     function showMyImage(fileInput) {
         var files = fileInput.files;
         for (var i = 0; i < files.length; i++) {
@@ -155,10 +153,6 @@
 
         }
     });
-    // $("#btnRemoveExperience").click(function () {
-    //     $i = 0;
-    //
-    // })
     var m=1;
     $("#btnADocdd").click(function () {
         if(m<10){
@@ -196,12 +190,7 @@
 
         }
     });
-    // $("#btnRemoveExperience").click(function () {
-    //     $i = 0;
-    //
-    // })
     $('#chkAddress').click(function(){
-
         if ($(this).prop("checked")) {
             var permanent_address = $('#txtPermanentAddress').val();
             var permanent_stat = $('#cboPermanentStateid').val();
@@ -213,7 +202,6 @@
             function myFunction() {
                 setTimeout(function(){ $('#cboPresentDistid').val(permanent_dist).attr('disabled', true); }, 200);
             }
-
             $('#txtPresentPincode').val(permanent_pin).attr('disabled', true);
         }else{
             $('#txtPresentAddress').val("").attr('disabled', false);
@@ -267,28 +255,20 @@
             success:function(resp) {
                 var jsondata = JSON.parse(resp);
                   if(jsondata.status==true){
-                      var txt_communication_id_val = $('#txtidCommunication').val(jsondata.empid);
                       mytoast(jsondata);
                       $('#communicationtabbar').removeClass('disabled');
                       $('#experiencetabbar').removeClass('disabled');
                       $('#qualificationtabbar').removeClass('disabled');
                       $('#documentationtabbar').removeClass('disabled');
                       $('#bankdetailstabbar').removeClass('disabled');
-                      if(txt_communication_id_val!=null){
-                          // $('#basic').trigger('reset');
-                          $('.nav-tabs > .active').next().trigger('click');
-                          $("#basictabbar").removeClass('active');
-                          $("#communicationtabbar").addClass('active');
-
-                          //value set for all the tab
-                          $("#txtid").val(jsondata.empid);
-                          $("#txtidExperience").val(jsondata.empid);
-                          $("#txtidQualification").val(jsondata.empid);
-                          $("#txtidUploadDocument").val(jsondata.empid);
-                          $("#txtidUploadBankDetails").val(jsondata.empid);
-                      }else{
-                          alert('Unable to load Communication Tab');
-                      }
+                          txtid = jsondata.empid;
+                          if(txtid!=null){
+                              $('.nav-tabs > .active').next().trigger('click');
+                              $("#basictabbar").removeClass('active');
+                              $("#communicationtabbar").addClass('active');
+                          }else{
+                              mytoast(jsondata);
+                          }
                   }else{
                       mytoast(jsondata);
                   }
@@ -318,8 +298,8 @@
         }else{
              present_address = present_village+","+present_state_select+","+present_district_select+","+present_pincode;
         }
-        var frm=$('#communication').serialize()+'&'+$.param({ 'permanent_address': permanent_address , 'present_address':present_address });
-            $.ajax({
+        var frm=$('#communication').serialize()+'&'+$.param({ 'permanent_address': permanent_address , 'present_address':present_address,'txtid':txtid });
+        $.ajax({
                 type:"post",
                 // crossDomain:true,
                 url:'<?=base_url("Employee/create_employee_communication")?>',
@@ -327,29 +307,25 @@
                 success:function(res){
                     var jsondata = JSON.parse(res);
                     if(jsondata.status==true){
-                        mytoast(jsondata);
                         report_current_emp_communication();
-                        // $('#experiencetabbar').removeClass('disabled');
-                        let txt_experience_id_val = $("#txtidExperience").val(jsondata.empid);
-
-                        if(txt_experience_id_val!=null){
+                        mytoast(jsondata);
+                        if(txtid!=null) {
                             $('#communication').trigger('reset');
                             $('.nav-tabs > .active').next().trigger('click');
                             $("#communicationtabbar").removeClass('active');
                             $("#experiencetabbar").addClass('active');
-                            // $("#txtidExperiences").val(jsondata.empid);
                         }else{
-                            alert('Unalble to load Experience tab');
+                            alert("unable to lo Qualification Tab");
                         }
                     }else{
-                        mytoast(jsondata);
+                        alert('hi');
                     }
                 }
             });
         });
     $("#experience").submit(function (e) {
         e.preventDefault();
-        var frm = $(this).serialize();
+        var frm = $(this).serialize()+'&'+$.param({'txtid':txtid });
         $.ajax({
             type:"post",
             // crossDomain:true,
@@ -358,11 +334,9 @@
             success:function(res){
                 var jsondata = JSON.parse(res);
                 if(jsondata.status==true){
-                    mytoast(jsondata);
                     report_current_emp_experience();
-                    // $('#qualificationtabbar').removeClass('disabled');
-                    let txt_experience_id_val = $("#txtidQualification").val(jsondata.empid);
-                    if(txt_experience_id_val!=null) {
+                    mytoast(jsondata);
+                    if(txtid!=null) {
                         $('#experience').trigger('reset');
                         $('.nav-tabs > .active').next().trigger('click');
                         $("#experiencetabbar").removeClass('active');
@@ -378,13 +352,13 @@
     });
     $("#qualification").submit(function (e) {
         e.preventDefault();
-        // var frm = $(this).serialize();
+        var form = $("#qualification");
+        var formData = new FormData(form[0]);
+        formData.append('txtid', txtid);
         $.ajax({
             type:"post",
-            // crossDomain:true,
             url:'<?=base_url("Employee/create_employee_qualification")?>',
-            // data:frm,
-            data:new FormData(this),
+            data:formData,
             dataType:'json',
             contentType: false,
             cache: false,
@@ -393,9 +367,7 @@
                 if(res.status==true){
                     mytoast(res);
                     report_current_emp_qualification();
-                    // $('#documentationtabbar').removeClass('disabled');
-                    let txt_qualification_id_val = $("#txtidUploadDocument").val(res.empid);
-                    if(txt_qualification_id_val!=null) {
+                    if(txtid!=null) {
                         $('#qualification').trigger('reset');
                         $('.nav-tabs > .active').next().trigger('click');
                         $("#qualificationtabbar").removeClass('active');
@@ -404,20 +376,20 @@
                         alert("unable to lo Qualification Tab");
                     }
                 }else{
-                    mytoast(jsondata);
+                    mytoast(res);
                 }
             }
         });
     });
     $("#upload_document_details").submit(function (e) {
         e.preventDefault();
-        var frm = $(this).serialize();
+        var form = $("#upload_document_details");
+        var formData = new FormData(form[0]);
+        formData.append('txtid', txtid);
         $.ajax({
             type:"post",
-            // crossDomain:true,
             url:'<?=base_url("Employee/create_employee_upload_documnet_details")?>',
-            // data:frm,
-            data:new FormData(this),
+            data: formData,
             dataType:'json',
             contentType: false,
             cache: false,
@@ -426,9 +398,7 @@
                 if(jsondata.status==true){
                     mytoast(jsondata);
                     report_current_emp_document_uploads();
-                    // $('#bankdetailstabbar').removeClass('disabled');
-                    let txt_documentsid_val = $("#txtidUploadBankDetails").val(jsondata.empid);
-                    if(txt_documentsid_val!=null) {
+                    if(txtid!=null) {
                         $('#upload_document_details').trigger('reset');
                         $('.nav-tabs > .active').next().trigger('click');
                         $("#documentationtabbar").removeClass('active');
@@ -444,13 +414,13 @@
     });
     $("#upload_bank_details").submit(function (e) {
         e.preventDefault();
-        var frm = $(this).serialize();
+        var form = $("#upload_bank_details");
+        var formData = new FormData(form[0]);
+        formData.append('txtid', txtid);
         $.ajax({
             type:"post",
-            // crossDomain:true,
             url:'<?=base_url("Employee/create_employee_bank_details")?>',
-            // data:frm,
-            data:new FormData(this),
+            data:formData,
             dataType:'json',
             contentType: false,
             cache: false,
@@ -459,8 +429,7 @@
                 if(jsondata.status==true){
                     mytoast(jsondata);
                     report_current_emp_bankdetails();
-                    let txt_bankdocumentsid_val = $("#txtidUploadBankDetails").val(jsondata.empid);
-                    if(txt_bankdocumentsid_val != null) {
+                    if(txtid!=null) {
                         // $('.nav-tabs > .active').next().trigger('click');
                         // $("#qualificationtabbar").removeClass('active');
                         // $("#documentationtabbar").addClass('active');
@@ -511,8 +480,8 @@
              }
          });
      }
-
     function editEmp(id,slno,fname,mname,lname,fathername,mothername,spouse,empdob,empdoj,maritalid,genderid,desginationid,department,religionid) {
+
         if(maritalid==2){
             $('#txtSpousename').attr('disabled',true);
         }else{
@@ -539,127 +508,12 @@
         $("#createBasicDetails").html('Update');
 
     }
-    //function report_emp_communication(id){
-    //    $.ajax({
-    //        type:'post',
-    //        url:"<?//= base_url('Employee/report_employee_communication_details')?>//",
-    //        data:{checkparams:id},
-    //        success:function(data){
-    //            if(data!=false) {
-    //                var jsondata = JSON.parse(data);
-    //                var j = 0;
-    //                var z = jsondata.length;
-    //                var html = "";
-    //                var isactive = '';
-    //                var isattendance = '';
-    //                for (var i = 0; i < z; i++) {
-    //                    j++;
-    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].empaddress+"</td><td>"+jsondata[i].emppresentaddress+"</td><td>"+jsondata[i].empcontact+"</td><td>"+jsondata[i].empaltcontact+"</td><td>"+jsondata[i].empemail+"</td></tr>";
-    //
-    //                }
-    //                $('#load_emp_communication_details').html(html);
-    //            }
-    //        }
-    //    });
-    //}
-    //function report_emp_experience(id){
-    //    $.ajax({
-    //        type:'post',
-    //        url:"<?//= base_url('Employee/report_employee_experience_details')?>//",
-    //        data:{checkparams:id},
-    //        success:function(data){
-    //            if(data!=false) {
-    //                var jsondata = JSON.parse(data);
-    //                var j = 0;
-    //                var z = jsondata.length;
-    //                var html = "";
-    //                var isactive = '';
-    //                var isattendance = '';
-    //                for (var i = 0; i < z; i++) {
-    //                    j++;
-    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].companyname+"</td><td>"+jsondata[i].designationname+"</td><td>"+jsondata[i].jobrole+"</td><td>"+jsondata[i].fromdate+"</td><td>"+jsondata[i].todate+"</td></tr>";
-    //
-    //                }
-    //                $('#load_emp_experience_details').html(html);
-    //            }
-    //        }
-    //    });
-    //}
-    //function report_emp_qualification(id){
-    //    $.ajax({
-    //        type:'post',
-    //        url:"<?//= base_url('Employee/report_employee_qualification_details')?>//",
-    //        data:{checkparams:id},
-    //        success:function(data){
-    //            if(data!=false) {
-    //                var jsondata = JSON.parse(data);
-    //                var j = 0;
-    //                var z = jsondata.length;
-    //                var html = "";
-    //                var isactive = '';
-    //                var isattendance = '';
-    //                for (var i = 0; i < z; i++) {
-    //                    j++;
-    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].educationname+"</td><td>"+jsondata[i].empedustream+"</td><td>"+jsondata[i].empeduboard+"</td><td>"+jsondata[i].empregdno+"</td><td>"+jsondata[i].emppercentage+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
-    //
-    //                }
-    //                $('#load_emp_qualification_details').html(html);
-    //            }
-    //        }
-    //    });
-    //}
-    //function report_emp_document_uploads(id){
-    //    $.ajax({
-    //        type:'post',
-    //        url:"<?//= base_url('Employee/report_employee_documents_upload_details')?>//",
-    //        data:{checkparams:id},
-    //        success:function(data){
-    //            if(data!=false) {
-    //                var jsondata = JSON.parse(data);
-    //                var j = 0;
-    //                var z = jsondata.length;
-    //                var html = "";
-    //                var isactive = '';
-    //                var isattendance = '';
-    //                for (var i = 0; i < z; i++) {
-    //                    j++;
-    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].documenttypename+"</td><td>"+jsondata[i].documentnumber+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
-    //
-    //                }
-    //                $('#load_emp_identification_details').html(html);
-    //            }
-    //        }
-    //    });
-    //}
-    //function report_emp_bankdetails(id){
-    //    $.ajax({
-    //        type:'post',
-    //        url:"<?//= base_url('Employee/report_employee_bank_details')?>//",
-    //        data:{checkparams:id},
-    //        success:function(data){
-    //            if(data!=false) {
-    //                var jsondata = JSON.parse(data);
-    //                var j = 0;
-    //                var z = jsondata.length;
-    //                var html = "";
-    //                var isactive = '';
-    //                var isattendance = '';
-    //                for (var i = 0; i < z; i++) {
-    //                    j++;
-    //                    html += "<tr><td>" + j + "</td><td>"+jsondata[i].bankname+"</td><td>"+jsondata[i].acno+"</td><td>"+jsondata[i].ifsccode+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
-    //                }
-    //                $('#load_emp_bank_details').html(html);
-    //            }
-    //        }
-    //    });
-    //}
-
     function report_current_emp_communication(){
-        var id = $('#txtid').val();
+        // var id = $('#txtid').val();
         $.ajax({
             type:'post',
             url:"<?= base_url('Employee/report_employee_communication_details')?>",
-            data:{checkparams:id},
+            data:{checkparams:txtid},
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
@@ -679,11 +533,11 @@
         });
     }
     function report_current_emp_experience(){
-        var id = $('#txtid').val();
+        // var id = $('#txtid').val();
         $.ajax({
             type:'post',
             url:"<?= base_url('Employee/report_employee_experience_details')?>",
-            data:{checkparams:id},
+            data:{checkparams:txtid},
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
@@ -703,11 +557,11 @@
         });
     }
     function report_current_emp_qualification(){
-        var id = $('#txtid').val();
+        // var id = $('#txtid').val();
         $.ajax({
             type:'post',
             url:"<?= base_url('Employee/report_employee_qualification_details')?>",
-            data:{checkparams:id},
+            data:{checkparams:txtid},
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
@@ -731,7 +585,7 @@
         $.ajax({
             type:'post',
             url:"<?= base_url('Employee/report_employee_documents_upload_details')?>",
-            data:{checkparams:id},
+            data:{checkparams:txtid},
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
@@ -751,11 +605,11 @@
         });
     }
     function report_current_emp_bankdetails(){
-        var id = $('#txtid').val();
+        // var id = $('#txtid').val();
         $.ajax({
             type:'post',
             url:"<?= base_url('Employee/report_employee_bank_details')?>",
-            data:{checkparams:id},
+            data:{checkparams:txtid},
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
@@ -773,136 +627,4 @@
             }
         });
     }
-
-    //$("#newEmployeeForm").submit(function(e){
-    //    $('#toggle_new_employee').show();
-    //    e.preventDefault();
-    //    var frm = $("#newEmployeeForm").serialize();
-    //    $.ajax({
-    //        type:'post',
-    //        url:"<?//= base_url('Employee/create_employee')?>//",
-    //        crossDomain:true,
-    //        data:frm,
-    //        success:function(data){
-    //            if(data!=false){
-    //                var josndata = JSON.parse(data);
-    //                if($('#createNewEmployee').html()=='Update'){
-    //                    // window.location.reload();
-    //                    $('#newEmployeeForm').trigger('reset');
-    //                    reportFunction(2);
-    //                }else{
-    //                    reportFunction(1);
-    //                    $('#newEmployeeForm').trigger('reset');
-    //                }
-    //            }
-    //        }
-    //    });
-    //});
-    //function loadAjaxForReport(id){
-    //    $('#toggle_new_employee').show();
-    //    $.ajax({
-    //        type:'post',
-    //        url:"<?//= base_url('Employee/report_temp_employee')?>//",
-    //        data:{checkparams:id},
-    //        crossDomain:true,
-    //        success:function(data){
-    //            if(data!=false){
-    //                var jsondata = JSON.parse(data);
-    //                var j=0;
-    //                var z = jsondata.length;
-    //                var html = "";
-    //                var isactive='';
-    //                var isattendance='';
-    //                for(var i=0; i<z; i++){
-    //                    j++;
-    //                    var checkId = jsondata[i].id;
-    //                    var checkIsactive = jsondata[i].isactive;
-    //                    var checkIsattendance = jsondata[i].isattendance;
-    //                    var editisattendance = JSON.stringify(checkIsattendance);
-    //                    var editisactive = JSON.stringify(checkIsactive);
-    //                    var updatedid = '"<?//= $cname ?>//"';
-    //                    var urlid = '"../Common/record_active_deactive"';
-    //                    var strfname =  JSON.stringify(jsondata[i].fname);
-    //                    var strmname =  JSON.stringify(jsondata[i].mname);
-    //                    var strlname =  JSON.stringify(jsondata[i].lname);
-    //                    var stremailid =  JSON.stringify(jsondata[i].emailid);
-    //                    var strfathername =  JSON.stringify(jsondata[i].fathername);
-    //                    var strmothername =  JSON.stringify(jsondata[i].mothername);
-    //                    var strspoucsename =  JSON.stringify(jsondata[i].spousename);
-    //                    var straddress =  JSON.stringify(jsondata[i].address);
-    //                    var strepf = JSON.stringify(jsondata[i].epfno);
-    //                    var strpan = JSON.stringify(jsondata[i].panno);
-    //                    var strempid = JSON.stringify(jsondata[i].empid);
-    //                    var strdoj = JSON.stringify(jsondata[i].doj);
-    //                    var strdol = JSON.stringify(jsondata[i].dol);
-    //                    var strdob = JSON.stringify(jsondata[i].dob);
-    //                    var stateid = jsondata[i].stateid;
-    //                    if(checkIsactive=='t'){
-    //                        isactive= "<button id='action"+checkId+"' onclick='editIsactive(1,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-on fa-2x'></i></button>";
-    //                    }else{
-    //                        isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
-    //                    }
-    //                    if(checkIsattendance=='t'){
-    //                        isattendance= "<button id='action"+checkId+"' onclick='editIsattendance(1,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-on fa-2x'></i></button>";
-    //                    }else{
-    //                        isattendance= "<button id='action"+checkId+"' onclick='editIsattendance(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
-    //                    }
-    //                    html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].slno+"</td><td>"+ jsondata[i].empid+"</td><td>"+ jsondata[i].designationname+"</td><td>"+ jsondata[i].fname+" "+jsondata[i].mname+" "+jsondata[i].lname+"</td>" +
-    //                        "<td>"+ jsondata[i].gendername+"</td><td>"+ jsondata[i].dob+"</td><td>"+ jsondata[i].maritalstatusname+"</td><td>"+ jsondata[i].doj+"</td><td>"+ jsondata[i].dol+"</td><td>"+ jsondata[i].fathername+"</td><td>"+ jsondata[i].mothername+"</td>" +
-    //                        "<td>"+ jsondata[i].spousename+"</td><td>"+ jsondata[i].address+"</td><td>"+ jsondata[i].emailid+"</td><td>"+ jsondata[i].mobile+"</td><td>"+ jsondata[i].statename+"</td><td>"+ jsondata[i].distname+"</td><td>"+ jsondata[i].educationname+"</td>" +
-    //                        "<td>"+ jsondata[i].epfno+"</td><td>"+ jsondata[i].esifno+"</td><td>"+ jsondata[i].aadharno+"</td><td>"+ jsondata[i].panno+"</td><td>"+isactive+"</td><td>"+isattendance+"</td><td><button class='btn editBtn btn-sm' " +
-    //                        "onclick='reportEditEmployee(" +checkId+ ","+jsondata[i].slno+","+strempid+","+jsondata[i].departmentmappingid+","+jsondata[i].designationid+","+strdoj+","+strdol+","+strfname+","+strmname+","+strlname+","+jsondata[i].genderid+","+jsondata[i].mobile+"," +
-    //                        ""+stremailid+","+strfathername+","+strmothername+","+jsondata[i].maritalstatusid+","+strspoucsename+","+jsondata[i].educationid+","+straddress+","+strdob+","+strepf+","+jsondata[i].esifno+","+jsondata[i].aadharno+","+strpan+","+jsondata[i].distid+","+stateid+","+editisactive+ ","+editisattendance+")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
-    //                }
-    //                $("#load_employeess").html(html);
-    //            }
-    //        }
-    //    });
-    //}
-    //function reportEditEmployee(id,slno,strempid,departmentmappingid,designationid,strdoj,strdol,strfname,strmname,strlname,
-    //                            genderid,mobile,stremailid,strfathername,strmothername,maritalstatusid,
-    //                            strspoucsename,educationid,straddress,strdob,strepf,esifno,aadharno,strpan,distid,stateid,isactive,isattendance) {
-    //    if(isactive=='t'){
-    //        var isactiveval=1;
-    //    }else{
-    //        isactiveval=0;
-    //    }
-    //    if(isattendance=='t'){
-    //        var attendanceval=1;
-    //    }else{
-    //        attendanceval=0;
-    //    }
-    //    $('#txtid').val(id);
-    //    $('#slno').val(slno);
-    //    $('#empid').val(strempid);
-    //    $('#departmentmappingid').val(departmentmappingid);
-    //    $('#designationid').val(designationid);
-    //    $('#doj').val(strdoj);
-    //    $('#dol').val(strdol);
-    //    $('#fname').val(strfname);
-    //    $('#mname').val(strmname);
-    //    $('#lname').val(strlname);
-    //    $('#genderid').val(genderid);
-    //    $('#mobile').val(mobile);
-    //    $('#emailid').val(stremailid);
-    //    $('#fathername').val(strfathername);
-    //    $('#mothername').val(strmothername);
-    //    $('#maritalstatusid').val(maritalstatusid);
-    //    $('#spousename').val(strspoucsename);
-    //    $('#educationid').val(educationid);
-    //    $('#address').val(straddress);
-    //    $('#dob').val(strdob);
-    //    $('#epfno').val(strepf);
-    //    $('#esifno').val(esifno);
-    //    $('#aadharno').val(aadharno);
-    //    $('#panno').val(strpan);
-    //    $('#distid').val(distid);
-    //    $("#stateid").val(stateid).change();
-    //    dist=distid;
-    //    $('#isactive').val(isactiveval);
-    //    $('#isattendance').val(attendanceval);
-    //    $('#slno').focus();
-    //    $("#createNewEmployee").html("Update");
-    //
-    //}
 </script>
