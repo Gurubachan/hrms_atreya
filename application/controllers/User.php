@@ -239,7 +239,7 @@ class User extends CI_Controller {
                 $status=false;
                 echo $request->usertypeid;
             }
-            if(isset($request->username) && preg_match("/[a-zA-Z _@.]{6,18}/",$request->username)){
+            if(isset($request->username) && preg_match("/[a-zA-Z0-9-_@.]{6,18}/",$request->username)){
                 $insert[0]['username']=$request->username;
             }else{
                 $status=false;
