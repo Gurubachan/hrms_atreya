@@ -1,0 +1,9 @@
+2020-02-13 17:56:43: === User Changed Action from 'COPY_FILE_LTOR' to 'NO_COPY' on item /application/config/config.php
+2020-02-13 17:56:43: Done.
+2020-02-13 17:56:44: === User Changed Action from 'COPY_FILE_LTOR' to 'NO_COPY' on item /application/config/database.php
+2020-02-13 17:56:44: Done.
+2020-02-13 17:56:46: == Sync Started by User Command
+2020-02-13 17:56:47: Copy Over 'F:/websites/hrms_atreya/.gitignore' -> 'sftp://61.12.81.38/var/www/html/hrms/.gitignore' (1,496)
+2020-02-13 17:56:47: Copy Over 'F:/websites/hrms_atreya/application/controllers/User.php' -> 'sftp://61.12.81.38/var/www/html/hrms/application/controllers/User.php' (29,202)
+2020-02-13 17:56:47: == Sync Complete. Time: 00:00:01, Speed: 1.93 MB/s, OK: 207, Errors: 0
+2020-02-13 17:56:47: 
