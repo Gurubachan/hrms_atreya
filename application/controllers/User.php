@@ -374,34 +374,39 @@ class User extends CI_Controller {
                                 $message="Dear ".$name." Your userid is - ".$userid.". And Password is ".$mobile." to login http://61.12.81.38/hrms";
                                 $this->load->library("Sms");
                                 $this->sms->send($mobile,$message);
-                                $data['message']="Insert successful.";
-                                $data['status']=true;
+                                $data['message'] = "successful";
+                                $data['data'] = "Insert successful.";
+                                $data['status'] = true;
                             }else{
-                                $data['message']="Insertion faild .";
+                                $data['message']="faild .";
+                                $data['data']="Insertion faild .";
                                 $data['status']=false;
                             }
-                            $data['message']="Insert successful.";
-                            $data['status']=true;
                         }else{
-                            $data['message']="Insert failed.";
+                            $data['message']="failed.";
+                            $data['data']="Insert failed.";
                             $data['status']=false;
                         }
                     }else{
-                        $data['message']="Insufficient/Invalid data.";
+                        $data['message']="Invalid";
+                        $data['data']="Insufficient/Invalid data.";
                         $data['status']=false;
                     }
                 }else{
-                    $data['message']="Insufficient/Invalid data.";
+                    $data['message']="Invalid";
+                    $data['data']="Insufficient/Invalid data.";
                     $data['status']=false;
                 }
             }else{
-                $data['message']="Insufficient/Invalid data.";
+                $data['message']="Invalid";
+                $data['data']="Insufficient/Invalid data.";
                 $data['status']=false;
             }
             echo json_encode($data);
             exit();
         }catch (Exception $e){
             $data['message']= "Message:".$e->getMessage();
+            $data['data']= "Message:".$e->getMessage();
             $data['status']=false;
             $data['error']=true;
             echo json_encode($data);

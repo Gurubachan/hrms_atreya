@@ -74,7 +74,7 @@ $cname = $this->uri->segment(2);
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="" class="control-label mb-1">User Name</label>
-                                    <input id="username" name="username" type="text" class="form-control" onclick="password_validate('username')" minlength="6"  maxlength="18" placeholder="Enter username for login ,only @-_./ allowed."" title="Enter username for login,only @-_./ allowed.">
+                                    <input id="username" name="username" type="text" class="form-control" pattern="[a-zA-Z@-_.]{6-18}" onclick="password_validate('username')" minlength="6"  maxlength="18" placeholder="Enter username for login ,only @-_./ allowed."" title="Enter username for login,only @-_./ allowed.">
                                     <small id="" class="errormsg_username"></small>
                                 </div>
                             </div>
