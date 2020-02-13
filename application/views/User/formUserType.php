@@ -20,7 +20,7 @@ $cname = $this->uri->segment(2);
                         <div class="form-group">
                             <input type="hidden" id="txtid" name="txtid" value="0">
                             <label for="" class="control-label mb-1">Name</label>
-                            <input type="text" id="usertypename" name="usertypename" onclick="charachters_validate('usertypename')" minlength="3" maxlength="20" class="form-control" placeholder="Enter user type name" required>
+                            <input type="text" id="usertypename" name="usertypename" onclick="charachters_validate('usertypename')" minlength="3" maxlength="30" class="form-control" placeholder="Enter user type name" required>
                             <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
                             <small class="errormsg_usertypename"></small>
                         </div>
