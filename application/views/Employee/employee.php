@@ -311,7 +311,6 @@ $cname = $this->uri->segment(2);
                                      </button>
                                  </div>
                              </form>
-
                              <br>
                              <hr>
                              <br>
@@ -657,7 +656,7 @@ $cname = $this->uri->segment(2);
                                              <div class="col-sm-3">
                                                  <div class="form-group">
                                                      <label for="employeeeBeneficiaryName" class="control-label mb-1">Upload Documents<span style="color:red;">*</span></label>
-                                                     <input type="file" id="fileUploadBank" name="fileUploadBank" class="form-control" accept="image/*"  onchange="showMyImage(this)" placeholder="Enter Benificiary name" title="file size should be less than 2mb"  required>
+                                                     <input type="file" id="fileUploadBank" name="fileUploadBank" class="form-control"  onchange="showMyImage(this)" placeholder="Enter Benificiary name" title="file size should be less than 2mb"  required>
                                                  </div>
                                              </div>
                                          </div>
