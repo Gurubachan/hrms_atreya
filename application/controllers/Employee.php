@@ -31,8 +31,6 @@ class Employee extends CI_Controller
             if (isset($txtMname) && preg_match("/[a-zA-Z ]{2,80}/", $txtMname)) {
                 $insert[0]['empmiddlename'] = strtoupper($txtMname);
             } else {
-//                $status = false;
-//                $data['data'] = "Middle name error";
                 $insert[0]['empmiddlename'] = "";
             }
             if (isset($txtLname) && preg_match("/[a-zA-Z ]{2,80}/", $txtLname)) {
@@ -54,12 +52,10 @@ class Employee extends CI_Controller
                 $status = false;
                 $data['data'] = "Employee date of birth error";
             }
-//            if(isset($txtDoj) && preg_match("/[0-9-]{4}+\-[0-9-]{2}+\-[0-9]{2}/",$txtDoj)){
             if (isset($txtDoj) && preg_match("/[0-9]{2}+\-[0-9]{2}+\-[0-9]{4}/", $txtDoj)) {
                 $doj = date("Y-m-d", strtotime($txtDoj));
                 $insert[0]['empdoj'] = $doj;
             } else {
-//                echo $insert_record[0]['empdoj'] = $txtDoj;
                 $status = false;
                 $data['data'] = "Employee date of joining error";
             }
@@ -107,7 +103,6 @@ class Employee extends CI_Controller
             }
             if ($status) {
                 if (isset($txtid) && is_numeric($txtid)) {
-//                    if ($txtid > 0) {
                     $insert[0]['updatedby'] = $this->session->login['userid'];
                     $insert[0]['updatedat'] = date("Y-m-d H:i:s");
                     $res = $this->Model_Db->update(93, $insert, "id", $txtid);
@@ -120,7 +115,6 @@ class Employee extends CI_Controller
                         $data['message'] = "Update failed.";
                         $data['status'] = false;
                     }
-//                    } else if ($txtid == 0) {
                 }else{
                         $insert[0]['entryby'] = $this->session->login['userid'];
                         $insert[0]['createdat'] = date("Y-m-d H:i:s");
@@ -136,19 +130,8 @@ class Employee extends CI_Controller
                             $data['status'] = false;
                         }
                 }
-//                    }else{
-//                        $data['message'] = "Error!";
-////                        $data['data'] = "Insufficient1/Invalid data.";
-//                        $data['status'] = false;
-//                    }
-//                }else{
-//                    $data['message'] = "Error!";
-////                    $data['data'] = "Insufficient2/Invalid data.";
-//                    $data['status'] = false;
-//                }
                 } else {
                     $data['message'] = "Error!";
-//                    $data['data'] = "Insufficient3/Invalid data.";
                     $data['status'] = false;
                 }
             echo json_encode($data);
