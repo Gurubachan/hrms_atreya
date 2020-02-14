@@ -15,7 +15,7 @@ class Religion extends CI_Controller {
 //			$request = json_decode($postdata);
             $status=true;
             if(isset($request->religionname) && preg_match("/^[a-zA-Z]{3,20}$/",$request->religionname)){
-                $insert[0]['religion']=$request->religionname;
+                $insert[0]['religion']=strtoupper($request->religionname);
             }else{
                 $status=false;
                 echo $request->religion;

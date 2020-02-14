@@ -30,10 +30,10 @@ $cname = $this->uri->segment(2);
                                      <fieldset class="the-fieldset">
                                          <legend class="the-legend">Description</legend>
                                          <br>
-                                         <div class="row p-5">
-                                             <div class="col-sm-3">
+                                         <div class="row p-5" id="#empdesc">
+                                             <div class="col-lg-3 col-md-3 col-sm-12">
                                                  <div class="form-group">
-                                                     <label for="slno" class="control-label mb-1">#Slno<span style="color:red;">*</span>.</label>
+                                                     <label for="slno" class="control-label mb-1">Application Number<span style="color:red;">*</span>.</label>
                                                      <input type="text" id="txtSlno" name="txtSlno" class="form-control" onclick="alfa_numeric('txtSlno')"  maxlength="20" minlength="2" placeholder="Enter serial number" title="Only numbers and characters are allowed">
                                                      <small class="errormsg_slno"></small>
                                                  </div>
