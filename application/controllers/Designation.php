@@ -143,7 +143,6 @@ class Designation extends CI_Controller {
                     foreach ($res as $r) {
                         $data[] = array(
                             'id' => $r->id,
-                            'companytypename'=>$r-companytypename,
                             'designationname' => $r->designationname,
                             'designationshortname' => $r->designationshortname,
                             'creationdate' => $r->createdat,
