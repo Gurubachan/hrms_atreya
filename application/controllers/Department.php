@@ -14,7 +14,7 @@ class Department extends CI_Controller {
 			$postdata = file_get_contents("php://input");
 //			$request = json_decode($postdata);
             $status=true;
-            if(isset($request->departmentname) && preg_match("/^[a-zA-Z ]{3,20}$/",$request->departmentname)){
+            if(isset($request->departmentname) && preg_match("/^[a-zA-Z ]{3,50}$/",$request->departmentname)){
                 $insert[0]['departmentname']=strtoupper($request->departmentname);
             }else{
                 $status=false;

@@ -18,7 +18,7 @@ $cname = $this->uri->segment(2);
                     <div class="form-group">
                         <input type="hidden" id="txtid" name="txtid" value="0">
                         <label for="designationForm" class="control-label mb-1">Designation Name</label>
-                        <input type="text" id="designationname" name="designationname" class="form-control" onclick="charachters_validate('designationname')" minlength="3" maxlength="20" placeholder="Enter designation name" required>
+                        <input type="text" id="designationname" name="designationname" class="form-control" onclick="charachters_validate('designationname')" minlength="3" maxlength="50" placeholder="Enter designation name" required>
                         <input type="hidden" id="isactive" name="isactive" value='1' class="form-control">
                         <small class="errormsg_designationname"></small>
                     </div>
