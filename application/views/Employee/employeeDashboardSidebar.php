@@ -2,7 +2,7 @@
     <div class="ch-container col-sm-12" style="margin-top: 5%">
         <div class="row">
             <div class="box col-sm-2">
-                <div class="box-inner" style="height: 700px;">
+                <div class="box-inner sidebar-property" style="height: 700px;">
                     <div class="box-header well">
                         <h2><i class="fa fa-angle-double-right "></i> Menus</h2>
                         <div class="box-icon">

@@ -69,7 +69,7 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].departmentname+"</td><td>"+ jsondata[i].departmentshortname+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditDepartment(" +checkId+ "," +strdepartmentname+ "," +strdepartmentshortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].departmentname+"</td><td>"+ jsondata[i].departmentshortname+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditDepartment(" +checkId+ "," +strdepartmentname+ "," +strdepartmentshortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='departmentDetailsView(" +checkId+ ")' data-toggle='modal' data-target='#departmentDetials'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_department").html(html);
                 }
@@ -88,5 +88,17 @@ $cname = $this->uri->segment(2);
         $('#isactive').val(isactiveval);
         $('#departmentname').focus();
         $("#createDepartment").html('Update');
+    }
+    function departmentDetailsView(id) {
+        $.ajax({
+            type:'post',
+            url:'<?= base_url("Department/departmentViewDetails")?>',
+            data:{id:id},
+            success:function (res) {
+                if(res!=false){
+                    $('#loadDepartmentDetails').html(res);
+                }
+            }
+        });
     }
 </script>

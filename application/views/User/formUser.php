@@ -150,4 +150,26 @@ $cname = $this->uri->segment(2);
         </div>
     </div>
 </div>
+<div class="modal fade" id="userDetials">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header red" style="background-color: cornflowerblue;">
+                <h3 class="text-white" style="">User Details</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="loadUserDetails"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-right btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 

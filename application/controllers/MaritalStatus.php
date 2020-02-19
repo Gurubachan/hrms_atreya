@@ -166,4 +166,10 @@ class MaritalStatus extends CI_Controller {
             exit();
         }
     }
+    public function maritalStatusViewDetails(){
+        extract($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(19,null,$where);
+        $this->load->view("MaritalStatus/maritalStatusDetails",$data);
+    }
 }

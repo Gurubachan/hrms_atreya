@@ -16,6 +16,7 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
+//            print_r($_POST);
             if (isset($txtSlno) && preg_match("/[0-9a-zA-Z]{2,11}/", $txtSlno)) {
                 $insert[0]['empslno'] = strtoupper($txtSlno);
             } else {
@@ -282,7 +283,6 @@ class Employee extends CI_Controller
             exit();
         }
     }
-
     public function create_employee_qualification()
     {
         try {
@@ -356,7 +356,6 @@ class Employee extends CI_Controller
             exit();
         }
     }
-
     public function create_employee_upload_documnet_details()
     {
         try {
@@ -426,7 +425,6 @@ class Employee extends CI_Controller
             exit();
         }
     }
-
     public function create_employee_bank_details()
     {
         try {
@@ -494,7 +492,6 @@ class Employee extends CI_Controller
             exit();
         }
     }
-
 //    public function employee_report($checkparams=null){
 //    $data=array();
 ////    $request = json_decode(json_encode($_POST), FALSE);
@@ -1085,6 +1082,188 @@ class Employee extends CI_Controller
             exit();
         }
 
+    }
+    public function details_emp_report(){
+        try{
+            extract($_POST);
+            if(isset($id) && $id!=''){
+                $data=array();
+                $abc = array();
+                $where ="id=$id";
+//                basic detials
+                $res = $this->Model_Db->select(93, null,$where);
+                    if ($res != false) {
+                        $where = "isactive=true";
+                        $maritalstatus=$this->Model_Db->select(19, null, $where);
+                        $gender=$this->Model_Db->select(17, null, $where);
+                        $designation=$this->Model_Db->select(25, null, $where);
+                        $department=$this->Model_Db->select(28, null, $where);
+                        foreach ($res as $r) {
+                            $data['basic'] = array(
+                                'id' => $r->id,
+                                'empfname' => $r->empfirstname,
+                                'empmname' => $r->empmiddlename,
+                                'emplname' => $r->emplastname,
+                                'empfathername' => $r->empfathername,
+                                'empmothername' => $r->empmothername,
+                                'empspousename' => $r->empspousename,
+                                'empdob' => "",
+                                'empdoj' => "",
+                                'empslno' => $r->empslno,
+                                'creationdate' => $r->createdat,
+                                'lastmodifiedon' => $r->updatedat,
+                                'religionid'=> $r->religionid,
+                                'isactive' => $r->isactive
+                            );
+                            if($r->empdob!=null){
+                                $data['basic']['empdob']= date("d-m-Y",strtotime($r->empdob));
+                            }
+                            if($r->empdoj!=null){
+                                $data['basic']['empdoj']= date("d-m-Y",strtotime($r->empdoj));
+                            }
+                            foreach ($maritalstatus as $mrs) {
+                                if($r->empmaritalstatusid == $mrs->id){
+                                    $data['basic']['maritalstatusid'] = $mrs->id;
+                                    $data['basic']['maritalstatusname'] = $mrs->statusname;
+                                }
+                            }
+                            foreach ($gender as $gnd){
+                                if($r->empgenderid == $gnd->id){
+                                    $data['basic']['genderid'] = $gnd->id;
+                                    $data['basic']['gendername'] = $gnd->gendername;
+                                }
+                            }
+                            foreach ($designation as $des){
+                                if($r->empdesid == $des->id){
+                                    $data['basic']['designationid'] = $des->id;
+                                    $data['basic']['designationname'] = $des->designationname;
+                                }
+                            }
+                            foreach ($department as $dept){
+                                if($r->empdepmappingid == $dept->id){
+                                    $data['basic']['departmentid'] = $dept->id;
+                                    $data['basic']['deptname'] = $dept->departmentname;
+                                    $data['basic']['deptcompanyname'] = $dept->companyname;
+                                }
+                            }
+                        }
+
+                        $where = "empid=$id and isactive=true";
+                        $res = $this->Model_Db->select(95, null, $where);
+                        if($res!=false){
+                            $data['communication'][] = array(
+                                'id' => $res[0]->id,
+                                'empcontact' => $res[0]->empcontact,
+                                'empemail' => $res[0]->empemail,
+                                'empaddress' => $res[0]->empaddress,
+                                'empaltcontact' => $res[0]->empaltcontact,
+                                'emppresentaddress' => $res[0]->emppresentaddress,
+                                'creationdate' => $res[0]->createdat,
+                                'lastmodifiedon' => $res[0]->updatedat,
+                                'isactive' => $res[0]->isactive
+                            );
+                        }
+//
+                        $res = $this->Model_Db->select(99, null, $where);
+                        if ($res != false) {
+                            $data['experience'][] = array(
+                                'id' => $res[0]->id,
+                                'companyname' => $res[0]->companyname,
+                                'jobrole' => $res[0]->jobrole,
+                                'fromdate' => $res[0]->fromdate,
+                                'todate' => $res[0]->todate,
+                                'creationdate' => $res[0]->createdat,
+                                'lastmodifiedon' => $res[0]->updatedat,
+                                'isactive' => $res[0]->isactive
+                            );
+                            foreach ($designation as $des){
+                                if($res[0]->jobdesid == $des->id){
+                                    $data['experience']['desginationid'] = $des->id;
+                                    $data['experience']['designationname'] =$des->designationname;
+                                }
+                            }
+                        }
+                        $where = "empid=$id and isactive=true";
+                        $res = $this->Model_Db->select(97, null, $where);
+                        if ($res != false) {
+                            $where = "isactive=true";
+                            $education = $this->Model_Db->select(21,null,$where);
+                                $data['education'][] = array(
+                                    'id' => $res[0]->id,
+                                    'empedustream' => $res[0]->empedustream,
+                                    'empeduboard' => $res[0]->empeduboard,
+                                    'empregdno' => $res[0]->empregdno,
+                                    'emppercentage' => $res[0]->emppercentage,
+                                    'documentupload' => $res[0]->documentupload,
+                                    'creationdate' => $res[0]->createdat,
+                                    'lastmodifiedon' => $res[0]->updatedat,
+                                    'isactive' => $res[0]->isactive
+                                );
+                                foreach ($education as $edu){
+                                    if($res[0]->empeduid == $edu->id){
+                                        $data['education']['educationid'] = $edu->id;
+                                        $data['education']['educationname'] = $edu->educationname;
+                                    }
+                                }
+                        }
+                        $res = $this->Model_Db->select(103, null, $where);
+                        if ($res != false) {
+                            $where = "isactive=true";
+                            $documenttype = $this->Model_Db->select(101,null,$where);
+                                $data['docuements'][] = array(
+                                    'id' => $res[0]->id,
+                                    'documentnumber' => $res[0]->documentnumber,
+                                    'documentupload' => $res[0]->documentupload,
+                                    'creationdate' => $res[0]->createdat,
+                                    'lastmodifiedon' => $res[0]->updatedat,
+                                    'isactive' => $res[0]->isactive
+                                );
+                                foreach ($documenttype as $doctype){
+                                    if($res[0]->documenttypeid == $doctype->id){
+                                        $data['docuements']['documenttypeid'] = $doctype->id;
+                                        $data['docuements']['documenttypename'] = $doctype->documenttypename;
+                                    }
+                                }
+
+                        }
+                        $res = $this->Model_Db->select(35, null, $where);
+                        if ($res != false) {
+                            $where ="isactive=true";
+                            $bank = $this->Model_Db->select(33,null,$where);
+                                $data['bankdetails'][] = array(
+                                    'id' => $res[0]->id,
+                                    'acno' => $res[0]->acno,
+                                    'ifsccode' => $res[0]->ifsccode,
+                                    'creationdate' => $res[0]->createdat,
+                                    'documentupload'=> $res[0]->documentupload,
+                                    'lastmodifiedon' => $res[0]->updatedat,
+                                    'isactive' => $res[0]->isactive
+                                );
+                                foreach ($bank as $b){
+                                    if($res[0]->bankid == $b->id){
+                                        $data['bankdetails']['bankid'] = $b->id;
+                                        $data['bankdetails']['bankname'] = $b->bankname;
+                                    }
+                                }
+                        }
+                }else{
+                    $data['message'] = "Error";
+                    $data['data'] = "No data found";
+                    $data['status'] = false;
+                }
+            }else{
+                $data['message'] = "Error";
+                $data['data'] = "No data found";
+                $data['status'] = false;
+            }
+            echo json_encode($data);
+
+        }catch (Exception $e){
+            $data['message']="Message:".$e->getMessage();
+            $data['data']='No data found';
+            echo json_encode($data);
+            exit();
+        }
     }
 }
 

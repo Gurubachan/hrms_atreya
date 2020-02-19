@@ -164,26 +164,26 @@ class JobPosting extends CI_Controller {
             exit();
         }
     }
-    public function load_jobposting(){
-        try{
-            $data=array();
-            $where="isactive=true";
-            $res=$this->Model_Db->select(17,null,$where);
-            $data[]="<option value=''>Select</option>";
-            if($res!=false){
-                foreach ($res as $r){
-                    $data[]="<option value='$r->id'>$r->gendername</option>";
-                }
-            }
-            echo json_encode($data);
-        }catch (Exception $e){
-            $data['message']= "Message:".$e->getMessage();
-            $data['status']=false;
-            $data['error']=true;
-            echo json_encode($data);
-            exit();
-        }
-    }
+//    public function load_jobposting(){
+//        try{
+//            $data=array();
+//            $where="isactive=true";
+//            $res=$this->Model_Db->select(17,null,$where);
+//            $data[]="<option value=''>Select</option>";
+//            if($res!=false){
+//                foreach ($res as $r){
+//                    $data[]="<option value='$r->id'>$r->gendername</option>";
+//                }
+//            }
+//            echo json_encode($data);
+//        }catch (Exception $e){
+//            $data['message']= "Message:".$e->getMessage();
+//            $data['status']=false;
+//            $data['error']=true;
+//            echo json_encode($data);
+//            exit();
+//        }
+//    }
     public function report_jobposting(){
         try{
             $data=array();

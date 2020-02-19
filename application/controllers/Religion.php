@@ -154,5 +154,11 @@ class Religion extends CI_Controller {
             exit();
         }
     }
+    public function religionViewDetails(){
+        extract($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(39,null,$where);
+        $this->load->view("Religion/viewDetails",$data);
+    }
 }
 

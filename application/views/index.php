@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                         <form method="post" class="form-horizontal" name="frmLogin" role="form" id="frmLogin">
                             <div style="margin-bottom: 25px">
-                                <input id="username" type="text" class="form-control" name="username"  autofocus  placeholder="username or email" required>
+                                <input id="username" type="text" class="form-control" name="username"  autofocus  placeholder="username or email" autocomplete="off" required>
                             </div>
                             <br>
                             <div style="margin-top:10px" class="form-group">
@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <form method="post" class="form-horizontal" name="frmPassword" role="form" id="frmPassword" style="display: none;">
                             <div style="margin-bottom: 25px">
                                 <!--                                <input type="hidden" id="userid" value="" hidden>-->
-                                <input id="password" type="password" class="form-control"  name="password"  placeholder="password" required autofocus>
+                                <input id="password" type="password" class="form-control"  name="password"  placeholder="password" autocomplete="off" required autofocus>
                             </div>
                             <br>
                             <div style="margin-top:10px" class="form-group">
@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <form method="post" class="form-horizontal" name="frmOtp" role="form" id="frmOtp" style="display: none;">
                             <div style="margin-bottom: 25px">
                                 <input type="hidden" id="otp_check" name="otp_check" value="1">
-                                <input id="otp" type="text" class="form-control" name="otp" autofocus  minlength="6" maxlength="6" placeholder="otp">
+                                <input id="otp" type="text" class="form-control" name="otp" autofocus  minlength="6" maxlength="6" placeholder="otp" autocomplete="off">
                             </div>
                             <br>
                             <div style="margin-top:10px" class="form-group">

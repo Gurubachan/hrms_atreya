@@ -327,4 +327,10 @@ class Department extends CI_Controller {
             exit();
         }
     }
+    public function departmentViewDetails(){
+        extract($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(23,null,$where);
+        $this->load->view("Department/departmentVeiwDetails",$data);
+    }
 }

@@ -146,7 +146,7 @@ $cname = $this->uri->segment(2);
                         }
                         html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].typename+"</td><td>"+jsondata[i].username+"</td><td>"+fname+" "+mname+" "+lname+"</td>" +
                             "<td>"+ jsondata[i].emailid+"</td><td>"+ jsondata[i].mobile+"</td><td>"+ jsondata[i].dob+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' " +
-							"onclick='reportEditUsertype(" +checkId+ "," +jsondata[i].usertypeid+ "," +jsondata[i].mobile+ "," +strfname+ ","+strmname+","+strlname+","+strusername+","+stremail+","+strdob+"," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
+							"onclick='reportEditUsertype(" +checkId+ "," +jsondata[i].usertypeid+ "," +jsondata[i].mobile+ "," +strfname+ ","+strmname+","+strlname+","+strusername+","+stremail+","+strdob+"," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='userDetailsView(" +checkId+ ")' data-toggle='modal' data-target='#userDetials'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_user").html(html);
                 }
@@ -171,5 +171,17 @@ $cname = $this->uri->segment(2);
         $('#isactive').val(isactiveval);
         $('#fname').focus();
         $("#createUserType").html("Update");
+    }
+    function userDetailsView(id) {
+            $.ajax({
+                type:'post',
+                url:'<?= base_url("User/userViewDetails")?>',
+                data:{id:id},
+                success:function (res) {
+                    if(res!=false){
+                        $('#loadUserDetails').html(res);
+                    }
+                }
+            });
     }
 </script>

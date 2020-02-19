@@ -1,5 +1,16 @@
 <?php
+
 if($result!=false){
+    if($user !=false){
+        $entryby ="";
+        foreach ($user as $u){
+            if($u->entryby!=null){
+                $entryby = $u->fname;
+            }else{
+                $entryby ="asd";
+            }
+        }
+    }
     foreach ($result as $r) {
         if($r->isactive == "t"){
             $isactive = "Active";
@@ -28,36 +39,36 @@ if($result!=false){
                    <table class="table-bordered">
                        <!--                <tr  style="border: 1px solid red;"><td><h4>Basic Details</h4></td><td></td></tr>-->
                        <tr class="">
-                           <td class="" style="width: 300px;">Education ID:</td>
-                           <td class=""><?php echo $r->id?></td>
+                           <td class="p-1" style="width: 300px;">Education ID:</td>
+                           <td class="p-1"><?php echo $r->id?></td>
                        </tr>
                        <tr class="">
-                           <td class="">Education Name:</td>
-                           <td class=""><?php echo $r->educationname?></td>
+                           <td class="p-1">Education Name:</td>
+                           <td class="p-1"><?php echo $r->educationname?></td>
                        </tr>
                        <tr class="">
-                           <td class="">Education Short Name:</td>
-                           <td class=""><?php echo $shortname?></td>
+                           <td class="p-1">Education Short Name:</td>
+                           <td class="p-1"><?php echo $shortname?></td>
                        </tr>
                        <tr class="">
-                           <td class="">Entry By:</td>
-                           <td class=""><?php echo $r->entryby?></td>
+                           <td class="p-1">Entry By:</td>
+                           <td class="p-1"><?php echo $entryby?></td>
                        </tr>
                        <tr class="">
-                           <td class="">Created By:</td>
-                           <td class=""><?php echo $r->createdat?></td>
+                           <td class="p-1">Created By:</td>
+                           <td class="p-1"><?php echo $r->createdat?></td>
                        </tr>
                        <tr class="">
-                           <td class="">Updated at:</td>
-                           <td class=""><?php echo $updatedat?></td>
+                           <td class="p-1">Updated at:</td>
+                           <td class="p-1"><?php echo $updatedat?></td>
                        </tr>
                        <tr class="">
-                           <td class="">Updated By:</td>
-                           <td class=""><?php echo $updatedby?></td>
+                           <td class="p-1">Updated By:</td>
+                           <td class="p-1"><?php echo $updatedby?></td>
                        </tr>
                        <tr class="">
-                           <td class="">IsActive:</td>
-                           <td class=""><?php echo $isactive?></td>
+                           <td class="p-1">IsActive:</td>
+                           <td class="p-1"><?php echo $isactive?></td>
                        </tr>
                    </table>
                </div>

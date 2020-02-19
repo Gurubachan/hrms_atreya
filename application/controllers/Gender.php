@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Kolkata');
+//header("Access-Control-Allow-Origin: *");
 class Gender extends CI_Controller {
     public function __construct()
     {
@@ -160,5 +161,11 @@ class Gender extends CI_Controller {
             echo json_encode($data);
             exit();
         }
+    }
+    public function genderViewDetails(){
+        extract($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(17,null,$where);
+        $this->load->view("Gender/genderDetails",$data);
     }
 }

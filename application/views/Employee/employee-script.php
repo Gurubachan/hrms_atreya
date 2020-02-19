@@ -246,10 +246,9 @@
 }
     $("#basic").submit(function (e) {
     e.preventDefault();
-    var frm = $(this).serialize();
+    var frm = $(this).serialize()+'&'+$.param({'txtid':txtid });;
     $.ajax({
             type:"post",
-            // crossDomain:true,
             url:'<?=base_url("Employee/create_employee_basic_details")?>',
             data:frm,
             success:function(resp) {
@@ -262,6 +261,12 @@
                       $('#documentationtabbar').removeClass('disabled');
                       $('#bankdetailstabbar').removeClass('disabled');
                           txtid = jsondata.empid;
+                      report_emp_basic(1);
+                      report_current_emp_communication();
+                      report_current_emp_experience();
+                      report_current_emp_qualification();
+                      report_current_emp_document_uploads();
+                      report_current_emp_bankdetails();
                           if(txtid!=null){
                               $('.nav-tabs > .active').next().trigger('click');
                               $("#basictabbar").removeClass('active');
@@ -472,7 +477,7 @@
                              "<td>"+jsondata[i].deptcompanyname+"</td><td>"+jsondata[i].deptname+"</td>" +
                              "<td>"+jsondata[i].designationname+"</td>" +
                              "<td><button class='btn btn-sm'" +
-                             " onclick='editEmp("+jsondata[i].id+","+JSON.stringify(jsondata[i].empslno)+","+JSON.stringify(jsondata[i].empfname)+","+JSON.stringify(jsondata[i].empmname)+","+JSON.stringify(jsondata[i].emplname)+","+JSON.stringify(jsondata[i].empfathername)+","+JSON.stringify(jsondata[i].empmothername)+","+JSON.stringify(jsondata[i].empspousename)+","+JSON.stringify(jsondata[i].empdob)+","+JSON.stringify(jsondata[i].empdoj)+","+jsondata[i].maritalstatusid+","+jsondata[i].genderid+","+jsondata[i].designationid+","+jsondata[i].departmentid+","+jsondata[i].religionid+")' style='border: 1px solid red'>Edit</button></td></tr>";
+                             " onclick='editEmp("+jsondata[i].id+","+JSON.stringify(jsondata[i].empslno)+","+JSON.stringify(jsondata[i].empfname)+","+JSON.stringify(jsondata[i].empmname)+","+JSON.stringify(jsondata[i].emplname)+","+JSON.stringify(jsondata[i].empfathername)+","+JSON.stringify(jsondata[i].empmothername)+","+JSON.stringify(jsondata[i].empspousename)+","+JSON.stringify(jsondata[i].empdob)+","+JSON.stringify(jsondata[i].empdoj)+","+jsondata[i].maritalstatusid+","+jsondata[i].genderid+","+jsondata[i].designationid+","+jsondata[i].departmentid+","+jsondata[i].religionid+")' style='border: 1px solid red'>Edit</button>&nbsp;<button class='btn btn-sm' onclick='empDetailsReport("+jsondata[i].id+")' style='border: 1px solid red'>Details</button></td></tr>";
 
                      }
                      $('#load_emp_basic_details').html(html);
@@ -481,13 +486,12 @@
          });
      }
     function editEmp(id,slno,fname,mname,lname,fathername,mothername,spouse,empdob,empdoj,maritalid,genderid,desginationid,department,religionid) {
-
         if(maritalid==2){
             $('#txtSpousename').attr('disabled',true);
         }else{
             $('#txtSpousename').attr('disabled',false);
         }
-        $('#txtid').val(id);
+        txtid = id ;
         $('#txtSlno').val(slno);
         $('#cboDepartmentmappingid').val(department);
         $('#cboDesignationid').val(desginationid);
@@ -506,6 +510,7 @@
         // $('#isactive').val(isactiveval);
         $('#txtSlno').focus();
         $("#createBasicDetails").html('Update');
+
 
     }
     function report_current_emp_communication(){
@@ -626,5 +631,14 @@
                 }
             }
         });
+    }
+    function empDetailsReport(id) {
+    $.ajax({
+        type:'post',
+        url:'<?=base_url("Employee/details_emp_report")?>',
+        data:{id:id},
+        success:function (res) {
+        }
+    });
     }
 </script>

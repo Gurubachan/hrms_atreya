@@ -66,7 +66,7 @@ $cname = $this->uri->segment(2);
                         }else{
                             isactive= "<button id='action"+checkId+"' onclick='editIsactive(0,"+checkId+","+updatedid+","+urlid+")'><i class='fa fa-toggle-off fa-2x' ></i></button>";
                         }
-                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].gendername+"</td><td>"+ jsondata[i].gendernshortame+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditGender(" +checkId+ "," +strgender+ "," +strgendershortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='detailsView(" +checkId+ ")'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
+                        html +=("<tr> <td>"+j+"</td><td>"+ jsondata[i].gendername+"</td><td>"+ jsondata[i].gendernshortame+"</td><td>"+isactive+"</td><td><button class='btn editBtn btn-sm' onclick='reportEditGender(" +checkId+ "," +strgender+ "," +strgendershortname+ "," +editisactive+ ")'><i class='fa fa-pencil-alt' title='Record Edit'></i></button>&nbsp;<button class='btn editBtn btn-sm' onclick='genderViewDetails(" +checkId+ ")' data-toggle='modal' data-target='#genderDetials'><i class='fa fa-tasks' title='View Details'></i></button></td></tr>");
                     }
                     $("#load_gendername").html(html);
                 }
@@ -85,5 +85,17 @@ $cname = $this->uri->segment(2);
         $('#isactive').val(isactiveval);
         $('#gendername').focus();
         $("#createGender").html("Update");
+    }
+    function genderViewDetails(id) {
+        $.ajax({
+            type:'post',
+            url:'<?= base_url("Gender/genderViewDetails")?>',
+            data:{id:id},
+            success:function (res) {
+                if(res!=false){
+                    $('#loadGenderDetails').html(res);
+                }
+            }
+        });
     }
 </script>

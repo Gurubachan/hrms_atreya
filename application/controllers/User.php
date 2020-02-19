@@ -661,4 +661,49 @@ class User extends CI_Controller {
             exit();
         }
     }
+    public function userViewDetails(){
+        extract($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(3,null,$where);
+        $this->load->view("User/userDetails",$data);
+    }
+//public function userViewDetails(){
+//    try{
+//        extract($_POST);
+//        $orderby="fname asc";
+//        $where="id=$id";
+//        $res = $this->Model_Db->select(1, null, $where,$orderby);
+//        if ($res != false) {
+//            foreach ($res as $r) {
+//                $data[] = array(
+//                    'id' => $r->id,
+//                    'usertypeid' => $r->usertypeid,
+//                    'fname' => $r->fname,
+//                    'mname' => $r->mname,
+//                    'lname' => $r->lname,
+//                    'username' => $r->username,
+//                    'emailid' => $r->emailid,
+//                    'mobile' => $r->mobile,
+//                    'dob' => $r->dob,
+//                    'logo' => $r->logo,
+//                    'creationdate' => $r->createdat,
+//                    'lastmodifiedon' => $r->updatedat,
+//                    'isactive' => $r->isactive
+//                );
+//            }
+//        }else{
+//            $data['message']= "Error";
+//            $data['data']='Data not found';
+//            $data['status']=false;
+//            $data['error']=true;
+//        }
+//        echo json_encode($data);
+//    }catch (Exception $e){
+//        $data['message']= "Message:".$e->getMessage();
+//        $data['status']=false;
+//        $data['error']=true;
+//        echo json_encode($data);
+//        exit();
+//    }
+//}
 }

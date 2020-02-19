@@ -161,11 +161,65 @@ class Education extends CI_Controller {
             exit();
         }
     }
+//    public function educationViewDetails(){
+//        try {
+//            extract($_POST);
+//            $data=array();
+////            $status=true;
+//            if(isset($id) && $id!=""){
+//                $where="id=$id";
+//                $edu=$this->Model_Db->select(21,null,$where);
+//                $user=$this->Model_Db->select(3,null,$where);
+//                if($user!=null){
+//                    foreach ($edu as $e){
+//                        $data[]= array(
+//                            'educationname' => $e->educationname,
+//                            'createdat' => $e->createdat,
+//                            'updatedby' => $e->updatedby,
+//                            'updatedat' => $e->isactive,
+//                            'educationshortname' => $e->educationshortname
+//                        );
+//                        if($e->entryby!=""){
+//                           foreach ($user as $u){
+//                               if($e->entryby == $u->id){
+//                                   $data[]=array(
+//                                       'entryby' => $u->entryby,
+//                                       'fname' => $u->fname
+//                                   );
+//                               }
+//                           }
+//                        }else{
+//                            $data['message'] = "user id not found";
+//                            $data['status'] = false;
+//                        }
+//                    }
+//                }else{
+//                    $data['message']="ID not found";
+//                    $data['status']=false;
+//
+//                }
+////                $this->load->view("Education/viewDetails",$data);
+//
+//
+//            }else{
+//                $data['message']= "ID not found";
+//                $data['status']=false;
+//                $data['error']=true;
+//            }
+//            echo json_encode($data);
+//        }catch(Exception $e){
+//            $data['message']= "Message:".$e->getMessage();
+//            $data['status']=false;
+//            $data['error']=true;
+//            echo json_encode($data);
+//            exit();
+//        }
+//    }
     public function educationViewDetails(){
         extract($_POST);
-//        print_r($_POST);
         $where="id=$id";
         $data['result']=$this->Model_Db->select(21,null,$where);
+        $data['user']=$this->Model_Db->select(3,null,$where);
         $this->load->view("Education/viewDetails",$data);
     }
 }

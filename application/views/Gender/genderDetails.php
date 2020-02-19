@@ -16,10 +16,10 @@ if($result!=false){
         }else{
             $updatedby = $r->updatedby;
         }
-        if($r->stateshortname ==""){
+        if($r->gendernshortame ==""){
             $shortname = "<span style='color:red'>No Updated Yet</span>";
         }else{
-            $shortname = $r->stateshortname;
+            $shortname = $r->gendernshortame;
         }
         ?>
         <div class="table-responsive">
@@ -28,12 +28,8 @@ if($result!=false){
                    <table class="table-bordered">
                        <!--                <tr  style="border: 1px solid red;"><td><h4>Basic Details</h4></td><td></td></tr>-->
                        <tr class="">
-                           <td class="p-1" style="width: 300px;">State Name:</td>
-                           <td class="p-1"><?php echo $r->statename?></td>
-                       </tr>
-                       <tr class="">
-                           <td class="p-1">State Short Name:</td>
-                           <td class="p-1"><?php echo $shortname?></td>
+                           <td class="p-1" style="width: 300px;">Gender:</td>
+                           <td class="p-1"><?php echo $r->gendername?></td>
                        </tr>
                        <tr class="">
                            <td class="p-1">Entry By:</td>

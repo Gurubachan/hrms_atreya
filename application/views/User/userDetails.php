@@ -16,24 +16,27 @@ if($result!=false){
         }else{
             $updatedby = $r->updatedby;
         }
-        if($r->stateshortname ==""){
-            $shortname = "<span style='color:red'>No Updated Yet</span>";
+        if($r->mname!=""){
+            $name = $r->fname." ".$r->mname." ".$r->lname;
         }else{
-            $shortname = $r->stateshortname;
+            $name = $r->fname." ".$r->lname;
         }
-        ?>
+       ?>
         <div class="table-responsive">
            <div class="">
                <div class="col-12">
                    <table class="table-bordered">
-                       <!--                <tr  style="border: 1px solid red;"><td><h4>Basic Details</h4></td><td></td></tr>-->
                        <tr class="">
-                           <td class="p-1" style="width: 300px;">State Name:</td>
-                           <td class="p-1"><?php echo $r->statename?></td>
+                           <td class="p-1" style="width: 300px;">Name:</td>
+                           <td class="p-1"><?php echo $name?></td>
                        </tr>
                        <tr class="">
-                           <td class="p-1">State Short Name:</td>
-                           <td class="p-1"><?php echo $shortname?></td>
+                           <td class="p-1" style="width: 300px;">Email:</td>
+                           <td class="p-1"><?php echo $r->emailid?></td>
+                       </tr>
+                       <tr class="">
+                           <td class="p-1" style="width: 300px;">Mobile:</td>
+                           <td class="p-1"><?php echo $r->mobile?></td>
                        </tr>
                        <tr class="">
                            <td class="p-1">Entry By:</td>

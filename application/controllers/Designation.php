@@ -161,4 +161,11 @@ class Designation extends CI_Controller {
             exit();
         }
     }
+    public function designationViewDetails(){
+        extract($_POST);
+        $where="id=$id";
+        $data['result']=$this->Model_Db->select(25,null,$where);
+        $data['user']=$this->Model_Db->select(3,null,$where);
+        $this->load->view("Designation/designationVeiwDetails",$data);
+    }
 }
