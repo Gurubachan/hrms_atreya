@@ -152,6 +152,7 @@ class Employee extends CI_Controller
             extract($_POST);
             $data = array();
             $insert = array();
+            $update = array();
             $status = true;
             if (isset($txtid) && $txtid != null) {
                 $insert[0]['empid'] = $txtid;
@@ -187,9 +188,12 @@ class Employee extends CI_Controller
                 $status = false;
                 $data['data'] = "Employee address error";
             }
+            $update[0]['isactive'] = "false";
             if ($status) {
+                $where="isactive=true";
                 $insert[0]['entryby'] = $this->session->login['userid'];
                 $insert[0]['createdat'] = date("Y-m-d H:i:s");
+                $this->Model_Db->update(95,$update,"empid",$txtid,$where);
                 $res = $this->Model_Db->insert(95, $insert);
                 if ($res != false) {
                     $data['message'] = "Successful";
@@ -400,6 +404,9 @@ class Employee extends CI_Controller
                 $data['data'] = "Employee id not found";
             }
             if ($status) {
+                $where='isactive=true';
+                $update[0]['isactive'] = "false";
+                $this->Model_Db->update(103,$update,"empid",$txtid,$where);
                 $res = $this->Model_Db->insert(103, $insert);
                 if ($res != false) {
                     $data['message'] = "Successful";
@@ -467,6 +474,9 @@ class Employee extends CI_Controller
             }
 
             if ($status) {
+                $where='isactive=true';
+                $update[0]['isactive'] = "false";
+                $this->Model_Db->update(35,$update,"empid",$txtid,$where);
                 $res = $this->Model_Db->insert(35, $insert);
                 if ($res != false) {
                     $data['message'] = "Successful";
@@ -688,7 +698,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                $where = "empid=$request->checkparams";
+                $where = "empid=$request->checkparams and isactive=true";
 //                switch ($request->checkparams) {
 //                    case 1:
 //                        $where = "DATE(createdat)=DATE('$current_date')";
@@ -1098,6 +1108,9 @@ class Employee extends CI_Controller
                         $gender=$this->Model_Db->select(17, null, $where);
                         $designation=$this->Model_Db->select(25, null, $where);
                         $department=$this->Model_Db->select(28, null, $where);
+                        $religon=$this->Model_Db->select(39, null, $where);
+                        $usertype=$this->Model_Db->select(1, null, $where);
+                        $user=$this->Model_Db->select(3, null, $where);
                         foreach ($res as $r) {
                             $data['basic'] = array(
                                 'id' => $r->id,
@@ -1113,6 +1126,7 @@ class Employee extends CI_Controller
                                 'creationdate' => $r->createdat,
                                 'lastmodifiedon' => $r->updatedat,
                                 'religionid'=> $r->religionid,
+                                'entrybyid' => $r->entryby,
                                 'isactive' => $r->isactive
                             );
                             if($r->empdob!=null){
@@ -1146,6 +1160,30 @@ class Employee extends CI_Controller
                                     $data['basic']['deptcompanyname'] = $dept->companyname;
                                 }
                             }
+                            foreach ($religon as $rel){
+                                if($r->religionid == $rel->id){
+                                    $data['basic']['religionid'] = $rel->id;
+                                    $data['basic']['religionname'] = $rel->religion;
+                                }
+                            }
+//                            foreach ($usertype as $utype){
+//                                foreach ($user as $u){
+//                                    if($u->usertypeid == $utype->id){
+//                                        $data['basic']['entrybyid'] = $u->id;
+//                                        $data['basic']['entrybyfname'] = $u->fname;
+//                                        $data['basic']['entrybymname'] = $u->mname;
+//                                        $data['basic']['entrybylname'] = $u->lname;
+//                                    }
+//                                }
+//                            }
+                            foreach ($user as $u){
+                                if($r->entryby == $u->id){
+                                    $data['basic']['entrybyid'] = $u->id;
+                                        $data['basic']['entrybyfname'] = $u->fname;
+                                        $data['basic']['entrybymname'] = $u->mname;
+                                        $data['basic']['entrybylname'] = $u->lname;
+                                }
+                            }
                         }
 
                         $where = "empid=$id and isactive=true";
@@ -1162,25 +1200,45 @@ class Employee extends CI_Controller
                                 'lastmodifiedon' => $res[0]->updatedat,
                                 'isactive' => $res[0]->isactive
                             );
+                            foreach ($user as $u){
+                                if($res[0]->entryby == $u->id){
+                                    $data['communication']['entrybyid'] = $u->id;
+                                    $data['communication']['entrybyfname'] = $u->fname;
+                                    $data['communication']['entrybymname'] = $u->mname;
+                                    $data['communication']['entrybylname'] = $u->lname;
+                                }
+                            }
                         }
 //
                         $res = $this->Model_Db->select(99, null, $where);
                         if ($res != false) {
-                            $data['experience'][] = array(
-                                'id' => $res[0]->id,
-                                'companyname' => $res[0]->companyname,
-                                'jobrole' => $res[0]->jobrole,
-                                'fromdate' => $res[0]->fromdate,
-                                'todate' => $res[0]->todate,
-                                'creationdate' => $res[0]->createdat,
-                                'lastmodifiedon' => $res[0]->updatedat,
-                                'isactive' => $res[0]->isactive
-                            );
-                            foreach ($designation as $des){
-                                if($res[0]->jobdesid == $des->id){
-                                    $data['experience']['desginationid'] = $des->id;
-                                    $data['experience']['designationname'] =$des->designationname;
+                            $i=0;
+                            foreach ($res as $r) {
+                                $data['experience'][] = array(
+                                    'id' => $r->id,
+                                    'companyname' => $r->companyname,
+                                    'jobrole' => $r->jobrole,
+                                    'fromdate' => $r->fromdate,
+                                    'todate' => $r->todate,
+                                    'creationdate' => $r->createdat,
+                                    'lastmodifiedon' => $r->updatedat,
+                                    'isactive' => $r->isactive
+                                );
+                                foreach ($designation as $des) {
+                                    if ($r->jobdesid == $des->id) {
+                                        $data['experience'][$i]['desginationid'] = $des->id;
+                                        $data['experience'][$i]['designationname'] = $des->designationname;
+                                    }
                                 }
+                                foreach ($user as $u){
+                                    if($r->entryby == $u->id){
+                                        $data['experience'][$i]['entrybyid'] = $u->id;
+                                        $data['experience'][$i]['entrybyfname'] = $u->fname;
+                                        $data['experience'][$i]['entrybymname'] = $u->mname;
+                                        $data['experience'][$i]['entrybylname'] = $u->lname;
+                                    }
+                                }
+                                $i++;
                             }
                         }
                         $where = "empid=$id and isactive=true";
@@ -1188,63 +1246,101 @@ class Employee extends CI_Controller
                         if ($res != false) {
                             $where = "isactive=true";
                             $education = $this->Model_Db->select(21,null,$where);
+                            $i=0;
+                            foreach ($res as $r) {
                                 $data['education'][] = array(
-                                    'id' => $res[0]->id,
-                                    'empedustream' => $res[0]->empedustream,
-                                    'empeduboard' => $res[0]->empeduboard,
-                                    'empregdno' => $res[0]->empregdno,
-                                    'emppercentage' => $res[0]->emppercentage,
-                                    'documentupload' => $res[0]->documentupload,
-                                    'creationdate' => $res[0]->createdat,
-                                    'lastmodifiedon' => $res[0]->updatedat,
-                                    'isactive' => $res[0]->isactive
+                                    'id' => $r->id,
+                                    'empedustream' => $r->empedustream,
+                                    'empeduboard' => $r->empeduboard,
+                                    'empregdno' => $r->empregdno,
+                                    'emppercentage' => $r->emppercentage,
+                                    'documentupload' => $r->documentupload,
+                                    'creationdate' => $r->createdat,
+                                    'lastmodifiedon' => $r->updatedat,
+                                    'isactive' => $r->isactive
                                 );
-                                foreach ($education as $edu){
-                                    if($res[0]->empeduid == $edu->id){
-                                        $data['education']['educationid'] = $edu->id;
-                                        $data['education']['educationname'] = $edu->educationname;
+                                foreach ($education as $edu) {
+                                    if ($res[0]->empeduid == $edu->id) {
+                                        $data['education'][$i]['educationid'] = $edu->id;
+                                        $data['education'][$i]['educationname'] = $edu->educationname;
                                     }
                                 }
+                                foreach ($user as $u){
+                                    if($r->entryby == $u->id){
+                                        $data['education'][$i]['entrybyid'] = $u->id;
+                                        $data['education'][$i]['entrybyfname'] = $u->fname;
+                                        $data['education'][$i]['entrybymname'] = $u->mname;
+                                        $data['education'][$i]['entrybylname'] = $u->lname;
+                                    }
+                                }
+                                $i++;
+                            }
                         }
                         $res = $this->Model_Db->select(103, null, $where);
                         if ($res != false) {
                             $where = "isactive=true";
                             $documenttype = $this->Model_Db->select(101,null,$where);
+                            $i=0;
+                            foreach ($res as $r) {
                                 $data['docuements'][] = array(
-                                    'id' => $res[0]->id,
-                                    'documentnumber' => $res[0]->documentnumber,
-                                    'documentupload' => $res[0]->documentupload,
-                                    'creationdate' => $res[0]->createdat,
-                                    'lastmodifiedon' => $res[0]->updatedat,
-                                    'isactive' => $res[0]->isactive
+                                    'id' => $r->id,
+                                    'documentnumber' => $r->documentnumber,
+                                    'documentupload' => $r->documentupload,
+                                    'creationdate' => $r->createdat,
+                                    'lastmodifiedon' => $r->updatedat,
+                                    'isactive' => $r->isactive
                                 );
-                                foreach ($documenttype as $doctype){
-                                    if($res[0]->documenttypeid == $doctype->id){
-                                        $data['docuements']['documenttypeid'] = $doctype->id;
-                                        $data['docuements']['documenttypename'] = $doctype->documenttypename;
+                                foreach ($documenttype as $doctype) {
+                                    if ($res[0]->documenttypeid == $doctype->id) {
+                                        $data['docuements'][$i]['documenttypeid'] = $doctype->id;
+                                        $data['docuements'][$i]['documenttypename'] = $doctype->documenttypename;
                                     }
                                 }
+                                foreach ($user as $u){
+                                    if($r->entryby == $u->id){
+                                        $data['docuements'][$i]['entrybyid'] = $u->id;
+                                        $data['docuements'][$i]['entrybyfname'] = $u->fname;
+                                        $data['docuements'][$i]['entrybymname'] = $u->mname;
+                                        $data['docuements'][$i]['entrybylname'] = $u->lname;
+                                    }
+                                }
+                                $i++;
+                            }
 
                         }
+
                         $res = $this->Model_Db->select(35, null, $where);
                         if ($res != false) {
+
                             $where ="isactive=true";
                             $bank = $this->Model_Db->select(33,null,$where);
+                            $i=0;
+                            foreach ($res as $r) {
                                 $data['bankdetails'][] = array(
-                                    'id' => $res[0]->id,
-                                    'acno' => $res[0]->acno,
-                                    'ifsccode' => $res[0]->ifsccode,
-                                    'creationdate' => $res[0]->createdat,
-                                    'documentupload'=> $res[0]->documentupload,
-                                    'lastmodifiedon' => $res[0]->updatedat,
-                                    'isactive' => $res[0]->isactive
+                                    'id' => $r->id,
+                                    'acno' => $r->acno,
+                                    'ifsccode' => $r->ifsccode,
+                                    'creationdate' => $r->createdat,
+                                    'documentupload' => $r->documentupload,
+                                    'lastmodifiedon' => $r->updatedat,
+                                    'isactive' => $r->isactive
                                 );
-                                foreach ($bank as $b){
-                                    if($res[0]->bankid == $b->id){
-                                        $data['bankdetails']['bankid'] = $b->id;
-                                        $data['bankdetails']['bankname'] = $b->bankname;
+                                foreach ($bank as $b) {
+                                    if ($res[0]->bankid == $b->id) {
+                                        $data['bankdetails'][$i]['bankid'] = $b->id;
+                                        $data['bankdetails'][$i]['bankname'] = $b->bankname;
                                     }
                                 }
+                                foreach ($user as $u){
+                                    if($r->entryby == $u->id){
+                                        $data['bankdetails'][$i]['entrybyid'] = $u->id;
+                                        $data['bankdetails'][$i]['entrybyfname'] = $u->fname;
+                                        $data['bankdetails'][$i]['entrybymname'] = $u->mname;
+                                        $data['bankdetails'][$i]['entrybylname'] = $u->lname;
+                                    }
+                                }
+                                $i++;
+                            }
                         }
                 }else{
                     $data['message'] = "Error";

@@ -15,19 +15,19 @@
                                     </div>
                                     <div class="box-content">
                                        <div class="row">
-                                           <div class="col-sm-4" style="margin:10px;">
+                                           <div class="col-sm-4" style="margin:20px;">
                                                <canvas id="totalEmployee"></canvas>
                                            </div>
                                            <div class="col-sm-4"></div>
                                            <div class="col-sm-4"></div>
                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-4" style="margin:10px;">
-                                                <canvas id="itDepartment"></canvas>
-                                            </div>
-                                            <div class="col-sm-4"></div>
-                                            <div class="col-sm-4"></div>
-                                        </div>
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-sm-4" style="margin:10px;">-->
+<!--                                                <canvas id="itDepartment"></canvas>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-sm-4"></div>-->
+<!--                                            <div class="col-sm-4"></div>-->
+<!--                                        </div>-->
                                     </div>
                                 </div>
                             </div>

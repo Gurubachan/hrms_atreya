@@ -713,3 +713,114 @@ $cname = $this->uri->segment(2);
              </div>
          </div>
      </div>
+<div class="modal fade" id="employeeDetials">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: cornflowerblue;">
+                <h5 class="text-white" style="">&nbsp;<span id="empName"></span>&nbsp; Details Report</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div id="accordion">
+                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                    <div class="card-header">
+                                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                                            Basic Details
+                                        </a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <table class="">
+                                                <tbody id="loadBasicEmployeeDetails">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                                            Communication Details
+                                        </a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <table class="">
+                                                <tbody id="loadCommunicationEmployeeDetails"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                                            Experience Details
+                                        </a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <table style="max-height: 100px; overflow-y:scroll;">
+                                                <tbody id="loadExperienceEmployeeDetails"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                                            Qualification Details
+                                        </a>
+                                    </div>
+                                    <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <table>
+                                                <tbody id="loadQualificationEmployeeDetails"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
+                                            Documents Details
+                                        </a>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <table>
+                                                <tbody id="loadDocumentsEmployeeDetails"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link" data-toggle="collapse" href="#collapseSix">
+                                            Bank Details
+                                        </a>
+                                    </div>
+                                    <div id="collapseSix" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            <table>
+                                                <tbody id="loadBankdetailsEmployeeDetails"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!--                <button type="button" class="btn btn-danger pull-right btn-sm" data-dismiss="modal">Edit</button>-->
+                <button type="button" class="btn btn-danger pull-right btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

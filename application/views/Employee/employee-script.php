@@ -17,7 +17,29 @@
         lowerToUpper('txtIFSCCode');
         lowerToUpper('txtSlno');
         religion('cboreligionid');
+
     });
+    // $('.owl-carousel').owlCarousel({
+    //     // loop:true,
+    //     // margin:10,
+    //     // nav:true,
+    //     margin:100,
+    //     loop:true,
+    //     autoWidth:true,
+    //     items:6
+        // responsive:{
+        //     0:{
+        //         items:1
+        //     },
+        //     600:{
+        //         items:3
+        //     },
+        //     1000:{
+        //         items:5
+        //     }
+        // }
+    // });
+
    var txtid = null;
     function showMyImage(fileInput) {
         var files = fileInput.files;
@@ -477,8 +499,7 @@
                              "<td>"+jsondata[i].deptcompanyname+"</td><td>"+jsondata[i].deptname+"</td>" +
                              "<td>"+jsondata[i].designationname+"</td>" +
                              "<td><button class='btn btn-sm'" +
-                             " onclick='editEmp("+jsondata[i].id+","+JSON.stringify(jsondata[i].empslno)+","+JSON.stringify(jsondata[i].empfname)+","+JSON.stringify(jsondata[i].empmname)+","+JSON.stringify(jsondata[i].emplname)+","+JSON.stringify(jsondata[i].empfathername)+","+JSON.stringify(jsondata[i].empmothername)+","+JSON.stringify(jsondata[i].empspousename)+","+JSON.stringify(jsondata[i].empdob)+","+JSON.stringify(jsondata[i].empdoj)+","+jsondata[i].maritalstatusid+","+jsondata[i].genderid+","+jsondata[i].designationid+","+jsondata[i].departmentid+","+jsondata[i].religionid+")' style='border: 1px solid red'>Edit</button>&nbsp;<button class='btn btn-sm' onclick='empDetailsReport("+jsondata[i].id+")' style='border: 1px solid red'>Details</button></td></tr>";
-
+                             " onclick='editEmp("+jsondata[i].id+","+JSON.stringify(jsondata[i].empslno)+","+JSON.stringify(jsondata[i].empfname)+","+JSON.stringify(jsondata[i].empmname)+","+JSON.stringify(jsondata[i].emplname)+","+JSON.stringify(jsondata[i].empfathername)+","+JSON.stringify(jsondata[i].empmothername)+","+JSON.stringify(jsondata[i].empspousename)+","+JSON.stringify(jsondata[i].empdob)+","+JSON.stringify(jsondata[i].empdoj)+","+jsondata[i].maritalstatusid+","+jsondata[i].genderid+","+jsondata[i].designationid+","+jsondata[i].departmentid+","+jsondata[i].religionid+")' style='border: 1px solid red'>Edit</button>&nbsp;<button class='btn btn-sm' onclick='empDetailsReport("+jsondata[i].id+")' data-toggle='modal' data-target='#employeeDetials' style='border: 1px solid red'>Details</button></td></tr>";
                      }
                      $('#load_emp_basic_details').html(html);
                  }
@@ -637,8 +658,132 @@
         type:'post',
         url:'<?=base_url("Employee/details_emp_report")?>',
         data:{id:id},
-        success:function (res) {
+        dataType:'json',
+        success:function (data) {
+            if(data!=false) {
+                var mname = data['basic'].empmname;
+                if (mname != "") {
+                    var name = data['basic'].empfname + " " + data['basic'].empmname + " " + data['basic'].emplname;
+                } else {
+                    var name = data['basic'].empfname + " " + data['basic'].emplname;
+                }
+                $('#empName').html(name);
+                $('#empANumber').html(data['basic'].empslno);
+
+                let basic = "<tr><td style='color:red'>Basic</td></tr>" +
+                    "<tr><td style='width:50%;'>Application Number</td><td>" + data['basic'].empslno + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Name</td><td>" + name + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Company Name</td><td>" + data['basic'].deptcompanyname + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Date of Joining</td><td>" + data['basic'].empdoj + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Designation</td><td>" + data['basic'].designationname + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Department</td><td>" + data['basic'].deptname + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Date of Birth</td><td>" + data['basic'].empdob + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Gender</td><td>" + data['basic'].gendername + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Marital status</td><td>" + data['basic'].maritalstatusname + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Religion</td><td>" + data['basic'].religionname + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Father Name</td><td>" + data['basic'].empfathername + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Mother Name</td><td>" + data['basic'].empmothername + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Spouse Name</td><td>" + data['basic'].empspousename + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Entry By</td><td>" + data['basic'].entrybyfname + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Entry Date</td><td>" + data['basic'].creationdate + "</td></tr>" +
+                    "<tr><td style='width:40%;'>Updated by</td><td>" + data['basic'].lastmodifiedon + "</td></tr>";
+                $('#loadBasicEmployeeDetails').html(basic);
+                if (data['communication'] == undefined) {
+                    $('#loadCommunicationEmployeeDetails').html("");
+                } else {
+                    let communication = "<tr><td style='color:red'>Communication</td></tr>" +
+                        "<tr><td style='width:50%;'>Present Address</td><td>" + data['communication'][0].emppresentaddress + "</td></tr>" +
+                        "<tr><td style='width:40%;'>Permanent Address</td><td>" + data['communication'][0].empaddress + "</td></tr>" +
+                        "<tr><td style='width:40%;'>Mobile Number</td><td>" + data['communication'][0].empcontact + "</td></tr>" +
+                        "<tr><td style='width:40%;'>Alternate Number</td><td>" + data['communication'][0].empaltcontact + "</td></tr>" +
+                        "<tr><td style='width:40%;'>EmailId</td><td>" + data['communication'][0].empemail + "</td></tr>" +
+                        "<tr><td style='width:40%;'>Entry By</td><td>" + data['communication'].entrybyfname + "</td></tr>" +
+                        "<tr><td style='width:40%;'>Creation Date</td><td>" + data['communication'][0].creationdate + "</td></tr>" +
+                        // "<tr><td style='width:40%;'>Updated by</td><td>"+data['communication'][0].lastmodifiedon+"</td></tr>" +
+                        "";
+                    $('#loadCommunicationEmployeeDetails').html(communication);
+                }
+                if(data['experience'] == undefined){
+                    $('#loadExperienceEmployeeDetails').html("");
+                }else{
+                    var z=data['experience'].length;
+                    let experiences="";
+                    for(var i=0;i<z;i++){
+                        let count = i+1;
+                        experiences += "<tr><td style='color:red'>Experience "+ count+"</td></tr>" +
+                            "<tr><td style='width:50%;'>Company Name</td><td>"+data['experience'][i].companyname+"</td></tr>" +
+                            "<tr><td style='width:40%;'>Designation</td><td>"+data['experience'][i].designationname+"</td></tr>" +
+                            "<tr><td style='width:40%;'>Job Role</td><td>"+data['experience'][i].jobrole+"</td></tr>" +
+                            "<tr><td style='width:40%;'>From Date</td><td>"+data['experience'][i].fromdate+"</td></tr>" +
+                            "<tr><td style='width:40%;'>To Date</td><td>"+data['experience'][i].todate+"</td></tr>" +
+                            "<tr><td style='width:40%;'>Entry By</td><td>"+data['experience'][i].entrybyfname+"</td></tr>" +
+                            "<tr><td style='width:40%;'>Creation Date</td><td>"+data['experience'][i].creationdate+"</td></tr>" +
+                            // "<tr><td style='width:40%;'>Updated by</td><td>"+data['experience'][i].lastmodifiedon+"</td></tr>" +
+                            "";
+                    }
+                    $('#loadExperienceEmployeeDetails').html(experiences);
+                }
+
+                if (data['education'] == undefined) {
+                    $('#loadQualificationEmployeeDetails').html("");
+                } else {
+                    var x = data['education'].length;
+                    let empqualifications = "";
+                    for (var j = 0; j < x; j++) {
+                        let count = j + 1;
+                        empqualifications += "<tr><td style='color:red'>Qualification " + count + "</td></tr>" +
+                            "<tr><td style='width:50%;'>Qualification Name</td><td>" + data['education'][j].educationname + "</td></tr>" +
+                            "<tr><td style='width:50%;'>Stream</td><td>" + data['education'][j].empedustream + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Board/Institute</td><td>" + data['education'][j].empeduboard + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Registration Number</td><td>" + data['education'][j].empregdno + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Percentage</td><td>" + data['education'][j].emppercentage + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Document Upload</td><td>" + data['education'][j].documentupload + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Entry By</td><td>" + data['education'][j].entrybyfname + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Creation Date</td><td>" + data['education'][j].creationdate + "</td></tr>" +
+                            // "<tr><td style='width:40%;'>Updated by</td><td>"+data['experience'][i].lastmodifiedon+"</td></tr>" +
+                            "";
+                    }
+                    $('#loadQualificationEmployeeDetails').html(empqualifications);
+                }
+                if (data['docuements'] == undefined) {
+                    $('#loadDocumentsEmployeeDetails').html("");
+                } else {
+                    var a = data['docuements'].length;
+                    let empdocuments = "";
+                    for (var k = 0; k < a; k++) {
+                        let count = k + 1;
+                        empdocuments += "<tr><td style='color:red'>Documents " + count + "</td></tr>" +
+                            "<tr><td style='width:50%;'>Document Name</td><td>" + data['docuements'][k].documenttypename + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Registration Number</td><td>" + data['docuements'][k].documentnumber + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Document Upload</td><td>" + data['docuements'][k].documentupload + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Entry By</td><td>" + data['docuements'][k].entrybyfname + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Creation Date</td><td>" + data['docuements'][k].creationdate + "</td></tr>" +
+                            // "<tr><td style='width:40%;'>Updated by</td><td>"+data['experience'][i].lastmodifiedon+"</td></tr>" +
+                            "";
+                    }
+                    $('#loadDocumentsEmployeeDetails').html(empdocuments);
+                }
+                if (data['bankdetails'] == undefined) {
+                    $('#loadBankdetailsEmployeeDetails').html("");
+                } else {
+                    var b = data['bankdetails'].length;
+                    let empbankdetails = "";
+                    for (var l = 0; l < b; l++) {
+                        empbankdetails += "<tr><td style='color:red'>Bank Documents</td></tr>" +
+                            "<tr><td style='width:50%;'>Bank Name</td><td>" + data['bankdetails'][l].bankname + "</td></tr>" +
+                            "<tr><td style='width:40%;'>A/c Number</td><td>" + data['bankdetails'][l].acno + "</td></tr>" +
+                            "<tr><td style='width:40%;'>IFSC Code</td><td>" + data['bankdetails'][l].ifsccode + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Document Upload</td><td>" + data['bankdetails'][l].documentupload + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Entry By</td><td>" + data['bankdetails'][l].entrybyfname + "</td></tr>" +
+                            "<tr><td style='width:40%;'>Creation Date</td><td>" + data['bankdetails'][l].creationdate + "</td></tr>" +
+                            // "<tr><td style='width:40%;'>Updated by</td><td>"+data['experience'][i].lastmodifiedon+"</td></tr>" +
+                            "";
+                    }
+                    $('#loadBankdetailsEmployeeDetails').html(empbankdetails);
+                }
+            }
         }
     });
     }
+
 </script>
