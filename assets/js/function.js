@@ -1,4 +1,3 @@
-
 //editIsactive function is for used for active/deactive
 // of all the records which are retrived from database and print on the report part.
 

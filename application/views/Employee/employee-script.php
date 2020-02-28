@@ -1,4 +1,5 @@
 <script>
+
     $(function () {
         education('cboEducationid0');
         education('cboUploadEducationid0');
