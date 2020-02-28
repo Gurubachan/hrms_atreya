@@ -1,0 +1,36 @@
+2020-02-20 12:40:45: === User Changed Action from 'COPY_FILE_LTOR' to 'NO_COPY' on item /application/logs/Query-log-2020-01-27.sql
+2020-02-20 12:40:45: Done.
+2020-02-20 12:40:46: === User Changed Action from 'COPY_FILE_LTOR' to 'NO_COPY' on item /application/logs/Query-log-2020-01-28.sql
+2020-02-20 12:40:46: Done.
+2020-02-20 12:40:52: == Sync Started by User Command
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/.gitignore' -> 'sftp://192.168.1.3/var/www/html/hrms/.gitignore' (2,120)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/controllers/Department.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/controllers/Department.php' (14,533)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/controllers/Designation.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/controllers/Designation.php' (7,220)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/controllers/Education.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/controllers/Education.php' (9,418)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/controllers/Employee.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/controllers/Employee.php' (57,449)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/controllers/Gender.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/controllers/Gender.php' (7,120)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/controllers/JobPosting.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/controllers/JobPosting.php' (12,709)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/controllers/MaritalStatus.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/controllers/MaritalStatus.php' (7,241)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/controllers/Religion.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/controllers/Religion.php' (6,698)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/controllers/User.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/controllers/User.php' (30,853)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/views/Department/department-script.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Department/department-script.php' (4,828)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/views/Department/formDepartment.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Department/formDepartment.php' (5,779)
+2020-02-20 12:40:52: Copy Over 'F:/websites/hrms_atreya/application/views/Designation/designation-script.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Designation/designation-script.php' (4,766)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/Designation/formDesignation.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Designation/formDesignation.php' (5,933)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/Education/viewDetails.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Education/viewDetails.php' (3,050)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/Employee/employee-script.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Employee/employee-script.php' (36,310)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/Employee/employee.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Employee/employee.php' (59,560)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/Employee/employeeDashboardSidebar.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Employee/employeeDashboardSidebar.php' (2,629)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/Gender/formGender.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Gender/formGender.php' (6,651)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/Gender/gender-script.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Gender/gender-script.php' (4,553)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/index.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/index.php' (4,436)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/MaritalStatus/formMaritalStatus.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/MaritalStatus/formMaritalStatus.php' (6,387)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/MaritalStatus/maritalstatus-script.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/MaritalStatus/maritalstatus-script.php' (4,680)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/Religion/formReligion.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Religion/formReligion.php' (5,684)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/Religion/religion-script.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/Religion/religion-script.php' (4,370)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/State/viewDetails.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/State/viewDetails.php' (2,590)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/User/formUser.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/User/formUser.php' (10,949)
+2020-02-20 12:40:53: Copy Over 'F:/websites/hrms_atreya/application/views/User/user-script.php' -> 'sftp://192.168.1.3/var/www/html/hrms/application/views/User/user-script.php' (7,808)
+2020-02-20 12:40:53: Copy New 'F:/websites/hrms_atreya/modification on database/19-02-2020.sql' -> 'sftp://192.168.1.3/var/www/html/hrms/modification on database/19-02-2020.sql' (4,066)
+2020-02-20 12:40:53: == Sync Complete. Time: 00:00:01, Speed: 25.56 MB/s, OK: 210, Errors: 0
+2020-02-20 12:40:53: 
