@@ -203,6 +203,7 @@ $cname = $this->uri->segment(2);
                                  </div>
                              </div>
                          </div>
+
                          <div class="tab-pane" id="communicationtab" role="tabpanel" aria-labelledby="communicationtab">
                              <form class="" id="communication" name="communication" autocomplete="off">
                                  <fieldset class="the-fieldset">

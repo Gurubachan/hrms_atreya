@@ -113,6 +113,7 @@ function successfully_updates() {
     toastr.success("Record Updated Successfully");
     toastr.options.showMethod = 'slideDown';
 }
+
 function mytoast(res) {
     var msg = res.message;
     var title = res.data;

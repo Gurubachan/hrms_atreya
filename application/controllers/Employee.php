@@ -15,7 +15,6 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
-//            print_r($_POST);
             if (isset($txtSlno) && preg_match("/[0-9a-zA-Z]{2,11}/", $txtSlno)) {
                 $insert[0]['empslno'] = strtoupper($txtSlno);
             } else {
