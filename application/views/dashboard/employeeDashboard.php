@@ -14,12 +14,12 @@
                                         </div>
                                     </div>
                                     <div class="box-content">
-                                       <div class="row">
-                                           <div class="col-sm-4" style="margin:20px;">
+                                       <div class="row"  style="padding:20px;">
+                                           <div class="col-sm-4">
                                                <canvas id="totalEmployee"></canvas>
                                            </div>
-                                           <div class="col-sm-4"></div>
-                                           <div class="col-sm-4"></div>
+<!--                                           <div class="col-sm-4"></div>-->
+<!--                                           <div class="col-sm-4"></div>-->
                                        </div>
 <!--                                        <div class="row">-->
 <!--                                            <div class="col-sm-4" style="margin:10px;">-->

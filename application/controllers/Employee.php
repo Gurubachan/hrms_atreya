@@ -8,7 +8,6 @@ class Employee extends CI_Controller
     {
         parent::__construct();
     }
-
     public function create_employee_basic_details()
     {
         try {
@@ -72,13 +71,13 @@ class Employee extends CI_Controller
                 $status = false;
                 $data['data'] = "Religion status error";
             }
-            if (isset($txtFathername) && preg_match("/[a-zA-Z ]{2,80}/", $txtFathername)) {
+            if (isset($txtFathername) && preg_match("/[a-zA-Z ]{2,60}/", $txtFathername)) {
                 $insert[0]['empfathername'] = strtoupper($txtFathername);
             } else {
                 $status = false;
                 $data['data'] = "Father name error";
             }
-            if (isset($txtMothername) && preg_match("/[a-zA-Z ]{2,80}/", $txtMothername)) {
+            if (isset($txtMothername) && preg_match("/[a-zA-Z ]{2,60}/", $txtMothername)) {
                 $insert[0]['empmothername'] = strtoupper($txtMothername) ;
             } else {
                 $status = false;
@@ -145,7 +144,6 @@ class Employee extends CI_Controller
             exit();
         }
     }
-
     public function create_employee_communication()
     {
         try {
@@ -225,6 +223,11 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
+            if(isset($rowid) && $rowid!=null){
+                $exp_rowid = $rowid;
+            }else{
+                $exp_rowid = "";
+            }
             if (isset($txtid) && is_numeric($txtid)) {
                 if (isset($cboCompanyname) && is_array($cboCompanyname)) {
                     $i = 0;
@@ -259,6 +262,10 @@ class Employee extends CI_Controller
                 $data['data'] = "Employee id not found";
             }
             if ($status) {
+               if($exp_rowid != ''){
+                   $emp_update[0]['isactive'] = "false";
+                   $this->Model_Db->update(99,$emp_update,"id",$exp_rowid);
+               }
                 $insert[0]['entryby'] = $this->session->login['userid'];
                 $insert[0]['createdat'] = date("Y-m-d H:i:s");
                 $res = $this->Model_Db->insert(99, $insert);
@@ -294,6 +301,11 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
+            if(isset($rowid) && $rowid!=''){
+                $qual_rowid = $rowid;
+            }else{
+                $qual_rowid = '';
+            }
             if (isset($txtid) && is_numeric($txtid)) {
                 if (isset($cboEducationid) && is_array($cboEducationid)) {
                     $i = 0;
@@ -335,6 +347,10 @@ class Employee extends CI_Controller
                 $data['data'] = "Employee id not found";
             }
             if ($status) {
+                if($qual_rowid != ''){
+                    $emp_update[0]['isactive'] = "false";
+                    $this->Model_Db->update(97,$emp_update,"id",$qual_rowid);
+                }
                 $res = $this->Model_Db->insert(97, $insert);
                 if ($res != false) {
                     $data['message'] = "Successful";
@@ -367,6 +383,12 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
+            if(isset($rowid) && $rowid!=''){
+                $docs_rowid = $rowid;
+            }else{
+                $docs_rowid = '';
+            }
+
             if (isset($txtid) && is_numeric($txtid)) {
                 if (isset($cboDocumentType) && is_array($cboDocumentType)) {
                     $i = 0;
@@ -397,16 +419,19 @@ class Employee extends CI_Controller
                     }
                 } else {
                     $status = false;
+                    $data['message']="error!";
                     $data['data'] = "Employee documents id error";
                 }
             } else {
                 $status = false;
+                $data['message']="error!";
                 $data['data'] = "Employee id not found";
             }
             if ($status) {
-                $where='isactive=true';
-                $update[0]['isactive'] = "false";
-                $this->Model_Db->update(103,$update,"empid",$txtid,$where);
+                if($docs_rowid != ''){
+                    $emp_update[0]['isactive'] = "false";
+                    $this->Model_Db->update(103,$emp_update,"id",$docs_rowid);
+                }
                 $res = $this->Model_Db->insert(103, $insert);
                 if ($res != false) {
                     $data['message'] = "Successful";
@@ -439,6 +464,11 @@ class Employee extends CI_Controller
             $data = array();
             $insert = array();
             $status = true;
+            if(isset($rowid) && $rowid!=''){
+                $bank_rowid = $rowid;
+            }else{
+                $bank_rowid = '';
+            }
             if (isset($txtid) && is_numeric($txtid)) {
                 if (isset($cboUploadBankid) && is_numeric($cboUploadBankid)) {
                     // print_r($_POST);
@@ -474,9 +504,13 @@ class Employee extends CI_Controller
             }
 
             if ($status) {
-                $where='isactive=true';
-                $update[0]['isactive'] = "false";
-                $this->Model_Db->update(35,$update,"empid",$txtid,$where);
+                if($bank_rowid != ''){
+                    $emp_update[0]['isactive'] = "false";
+                    $emp_update[0]['updatedby'] = $this->session->login['userid'];
+                    $emp_update[0]['updatedat'] = date("Y-m-d H:i:s");
+
+                    $this->Model_Db->update(35,$emp_update,"id",$bank_rowid);
+                }
                 $res = $this->Model_Db->insert(35, $insert);
                 if ($res != false) {
                     $data['message'] = "Successful";
@@ -586,7 +620,6 @@ class Employee extends CI_Controller
 //    }
 // }
 //    }
-
     public function report_employee_basic_details()
     {
         try {
@@ -756,7 +789,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                $where = "empid=$request->checkparams";
+                $where = "empid=$request->checkparams and isactive=true";
 //                switch ($request->checkparams) {
 //                    case 1:
 //                        $where = "DATE(createdat)=DATE('$current_date')";
@@ -904,7 +937,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                $where = "empid=$request->checkparams";
+                $where = "empid=$request->checkparams and isactive=true";
 //                switch ($request->checkparams) {
 //                    case 1:
 //                        $where = "DATE(createdat)=DATE('$current_date')";
@@ -972,7 +1005,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                $where = "empid=$request->checkparams";
+                $where = "empid=$request->checkparams and isactive=true";
 //                switch ($request->checkparams) {
 //                    case 1:
 //                        $where = "DATE(createdat)=DATE('$current_date')";
@@ -1037,7 +1070,7 @@ class Employee extends CI_Controller
 //            $datanow = date("Y-m-d H:i:s");
             $current_date = Date("Y-m-d");
             if (isset($request->checkparams) && is_numeric($request->checkparams)) {
-                $where = "empid=$request->checkparams";
+                $where = "empid=$request->checkparams and isactive=true";
 //                switch ($request->checkparams) {
 //                    case 1:
 //                        $where = "DATE(createdat)=DATE('$current_date')";
@@ -1361,5 +1394,68 @@ class Employee extends CI_Controller
             exit();
         }
     }
+    public function qualification_download_pdf(){
+        try{
+            extract($_POST);
+            print_r($_POST);
+            if(isset($txtid)&& $txtid!=""){
+                $where="empid=$txtid and id=$id";
+                $res = $this->Model_Db->select(97,null,$where);
+                $this->load->helper('download');
+                if($res[0]->documentupload){
+                        $fileName = $res[0]->documentupload;
+                        $name = $fileName;
+                        $data = file_get_contents('./assets/empqualification_doc/'.$fileName);
+                        force_download($name, $data);
+                }else{
+                    $data['message'] = "File not found";
+                    $data['status'] = false;
+                    $data['error'] = true;
+                }
+            }
+            echo json_encode($data);
+        }catch (Exception $e){
+            $data['message'] = "Message:" . $e->getMessage();
+            $data['status'] = false;
+            $data['error'] = true;
+            echo json_encode($data);
+            exit();
+        }
+
+    }
+//    public function qualification_preview_pdf(){
+//        try{
+//            extract($_POST);
+//            print_r($_POST);
+//            if(isset($txtid)&& $txtid!=""){
+//                $where="empid=$txtid and id=$id";
+//                $res = $this->Model_Db->select(97,null,$where);
+//                $this->load->helper('download');
+//                if($res[0]->documentupload){
+//                    $fileName = $res[0]->documentupload;
+//                        $name = $fileName;
+//                        $data = file_get_contents('./assets/empqualification_doc/'.$fileName);
+//                        force_download($name, $data);
+//                }else{
+//                    $data['message'] = "File not found";
+//                    $data['status'] = false;
+//                    $data['error'] = true;
+//                }
+//            }
+//        }catch (Exception $e){
+//            $data['message'] = "Message:" . $e->getMessage();
+//            $data['status'] = false;
+//            $data['error'] = true;
+//            echo json_encode($data);
+//            exit();
+//        }
+//
+//    }
+//    function qualification_preview_pdf(){
+//        $fname = $this->uri->segment(3);
+//        $tofile= realpath("uploaddir/".$fname);
+//        header('Content-Type: application/pdf');
+//        readfile($tofile);
+//    }
 }
 

@@ -128,13 +128,13 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="employeefathername" class="control-label mb-1">Father Name <span style="color:red;">*</span></label>
                                                      <input type="text" id="txtFathername" name="txtFathername" class="form-control"
-                                                            onclick=" charachters_validate('txtFathername')" maxlength="20" placeholder="Enter father name" title="Only characters and space are allowed" required>
+                                                            onclick=" charachters_validate('txtFathername')" minlength="2" maxlength="60" placeholder="Enter father name" title="Only characters and space are allowed" required>
                                                  </div>
                                              </div>
                                              <div class="col-sm-2">
                                                  <div class="form-group">
                                                      <label for="employeemothername" class="control-label mb-1">Mother Name <span style="color:red;">*</span></label>
-                                                     <input type="text" id="txtMothername" name="txtMothername" class="form-control" maxlength="20"
+                                                     <input type="text" id="txtMothername" name="txtMothername" class="form-control" minlength="2" maxlength="60"
                                                             onclick=" charachters_validate('txtMothername')" placeholder="Enter mother name" title="Only characters and space are allowed" required>
                                                  </div>
                                              </div>
@@ -142,7 +142,7 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="employeespoucename" class="control-label mb-1">Spouse
                                                          Name</label>
-                                                     <input type="text" id="txtSpousename" name="txtSpousename" class="form-control" maxlength="20"
+                                                     <input type="text" id="txtSpousename" name="txtSpousename" class="form-control" minlength="2" maxlength="60"
                                                             onclick=" charachters_validate('txtSpousename')" placeholder="Enter spouse name" title="Only characters and space are allowed">
                                                  </div>
                                              </div>
@@ -486,6 +486,13 @@ $cname = $this->uri->segment(2);
                                                      <label for="employeeeducationstream"
                                                             class="control-label mb-1">Upload Doc's<span style="color:red;">*</span></label>
                                                      <input type="file" id="fileCertificate0" name="fileCertificate0" class="form-control" placeholder="Enter education stream" title="only pdf format allowed and  max size 1mb" required>
+<!--                                                     <input type="file" id="fileCertificate0" name="fileCertificate0" class="form-control" placeholder="Enter education stream" title="only pdf format allowed and  max size 1mb" onchange="readFile(this, 'previewResume', 'div-res')" required>-->
+<!--                                                     <div class="form-group" id="div-res" style="display: none">-->
+<!--                                                         <embed id="previewResume" type="video/webm"-->
+<!--                                                                src=""-->
+<!--                                                                width="200"-->
+<!--                                                                height="150">-->
+<!--                                                     </div>-->
                                                  </div>
                                              </div>
                                          </div>
@@ -725,13 +732,13 @@ $cname = $this->uri->segment(2);
                     <div class="row">
                         <div class="col-sm-12">
                             <div id="accordion">
-                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                <div class="card">
                                     <div class="card-header">
                                         <a class="card-link" data-toggle="collapse" href="#collapseOne">
                                             Basic Details
                                         </a>
                                     </div>
-                                    <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordion"  style="max-height: 200px; overflow-y: scroll;">
                                         <div class="card-body">
                                             <table class="">
                                                 <tbody id="loadBasicEmployeeDetails">
@@ -740,13 +747,13 @@ $cname = $this->uri->segment(2);
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                <div class="card">
                                     <div class="card-header">
                                         <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
                                             Communication Details
                                         </a>
                                     </div>
-                                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                                    <div id="collapseTwo" class="collapse" data-parent="#accordion"  style="max-height: 200px; overflow-y: scroll;">
                                         <div class="card-body">
                                             <table class="">
                                                 <tbody id="loadCommunicationEmployeeDetails"></tbody>
@@ -754,13 +761,13 @@ $cname = $this->uri->segment(2);
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                <div class="card">
                                     <div class="card-header">
                                         <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
                                             Experience Details
                                         </a>
                                     </div>
-                                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                                    <div id="collapseThree" class="collapse" data-parent="#accordion"  style="max-height: 200px; overflow-y: scroll;">
                                         <div class="card-body">
                                             <table style="max-height: 100px; overflow-y:scroll;">
                                                 <tbody id="loadExperienceEmployeeDetails"></tbody>
@@ -768,13 +775,13 @@ $cname = $this->uri->segment(2);
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                <div class="card">
                                     <div class="card-header">
                                         <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
                                             Qualification Details
                                         </a>
                                     </div>
-                                    <div id="collapseFour" class="collapse" data-parent="#accordion">
+                                    <div id="collapseFour" class="collapse" data-parent="#accordion"  style="max-height: 200px; overflow-y: scroll;">
                                         <div class="card-body">
                                             <table>
                                                 <tbody id="loadQualificationEmployeeDetails"></tbody>
@@ -782,13 +789,13 @@ $cname = $this->uri->segment(2);
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                <div class="card">
                                     <div class="card-header">
                                         <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
                                             Documents Details
                                         </a>
                                     </div>
-                                    <div id="collapseFive" class="collapse" data-parent="#accordion">
+                                    <div id="collapseFive" class="collapse" data-parent="#accordion"  style="max-height: 200px; overflow-y: scroll;">
                                         <div class="card-body">
                                             <table>
                                                 <tbody id="loadDocumentsEmployeeDetails"></tbody>
@@ -796,13 +803,13 @@ $cname = $this->uri->segment(2);
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card" style="max-height: 200px; overflow-y: scroll;">
+                                <div class="card">
                                     <div class="card-header">
                                         <a class="collapsed card-link" data-toggle="collapse" href="#collapseSix">
                                             Bank Details
                                         </a>
                                     </div>
-                                    <div id="collapseSix" class="collapse" data-parent="#accordion">
+                                    <div id="collapseSix" class="collapse" data-parent="#accordion"  style="max-height: 200px; overflow-y: scroll;">
                                         <div class="card-body">
                                             <table>
                                                 <tbody id="loadBankdetailsEmployeeDetails"></tbody>

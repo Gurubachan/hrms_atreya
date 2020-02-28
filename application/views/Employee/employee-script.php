@@ -17,8 +17,18 @@
         lowerToUpper('txtIFSCCode');
         lowerToUpper('txtSlno');
         religion('cboreligionid');
-
     });
+    function readFile(input, id, divId) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#'+id)
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+            $("#"+divId).slideDown(400);
+        }
+    }
     // $('.owl-carousel').owlCarousel({
     //     // loop:true,
     //     // margin:10,
@@ -39,8 +49,8 @@
         //     }
         // }
     // });
-
    var txtid = null;
+   var rowid = '';
     function showMyImage(fileInput) {
         var files = fileInput.files;
         for (var i = 0; i < files.length; i++) {
@@ -222,7 +232,7 @@
             $('#cboPresentStateid').val(permanent_stat).attr('disabled', true);
             $('#cboPresentStateid').trigger('change',myFunction());
             function myFunction() {
-                setTimeout(function(){ $('#cboPresentDistid').val(permanent_dist).attr('disabled', true); }, 200);
+                setTimeout(function(){ $('#cboPresentDistid').val(permanent_dist).attr('disabled', true); }, 300);
             }
             $('#txtPresentPincode').val(permanent_pin).attr('disabled', true);
         }else{
@@ -352,7 +362,7 @@
         });
     $("#experience").submit(function (e) {
         e.preventDefault();
-        var frm = $(this).serialize()+'&'+$.param({'txtid':txtid });
+        var frm = $(this).serialize()+'&'+$.param({'txtid':txtid , 'rowid':rowid });
         $.ajax({
             type:"post",
             // crossDomain:true,
@@ -363,6 +373,8 @@
                 if(jsondata.status==true){
                     report_current_emp_experience();
                     mytoast(jsondata);
+                    // alert(rowid);
+                    rowid = "";
                     if(txtid!=null) {
                         $('#experience').trigger('reset');
                         $('.nav-tabs > .active').next().trigger('click');
@@ -382,6 +394,7 @@
         var form = $("#qualification");
         var formData = new FormData(form[0]);
         formData.append('txtid', txtid);
+        formData.append('rowid', rowid);
         $.ajax({
             type:"post",
             url:'<?=base_url("Employee/create_employee_qualification")?>',
@@ -394,6 +407,7 @@
                 if(res.status==true){
                     mytoast(res);
                     report_current_emp_qualification();
+                    rowid = "";
                     if(txtid!=null) {
                         $('#qualification').trigger('reset');
                         $('.nav-tabs > .active').next().trigger('click');
@@ -413,6 +427,7 @@
         var form = $("#upload_document_details");
         var formData = new FormData(form[0]);
         formData.append('txtid', txtid);
+        formData.append('rowid', rowid);
         $.ajax({
             type:"post",
             url:'<?=base_url("Employee/create_employee_upload_documnet_details")?>',
@@ -425,6 +440,7 @@
                 if(jsondata.status==true){
                     mytoast(jsondata);
                     report_current_emp_document_uploads();
+                    rowid="";
                     if(txtid!=null) {
                         $('#upload_document_details').trigger('reset');
                         $('.nav-tabs > .active').next().trigger('click');
@@ -444,6 +460,7 @@
         var form = $("#upload_bank_details");
         var formData = new FormData(form[0]);
         formData.append('txtid', txtid);
+        formData.append('rowid', rowid);
         $.ajax({
             type:"post",
             url:'<?=base_url("Employee/create_employee_bank_details")?>',
@@ -456,6 +473,7 @@
                 if(jsondata.status==true){
                     mytoast(jsondata);
                     report_current_emp_bankdetails();
+                    rowid="";
                     if(txtid!=null) {
                         // $('.nav-tabs > .active').next().trigger('click');
                         // $("#qualificationtabbar").removeClass('active');
@@ -477,7 +495,6 @@
             }
         });
     });
-
     function report_emp_basic(id){
          $.ajax({
              type:'post',
@@ -567,6 +584,7 @@
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
+                    console.log(data);
                     var j = 0;
                     var z = jsondata.length;
                     var html = "";
@@ -574,13 +592,20 @@
                     var isattendance = '';
                     for (var i = 0; i < z; i++) {
                         j++;
-                        html += "<tr><td>" + j + "</td><td>"+jsondata[i].companyname+"</td><td>"+jsondata[i].designationname+"</td><td>"+jsondata[i].jobrole+"</td><td>"+jsondata[i].fromdate+"</td><td>"+jsondata[i].todate+"</td></tr>";
-
+                        html += "<tr onclick='expRowUpdate("+jsondata[i].id+","+JSON.stringify(jsondata[i].companyname)+", "+jsondata[i].desginationid+","+JSON.stringify(jsondata[i].jobrole)+","+JSON.stringify(jsondata[i].fromdate)+","+JSON.stringify(jsondata[i].todate)+")'><td>" + j + "</td><td>"+jsondata[i].companyname+"</td><td>"+jsondata[i].designationname+"</td><td>"+jsondata[i].jobrole+"</td><td>"+jsondata[i].fromdate+"</td><td>"+jsondata[i].todate+"</td></tr>";
                     }
                     $('#load_emp_experience_details').html(html);
                 }
             }
         });
+    }
+    function expRowUpdate(id,cname,desid,jobrole,fromdate,todate) {
+        rowid = id;
+        $("#cboCompanyname0").val(cname);
+        $("#cboJobdesignation0").val(desid);
+        $("#txtJobrole0").val(jobrole);
+        $("#txtFromdate0").val(fromdate);
+        $("#txtTodate0").val(todate);
     }
     function report_current_emp_qualification(){
         // var id = $('#txtid').val();
@@ -591,6 +616,7 @@
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
+                    console.log(data);
                     var j = 0;
                     var z = jsondata.length;
                     var html = "";
@@ -598,14 +624,60 @@
                     var isattendance = '';
                     for (var i = 0; i < z; i++) {
                         j++;
-                        html += "<tr><td>" + j + "</td><td>"+jsondata[i].educationname+"</td><td>"+jsondata[i].empedustream+"</td><td>"+jsondata[i].empeduboard+"</td><td>"+jsondata[i].empregdno+"</td><td>"+jsondata[i].emppercentage+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
-
+                        // html += "<tr onclick='quaRowUpdate("+jsondata[i].id+","+jsondata[i].educationid+","+JSON.stringify(jsondata[i].educationname)+","+JSON.stringify(jsondata[i].empeduboard)+","+JSON.stringify(jsondata[i].empregdno)+","+jsondata[i].emppercentage+")'><td>" + j + "</td><td>"+jsondata[i].educationname+"</td><td>"+jsondata[i].empedustream+"</td><td>"+jsondata[i].empeduboard+"</td><td>"+jsondata[i].empregdno+"</td><td>"+jsondata[i].emppercentage+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
+                        // html += "<tr onclick='qualRowUpdate("+jsondata[i].id+","+jsondata[i].educationid+","+JSON.stringify(jsondata[i].empedustream)+","+JSON.stringify(jsondata[i].empeduboard)+","+jsondata[i].empregdno+","+jsondata[i].emppercentage+","+jsondata[i].documentupload+")'><td>" + j + "</td><td>"+jsondata[i].educationname+"</td><td>"+jsondata[i].empedustream+"</td><td>"+jsondata[i].empeduboard+"</td><td>"+jsondata[i].empregdno+"</td><td>"+jsondata[i].emppercentage+"</td><td>"+jsondata[i].documentupload+" &nbsp;<button class='btn btn-sm bg-transparent' onclick='qualPdfView("+txtid+","+jsondata[i].id+")' style='border-color: 1px solid red;'>view document</button><button class='btn btn-sm bg-transparent' style='border-color: 1px solid red;' onclick='qualPdfDownload("+txtid+","+jsondata[i].id+")'>download</button></td></tr>";
+                        html += "<tr onclick='qualRowUpdate("+jsondata[i].id+","+jsondata[i].educationid+","+JSON.stringify(jsondata[i].empedustream)+","+JSON.stringify(jsondata[i].empeduboard)+","+JSON.stringify(jsondata[i].empregdno)+","+jsondata[i].emppercentage+")'><td>" + j + "</td><td>"+jsondata[i].educationname+"</td><td>"+jsondata[i].empedustream+"</td><td>"+jsondata[i].empeduboard+"</td><td>"+jsondata[i].empregdno+"</td><td>"+jsondata[i].emppercentage+"</td><td>"+jsondata[i].documentupload+" &nbsp;<button class='btn btn-sm bg-transparent' onclick='qualPdfView("+txtid+","+jsondata[i].id+")' style='border-color: 1px solid red;'>view document</button><button class='btn btn-sm bg-transparent' style='border-color: 1px solid red;' onclick='qualPdfDownload("+txtid+","+jsondata[i].id+")'>download</button></td></tr>";
                     }
                     $('#load_emp_qualification_details').html(html);
                 }
             }
         });
     }
+    // function qualRowUpdate(id,educationid,educationstream,educationboard,resigratronno,percentage,documentupload) {
+    function qualRowUpdate(id,educationid,educationstream,educationboard,resigratronno,percentage) {
+        rowid = id;
+        $("#cboEducationid0").val(educationid);
+        $("#txtEducationstream0").val(educationstream);
+        $("#txtBoard0").val(educationboard);
+        $("#txtRegdno0").val(resigratronno);
+        $("#txtPercentage0").val(percentage);
+        // $("#fileCertificate0").val(documentupload);
+    }
+    function qualPdfView(txtid,rowid) {
+            $.ajax({
+                type:'post',
+                url:'<?=base_url("Employee/qualification_preview_pdf")?>',
+                data:{txtid:txtid,id:rowid},
+                success:function (res) {
+                    var jsondata = JSON.parse(res);
+                    if(jsondata.status == true){
+                        alert('success');
+                }
+                }
+            });
+    }
+    function qualPdfDownload(txtid,rowid) {
+            $.ajax({
+                type:'post',
+                url:'<?=base_url("Employee/qualification_download_pdf")?>',
+                data:{txtid:txtid,id:rowid},
+                success:function (res) {
+                    var jsondata = JSON.parse(res);
+                    if(jsondata.status == true){
+                        alert('success');
+                }
+                }
+            });
+    }
+    // function quaRowUpdate(id) {
+    //     rowid = id;
+    //     alert(id);
+        // $("#cboCompanyname0").val(cname);
+        // $("#cboJobdesignation0").val(desname);
+        // $("#txtJobrole0").val(jobrole);
+        // $("#txtFromdate0").val(fromdate);
+        // $("#txtTodate0").val(todate);
+    // }
     function report_current_emp_document_uploads(){
         var id = $('#txtid').val();
         $.ajax({
@@ -615,6 +687,7 @@
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
+                    console.log(data);
                     var j = 0;
                     var z = jsondata.length;
                     var html = "";
@@ -622,13 +695,17 @@
                     var isattendance = '';
                     for (var i = 0; i < z; i++) {
                         j++;
-                        html += "<tr><td>" + j + "</td><td>"+jsondata[i].documenttypename+"</td><td>"+jsondata[i].documentnumber+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
-
+                        html += "<tr onclick='docRowUpdate("+jsondata[i].id+","+jsondata[i].documenttypeid+","+JSON.stringify(jsondata[i].documentnumber)+")'><td>" + j + "</td><td>"+jsondata[i].documenttypename+"</td><td>"+jsondata[i].documentnumber+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
                     }
                     $('#load_emp_identification_details').html(html);
                 }
             }
         });
+    }
+    function docRowUpdate(id,docid,docnumber) {
+        rowid = id;
+        $("#cboDocumentTypes0").val(docid);
+        $("#txtDocIdentificationNumber0").val(docnumber);
     }
     function report_current_emp_bankdetails(){
         // var id = $('#txtid').val();
@@ -639,6 +716,7 @@
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
+                    console.log(data);
                     var j = 0;
                     var z = jsondata.length;
                     var html = "";
@@ -646,12 +724,18 @@
                     var isattendance = '';
                     for (var i = 0; i < z; i++) {
                         j++;
-                        html += "<tr><td>" + j + "</td><td>"+jsondata[i].bankname+"</td><td>"+jsondata[i].acno+"</td><td>"+jsondata[i].ifsccode+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
+                        html += "<tr onclick='bankRowUpdate("+jsondata[i].id+","+jsondata[i].bankid+","+jsondata[i].acno+","+JSON.stringify(jsondata[i].ifsccode)+")'><td>" + j + "</td><td>"+jsondata[i].bankname+"</td><td>"+jsondata[i].acno+"</td><td>"+jsondata[i].ifsccode+"</td><td>"+jsondata[i].documentupload+"</td></tr>";
                     }
                     $('#load_emp_bank_details').html(html);
                 }
             }
         });
+    }
+    function bankRowUpdate(id,bankid,accountnumber,ifsccode) {
+        rowid = id;
+        $("#cboUploadBankid").val(bankid);
+        $("#txtAcNumber").val(accountnumber);
+        $("#txtIFSCCode").val(ifsccode);
     }
     function empDetailsReport(id) {
     $.ajax({
@@ -723,7 +807,6 @@
                     }
                     $('#loadExperienceEmployeeDetails').html(experiences);
                 }
-
                 if (data['education'] == undefined) {
                     $('#loadQualificationEmployeeDetails').html("");
                 } else {
