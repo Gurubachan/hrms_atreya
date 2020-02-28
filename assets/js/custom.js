@@ -117,12 +117,12 @@ function mytoast(res) {
     var msg = res.message;
     var title = res.data;
     if(res.status== true){
-        toastr.options.rtl = true;
+        // toastr.options.rtl = true;
         toastr.options.positionClass = 'toast-bottom-right';
         toastr.success(title,msg);
         toastr.options.showMethod = 'slideDown';
     }else {
-        toastr.options.rtl = true;
+        // toastr.options.rtl = true;
         toastr.options.positionClass = 'toast-bottom-right';
         toastr.error(title,msg);
         toastr.options.showMethod = 'slideDown';

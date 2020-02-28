@@ -71,19 +71,19 @@ class Employee extends CI_Controller
                 $status = false;
                 $data['data'] = "Religion status error";
             }
-            if (isset($txtFathername) && preg_match("/[a-zA-Z ]{2,60}/", $txtFathername)) {
+            if (isset($txtFathername) && preg_match("/[a-zA-Z ]{1,100}/", $txtFathername)) {
                 $insert[0]['empfathername'] = strtoupper($txtFathername);
             } else {
                 $status = false;
                 $data['data'] = "Father name error";
             }
-            if (isset($txtMothername) && preg_match("/[a-zA-Z ]{2,60}/", $txtMothername)) {
+            if (isset($txtMothername) && preg_match("/[a-zA-Z ]{1,100}/", $txtMothername)) {
                 $insert[0]['empmothername'] = strtoupper($txtMothername) ;
             } else {
                 $status = false;
                 $data['data'] = "Mother name error";
             }
-            if (isset($txtSpousename) && preg_match("/[a-zA-Z ]{2,80}/", $txtSpousename)) {
+            if (isset($txtSpousename) && preg_match("/[a-zA-Z ]{1,100}/", $txtSpousename)) {
                 $insert[0]['empspousename'] = strtoupper($txtSpousename) ;
             } else {
                 $insert[0]['empspousename'] = '';
@@ -156,13 +156,14 @@ class Employee extends CI_Controller
                 $insert[0]['empid'] = $txtid;
             } else {
                 $status = false;
+                $data['message']="Error!";
                 $data['data']='id not found';
             }
-
             if (isset($txtMobile) && preg_match("/[6-9]{1}[0-9]{9}/", $txtMobile)) {
                 $insert[0]['empcontact'] = $txtMobile;
             } else {
                 $status = false;
+                $data['message']="Error!";
                 $data['data'] = "Employee contact error";
 //                $insert[0]['empcontact'] ="";
             }
@@ -173,6 +174,9 @@ class Employee extends CI_Controller
             }
             if (isset($txtEmailid) && preg_match("/[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/", $txtEmailid)) {
                 $insert[0]['empemail'] = $txtEmailid;
+            }else{
+                $data['message']="Error!";
+                $data['data']='Emailid not found';
             }
             if (isset($permanent_address)) { //permanent address
                 $insert[0]['empaddress'] = strtoupper($permanent_address) ;
@@ -186,12 +190,9 @@ class Employee extends CI_Controller
                 $status = false;
                 $data['data'] = "Employee address error";
             }
-            $update[0]['isactive'] = "false";
             if ($status) {
-                $where="isactive=true";
                 $insert[0]['entryby'] = $this->session->login['userid'];
                 $insert[0]['createdat'] = date("Y-m-d H:i:s");
-                $this->Model_Db->update(95,$update,"empid",$txtid,$where);
                 $res = $this->Model_Db->insert(95, $insert);
                 if ($res != false) {
                     $data['message'] = "Successful";
@@ -202,10 +203,11 @@ class Employee extends CI_Controller
                     $data['data'] = "Data Insert failed.";
                     $data['status'] = false;
                 }
-            } else {
-                $data['message'] = "Insufficient/Invalid data.";
-                $data['status'] = false;
             }
+//            } else {
+//                $data['message'] = "Insufficient/Invalid data.";
+//                $data['status'] = false;
+//            }
             echo json_encode($data);
             exit();
         } catch (Exception $e) {

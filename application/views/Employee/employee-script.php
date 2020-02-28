@@ -560,6 +560,7 @@
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
+                    // console.log(data);
                     var j = 0;
                     var z = jsondata.length;
                     var html = "";
@@ -584,7 +585,7 @@
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
-                    console.log(data);
+                    // console.log(data);
                     var j = 0;
                     var z = jsondata.length;
                     var html = "";
@@ -616,7 +617,7 @@
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
-                    console.log(data);
+                    // console.log(data);
                     var j = 0;
                     var z = jsondata.length;
                     var html = "";
@@ -687,7 +688,7 @@
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
-                    console.log(data);
+                    // console.log(data);
                     var j = 0;
                     var z = jsondata.length;
                     var html = "";
@@ -716,7 +717,7 @@
             success:function(data){
                 if(data!=false) {
                     var jsondata = JSON.parse(data);
-                    console.log(data);
+                    // console.log(data);
                     var j = 0;
                     var z = jsondata.length;
                     var html = "";

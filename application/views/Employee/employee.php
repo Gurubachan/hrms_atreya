@@ -128,13 +128,13 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="employeefathername" class="control-label mb-1">Father Name <span style="color:red;">*</span></label>
                                                      <input type="text" id="txtFathername" name="txtFathername" class="form-control"
-                                                            onclick=" charachters_validate('txtFathername')" minlength="2" maxlength="60" placeholder="Enter father name" title="Only characters and space are allowed" required>
+                                                            onclick=" charachters_validate('txtFathername')" minlength="1" maxlength="100" placeholder="Enter father name" title="Only characters and space are allowed" required>
                                                  </div>
                                              </div>
                                              <div class="col-sm-2">
                                                  <div class="form-group">
                                                      <label for="employeemothername" class="control-label mb-1">Mother Name <span style="color:red;">*</span></label>
-                                                     <input type="text" id="txtMothername" name="txtMothername" class="form-control" minlength="2" maxlength="60"
+                                                     <input type="text" id="txtMothername" name="txtMothername" class="form-control" minlength="1" maxlength="100"
                                                             onclick=" charachters_validate('txtMothername')" placeholder="Enter mother name" title="Only characters and space are allowed" required>
                                                  </div>
                                              </div>
@@ -142,7 +142,7 @@ $cname = $this->uri->segment(2);
                                                  <div class="form-group">
                                                      <label for="employeespoucename" class="control-label mb-1">Spouse
                                                          Name</label>
-                                                     <input type="text" id="txtSpousename" name="txtSpousename" class="form-control" minlength="2" maxlength="60"
+                                                     <input type="text" id="txtSpousename" name="txtSpousename" class="form-control" minlength="1" maxlength="100"
                                                             onclick=" charachters_validate('txtSpousename')" placeholder="Enter spouse name" title="Only characters and space are allowed">
                                                  </div>
                                              </div>
