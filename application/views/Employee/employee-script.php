@@ -745,6 +745,7 @@
         data:{id:id},
         dataType:'json',
         success:function (data) {
+            console.log(data);
             if(data!=false) {
                 var mname = data['basic'].empmname;
                 if (mname != "") {

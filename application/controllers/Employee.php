@@ -1295,7 +1295,7 @@ class Employee extends CI_Controller
                                     'isactive' => $r->isactive
                                 );
                                 foreach ($education as $edu) {
-                                    if ($res[0]->empeduid == $edu->id) {
+                                    if ($res[$i]->empeduid == $edu->id) {
                                         $data['education'][$i]['educationid'] = $edu->id;
                                         $data['education'][$i]['educationname'] = $edu->educationname;
                                     }
@@ -1323,10 +1323,11 @@ class Employee extends CI_Controller
                                     'documentupload' => $r->documentupload,
                                     'creationdate' => $r->createdat,
                                     'lastmodifiedon' => $r->updatedat,
-                                    'isactive' => $r->isactive
+                                    'isactive' => $r->isactive,
+                                    'documenttypeid'=>$r->documenttypeid
                                 );
                                 foreach ($documenttype as $doctype) {
-                                    if ($res[0]->documenttypeid == $doctype->id) {
+                                    if ($res[$i]->documenttypeid == $doctype->id) {
                                         $data['docuements'][$i]['documenttypeid'] = $doctype->id;
                                         $data['docuements'][$i]['documenttypename'] = $doctype->documenttypename;
                                     }
